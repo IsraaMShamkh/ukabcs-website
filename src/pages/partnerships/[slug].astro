@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const partners = await getCollection('partnerships');
+  return partners.map((partner) => ({
+    params: { slug: partner.slug },
+    props: { partner },
+  }));
+}
+
+const { partner } = Astro.props;
+const { Content } = await partner.render();
+---
+
+<BaseLayout title={`${partner.data.title} | UKABCS Partnerships`}>
+  <article class="py-20">
+    <div class="container max-w-4xl mx-auto">
+      <div class="mb-8">
+        <a href="/partnerships" class="back-link mb-4 inline-flex items-center gap-2 text-secondary text-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+          <span>Back to Partnerships</span>
+        </a>
+        <div class="meta-row mt-4 mb-4">
+          <span class="badge-pill badge-emerald">{partner.data.type}</span>
+          <span class="value-tag">{partner.data.value} Contribution</span>
+          <time class="text-sm text-secondary" datetime={partner.data.datePublished}>
+            {new Date(partner.data.datePublished).toLocaleDateString('en-GB', { month: 'long', year: 'numeric' })}
+          </time>
+        </div>
+        <h1 class="text-3xl font-bold mb-4">{partner.data.title}</h1>
+        <p class="text-lg text-secondary leading-relaxed">{partner.data.description}</p>
+      </div>
+
+      <div class="flat-surface p-10 prose-content">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+  .mx-auto { margin-inline: auto; }
+  .max-w-4xl { max-width: 56rem; }
+  .mb-4 { margin-bottom: 1rem; }
+  .mb-8 { margin-bottom: 2rem; }
+  .mt-4 { margin-top: 1rem; }
+  .text-3xl { font-size: 2rem; }
+  .text-lg { font-size: 1.125rem; }
+  .text-sm { font-size: 0.875rem; }
+  .font-bold { font-weight: 700; }
+  .text-secondary { color: var(--color-text-secondary); }
+  .leading-relaxed { line-height: 1.7; }
+  .p-10 { padding: 2.5rem; }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .value-tag {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--color-accent);
+  }
+
+  .prose-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+  }
+
+  .prose-content :global(h2), .prose-content :global(h3) {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+  }
+
+  .prose-content :global(p) {
+    margin-bottom: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-content :global(ul) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

@@ -1,0 +1,177 @@
+---
+// Reusable Fluent Modal component
+---
+
+<div id="clientflow-modal" class="modal-backdrop" aria-hidden="true">
+  <div class="modal-dialog flat-surface" role="dialog" aria-modal="true">
+    <div class="modal-header">
+      <div class="modal-badge">
+        <span class="badge-pill badge-emerald">Open Window</span>
+      </div>
+      <button id="modal-close-btn" class="modal-close" aria-label="Close modal">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+
+    <h3 id="modal-title" class="modal-title">Application Portal</h3>
+    <p id="modal-desc" class="modal-desc">
+      You are accessing the official UKABCS submission portal managed via secure ClientFlow CRM. Please ensure you have prepared your project proposal and institutional identification before proceeding.
+    </p>
+
+    <div class="modal-info-box">
+      <div class="info-row">
+        <span class="info-label">Submission Protocol:</span>
+        <span class="info-val">UKRI-Aligned Peer Review</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Turnaround Time:</span>
+        <span class="info-val">4 - 6 Weeks from Deadline</span>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <a id="modal-proceed-btn" href="https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form" target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+        <span>Proceed to ClientFlow Portal</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </a>
+      <button id="modal-cancel-btn" class="btn-fluent-secondary w-full text-center">
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    visibility: hidden;
+    transition: all var(--transition-smooth);
+  }
+
+  .modal-backdrop.active {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-dialog {
+    width: 100%;
+    max-width: 520px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: 2rem;
+    box-shadow: var(--shadow-lg);
+    transform: scale(0.95);
+    transition: transform var(--transition-smooth);
+  }
+
+  .modal-backdrop.active .modal-dialog {
+    transform: scale(1);
+  }
+
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .modal-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+  }
+
+  .modal-close:hover {
+    color: var(--color-text-primary);
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.75rem;
+  }
+
+  .modal-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+
+  .modal-info-box {
+    background: var(--color-surface-translucent);
+    border-radius: var(--radius-sm);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.85rem;
+  }
+
+  .info-label {
+    color: var(--color-text-muted);
+  }
+
+  .info-val {
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .modal-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+</style>
+
+<script>
+  const modalBackdrop = document.getElementById('clientflow-modal');
+  const modalClose = document.getElementById('modal-close-btn');
+  const modalCancel = document.getElementById('modal-cancel-btn');
+
+  function closeModal() {
+    modalBackdrop?.classList.remove('active');
+  }
+
+  modalClose?.addEventListener('click', closeModal);
+  modalCancel?.addEventListener('click', closeModal);
+  modalBackdrop?.addEventListener('click', (e) => {
+    if (e.target === modalBackdrop) closeModal();
+  });
+
+  // Global helper for opening modal with custom context
+  window.openClientFlowModal = function(title?: string, desc?: string, targetUrl?: string) {
+    const titleEl = document.getElementById('modal-title');
+    const descEl = document.getElementById('modal-desc');
+    const proceedBtn = document.getElementById('modal-proceed-btn') as HTMLAnchorElement;
+
+    if (title && titleEl) titleEl.textContent = title;
+    if (desc && descEl) descEl.textContent = desc;
+    if (targetUrl && proceedBtn) proceedBtn.href = targetUrl;
+
+    modalBackdrop?.classList.add('active');
+  };
+</script>

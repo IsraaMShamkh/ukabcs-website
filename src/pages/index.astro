@@ -1,0 +1,118 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
+import TextContentSection from '../components/sections/TextContentSection.astro';
+import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
+import ArticlesBlogEventsSection from '../components/sections/ArticlesBlogEventsSection.astro';
+import ImageComparisonSection from '../components/sections/ImageComparisonSection.astro';
+import TeamSection from '../components/sections/TeamSection.astro';
+import GallerySection from '../components/sections/GallerySection.astro';
+import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
+import FaqSection from '../components/sections/FaqSection.astro';
+import ContactSection from '../components/sections/ContactSection.astro';
+import PromoCTASection from '../components/sections/PromoCTASection.astro';
+import NumbersCounterSection from '../components/sections/NumbersCounterSection.astro';
+import Modal from '../components/ui/Modal.astro';
+---
+
+<BaseLayout title="Welcome to the UKABCS | UK Association for Biotechnology & Computational Science">
+  <!-- Hero Section -->
+  <section class="hero-section py-20">
+    <div class="container hero-container text-center">
+      <div class="hero-badge-wrap mb-4">
+        <span class="badge-pill badge-emerald">UK-Registered Non-Profit Society</span>
+        <span class="hero-incorporation text-sm text-muted">Incorporated in 2025</span>
+      </div>
+
+      <h1 class="hero-title font-extrabold text-4xl mb-4 max-w-4xl mx-auto">
+        Advancing Global <span class="text-primary-color">Biotechnology</span> &amp; <span class="text-accent">Computational Science</span>
+      </h1>
+
+      <p class="hero-subtitle text-lg text-secondary max-w-3xl mx-auto mb-8 leading-relaxed">
+        A UK-registered non-profit academic society dedicated to supporting international researchers, transparent peer-reviewed grant funding, and open-access innovation across bioinformatics and chemoinformatics.
+      </p>
+
+      <div class="hero-cta-group flex-center gap-4 mb-16">
+        <a href="/programmes-grants" class="btn-fluent-primary text-base py-3 px-8">
+          <span>Explore Open Grant Calls</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </a>
+
+        <a href="/memberships" class="btn-fluent-secondary text-base py-3 px-8">
+          <span>Become a Member</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Numbers Counter Stats Section -->
+  <NumbersCounterSection />
+
+  <!-- Features Bento Grid Section (Aceternity UI Style) -->
+  <FeaturesBentoSection />
+
+  <!-- Text & Split Guidelines Section -->
+  <TextContentSection
+    tag="Grant Guidelines & Criteria"
+    title="Transparent Peer-Review & Rigorous Governance"
+    subtitle="All grants are evaluated by independent academic referees from UK & international universities."
+    content="Our non-profit governance model ensures 100% of public funds and donor contributions are directly disbursed into peer-reviewed grants, HPC server allocations, and open-access journal APC waivers with complete public auditing."
+    image="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Review Grant Auditing Policies"
+    ctaHref="/transparency"
+  />
+
+  <!-- Academic Sales / Program Tiers Section -->
+  <SalesPromoSection />
+
+  <!-- Articles, Blog & News Section (Cards with Images & Slug Links) -->
+  <ArticlesBlogEventsSection limit={3} />
+
+  <!-- Tool Comparison Section (Before & After Pipeline Benchmarks) -->
+  <ImageComparisonSection />
+
+  <!-- Academic Leadership & Board Team Section -->
+  <TeamSection />
+
+  <!-- Photo Gallery & Event Archive Section -->
+  <GallerySection />
+
+  <!-- Testimonials & Endorsements Section -->
+  <TestimonialsSection />
+
+  <!-- FAQ Section -->
+  <FaqSection />
+
+  <!-- Direct Contact Section -->
+  <ContactSection />
+
+  <!-- Final High-Impact Promo CTA Banner -->
+  <PromoCTASection />
+
+  <!-- ClientFlow Modal Handler -->
+  <Modal />
+</BaseLayout>
+
+<style>
+  .hero-section {
+    padding-top: 5rem;
+    padding-bottom: 3rem;
+    background: radial-gradient(circle at 50% 0%, var(--color-primary-soft) 0%, transparent 60%);
+  }
+
+  .hero-title {
+    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+</style>

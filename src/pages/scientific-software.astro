@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ImageComparisonSection from '../components/sections/ImageComparisonSection.astro';
+import PromoCTASection from '../components/sections/PromoCTASection.astro';
+import { siteConfig } from '../config/site';
+---
+
+<BaseLayout title="Scientific Software Development Support | UKABCS">
+  <section class="page-header py-20 text-center">
+    <div class="container">
+      <span class="badge-pill badge-emerald">Open Source &amp; Tools</span>
+      <h1 class="page-title mt-4">Scientific Software Development Support</h1>
+      <p class="page-subtitle max-w-3xl mx-auto">
+        Empowering researchers to design, build, optimize, and share high-performance computational tools in bioinformatics, chemoinformatics, and structural biology.
+      </p>
+    </div>
+  </section>
+
+  <!-- Software Development Offer -->
+  <section class="py-16">
+    <div class="container">
+      <div class="text-center mb-16">
+        <span class="badge-pill">What We Provide</span>
+        <h2 class="text-3xl font-bold mt-2">Comprehensive Developer Offer</h2>
+      </div>
+
+      <div class="grid-3 gap-6">
+        <div class="card-aceternity p-8">
+          <div class="offer-icon mb-4">💻</div>
+          <h3 class="text-xl font-bold mb-2">Seed Funding</h3>
+          <p class="text-secondary text-sm leading-relaxed">Direct financial support for developer stipends, codebase refactoring, and integration of cutting-edge algorithms.</p>
+        </div>
+
+        <div class="card-aceternity p-8">
+          <div class="offer-icon mb-4">☁️</div>
+          <h3 class="text-xl font-bold mb-2">Cloud &amp; Server Infrastructure</h3>
+          <p class="text-secondary text-sm leading-relaxed">Dedicated GPU server clusters, high-RAM nodes, and scalable web hosting for bioinformatics online servers and APIs.</p>
+        </div>
+
+        <div class="card-aceternity p-8">
+          <div class="offer-icon mb-4">🧑‍🏫</div>
+          <h3 class="text-xl font-bold mb-2">Mentorship &amp; Peer Review</h3>
+          <p class="text-secondary text-sm leading-relaxed">Code audits and algorithm benchmarking conducted by senior computational scientists and software engineers.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benchmark Image Comparison Section -->
+  <ImageComparisonSection />
+
+  <!-- Promo CTA Section -->
+  <PromoCTASection />
+</BaseLayout>
+
+<style>
+  .offer-icon { font-size: 2.25rem; }
+</style>

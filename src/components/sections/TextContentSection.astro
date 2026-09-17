@@ -1,0 +1,88 @@
+---
+export interface Props {
+  tag?: string;
+  title: string;
+  subtitle?: string;
+  content: string;
+  image?: string;
+  ctaText?: string;
+  ctaHref?: string;
+  reversed?: boolean;
+}
+
+const {
+  tag = "Guidelines & Terms",
+  title,
+  subtitle,
+  content,
+  image = "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1000&auto=format&fit=crop",
+  ctaText = "Read Full Policy & Terms",
+  ctaHref = "/transparency",
+  reversed = false
+} = Astro.props;
+---
+
+<section class="py-16 section-text-content">
+  <div class="container">
+    <div class={`grid-text-split ${reversed ? 'grid-reversed' : ''}`}>
+      <div class="text-col">
+        {tag && <span class="badge-pill mb-3">{tag}</span>}
+        <h2 class="text-3xl font-bold mb-4">{title}</h2>
+        {subtitle && <p class="text-lg font-medium text-primary-color mb-4">{subtitle}</p>}
+        <p class="text-secondary leading-relaxed mb-6">{content}</p>
+        
+        {ctaText && ctaHref && (
+          <a href={ctaHref} class="btn-fluent-primary">
+            <span>{ctaText}</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        )}
+      </div>
+
+      <div class="image-col">
+        <div class="card-aceternity p-2">
+          <div class="card-image-wrap split-image-wrap">
+            <img src={image} alt={title} loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid-text-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+
+  .grid-reversed .text-col {
+    order: 2;
+  }
+
+  .grid-reversed .image-col {
+    order: 1;
+  }
+
+  @media (max-width: 992px) {
+    .grid-text-split {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    .grid-reversed .text-col { order: 1; }
+    .grid-reversed .image-col { order: 2; }
+  }
+
+  .split-image-wrap {
+    height: 380px;
+  }
+
+  .leading-relaxed {
+    line-height: 1.75;
+  }
+</style>

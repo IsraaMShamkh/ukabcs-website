@@ -1,0 +1,143 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "UKABCS Research Support & Computational Service Tiers",
+  subtitle = "Choose the academic grant tier or high-performance compute allocation that matches your research team's scope."
+} = Astro.props;
+
+const tiers = [
+  {
+    name: "Graduation Project Aid",
+    badge: "Undergraduate / Master",
+    funding: "Up to £2,500",
+    desc: "Targeted support for final-year graduation projects in bioinformatics, computational biology, and structural modeling.",
+    features: [
+      "HPC Server Compute Credits",
+      "Software License Assistance",
+      "Academic Advisor Mentorship",
+      "Open-Access Publishing Aid"
+    ],
+    ctaText: "Apply Graduation Grant",
+    popular: false
+  },
+  {
+    name: "Capacity Building Grant",
+    badge: "Most Requested",
+    funding: "Up to £15,000",
+    desc: "Institutional capacity building grants for establishing computational research labs, server setups, and training workshops.",
+    features: [
+      "Dedicated HPC Cluster Access",
+      "Full APC Journal Fee Waiver",
+      "UK-Arab Bilateral Workshop Funding",
+      "Peer-Review Auditing Support",
+      "Postdoc Research Stipends"
+    ],
+    ctaText: "Apply Capacity Grant",
+    popular: true
+  },
+  {
+    name: "Scientific Software Support",
+    badge: "Open Source / Tool Dev",
+    funding: "Up to £8,000",
+    desc: "Dedicated grants for researchers developing open-source scientific software, bioinformatics pipelines, or R/Python packages.",
+    features: [
+      "Cloud Infrastructure Hosting",
+      "Code Repository Auditing",
+      "Documentation & UX Support",
+      "Software Citation Guarantee"
+    ],
+    ctaText: "Apply Software Grant",
+    popular: false
+  }
+];
+---
+
+<section class="py-20 section-sales-promo">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Academic Programs & Support Tiers</span>
+      <h2 class="text-3xl font-bold mb-3">{title}</h2>
+      <p class="text-secondary">{subtitle}</p>
+    </div>
+
+    <div class="grid-3 gap-6">
+      {tiers.map((tier) => (
+        <div class={`card-aceternity sales-card ${tier.popular ? 'popular-tier' : ''}`}>
+          {tier.popular && <div class="popular-ribbon">Recommended for Institutes</div>}
+          
+          <span class="badge-pill mb-3">{tier.badge}</span>
+          <h3 class="font-bold text-xl mb-1">{tier.name}</h3>
+          <div class="funding-amount text-2xl font-bold text-primary-color mb-3">{tier.funding}</div>
+          <p class="text-secondary text-sm mb-6 leading-relaxed">{tier.desc}</p>
+
+          <div class="divider mb-6"></div>
+
+          <ul class="feature-list mb-8">
+            {tier.features.map((feat) => (
+              <li class="feature-item">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                <span>{feat}</span>
+              </li>
+            ))}
+          </ul>
+
+          <a href="/programmes-grants" class={`w-full ${tier.popular ? 'btn-fluent-primary' : 'btn-fluent-secondary'}`}>
+            {tier.ctaText}
+          </a>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .sales-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+  }
+
+  .popular-tier {
+    border-color: var(--color-primary);
+    box-shadow: 0 8px 24px rgba(30, 64, 175, 0.1);
+  }
+
+  .popular-ribbon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--color-primary);
+    color: #ffffff;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-bottom-left-radius: var(--radius-md);
+  }
+
+  .divider {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .feature-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    flex-grow: 1;
+  }
+
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+  }
+</style>

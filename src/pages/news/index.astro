@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NewsCard from '../../components/cards/NewsCard.astro';
+import PromoCTASection from '../../components/sections/PromoCTASection.astro';
+import { getCollection } from 'astro:content';
+
+const newsItems = await getCollection('news');
+const sortedNews = newsItems.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime());
+---
+
+<BaseLayout title="News & Press Releases | UK Association for Biotechnology & Computational Science">
+  <section class="page-header py-20 text-center">
+    <div class="container">
+      <span class="badge-pill badge-emerald">Media &amp; Announcements</span>
+      <h1 class="page-title mt-4">UKABCS Research Articles &amp; News Hub</h1>
+      <p class="page-subtitle max-w-3xl mx-auto">
+        Stay updated with official call openings, governance reports, partner announcements, and peer-reviewed research articles from the global UKABCS network.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container">
+      <div class="grid-3 gap-8">
+        {sortedNews.map((item) => (
+          <NewsCard
+            title={item.data.title}
+            datePublished={item.data.datePublished}
+            category={item.data.category}
+            author={item.data.author}
+            description={item.data.description}
+            slug={item.slug}
+            image={item.data.image}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo CTA Section -->
+  <PromoCTASection />
+</BaseLayout>

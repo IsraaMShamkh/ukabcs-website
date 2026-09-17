@@ -1,0 +1,96 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "UKABCS Academic Summits & Lab Snapshots",
+  subtitle = "Glimpses into our UK-Arab bioinformatics workshops, high-performance compute lab trainings, and annual research symposiums."
+} = Astro.props;
+
+const galleryItems = [
+  {
+    title: "Bioinformatics Capacity Building Summit",
+    location: "London, UK",
+    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop",
+    category: "Symposium"
+  },
+  {
+    title: "Genomic Sequencing Data Workshop",
+    location: "Cairo University, Egypt",
+    image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop",
+    category: "Workshop"
+  },
+  {
+    title: "High-Performance Compute Training",
+    location: "Cambridge Computational Hub",
+    image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop",
+    category: "HPC Training"
+  },
+  {
+    title: "Women in Science Computational Roundtable",
+    location: "Online / Global",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop",
+    category: "Panel"
+  },
+  {
+    title: "Graduation Project Award Ceremony",
+    location: "Covent Garden Assembly, London",
+    image: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop",
+    category: "Awards"
+  },
+  {
+    title: "Open-Access Pipeline Hackathon",
+    location: "Alexandria Research Center",
+    image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop",
+    category: "Hackathon"
+  }
+];
+---
+
+<section class="py-20 section-gallery" id="gallery">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Photo Archive</span>
+      <h2 class="text-3xl font-bold mb-3">{title}</h2>
+      <p class="text-secondary">{subtitle}</p>
+    </div>
+
+    <div class="grid-3 gap-6">
+      {galleryItems.map((item) => (
+        <div class="card-aceternity gallery-card">
+          <div class="card-image-wrap gallery-image-wrap">
+            <img src={item.image} alt={item.title} loading="lazy" />
+            <span class="badge-pill image-badge">{item.category}</span>
+          </div>
+          <div class="gallery-info mt-4">
+            <h4 class="font-bold text-lg mb-1">{item.title}</h4>
+            <p class="text-secondary text-sm flex items-center gap-1">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>{item.location}</span>
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gallery-image-wrap {
+    height: 220px;
+  }
+
+  .image-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    background: var(--color-surface);
+    color: var(--color-primary);
+  }
+</style>

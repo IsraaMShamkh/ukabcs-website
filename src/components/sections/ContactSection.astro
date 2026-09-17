@@ -1,0 +1,160 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Get in Touch with UKABCS",
+  subtitle = "Have questions regarding grant funding, institutional partnerships, or researcher membership? Our executive team is here to assist."
+} = Astro.props;
+---
+
+<section class="py-20 section-contact" id="contact">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Academic Inquiry</span>
+      <h2 class="text-3xl font-bold mb-3">{title}</h2>
+      <p class="text-secondary">{subtitle}</p>
+    </div>
+
+    <div class="grid-2 gap-8">
+      <!-- Contact Info Cards -->
+      <div class="contact-cards flex-col gap-5">
+        <div class="card-aceternity p-6 flex gap-4 items-center">
+          <div class="contact-icon-box">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg">General Email Inquiries</h4>
+            <p class="text-secondary text-sm">info@ukabcs.co.uk</p>
+            <p class="text-muted text-xs">Response time: within 24 business hours</p>
+          </div>
+        </div>
+
+        <div class="card-aceternity p-6 flex gap-4 items-center">
+          <div class="contact-icon-box accent">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg">Registered Address (UK)</h4>
+            <p class="text-secondary text-sm">71-75 Shelton Street, Covent Garden, London, WC2H 9JQ</p>
+            <p class="text-muted text-xs">United Kingdom</p>
+          </div>
+        </div>
+
+        <div class="card-aceternity p-6 flex gap-4 items-center">
+          <div class="contact-icon-box gold">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+              <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-lg">Arab Region Liaison Office</h4>
+            <p class="text-secondary text-sm">Cairo University Tech Incubator, Giza, Egypt</p>
+            <p class="text-muted text-xs">Capacity Building & Grant Support</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Message Form -->
+      <div class="card-aceternity p-8">
+        <h3 class="text-xl font-bold mb-4">Send us a Direct Message</h3>
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for reaching out! Your message has been routed to the UKABCS executive team.');">
+          <div class="form-group mb-4">
+            <label class="form-label" for="contact-name">Full Name</label>
+            <input type="text" id="contact-name" class="form-input" placeholder="Dr. Sarah Al-Sayed" required />
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="form-label" for="contact-email">Academic Email</label>
+            <input type="email" id="contact-email" class="form-input" placeholder="sarah@university.ac.uk" required />
+          </div>
+
+          <div class="form-group mb-4">
+            <label class="form-label" for="contact-topic">Inquiry Topic</label>
+            <select id="contact-topic" class="form-input">
+              <option>Grant Application Inquiry</option>
+              <option>Institutional Partnership</option>
+              <option>Membership & Peer Review</option>
+              <option>Scientific Software Grant</option>
+            </select>
+          </div>
+
+          <div class="form-group mb-6">
+            <label class="form-label" for="contact-msg">Message</label>
+            <textarea id="contact-msg" class="form-input" rows="4" placeholder="Briefly describe your proposal or question..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn-fluent-primary w-full">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-cards {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-icon-box {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md);
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .contact-icon-box.accent {
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .contact-icon-box.gold {
+    background: rgba(217, 119, 6, 0.1);
+    color: #d97706;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .form-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.7rem 0.9rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-text-primary);
+    font-size: 0.9rem;
+    font-family: inherit;
+    transition: border-color var(--transition-fast);
+  }
+
+  .form-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+  }
+</style>

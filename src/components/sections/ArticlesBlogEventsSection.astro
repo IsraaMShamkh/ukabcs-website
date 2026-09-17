@@ -1,0 +1,55 @@
+---
+import NewsCard from '../cards/NewsCard.astro';
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  limit?: number;
+}
+
+const {
+  title = "Latest Research Articles, News & Call Announcements",
+  subtitle = "Stay updated with peer-reviewed publications, open grant calls, and UK-Arab academic symposiums.",
+  limit = 3
+} = Astro.props;
+
+const allNews = await getCollection('news');
+const sortedNews = allNews
+  .sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime())
+  .slice(0, limit);
+---
+
+<section class="py-20 section-articles" id="articles">
+  <div class="container">
+    <div class="flex items-center justify-between mb-12 flex-wrap gap-4">
+      <div>
+        <span class="badge-pill mb-2">Research & Articles</span>
+        <h2 class="text-3xl font-bold">{title}</h2>
+        <p class="text-secondary mt-1 max-w-2xl">{subtitle}</p>
+      </div>
+
+      <a href="/news" class="btn-fluent-secondary">
+        <span>View All Articles & News</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="grid-3 gap-6">
+      {sortedNews.map((item) => (
+        <NewsCard
+          title={item.data.title}
+          datePublished={item.data.datePublished}
+          category={item.data.category}
+          author={item.data.author}
+          description={item.data.description}
+          slug={item.slug}
+          image={item.data.image}
+        />
+      ))}
+    </div>
+  </div>
+</section>

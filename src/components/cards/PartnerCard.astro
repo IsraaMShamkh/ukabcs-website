@@ -1,0 +1,131 @@
+---
+export interface Props {
+  title: string;
+  partnerName: string;
+  value: string;
+  type: string;
+  datePublished: string;
+  description: string;
+  slug: string;
+}
+
+const { title, partnerName, value, type, datePublished, description, slug } = Astro.props;
+---
+
+<article class="partner-card flat-surface">
+  <div class="partner-top">
+    <div class="partner-header">
+      <span class="partner-name">{partnerName}</span>
+      <span class="value-badge">{value} Contribution</span>
+    </div>
+    <span class="type-tag">{type}</span>
+  </div>
+
+  <h3 class="partner-title">
+    <a href={`/partnerships/${slug}`}>{title}</a>
+  </h3>
+
+  <p class="partner-desc">{description}</p>
+
+  <div class="partner-footer">
+    <span class="partner-date">Date: {new Date(datePublished).toLocaleDateString('en-GB', { month: 'short', year: 'numeric' })}</span>
+    <a href={`/partnerships/${slug}`} class="partner-link">
+      <span>Read Announcement</span>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="5" y1="12" x2="19" y2="12"></line>
+        <polyline points="12 5 19 12 12 19"></polyline>
+      </svg>
+    </a>
+  </div>
+</article>
+
+<style>
+  .partner-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.75rem;
+  }
+
+  .partner-top {
+    margin-bottom: 1rem;
+  }
+
+  .partner-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .partner-name {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .value-badge {
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 0.2rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--color-accent-soft);
+    color: var(--color-accent);
+  }
+
+  .type-tag {
+    font-size: 0.75rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .partner-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+    color: var(--color-text-primary);
+  }
+
+  .partner-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .partner-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .partner-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .partner-date {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+  }
+
+  .partner-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: color var(--transition-fast);
+  }
+
+  .partner-link:hover {
+    color: var(--color-primary-hover);
+  }
+</style>

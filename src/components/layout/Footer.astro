@@ -1,0 +1,208 @@
+---
+import { siteConfig } from '../../config/site';
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer-root">
+  <div class="container footer-content">
+    <div class="footer-grid">
+      <!-- Col 1: Organization & Identity -->
+      <div class="footer-col brand-col">
+        <a href="/" class="brand-link" aria-label="UKABCS">
+          <img src="/images/logo.svg" alt="UKABCS — UK Organisation for Biotechnology and Computational Science" class="footer-logo" />
+        </a>
+        <p class="footer-desc">
+          {siteConfig.publicName} (UKABCS) is a UK-registered non-profit academic society dedicated to peer-reviewed research, transparent grant funding, and open-access scientific education.
+        </p>
+        <div class="footer-badges">
+          <span class="badge-pill">UK Registered Non-Profit</span>
+          <span class="badge-pill badge-emerald">Open Science</span>
+        </div>
+      </div>
+
+      <!-- Col 2: Funding & Programmes -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Funding &amp; Grants</h4>
+        <ul class="footer-links">
+          <li><a href="/programmes-grants">Capacity Building Grants</a></li>
+          <li><a href="/programmes-grants">Graduation Project Grants</a></li>
+          <li><a href="/scientific-software">Scientific Software Support</a></li>
+          <li><a href="/educational-support">Educational &amp; Course Aid</a></li>
+          <li><a href="/publications">Open-Access APC Waivers</a></li>
+          <li><a href="/women-in-science">Women in Science Support</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="footer-col-title">Research &amp; Resources</h4>
+        <ul class="footer-links">
+          <li><a href="/funded-projects">Funded Projects</a></li>
+          <li><a href="/publications">Publications</a></li>
+          <li><a href="/news">Articles &amp; News</a></li>
+          <li><a href="/accessibility">Accessibility</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Governance & Transparency -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Governance</h4>
+        <ul class="footer-links">
+          <li><a href="/about-us">About the Association</a></li>
+          <li><a href="/governance">Board of Trustees &amp; Committees</a></li>
+          <li><a href="/transparency">Grant-Making &amp; Auditing Policies</a></li>
+          <li><a href="/transparency">Due Diligence &amp; COI</a></li>
+          <li><a href="/legal">Privacy &amp; GDPR Compliance</a></li>
+          <li><a href="/legal">Terms of Use &amp; Cookies</a></li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Community & Portals -->
+      <div class="footer-col">
+        <h4 class="footer-col-title">Connect &amp; Portals</h4>
+        <ul class="footer-links">
+          <li><a href="/memberships">Researcher Memberships</a></li>
+          <li><a href="/funded-projects">Funded Projects Showcase</a></li>
+          <li><a href="/partnerships">Partners &amp; Donors</a></li>
+          <li><a href="/news">News &amp; Announcements</a></li>
+          <li><a href={siteConfig.clientFlow.contactUsForm} target="_blank" rel="noopener noreferrer">Contact Us Form</a></li>
+          <li><a href="mailto:info@ukabcs.co.uk">info@ukabcs.co.uk</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom Bar: Legal Copyright -->
+    <div class="footer-bottom">
+      <div class="footer-legal">
+        <p>© {currentYear} {siteConfig.publicName} (UKABCS). All rights reserved.</p>
+        <p class="footer-subtext">Incorporated as a non-profit academic society in the United Kingdom.</p>
+      </div>
+
+      <div class="footer-meta-links">
+        <a href="/llms.txt" class="footer-meta-link" title="Machine-readable summary for AI agents and LLMs" target="_blank">
+          llms.txt
+        </a>
+        <a href="/sitemap-index.xml" class="footer-meta-link">Sitemap</a>
+        <a href="/accessibility" class="footer-meta-link">Accessibility</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .footer-root {
+    background-color: var(--color-bg-secondary);
+    border-top: 1px solid var(--color-border);
+    padding-top: 3.5rem;
+    padding-bottom: 2rem;
+    margin-top: auto;
+    position: relative;
+    z-index: 10;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    gap: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  @media (max-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 1.75rem;
+    }
+  }
+
+  .brand-col {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .footer-logo {
+    width: min(100%, 20rem);
+    height: auto;
+  }
+
+  .footer-desc {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    line-height: 1.65;
+  }
+
+  .footer-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.25rem;
+  }
+
+  .footer-col-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: 1rem;
+    letter-spacing: 0;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-links a {
+    font-size: 0.85rem;
+    color: var(--color-text-secondary);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-links a:hover {
+    color: var(--color-primary);
+  }
+
+  /* Bottom Bar */
+  .footer-bottom {
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .footer-legal p {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .footer-subtext {
+    font-size: 0.75rem !important;
+    margin-top: 0.15rem;
+  }
+
+  .footer-meta-links {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .footer-meta-link {
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+  }
+
+  .footer-meta-link:hover {
+    color: var(--color-text-secondary);
+  }
+</style>

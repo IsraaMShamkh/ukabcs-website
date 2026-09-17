@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import FaqAccordion from '../components/ui/FaqAccordion.astro';
+import TextContentSection from '../components/sections/TextContentSection.astro';
+import NumbersCounterSection from '../components/sections/NumbersCounterSection.astro';
+import PromoCTASection from '../components/sections/PromoCTASection.astro';
+import { siteConfig } from '../config/site';
+
+const faqs = [
+  {
+    question: "1. Can undergraduate and graduate students apply?",
+    answer: "Yes! UKABCS provides dedicated funding streams specifically for students through our Graduation Project Capacity Building Grants and Student Travel Assistance awards."
+  },
+  {
+    question: "2. Is international collaboration allowed?",
+    answer: "Absolutely. UKABCS actively encourages cross-border consortia. Projects demonstrating international partnerships between researchers in the UK and institutions across developing nations receive positive evaluation weighting."
+  },
+  {
+    question: "3. Is an official support letter from the university required?",
+    answer: "Yes, an institutional letter of endorsement from your department head, dean, or university research office is required."
+  },
+  {
+    question: "4. Do you cover overhead or indirect costs?",
+    answer: "UKABCS is a non-profit academic society focused on direct scientific impact. 100% of awarded funds directly support compute hours, reagents, software, student stipends, or open-access publication fees."
+  }
+];
+---
+
+<BaseLayout title="Programmes & Grants | UK Association for Biotechnology & Computational Science">
+  <!-- Page Header -->
+  <section class="page-header py-20 text-center">
+    <div class="container">
+      <span class="badge-pill badge-emerald">Funding Opportunities</span>
+      <h1 class="page-title mt-4">Programmes &amp; Competitive Grants</h1>
+      <p class="page-subtitle max-w-3xl mx-auto">
+        Empowering researchers with fair, merit-based, and transparent peer-reviewed funding to advance open science, biological discoveries, and computational innovation.
+      </p>
+    </div>
+  </section>
+
+  <!-- Numbers Counter Section -->
+  <NumbersCounterSection />
+
+  <!-- 6-Stage Application Process -->
+  <section class="py-16">
+    <div class="container">
+      <div class="text-center mb-16">
+        <span class="badge-pill">Workflow</span>
+        <h2 class="text-3xl font-bold mt-2">The 6-Stage Application Process</h2>
+        <p class="text-secondary mt-2">UKRI-aligned transparent evaluation protocol from submission to award.</p>
+      </div>
+
+      <div class="grid-3 gap-6">
+        <div class="card-aceternity step-card">
+          <div class="step-num">01</div>
+          <h3 class="text-xl font-bold mb-2">Check Eligibility</h3>
+          <p class="text-secondary text-sm">Review call guidelines, eligible scientific domains, timeline, and applicant requirements.</p>
+        </div>
+
+        <div class="card-aceternity step-card">
+          <div class="step-num">02</div>
+          <h3 class="text-xl font-bold mb-2">Prepare Documents</h3>
+          <p class="text-secondary text-sm">Draft project summary, methodology, itemized budget form, and university endorsement letter.</p>
+        </div>
+
+        <div class="card-aceternity step-card">
+          <div class="step-num">03</div>
+          <h3 class="text-xl font-bold mb-2">Submit Application</h3>
+          <p class="text-secondary text-sm">Upload all proposal dossiers via the secure ClientFlow application portal before the call deadline.</p>
+        </div>
+
+        <div class="card-aceternity step-card">
+          <div class="step-num">04</div>
+          <h3 class="text-xl font-bold mb-2">Double-Blind Peer Review</h3>
+          <p class="text-secondary text-sm">Independent scientific and technical committees evaluate feasibility, novelty, and societal impact.</p>
+        </div>
+
+        <div class="card-aceternity step-card">
+          <div class="step-num">05</div>
+          <h3 class="text-xl font-bold mb-2">Decision Notification</h3>
+          <p class="text-secondary text-sm">Applicants receive transparent review scores and comprehensive feedback dossiers.</p>
+        </div>
+
+        <div class="card-aceternity step-card">
+          <div class="step-num">06</div>
+          <h3 class="text-xl font-bold mb-2">Award &amp; Implementation</h3>
+          <p class="text-secondary text-sm">Execution of grant agreement, disbursement of funds or compute credits, and milestone tracking.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Calls Section -->
+  <section class="py-16 section-alt">
+    <div class="container">
+      <div class="text-center mb-16">
+        <span class="badge-pill badge-emerald">Active Grant Calls</span>
+        <h2 class="text-3xl font-bold mt-2">Current Open Calls</h2>
+        <p class="text-secondary mt-2">Submit your proposal directly through our official ClientFlow portal.</p>
+      </div>
+
+      <div class="grid-3 gap-8 max-w-5xl mx-auto">
+        <!-- Call 1 -->
+        <div class="card-aceternity call-card">
+          <div class="call-badge">Open Call</div>
+          <h3 class="text-xl font-bold mb-3">UKABCS Capacity Building Grants 2026</h3>
+          <p class="text-secondary text-sm mb-6 leading-relaxed">
+            Targeting academic research laboratories requiring computational upgrades, molecular simulation tools, and collaborative student training.
+          </p>
+          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+            Apply for Grant
+          </a>
+        </div>
+
+        <!-- Call 2 -->
+        <div class="card-aceternity call-card">
+          <div class="call-badge">Open Call</div>
+          <h3 class="text-xl font-bold mb-3">Graduation Project Grants 2026</h3>
+          <p class="text-secondary text-sm mb-6 leading-relaxed">
+            Empowering outstanding undergraduate and master's degree students completing graduation theses in biotechnology and computational science.
+          </p>
+          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+            Apply for Grant
+          </a>
+        </div>
+
+        <!-- Call 3 -->
+        <div class="card-aceternity call-card">
+          <div class="call-badge">Open Call</div>
+          <h3 class="text-xl font-bold mb-3">UKABCS INNOFUND Grant</h3>
+          <p class="text-secondary text-sm mb-6 leading-relaxed">
+            Supporting applied computational software, open-source biotechnology databases, and AI algorithms solving healthcare challenges.
+          </p>
+          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+            Apply for Grant
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Text & Guidelines Section -->
+  <TextContentSection
+    tag="Peer Review Protocol"
+    title="Strict UKRI-Aligned Peer Review Standard"
+    subtitle="Double-blind evaluation conducted by independent university professors."
+    content="To guarantee academic integrity, all submitted proposals are anonymized and evaluated against 5 criteria: scientific novelty, technical methodology feasibility, researcher track record, societal impact, and budget efficiency."
+    image="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Read Due Diligence Policy"
+    ctaHref="/transparency"
+  />
+
+  <!-- FAQ Section -->
+  <section class="py-20">
+    <div class="container max-w-4xl mx-auto">
+      <div class="text-center mb-12">
+        <span class="badge-pill">Guidance</span>
+        <h2 class="text-3xl font-bold mt-2">Frequently Asked Questions</h2>
+        <p class="text-secondary mt-2">Everything you need to know about eligibility, review, and funding disbursements.</p>
+      </div>
+
+      <FaqAccordion items={faqs} />
+    </div>
+  </section>
+
+  <!-- Promo CTA -->
+  <PromoCTASection />
+</BaseLayout>
+
+<style>
+  .step-num {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: var(--color-primary);
+    opacity: 0.4;
+    margin-bottom: 0.5rem;
+  }
+
+  .call-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: rgba(16, 185, 129, 0.15);
+    color: #10b981;
+  }
+</style>

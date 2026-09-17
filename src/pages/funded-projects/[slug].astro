@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('funded-projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await project.render();
+
+const heroImage = project.data.image || "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop";
+---
+
+<BaseLayout title={`${project.data.title} | UKABCS Funded Project`}>
+  <article class="py-16">
+    <div class="container-narrow">
+      <!-- Back Link -->
+      <a href="/funded-projects" class="back-link mb-6 inline-flex items-center gap-2">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        <span>Back to All Funded Projects</span>
+      </a>
+
+      <!-- Header Meta -->
+      <header class="mb-8">
+        <div class="meta-row mb-4">
+          <span class="year-pill">{project.data.year} Award</span>
+          <span class="badge-pill">{project.data.grantType}</span>
+          <span class="country-pill">{project.data.country}</span>
+          <time class="meta-text" datetime={project.data.datePublished}>
+            {new Date(project.data.datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+          </time>
+        </div>
+
+        <h1 class="project-title">{project.data.title}</h1>
+        
+        <div class="institution-highlight mt-3">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+            <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+          </svg>
+          <span>Lead Institution: <strong>{project.data.institution} ({project.data.country})</strong></span>
+        </div>
+
+        <p class="project-subtitle mt-4">{project.data.description}</p>
+      </header>
+
+      <!-- Hero Image -->
+      <div class="project-hero-image mb-10">
+        <img src={heroImage} alt={project.data.title} loading="eager" />
+      </div>
+
+      <!-- Project Content & Terms -->
+      <div class="card-aceternity p-8 mb-10 prose-content">
+        <Content />
+      </div>
+
+      <!-- Project CTA Callout -->
+      <div class="project-cta-box flat-surface p-8 text-center">
+        <h3 class="text-xl font-bold mb-2">Want to Apply for UKABCS Project Funding?</h3>
+        <p class="text-secondary mb-6 max-w-2xl mx-auto">Discover application terms, eligibility criteria, and open grant windows for early-career and established researchers.</p>
+        <div class="flex-center gap-4">
+          <a href="/programmes-grants" class="btn-fluent-primary">Explore Grant Terms & Calls</a>
+          <a href="/transparency" class="btn-fluent-secondary">Grant Auditing Policies</a>
+        </div>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .back-link {
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+  }
+
+  .meta-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .year-pill {
+    font-size: 0.8rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .country-pill {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .project-title {
+    font-size: clamp(2rem, 3.5vw, 2.75rem);
+    font-weight: 800;
+    line-height: 1.25;
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .institution-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.05rem;
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  .project-subtitle {
+    font-size: 1.2rem;
+    line-height: 1.65;
+    color: var(--color-text-secondary);
+  }
+
+  .project-hero-image {
+    width: 100%;
+    max-height: 480px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+  }
+
+  .project-hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .prose-content {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--color-text-primary);
+  }
+
+  .prose-content :global(h2) {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    color: var(--color-text-primary);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .prose-content :global(p) {
+    margin-bottom: 1.25rem;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-content :global(ul), .prose-content :global(ol) {
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+    color: var(--color-text-secondary);
+  }
+
+  .prose-content :global(li) {
+    margin-bottom: 0.5rem;
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+</style>

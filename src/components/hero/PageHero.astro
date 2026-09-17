@@ -1,0 +1,35 @@
+---
+export interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image: string;
+  ctaText?: string;
+  ctaHref?: string;
+}
+
+const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
+---
+
+<section class="page-hero" style={`--hero-image: url('${image}')`}>
+  <div class="page-hero__overlay"></div>
+  <div class="container page-hero__content">
+    <nav class="page-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{eyebrow ?? title}</span></nav>
+    {eyebrow && <p class="page-hero__eyebrow">{eyebrow}</p>}
+    <h1>{title}</h1>
+    {description && <p class="page-hero__description">{description}</p>}
+    {ctaText && ctaHref && <a class="btn-fluent-primary page-hero__cta" href={ctaHref}>{ctaText}</a>}
+  </div>
+</section>
+
+<style>
+  .page-hero { position: relative; isolation: isolate; min-height: clamp(31rem, 58vw, 45rem); display: grid; align-items: end; overflow: hidden; background: #0d1829 var(--hero-image) center / cover no-repeat; color: #fff; }
+  .page-hero__overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8, 23, 49, .95) 0%, rgba(8, 23, 49, .77) 48%, rgba(8, 23, 49, .36) 100%), linear-gradient(0deg, rgba(8, 23, 49, .58), transparent 58%); }
+  .page-hero__content { padding-top: 7rem; padding-bottom: clamp(4rem, 7vw, 7rem); max-width: 1600px; }
+  .page-hero h1 { max-width: 850px; color: #fff; font-size: clamp(2.75rem, 5.5vw, 5.25rem); line-height: 1.04; letter-spacing: -.04em; }
+  .page-hero__eyebrow { margin: 1rem 0 .65rem; color: #7dd3fc; font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+  .page-hero__description { max-width: 680px; margin-top: 1.25rem; color: rgba(255,255,255,.85); font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
+  .page-hero__breadcrumb { display: flex; gap: .55rem; align-items: center; color: rgba(255,255,255,.67); font-size: .85rem; }
+  .page-hero__breadcrumb a:hover { color: #fff; }
+  .page-hero__cta { margin-top: 1.75rem; }
+</style>

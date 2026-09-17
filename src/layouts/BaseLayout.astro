@@ -1,0 +1,111 @@
+---
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../config/site';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  type?: string;
+}
+
+const {
+  title = "Welcome to the UKABCS - UK Association for Biotechnology & Computational Science",
+  description = siteConfig.description,
+  image = "/images/og-preview.png",
+  type = "website",
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": ["NGO", "ResearchOrganization"],
+      "@id": "https://www.ukabcs.co.uk/#organization",
+      "name": "UK Association for Biotechnology & Computational Science",
+      "alternateName": "UKABCS",
+      "url": "https://www.ukabcs.co.uk",
+      "logo": "https://www.ukabcs.co.uk/images/logo.svg",
+      "description": siteConfig.description,
+      "email": "info@ukabcs.co.uk",
+      "foundingDate": "2025",
+      "areaServed": "Worldwide",
+      "knowsAbout": [
+        "Biotechnology",
+        "Computational Biology",
+        "Bioinformatics",
+        "Chemoinformatics",
+        "Open Science Grants",
+        "Capacity Building"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.ukabcs.co.uk/#website",
+      "url": "https://www.ukabcs.co.uk",
+      "name": "UKABCS Official Portal",
+      "publisher": { "@id": "https://www.ukabcs.co.uk/#organization" }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- SEO Meta Tags -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalURL} />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="UKABCS" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalURL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="shortcut icon" href="/favicon.svg" />
+    <link rel="alternate" type="text/plain" href="/llms.txt" title="AI Agent Directives" />
+
+    <!-- Schema.org JSON-LD -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+    <!-- Theme Initialization Script to avoid FOUC -->
+    <script is:inline>
+      const theme = localStorage.getItem('theme') || 'light';
+      document.documentElement.setAttribute('data-theme', theme);
+    </script>
+  </head>
+  <body>
+    <!-- Header Navigation -->
+    <Header />
+
+    <!-- Main Viewport Content -->
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <Footer />
+  </body>
+</html>

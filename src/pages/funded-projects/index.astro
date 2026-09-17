@@ -1,0 +1,107 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/cards/ProjectCard.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('funded-projects');
+const sortedProjects = projects.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime());
+---
+
+<BaseLayout title="Funded Projects Showcase | UK Association for Biotechnology & Computational Science">
+  <section class="page-header py-20 text-center">
+    <div class="container">
+      <span class="badge-pill badge-emerald">Real-World Scientific Impact</span>
+      <h1 class="page-title mt-4">Funded Research Projects</h1>
+      <p class="page-subtitle max-w-3xl mx-auto">
+        Discover the groundbreaking research initiatives, university laboratories, and student graduation projects awarded funding and computational support worldwide.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container">
+      <!-- Filter controls -->
+      <div class="filters-bar mb-12">
+        <div class="filter-group">
+          <button class="filter-btn active" data-filter="all">All Projects ({sortedProjects.length})</button>
+          <button class="filter-btn" data-filter="2026">2026 Awards</button>
+          <button class="filter-btn" data-filter="2025">2025 Awards</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div class="grid-3 gap-8" id="projects-grid">
+        {sortedProjects.map((project) => (
+          <div class="project-item" data-year={project.data.year}>
+            <ProjectCard
+              title={project.data.title}
+              year={project.data.year}
+              institution={project.data.institution}
+              country={project.data.country}
+              grantType={project.data.grantType}
+              datePublished={project.data.datePublished}
+              description={project.data.description}
+              slug={project.slug}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .filters-bar {
+    display: flex;
+    justify-content: center;
+  }
+
+  .filter-group {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.35rem;
+    border-radius: var(--radius-full);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .filter-btn {
+    padding: 0.45rem 1.15rem;
+    border-radius: var(--radius-full);
+    border: none;
+    background: transparent;
+    color: var(--color-text-secondary);
+    font-weight: 600;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectItems = document.querySelectorAll('.project-item');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      projectItems.forEach((item) => {
+        const year = item.getAttribute('data-year');
+        if (filter === 'all' || filter === year) {
+          (item as HTMLElement).style.display = 'block';
+        } else {
+          (item as HTMLElement).style.display = 'none';
+        }
+      });
+    });
+  });
+</script>

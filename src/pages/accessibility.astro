@@ -1,0 +1,62 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Accessibility Statement | UKABCS">
+  <section class="page-header py-20 text-center">
+    <div class="container">
+      <span class="badge-pill badge-emerald">Inclusion Standards</span>
+      <h1 class="page-title mt-4">Accessibility Statement</h1>
+      <p class="page-subtitle max-w-3xl mx-auto">
+        UKABCS is committed to ensuring that our digital portal is fully accessible to all researchers, educators, and visitors worldwide.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-16">
+    <div class="container max-w-4xl mx-auto">
+      <div class="flat-surface p-10 prose-content">
+        <h2 class="text-2xl font-bold mb-4 text-primary">Compliance Standards</h2>
+        <p class="text-secondary mb-4 leading-relaxed">
+          This website has been engineered to comply with the <strong>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</strong> standard set by the World Wide Web Consortium (W3C).
+        </p>
+
+        <h3 class="text-xl font-bold mt-6 mb-3 text-primary">Key Accessibility Features</h3>
+        <ul class="list-disc pl-6 text-secondary space-y-2 mb-6">
+          <li><strong>Semantic Landmarks:</strong> Proper HTML5 heading tags (<code class="font-mono">h1</code> through <code class="font-mono">h3</code>), semantic navigation, and ARIA attributes for screen readers.</li>
+          <li><strong>High Contrast &amp; Theme Toggle:</strong> Fully customizable Light and Dark themes satisfying stringent AAA color contrast ratios.</li>
+          <li><strong>Keyboard Navigability:</strong> All interactive buttons, modals, and dropdown navigation links can be seamlessly navigated via the <kbd class="px-2 py-1 bg-surface rounded">Tab</kbd> key.</li>
+          <li><strong>Machine-Readable Directives:</strong> Full support for autonomous crawlers and AI search agents via standardized <code class="font-mono">llms.txt</code>.</li>
+        </ul>
+
+        <h3 class="text-xl font-bold mt-6 mb-3 text-primary">Feedback &amp; Assistance</h3>
+        <p class="text-secondary leading-relaxed">
+          If you encounter any difficulty accessing any part of this website, please contact our accessibility coordinator at <a href="mailto:info@ukabcs.co.uk" class="text-accent underline">info@ukabcs.co.uk</a>. We welcome feedback and will make every reasonable effort to accommodate your needs.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
+  .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
+  .text-center { text-align: center; }
+  .mx-auto { margin-inline: auto; }
+  .max-w-3xl { max-width: 48rem; }
+  .max-w-4xl { max-width: 56rem; }
+  .mt-4 { margin-top: 1rem; }
+  .mt-6 { margin-top: 1.5rem; }
+  .mb-3 { margin-bottom: 0.75rem; }
+  .mb-4 { margin-bottom: 1rem; }
+  .mb-6 { margin-bottom: 1.5rem; }
+  .text-2xl { font-size: 1.5rem; }
+  .text-xl { font-size: 1.25rem; }
+  .font-bold { font-weight: 700; }
+  .text-primary { color: var(--color-primary); }
+  .text-secondary { color: var(--color-text-secondary); }
+  .text-accent { color: var(--color-accent); }
+  .leading-relaxed { line-height: 1.7; }
+  .p-10 { padding: 2.5rem; }
+  .underline { text-decoration: underline; }
+</style>

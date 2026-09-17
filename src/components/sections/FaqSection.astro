@@ -1,0 +1,48 @@
+---
+import FaqAccordion from '../ui/FaqAccordion.astro';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Frequently Asked Questions (F.A.Q)",
+  subtitle = "Clear answers regarding UKABCS grant eligibility, peer-review timelines, membership requirements, and governance transparency."
+} = Astro.props;
+
+const faqItems = [
+  {
+    question: "Who is eligible to apply for UKABCS Capacity Building Grants?",
+    answer: "Any principal investigator, faculty researcher, or registered postgraduate student affiliated with an accredited UK or Arab university is eligible. Cross-institutional UK-Arab collaborative proposals are given top priority."
+  },
+  {
+    question: "How are grant decisions audited and reviewed?",
+    answer: "All grant proposals undergo double-blind peer review by our Scientific Committee comprising independent UK and international university professors. Grant award decisions are published on our transparency portal."
+  },
+  {
+    question: "Does UKABCS charge any membership or application fees?",
+    answer: "No. UKABCS is an incorporated UK non-profit academic society. Researcher membership, grant applications, and peer-review services are 100% free of charge."
+  },
+  {
+    question: "What is covered under the Graduation Project Grants?",
+    answer: "Graduation Project Grants provide funding for final-year undergraduate and Master's thesis computational research, covering high-performance cloud compute credits, specialized software licenses, and APC publishing waivers."
+  },
+  {
+    question: "How do I request Article Processing Charge (APC) waivers for journal papers?",
+    answer: "Accepted manuscript authors affiliated with UKABCS member institutions can submit their DOI and acceptance letter via our Apply Portal to receive direct APC settlement to PubMed/PMC open-access publishers."
+  }
+];
+---
+
+<section class="py-20 section-faq" id="faq">
+  <div class="container-narrow">
+    <div class="text-center mb-12">
+      <span class="badge-pill mb-3">Answers & Clarity</span>
+      <h2 class="text-3xl font-bold mb-3">{title}</h2>
+      <p class="text-secondary max-w-2xl mx-auto">{subtitle}</p>
+    </div>
+
+    <FaqAccordion items={faqItems} />
+  </div>
+</section>

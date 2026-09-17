@@ -1,0 +1,61 @@
+---
+export interface Props {
+  title?: string;
+}
+
+const { title = "UKABCS Academic Impact & Operational Numbers" } = Astro.props;
+
+const stats = [
+  {
+    number: "£450,000+",
+    label: "Total Research Grants Allocated",
+    desc: "Disbursed across peer-reviewed projects"
+  },
+  {
+    number: "140+",
+    label: "Funded Research Projects",
+    desc: "Spanning genomics, HPC, and AI drug discovery"
+  },
+  {
+    number: "3,200+",
+    label: "Registered Researcher Members",
+    desc: "Across UK & Arab universities"
+  },
+  {
+    number: "85+",
+    label: "Open Access Papers Published",
+    desc: "With 100% APC journal fee waivers"
+  }
+];
+---
+
+<section class="py-16 section-numbers-counter">
+  <div class="container">
+    {title && (
+      <div class="text-center mb-10">
+        <h2 class="text-2xl font-bold text-secondary">{title}</h2>
+      </div>
+    )}
+
+    <div class="grid-4 gap-6">
+      {stats.map((stat) => (
+        <div class="card-aceternity stat-card text-center p-8">
+          <div class="stat-number text-4xl font-extrabold text-primary-color mb-2">{stat.number}</div>
+          <div class="stat-label font-bold text-lg mb-1">{stat.label}</div>
+          <div class="stat-desc text-muted text-xs">{stat.desc}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .stat-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+  }
+
+  .stat-number {
+    letter-spacing: -0.03em;
+  }
+</style>

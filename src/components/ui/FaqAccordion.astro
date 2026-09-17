@@ -1,0 +1,95 @@
+---
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+export interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-accordion">
+  {items.map((item, index) => (
+    <details class="faq-item flat-surface" id={`faq-${index}`}>
+      <summary class="faq-summary">
+        <span class="faq-question">{item.question}</span>
+        <span class="faq-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </span>
+      </summary>
+      <div class="faq-content">
+        <p>{item.answer}</p>
+      </div>
+    </details>
+  ))}
+</div>
+
+<style>
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .faq-item {
+    border-radius: var(--radius-md);
+    padding: 0;
+    overflow: hidden;
+    transition: all var(--transition-smooth);
+  }
+
+  .faq-summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 1.75rem;
+    cursor: pointer;
+    user-select: none;
+    list-style: none;
+    font-weight: 600;
+    color: var(--color-text-primary);
+  }
+
+  .faq-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-question {
+    font-size: 1.1rem;
+    padding-right: 1.5rem;
+  }
+
+  .faq-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-full);
+    background: var(--color-surface-translucent);
+    color: var(--color-text-secondary);
+    flex-shrink: 0;
+    transition: transform var(--transition-smooth), background-color var(--transition-fast);
+  }
+
+  details[open] .faq-icon {
+    transform: rotate(45deg);
+    background: var(--color-primary);
+    color: #ffffff;
+  }
+
+  .faq-content {
+    padding: 0 1.75rem 1.5rem 1.75rem;
+    color: var(--color-text-secondary);
+    font-size: 0.975rem;
+    line-height: 1.7;
+    animation: fadeIn 0.3s ease;
+  }
+</style>

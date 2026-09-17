@@ -1,0 +1,157 @@
+---
+export interface Props {
+  title: string;
+  year: number;
+  institution: string;
+  country: string;
+  grantType: string;
+  datePublished: string;
+  description: string;
+  slug: string;
+  image?: string;
+}
+
+const { title, year, institution, country, grantType, datePublished, description, slug, image } = Astro.props;
+
+// Fallback high-res lab/project image
+const defaultImage = "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop";
+const cardImage = image || defaultImage;
+---
+
+<article class="card-aceternity project-card">
+  <a href={`/funded-projects/${slug}`} class="card-image-link" aria-label={title}>
+    <div class="card-image-wrap">
+      <img src={cardImage} alt={title} loading="lazy" />
+      <div class="badge-group">
+        <span class="year-pill">{year} Award</span>
+        <span class="badge-pill">{grantType}</span>
+      </div>
+    </div>
+  </a>
+
+  <div class="card-body">
+    <div class="institution-row">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+        <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+      </svg>
+      <span class="institution-name">{institution} • {country}</span>
+    </div>
+
+    <h3 class="card-title">
+      <a href={`/funded-projects/${slug}`}>{title}</a>
+    </h3>
+
+    <p class="card-excerpt">{description}</p>
+
+    <div class="card-footer">
+      <span class="date-text">Published: {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+      <a href={`/funded-projects/${slug}`} class="read-link">
+        <span>Project & Terms Details</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .project-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .card-image-link {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .badge-group {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    display: flex;
+    gap: 0.4rem;
+    z-index: 2;
+  }
+
+  .year-pill {
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #ffffff;
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .institution-row {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-accent);
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+  }
+
+  .card-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--color-text-primary);
+    margin-bottom: 0.6rem;
+    line-height: 1.35;
+  }
+
+  .card-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .card-excerpt {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .date-text {
+    font-size: 0.78rem;
+    color: var(--color-text-muted);
+  }
+
+  .read-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .read-link:hover {
+    color: var(--color-primary-hover);
+    transform: translateX(3px);
+  }
+</style>

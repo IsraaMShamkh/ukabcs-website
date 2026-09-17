@@ -1,0 +1,132 @@
+---
+export interface Props {
+  title: string;
+  datePublished: string;
+  category: string;
+  author: string;
+  description: string;
+  slug: string;
+  image?: string;
+}
+
+const { title, datePublished, category, author, description, slug, image } = Astro.props;
+
+// Fallback high quality scientific imagery
+const defaultImage = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop";
+const cardImage = image || defaultImage;
+---
+
+<article class="card-aceternity news-card">
+  <a href={`/news/${slug}`} class="card-image-link" aria-label={title}>
+    <div class="card-image-wrap">
+      <img src={cardImage} alt={title} loading="lazy" />
+      <span class="badge-pill image-badge">{category}</span>
+    </div>
+  </a>
+
+  <div class="card-body">
+    <div class="news-meta">
+      <time class="news-date" datetime={datePublished}>
+        {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+      </time>
+      <span class="news-author">By {author}</span>
+    </div>
+
+    <h3 class="news-title">
+      <a href={`/news/${slug}`}>{title}</a>
+    </h3>
+
+    <p class="news-desc">{description}</p>
+
+    <div class="news-footer">
+      <a href={`/news/${slug}`} class="news-link-btn">
+        <span>Read Full Article</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .news-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .card-image-link {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+  }
+
+  .image-badge {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
+    background: var(--color-surface);
+    color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .news-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    font-size: 0.8rem;
+    color: var(--color-text-muted);
+  }
+
+  .news-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+    color: var(--color-text-primary);
+  }
+
+  .news-title a:hover {
+    color: var(--color-primary);
+  }
+
+  .news-desc {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+  }
+
+  .news-footer {
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border);
+  }
+
+  .news-link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast), color var(--transition-fast);
+  }
+
+  .news-link-btn:hover {
+    color: var(--color-primary-hover);
+    transform: translateX(3px);
+  }
+</style>

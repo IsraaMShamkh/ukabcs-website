@@ -1,0 +1,93 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Computational Pipeline Optimization & Benchmark Performance",
+  subtitle = "Compare legacy CPU workflows vs. UKABCS GPU-accelerated Nextflow & AlphaFold pipelines."
+} = Astro.props;
+---
+
+<section class="py-20 section-comparison" id="comparison">
+  <div class="container">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Tool Showcase & Benchmarks</span>
+      <h2 class="text-3xl font-bold mb-3">{title}</h2>
+      <p class="text-secondary">{subtitle}</p>
+    </div>
+
+    <div class="card-aceternity p-8">
+      <div class="grid-2 gap-8 items-center">
+        <!-- Legacy vs UKABCS Comparison Box -->
+        <div class="comparison-column legacy-box p-6 flat-surface">
+          <div class="flex items-center justify-between mb-4">
+            <span class="badge-pill" style="background: rgba(239, 68, 68, 0.1); color: #dc2626;">Legacy CPU Workflows</span>
+            <span class="text-xs text-muted">Standard Un-optimized Pipeline</span>
+          </div>
+
+          <ul class="comparison-list flex-col gap-3">
+            <li class="flex items-center gap-2 text-sm text-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-muted">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Genome Alignment Runtime: <strong>72+ Hours</strong></span>
+            </li>
+            <li class="flex items-center gap-2 text-sm text-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-muted">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Single-node Memory Bottlenecks</span>
+            </li>
+            <li class="flex items-center gap-2 text-sm text-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-muted">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+              <span>Manual Dependency & Environment Errors</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="comparison-column ukabcs-box p-6 card-aceternity" style="border-color: var(--color-primary);">
+          <div class="flex items-center justify-between mb-4">
+            <span class="badge-pill badge-emerald">UKABCS Containerized GPU Pipeline</span>
+            <span class="text-xs font-bold text-accent">10x Speedup</span>
+          </div>
+
+          <ul class="comparison-list flex-col gap-3">
+            <li class="flex items-center gap-2 text-sm font-semibold text-primary-color">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Genome Alignment Runtime: <strong>4.5 Hours</strong></span>
+            </li>
+            <li class="flex items-center gap-2 text-sm font-semibold text-primary-color">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>Distributed HPC GPU Cluster Execution</span>
+            </li>
+            <li class="flex items-center gap-2 text-sm font-semibold text-primary-color">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+              <span>One-Click Docker / Singularity Reproducibility</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .comparison-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+  }
+</style>
