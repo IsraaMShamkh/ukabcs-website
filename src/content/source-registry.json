@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "version": "1.0.0",
+  "lastUpdated": "2026-09-17",
+  "sources": {
+    "governance": {
+      "sourceSlug": "governance-leadership-1",
+      "targetRoute": "/governance",
+      "verified": true,
+      "itemsCount": 7,
+      "imagesCount": 3
+    },
+    "transparency": {
+      "sourceSlug": "transparency",
+      "targetRoute": "/transparency",
+      "verified": true
+    },
+    "legal": {
+      "sourceSlug": "policies-legal-information",
+      "targetRoute": "/legal",
+      "verified": true
+    },
+    "memberships": {
+      "sourceSlug": "memberships",
+      "targetRoute": "/memberships",
+      "verified": true
+    },
+    "publications": {
+      "sourceSlug": "publications-conferences-support",
+      "targetRoute": "/publications",
+      "verified": true,
+      "callsCount": 4
+    },
+    "education": {
+      "sourceSlug": "events-educational-support",
+      "targetRoute": "/educational-support",
+      "verified": true,
+      "callsCount": 4
+    },
+    "women": {
+      "sourceSlug": "women-researchers-support",
+      "targetRoute": "/women-in-science",
+      "verified": true
+    },
+    "partnerships": {
+      "sourceSlug": "partnerships-collaborations-1",
+      "targetRoute": "/partnerships",
+      "verified": true,
+      "itemsCount": 5
+    },
+    "fundedProjects": {
+      "sourceSlug": "funded-projects",
+      "targetRoute": "/funded-projects",
+      "verified": true,
+      "itemsCount": 14
+    },
+    "news": {
+      "sourceSlug": "news",
+      "targetRoute": "/news",
+      "verified": true
+    }
+  }
+}

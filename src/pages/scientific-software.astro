@@ -1,58 +1,61 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import ImageComparisonSection from '../components/sections/ImageComparisonSection.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import TextContentSection from '../components/sections/TextContentSection.astro';
+import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
+import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
+import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
 ---
 
-<BaseLayout title="Scientific Software Development Support | UKABCS">
-  <section class="page-header py-20 text-center">
-    <div class="container">
-      <span class="badge-pill badge-emerald">Open Source &amp; Tools</span>
-      <h1 class="page-title mt-4">Scientific Software Development Support</h1>
-      <p class="page-subtitle max-w-3xl mx-auto">
-        Empowering researchers to design, build, optimize, and share high-performance computational tools in bioinformatics, chemoinformatics, and structural biology.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={`Scientific Software Development Support | ${siteConfig.publicName}`} description="Empowering researchers and universities to design, deploy, and scale high-performance computational tools, digital campus ecosystems, and bioinformatics algorithms.">
+  <!-- 1. Hero -->
+  <PageHero
+    eyebrow="Open Source & Scientific Compute"
+    title="Scientific Software Development Support"
+    description="Empowering researchers and universities to design, deploy, and scale high-performance computational tools, digital campus ecosystems, and bioinformatics algorithms."
+    image="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=90&w=2200&auto=format&fit=crop"
+  />
 
-  <!-- Software Development Offer -->
-  <section class="py-16">
-    <div class="container">
-      <div class="text-center mb-16">
-        <span class="badge-pill">What We Provide</span>
-        <h2 class="text-3xl font-bold mt-2">Comprehensive Developer Offer</h2>
-      </div>
+  <!-- 2. Why Software Support Matters -->
+  <TextContentSection
+    tag="Open-Source Infrastructure"
+    title="Building Reliable Computational Tools for Modern Science"
+    subtitle="Financial, technical, and computational resources for software toolmakers."
+    content="Robust scientific software and governed digital learning systems form the backbone of contemporary research and university education. UKABCS provides competitive grant funding, high-performance cloud compute, architecture design, and technical mentorship to turn promising ideas into sustainable, production-grade tools."
+    image="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Read Digital Campus Grant Dossier →"
+    ctaHref="/news/ukabcs-digital-campus-transformation-grant"
+  />
 
-      <div class="grid-3 gap-6">
-        <div class="card-aceternity p-8">
-          <div class="offer-icon mb-4">💻</div>
-          <h3 class="text-xl font-bold mb-2">Seed Funding</h3>
-          <p class="text-secondary text-sm leading-relaxed">Direct financial support for developer stipends, codebase refactoring, and integration of cutting-edge algorithms.</p>
-        </div>
+  <!-- 3. Digital Campus Transformation Call (Reversed) -->
+  <TextContentSection
+    tag="Institutional Grant Call"
+    title="UKABCS Digital Campus Transformation Grant"
+    subtitle="£30,000 Institutional support per faculty."
+    content="A comprehensive £30,000 per faculty grant establishing a fully governed LMS digital-learning ecosystem, academic content production, automated assessments, and ClientFlow CRM integration."
+    image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Explore Call Dossier & Attachments →"
+    ctaHref="/calls/digital-campus-transformation-grant"
+    reversed={true}
+  />
 
-        <div class="card-aceternity p-8">
-          <div class="offer-icon mb-4">☁️</div>
-          <h3 class="text-xl font-bold mb-2">Cloud &amp; Server Infrastructure</h3>
-          <p class="text-secondary text-sm leading-relaxed">Dedicated GPU server clusters, high-RAM nodes, and scalable web hosting for bioinformatics online servers and APIs.</p>
-        </div>
+  <!-- 4. Software Programmes & Grant Calls (SalesPromo) -->
+  <SalesPromoSection
+    title="Software Support Calls & Grant Programmes"
+    subtitle="Review funding and infrastructure opportunities for university faculties and computational developers."
+  />
 
-        <div class="card-aceternity p-8">
-          <div class="offer-icon mb-4">🧑‍🏫</div>
-          <h3 class="text-xl font-bold mb-2">Mentorship &amp; Peer Review</h3>
-          <p class="text-secondary text-sm leading-relaxed">Code audits and algorithm benchmarking conducted by senior computational scientists and software engineers.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 5. 6-Stage Application Process (Bento Grid) -->
+  <FeaturesBentoSection
+    title="The 6-Stage Application & Development Process"
+    subtitle="Structured, collaborative evaluation from proposal submission to final operational handover."
+  />
 
-  <!-- Benchmark Image Comparison Section -->
-  <ImageComparisonSection />
+  <!-- 6. Newsletter Bulletin -->
+  <NewsletterSection />
 
-  <!-- Promo CTA Section -->
+  <!-- 7. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>
-
-<style>
-  .offer-icon { font-size: 2.25rem; }
-</style>

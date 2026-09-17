@@ -1,0 +1,149 @@
+---
+interface TabItem {
+  id: string;
+  label: string;
+  count?: number;
+}
+
+interface Props {
+  tabs: TabItem[];
+  defaultTab?: string;
+  urlParamName?: string;
+  class?: string;
+}
+
+const { tabs, defaultTab = tabs[0]?.id, urlParamName = 'tab', class: className = '' } = Astro.props;
+---
+
+<div class={`content-tabs-container ${className}`} data-url-param={urlParamName}>
+  <div className="flex border-b border-border/60 overflow-x-auto no-scrollbar" role="tablist" aria-label="Content filtering options">
+    {tabs.map((tab) => (
+      <button
+        type="button"
+        role="tab"
+        id={`tab-btn-${tab.id}`}
+        data-tab-target={tab.id}
+        aria-selected={tab.id === defaultTab ? 'true' : 'false'}
+        aria-controls={`tab-panel-${tab.id}`}
+        tabIndex={tab.id === defaultTab ? 0 : -1}
+        class={`px-5 py-3.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 border-b-2 -mb-px flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+          tab.id === defaultTab
+            ? 'border-primary text-primary bg-primary/5'
+            : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/40'
+        }`}
+      >
+        <span>{tab.label}</span>
+        {tab.count !== undefined && (
+          <span class={`px-2 py-0.5 text-xs rounded-full font-mono ${
+            tab.id === defaultTab
+              ? 'bg-primary/20 text-primary'
+              : 'bg-secondary text-muted-foreground'
+          }`}>
+            {tab.count}
+          </span>
+        )}
+      </button>
+    ))}
+  </div>
+</div>
+
+<script>
+  document.addEventListener('astro:page-load', () => {
+    setupTabs();
+  });
+
+  setupTabs();
+
+  function setupTabs() {
+    const tabContainers = document.querySelectorAll('.content-tabs-container');
+    
+    tabContainers.forEach((container) => {
+      const paramName = container.getAttribute('data-url-param') || 'tab';
+      const tabButtons = container.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+      
+      if (!tabButtons.length) return;
+
+      // Check URL search params for initial tab
+      const urlParams = new URLSearchParams(window.location.search);
+      const activeParam = urlParams.get(paramName);
+
+      if (activeParam) {
+        const matchingBtn = Array.from(tabButtons).find(btn => btn.getAttribute('data-tab-target') === activeParam);
+        if (matchingBtn) {
+          activateTab(matchingBtn, tabButtons, paramName, false);
+        }
+      }
+
+      tabButtons.forEach((btn, index) => {
+        btn.addEventListener('click', () => {
+          activateTab(btn, tabButtons, paramName, true);
+        });
+
+        btn.addEventListener('keydown', (e: KeyboardEvent) => {
+          let targetIndex = index;
+          if (e.key === 'ArrowRight') {
+            targetIndex = (index + 1) % tabButtons.length;
+            e.preventDefault();
+          } else if (e.key === 'ArrowLeft') {
+            targetIndex = (index - 1 + tabButtons.length) % tabButtons.length;
+            e.preventDefault();
+          } else if (e.key === 'Home') {
+            targetIndex = 0;
+            e.preventDefault();
+          } else if (e.key === 'End') {
+            targetIndex = tabButtons.length - 1;
+            e.preventDefault();
+          }
+
+          if (targetIndex !== index) {
+            tabButtons[targetIndex].focus();
+            activateTab(tabButtons[targetIndex], tabButtons, paramName, true);
+          }
+        });
+      });
+    });
+  }
+
+  function activateTab(selectedBtn: HTMLButtonElement, allButtons: NodeListOf<HTMLButtonElement>, paramName: string, updateUrl: boolean) {
+    const targetId = selectedBtn.getAttribute('data-tab-target');
+    if (!targetId) return;
+
+    allButtons.forEach((btn) => {
+      const isSelected = btn === selectedBtn;
+      btn.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      btn.tabIndex = isSelected ? 0 : -1;
+      
+      if (isSelected) {
+        btn.classList.add('border-primary', 'text-primary', 'bg-primary/5');
+        btn.classList.remove('border-transparent', 'text-muted-foreground');
+      } else {
+        btn.classList.remove('border-primary', 'text-primary', 'bg-primary/5');
+        btn.classList.add('border-transparent', 'text-muted-foreground');
+      }
+    });
+
+    // Update panels associated with these tabs
+    const panels = document.querySelectorAll<HTMLElement>('[role="tabpanel"]');
+    panels.forEach((panel) => {
+      if (panel.id === `tab-panel-${targetId}`) {
+        panel.removeAttribute('hidden');
+        panel.classList.remove('hidden');
+      } else if (panel.id.startsWith('tab-panel-')) {
+        panel.setAttribute('hidden', 'true');
+        panel.classList.add('hidden');
+      }
+    });
+
+    // Update URL param if requested
+    if (updateUrl && window.history.replaceState) {
+      const url = new URL(window.location.href);
+      url.searchParams.set(paramName, targetId);
+      window.history.replaceState({}, '', url.toString());
+    }
+
+    // Dispatch custom tab change event
+    window.dispatchEvent(new CustomEvent('tab-changed', {
+      detail: { tabId: targetId, paramName }
+    }));
+  }
+</script>

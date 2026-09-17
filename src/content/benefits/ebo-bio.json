@@ -1,0 +1,14 @@
+{
+  "partnerName": "EBO Bio Solution UK",
+  "logo": "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=400&auto=format&fit=crop",
+  "website": "https://ebobio.co.uk",
+  "category": "Services",
+  "shortDescription": "Bio-analytical workflow execution, mass spectrometry, and assay support.",
+  "services": ["Proteomics Assay", "Mass Spectrometry", "Workflow Automation"],
+  "discountValue": "20% Assay Discount",
+  "discountType": "Percentage",
+  "eligibility": "Active UKABCS Members",
+  "terms": "Applies to custom lab assay projects.",
+  "partnershipSlug": "ebo-bio-solution-150k",
+  "verified": true
+}

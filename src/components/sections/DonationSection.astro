@@ -1,0 +1,12 @@
+---
+import { siteConfig } from '../../config/site';
+---
+<section class="donation-section py-20" id="support-science">
+  <div class="container donation-layout">
+    <div class="donation-visual" role="img" aria-label="Laboratory research"></div>
+    <div class="donation-copy"><span class="badge-pill mb-3">Support scientific progress</span><h2 class="text-3xl font-bold mb-4">Help create more opportunities for research and innovation.</h2><p class="text-secondary leading-relaxed mb-6">Your support helps UKABCS advance biotechnology and computational science through researcher support, learning opportunities and global collaboration.</p><a href={siteConfig.clientFlow.donationLink} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary">Learn about supporting UKABCS <span aria-hidden="true">→</span></a></div>
+  </div>
+</section>
+<style>
+.donation-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}.donation-visual{min-height:340px;border-radius:var(--radius-lg);background:linear-gradient(135deg,rgba(13,25,42,.26),rgba(29,48,79,.28)),url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?q=85&w=1200&auto=format&fit=crop') center/cover}.donation-copy{max-width:36rem}@media(max-width:720px){.donation-layout{grid-template-columns:1fr;gap:2rem}.donation-visual{min-height:240px}}
+</style>

@@ -1,132 +1,95 @@
 ---
+import { ArrowRight, Calendar, User } from 'lucide-astro';
+
 export interface Props {
   title: string;
+  contentType?: 'research-article' | 'news' | 'open-call' | 'announcement';
   datePublished: string;
-  category: string;
-  author: string;
-  description: string;
+  category?: string;
+  author?: string;
+  summary?: string;
+  description?: string;
   slug: string;
+  featuredImage?: string;
   image?: string;
 }
 
-const { title, datePublished, category, author, description, slug, image } = Astro.props;
+const {
+  title,
+  contentType = 'news',
+  datePublished,
+  category,
+  author = 'UKABCS Secretariat',
+  summary,
+  description,
+  slug,
+  featuredImage,
+  image,
+} = Astro.props;
 
-// Fallback high quality scientific imagery
-const defaultImage = "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop";
-const cardImage = image || defaultImage;
+const cardImage = featuredImage || image || "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop";
+const displaySummary = summary || description || '';
+
+const typeBadgeStyles = {
+  'research-article': 'bg-primary/10 text-primary border-primary/20',
+  'news': 'bg-sky-500/10 text-sky-400 border-sky-500/20',
+  'open-call': 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20',
+  'announcement': 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20',
+};
+
+const typeLabels = {
+  'research-article': 'Research Article',
+  'news': 'News & Update',
+  'open-call': 'Open Call',
+  'announcement': 'Announcement',
+};
 ---
 
-<article class="card-aceternity news-card">
-  <a href={`/news/${slug}`} class="card-image-link" aria-label={title}>
-    <div class="card-image-wrap">
-      <img src={cardImage} alt={title} loading="lazy" />
-      <span class="badge-pill image-badge">{category}</span>
+<article class="flex flex-col justify-between h-full rounded-xl border border-border/80 bg-card overflow-hidden shadow-sm hover:border-primary/40 transition-all duration-300 group">
+  <a href={`/news/${slug}`} class="aspect-video w-full overflow-hidden relative bg-muted block">
+    <img
+      src={cardImage}
+      alt={title}
+      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+      loading="lazy"
+    />
+    <div class="absolute top-3 left-3">
+      <span class={`px-2.5 py-1 text-xs font-semibold rounded-full border backdrop-blur-md ${typeBadgeStyles[contentType]}`}>
+        {typeLabels[contentType] || category || 'News'}
+      </span>
     </div>
   </a>
 
-  <div class="card-body">
-    <div class="news-meta">
-      <time class="news-date" datetime={datePublished}>
-        {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
-      </time>
-      <span class="news-author">By {author}</span>
+  <div class="p-6 flex-1 flex flex-col justify-between space-y-4">
+    <div class="space-y-3">
+      <div class="flex items-center justify-between text-xs text-muted-foreground">
+        <span class="flex items-center gap-1">
+          <Calendar class="w-3.5 h-3.5 text-primary shrink-0" />
+          <span>{new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+        </span>
+        <span class="flex items-center gap-1">
+          <User class="w-3.5 h-3.5 shrink-0" />
+          <span>{author}</span>
+        </span>
+      </div>
+
+      <h3 class="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+        <a href={`/news/${slug}`}>{title}</a>
+      </h3>
+
+      <p class="text-xs text-muted-foreground leading-relaxed line-clamp-3">
+        {displaySummary}
+      </p>
     </div>
 
-    <h3 class="news-title">
-      <a href={`/news/${slug}`}>{title}</a>
-    </h3>
-
-    <p class="news-desc">{description}</p>
-
-    <div class="news-footer">
-      <a href={`/news/${slug}`} class="news-link-btn">
-        <span>Read Full Article</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="5" y1="12" x2="19" y2="12"></line>
-          <polyline points="12 5 19 12 12 19"></polyline>
-        </svg>
+    <div class="pt-4 border-t border-border/60">
+      <a
+        href={`/news/${slug}`}
+        class="w-full py-2 px-3 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground text-foreground text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition-colors"
+      >
+        <span>Read Full Story</span>
+        <ArrowRight class="w-3.5 h-3.5" />
       </a>
     </div>
   </div>
 </article>
-
-<style>
-  .news-card {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    padding: 1.25rem;
-    gap: 1.25rem;
-  }
-
-  .card-image-link {
-    display: block;
-    border-radius: var(--radius-md);
-    overflow: hidden;
-  }
-
-  .image-badge {
-    position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    z-index: 2;
-    background: var(--color-surface);
-    color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
-  }
-
-  .card-body {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-  }
-
-  .news-meta {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.6rem;
-    font-size: 0.8rem;
-    color: var(--color-text-muted);
-  }
-
-  .news-title {
-    font-size: 1.15rem;
-    font-weight: 700;
-    line-height: 1.35;
-    margin-bottom: 0.6rem;
-    color: var(--color-text-primary);
-  }
-
-  .news-title a:hover {
-    color: var(--color-primary);
-  }
-
-  .news-desc {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    line-height: 1.6;
-    margin-bottom: 1.25rem;
-    flex-grow: 1;
-  }
-
-  .news-footer {
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--color-border);
-  }
-
-  .news-link-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    transition: transform var(--transition-fast), color var(--transition-fast);
-  }
-
-  .news-link-btn:hover {
-    color: var(--color-primary-hover);
-    transform: translateX(3px);
-  }
-</style>

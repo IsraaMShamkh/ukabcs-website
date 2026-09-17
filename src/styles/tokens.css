@@ -1,9 +1,20 @@
-/* UKABCS Design Tokens — Fluent / Preline Inspired
-   Light-first, institutional, premium flat aesthetic */
+/* ─── UKABCS Canonical Design Tokens ──────────────────────────────────────────────
+   Primary Brand Navy: #081731 / #061124 (Hero overlays, dark sections)
+   Primary Brand Blue: #1e40af (Actions, focus, highlights)
+   Accent Emerald/Teal: #047857 (Badges, indicators, open-science tags)
+   Light Background:    #fafaf9 / Surface: #ffffff
+   Text Colors:         #1c1917 (Primary), #57534e (Secondary), #a8a29e (Muted)
+   Rules: Tokens only. No ad-hoc colors or secondary palettes permitted.
+   ───────────────────────────────────────────────────────────────────────────────── */
 :root {
   /* ─── Fonts ─── */
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-serif: 'Caladea', Georgia, Cambria, 'Times New Roman', Times, serif;
+
+  /* ─── UKABCS Navy Brand Palette ─── */
+  --color-navy: #0d192a;
+  --color-navy-dark: #08111f;
+  --color-navy-overlay: rgba(13, 25, 42, 0.92);
 
   /* ─── Color Palette — Light (Default) ─── */
   --color-bg: #fafaf9;
@@ -17,17 +28,17 @@
   --color-text-secondary: #57534e;
   --color-text-muted: #a8a29e;
 
-  --color-primary: #1e40af;
-  --color-primary-hover: #1d4ed8;
-  --color-primary-soft: rgba(30, 64, 175, 0.08);
+  --color-primary: #0d192a;
+  --color-primary-hover: #1d304f;
+  --color-primary-soft: rgba(13, 25, 42, 0.08);
   --color-primary-text: #ffffff;
 
-  --color-accent: #047857;
-  --color-accent-soft: rgba(4, 120, 87, 0.08);
+  --color-accent: #38bdf8;
+  --color-accent-soft: rgba(56, 189, 248, 0.12);
 
   --color-border: #e7e5e4;
   --color-border-hover: #d6d3d1;
-  --color-border-focus: rgba(30, 64, 175, 0.35);
+  --color-border-focus: rgba(56, 189, 248, 0.55);
 
   /* ─── Elevation — Minimal, flat ─── */
   --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);

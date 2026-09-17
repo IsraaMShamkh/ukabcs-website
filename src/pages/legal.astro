@@ -1,86 +1,80 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import NewsletterSection from '../components/sections/NewsletterSection.astro';
+import PromoCTASection from '../components/sections/PromoCTASection.astro';
+import { ShieldCheck, Lock, FileCode, CheckCircle2 } from 'lucide-astro';
+
+const legalDocs = [
+  {
+    title: "Privacy Policy & UK GDPR Compliance",
+    id: "privacy",
+    effectiveDate: "01 January 2025",
+    reviewDate: "01 January 2026",
+    summary: "Details on how UKABCS collects, stores, and protects member and applicant personal data in accordance with UK GDPR and the Data Protection Act 2018."
+  },
+  {
+    title: "Terms of Use & Membership Conditions",
+    id: "terms",
+    effectiveDate: "01 January 2025",
+    reviewDate: "01 January 2026",
+    summary: "Rules governing access to the UKABCS website, portal submissions, partner compute credits, and membership certificate usage."
+  },
+  {
+    title: "Cookie Policy & Web Analytics",
+    id: "cookies",
+    effectiveDate: "01 January 2025",
+    reviewDate: "01 January 2026",
+    summary: "Information on essential functional cookies, analytics tracking, and privacy settings on www.ukabcs.co.uk."
+  },
+  {
+    title: "Accessibility Statement",
+    id: "accessibility",
+    effectiveDate: "01 January 2025",
+    reviewDate: "01 January 2026",
+    summary: "Our commitment to ensuring digital accessibility for disabled researchers, including WCAG 2.1 AA compliance and screen reader support."
+  }
+];
 ---
 
-<BaseLayout title="Policies & Legal Information | UKABCS">
-  <section class="page-header py-20 text-center">
-    <div class="container">
-      <span class="badge-pill">Compliance</span>
-      <h1 class="page-title mt-4">Policies &amp; Legal Information</h1>
-      <p class="page-subtitle max-w-3xl mx-auto">
-        Clear, comprehensive legal disclosures governing website usage, data handling, cookies, and digital accessibility.
-      </p>
+<BaseLayout title="Policies & Legal Information | UKABCS" description="Official UKABCS privacy policy, terms of use, cookie policy, and accessibility statements.">
+  <!-- Hero -->
+  <PageHero
+    eyebrow="Compliance & Legal"
+    title="Policies & Legal Information"
+    description="Official UKABCS privacy policy, terms of use, cookie policy, and accessibility statements."
+    image="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=90&w=2200&auto=format&fit=crop"
+  />
+
+  <section class="py-16 md:py-24 bg-background border-b border-border/60">
+    <div class="container mx-auto px-4 max-w-4xl space-y-12">
+      <!-- Legal Documents Grid -->
+      <div class="space-y-8">
+        {legalDocs.map((doc) => (
+          <div class="p-8 rounded-2xl bg-card border border-border/80 shadow-sm space-y-4" id={doc.id}>
+            <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-border/60">
+              <h2 class="text-xl font-bold text-foreground">{doc.title}</h2>
+              <div class="text-xs text-muted-foreground font-medium">
+                Effective: <strong>{doc.effectiveDate}</strong> | Review: <strong>{doc.reviewDate}</strong>
+              </div>
+            </div>
+
+            <p class="text-sm text-muted-foreground leading-relaxed">
+              {doc.summary}
+            </p>
+
+            <div class="pt-2 text-xs text-muted-foreground space-y-2">
+              <div class="flex items-center gap-2">
+                <CheckCircle2 class="w-4 h-4 text-emerald-500 shrink-0" />
+                <span>Compliant with UK Data Protection Act 2018 & UK GDPR</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <section class="py-16">
-    <div class="container max-w-4xl mx-auto flex flex-col gap-12">
-      <!-- Section 1: Privacy Policy -->
-      <article class="flat-surface p-10">
-        <h2 class="text-2xl font-bold mb-4 text-primary">1. Privacy Policy</h2>
-        <p class="text-secondary text-sm leading-relaxed mb-4">
-          This Privacy Policy explains how the UK Association for Biotechnology &amp; Computational Science (UKABCS) collects, processes, and protects your personal data when visiting our website, applying for grants, or registering for memberships. We adhere strictly to the UK Data Protection Act 2018 and the UK General Data Protection Regulation (UK GDPR).
-        </p>
-        <p class="text-secondary text-sm leading-relaxed mb-4">
-          <strong>Data We Collect:</strong> We collect identifying and contact details (name, academic affiliation, institutional email), curriculum vitae, grant proposals, and communication records submitted through our secure CRM portals.
-        </p>
-        <p class="text-secondary text-sm leading-relaxed">
-          <strong>Data Retention:</strong> Proposal records and reviewer notes are archived securely for audit compliance for up to 7 years following grant completion. You hold full rights to request access, rectification, or erasure of your personal data by contacting <a href="mailto:info@ukabcs.co.uk" class="text-accent underline">info@ukabcs.co.uk</a>.
-        </p>
-      </article>
-
-      <!-- Section 2: Terms of Use -->
-      <article class="flat-surface p-10">
-        <h2 class="text-2xl font-bold mb-4 text-primary">2. Terms of Use</h2>
-        <p class="text-secondary text-sm leading-relaxed mb-4">
-          By accessing and using this website, you agree to comply with and be bound by these Terms of Use. If you disagree with any part of these terms, please do not use our services.
-        </p>
-        <p class="text-secondary text-sm leading-relaxed">
-          <strong>Intellectual Property:</strong> All content, logo designs, grant guidelines, and educational materials published on this portal are the intellectual property of UKABCS or licensed from respective academic partners. Materials marked as Open Access or Creative Commons may be shared with proper attribution.
-        </p>
-      </article>
-
-      <!-- Section 3: Cookies Policy -->
-      <article class="flat-surface p-10">
-        <h2 class="text-2xl font-bold mb-4 text-primary">3. Cookies Policy</h2>
-        <p class="text-secondary text-sm leading-relaxed mb-4">
-          Our website utilizes essential session cookies and local storage tokens solely to preserve your preferred theme (Light/Dark mode) and maintain basic navigational security. We do not deploy intrusive third-party commercial tracking cookies or sell visitor analytics.
-        </p>
-      </article>
-
-      <!-- Section 4: Accessibility Statement -->
-      <article class="flat-surface p-10">
-        <h2 class="text-2xl font-bold mb-4 text-primary">4. Accessibility Statement</h2>
-        <p class="text-secondary text-sm leading-relaxed mb-4">
-          UKABCS is committed to ensuring digital accessibility for people with disabilities. We continually improve user experience for all visitors and apply the relevant accessibility standards based on Web Content Accessibility Guidelines (WCAG) 2.1 Level AA.
-        </p>
-        <p class="text-secondary text-sm leading-relaxed">
-          Our pages feature high contrast typography, semantic HTML landmarks, full keyboard navigation support, and scalable vector assets for screen readers and assistive devices.
-        </p>
-      </article>
-    </div>
-  </section>
+  <NewsletterSection />
+  <PromoCTASection />
 </BaseLayout>
-
-<style>
-  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-  .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-  .text-center { text-align: center; }
-  .mx-auto { margin-inline: auto; }
-  .max-w-3xl { max-width: 48rem; }
-  .max-w-4xl { max-width: 56rem; }
-  .flex { display: flex; }
-  .flex-col { flex-direction: column; }
-  .gap-12 { gap: 3rem; }
-  .p-10 { padding: 2.5rem; }
-  .mt-4 { margin-top: 1rem; }
-  .mb-4 { margin-bottom: 1rem; }
-  .text-2xl { font-size: 1.5rem; }
-  .text-sm { font-size: 0.875rem; }
-  .font-bold { font-weight: 700; }
-  .text-primary { color: var(--color-primary); }
-  .text-secondary { color: var(--color-text-secondary); }
-  .text-accent { color: var(--color-accent); }
-  .leading-relaxed { line-height: 1.7; }
-  .underline { text-decoration: underline; }
-</style>

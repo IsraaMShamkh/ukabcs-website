@@ -1,42 +1,39 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import NewsCard from '../../components/cards/NewsCard.astro';
+import PageHero from '../../components/hero/PageHero.astro';
+import TextContentSection from '../../components/sections/TextContentSection.astro';
+import ArticlesBlogEventsSection from '../../components/sections/ArticlesBlogEventsSection.astro';
+import NewsletterSection from '../../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
-import { getCollection } from 'astro:content';
-
-const newsItems = await getCollection('news');
-const sortedNews = newsItems.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime());
+import { siteConfig } from '../../config/site';
 ---
 
-<BaseLayout title="News & Press Releases | UK Association for Biotechnology & Computational Science">
-  <section class="page-header py-20 text-center">
-    <div class="container">
-      <span class="badge-pill badge-emerald">Media &amp; Announcements</span>
-      <h1 class="page-title mt-4">UKABCS Research Articles &amp; News Hub</h1>
-      <p class="page-subtitle max-w-3xl mx-auto">
-        Stay updated with official call openings, governance reports, partner announcements, and peer-reviewed research articles from the global UKABCS network.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={`News & Research Insights | ${siteConfig.publicName}`} description="Official UKABCS announcements, open-access research articles, grant call releases, and community updates.">
+  <!-- 1. Hero -->
+  <PageHero
+    eyebrow="Communications & Insights"
+    title="News & Research Insights Hub"
+    description="Official UKABCS announcements, open-access research articles, grant call releases, and community updates."
+    image="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=90&w=2200&auto=format&fit=crop"
+  />
 
-  <section class="py-16">
-    <div class="container">
-      <div class="grid-3 gap-8">
-        {sortedNews.map((item) => (
-          <NewsCard
-            title={item.data.title}
-            datePublished={item.data.datePublished}
-            category={item.data.category}
-            author={item.data.author}
-            description={item.data.description}
-            slug={item.slug}
-            image={item.data.image}
-          />
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- 2. Overview Editorial -->
+  <TextContentSection
+    tag="Single Source of Truth"
+    title="Articles, Grant Announcements & Society News"
+    subtitle="Staying informed on peer-reviewed research papers and community updates."
+    content="The UKABCS News & Insights Hub publishes open-access research summaries, official grant call dossiers, annual governance reports, and partnership announcements."
+    image="https://images.unsplash.com/photo-1504711434969-e33886168f5c?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Subscribe to Official Bulletin ↓"
+    ctaHref="#newsletter-form"
+  />
 
-  <!-- Promo CTA Section -->
+  <!-- 3. Source-Driven Articles, News & Calls Tabs -->
+  <ArticlesBlogEventsSection />
+
+  <!-- 4. Newsletter Section -->
+  <NewsletterSection />
+
+  <!-- 5. Promo CTA Section -->
   <PromoCTASection />
 </BaseLayout>

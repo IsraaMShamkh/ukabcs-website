@@ -1,6 +1,6 @@
 "use client";
 
-import { homeContent } from "@/config/content/home";
+import { homeContent } from "@/config/home";
 import Carousel from "@/components/ui/carousel";
 import { DraggableCardBody, DraggableCardContainer } from "@/components/ui/draggable-card";
 import { FloatingDock } from "@/components/ui/floating-dock";

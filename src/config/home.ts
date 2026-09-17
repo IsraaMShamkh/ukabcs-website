@@ -1,0 +1,57 @@
+export const homeContent = {
+  hero: {
+    eyebrow: 'UK Organisation for Biotechnology and Computational Science',
+    title: 'UKABCS',
+    description: 'A non-profit academic organisation supporting researchers, funding innovation, and advancing biotechnology and computational science worldwide.',
+  },
+  welcome: {
+    tag: 'Welcome to UKABCS',
+    title: 'Research, education and collaboration with a clear purpose.',
+    subtitle: 'UKABCS connects researchers, universities, institutions and industry partners around meaningful scientific progress.',
+    content: 'We support rigorous, open and inclusive science through funding opportunities, education, publishing, events and international collaboration.',
+    image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=85&w=1600&auto=format&fit=crop',
+  },
+  membership: {
+    tag: 'Membership',
+    title: 'Why become a UKABCS Member?',
+    subtitle: 'Earn. Connect. Advance. Lead.',
+    content: 'UKABCS Membership connects researchers, academics, students, professionals, innovators, institutions and industry stakeholders. It creates meaningful opportunities to strengthen professional connections, access specialised resources, engage with experts and explore collaboration and career development across disciplines and geographical boundaries.',
+    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=85&w=1600&auto=format&fit=crop',
+  },
+  mission: {
+    tag: 'Our Mission',
+    title: 'Rigorous, open and inclusive science for real-world challenges.',
+    content: 'We support rigorous, open and inclusive science that addresses real-world challenges, strengthens collaboration across borders and accelerates innovation in biotechnology and computational research.',
+    image: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=85&w=1600&auto=format&fit=crop',
+  },
+  vision: {
+    tag: 'Our Vision',
+    title: 'A global research ecosystem where every scientist can contribute.',
+    content: 'Our vision is a global research ecosystem where every scientist, regardless of background or geography, has the opportunity to contribute, collaborate and innovate for the benefit of humanity.',
+    image: 'https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?q=85&w=1600&auto=format&fit=crop',
+  },  whatWeDo: [
+    { title: 'Funding & grants', description: 'Support for research projects and capacity-building initiatives in biotechnology and computational science.' },
+    { title: 'Education & training', description: 'Learning opportunities, resources and practical support for emerging researchers.' },
+    { title: 'Publishing & conferences', description: 'Support for sharing knowledge through open science, publications and scientific events.' },
+    { title: 'Partnerships', description: 'Collaboration across academia, industry and society to turn ideas into impact.' },
+    { title: 'Equity & inclusion', description: 'Inclusive opportunities that strengthen participation in the global research community.' },
+  ],
+  programmes: [
+    { title: 'Funding Programmes & Grants', description: 'Peer-reviewed opportunities for researchers in biotechnology and computational science.', href: '/programmes-grants' },
+    { title: 'Events & Educational Support', description: 'Training, proposal guidance, data-management resources and learning opportunities.', href: '/educational-support' },
+    { title: 'Scientific Software Development Support', description: 'Support for scientific software and reproducible computational research tools.', href: '/scientific-software' },
+    { title: 'Women Researchers Support', description: 'Funding, mentorship and networking opportunities that empower women in science.', href: '/women-in-science' },
+    { title: 'Publications & Conferences Support', description: 'Help to share research through publications and conferences.', href: '/publications' },
+    { title: 'Partnerships & Collaborations', description: 'Ways for academic, industry and philanthropic partners to drive progress together.', href: '/partnerships' },
+    { title: 'Application & Review Portals', description: 'Access the relevant route for applications and peer-review activity.', href: '/programmes-grants' },
+    { title: 'Funded Projects', description: 'Discover the researchers, institutions and projects supported by UKABCS.', href: '/funded-projects' },
+    { title: 'Researcher Memberships', description: 'Resources, training, calls and global networking for the UKABCS community.', href: '/memberships' },
+  ],
+  achievements: [
+    { number: '3,000', label: 'Researchers Supported' },
+    { number: '5', label: 'Countries Reached' },
+    { number: '8', label: 'Funded Projects' },
+    { number: '10', label: 'Strategic Partnerships' },
+  ],
+  partners: ['Partner logos will be added here as they are supplied.'],
+};

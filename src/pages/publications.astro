@@ -1,87 +1,62 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import TextContentSection from '../components/sections/TextContentSection.astro';
+import PartnerRibbonSection from '../components/sections/PartnerRibbonSection.astro';
+import NewsletterSection from '../components/sections/NewsletterSection.astro';
+import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
 ---
 
-<BaseLayout title="Publications & Conferences Support | UKABCS">
-  <section class="page-header py-20 text-center">
-    <div class="container">
-      <span class="badge-pill badge-emerald">Dissemination</span>
-      <h1 class="page-title mt-4">Publications &amp; Conferences Support</h1>
-      <p class="page-subtitle max-w-3xl mx-auto">
-        UKABCS actively assists researchers with open-access publishing fees and offers travel grants for presenting at leading international biotechnology conferences.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={`Publications & Conferences Support | ${siteConfig.publicName}`} description="UKABCS actively assists researchers with open-access publishing fees and offers travel grants for presenting at leading international biotechnology conferences.">
+  <!-- 1. Hero -->
+  <PageHero
+    eyebrow="Research Dissemination"
+    title="Publications & Conferences Support"
+    description="UKABCS actively assists researchers with open-access publishing fees (APC waivers) and offers travel grants for presenting at leading international biotechnology conferences."
+    image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=90&w=2200&auto=format&fit=crop"
+  />
 
-  <!-- Key Services -->
-  <section class="py-16">
-    <div class="container">
-      <div class="grid-2 gap-8 mb-16">
-        <div class="flat-surface p-10">
-          <div class="icon-circle mb-6">📄</div>
-          <h2 class="text-2xl font-bold mb-4">Open-Access APC Waivers</h2>
-          <p class="text-secondary text-sm leading-relaxed mb-6">
-            High article processing charges shouldn't prevent your discoveries from being cited. UKABCS provides full and partial APC fee waivers across indexed international partner journals, ensuring your computational and biological findings are published open-access with maximum reach.
-          </p>
-          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary text-sm">
-            Apply for APC Support
-          </a>
-        </div>
+  <!-- 2. Open-Access Publishing Support -->
+  <TextContentSection
+    tag="Open Access Publishing"
+    title="Open-Access Article Processing Charge (APC) Waivers"
+    subtitle="Removing financial barriers to international open-access dissemination."
+    content="High article processing charges shouldn't prevent your discoveries from being cited. UKABCS provides full 100% and partial APC fee waivers across indexed international partner journals, ensuring your computational and biological findings are published open-access with maximum reach."
+    image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Explore Open Call Details →"
+    ctaHref="/calls/journal-apc-waiver-2026"
+  />
 
-        <div class="flat-surface p-10">
-          <div class="icon-circle mb-6">🎙️</div>
-          <h2 class="text-2xl font-bold mb-4">Conference Presentation Grants</h2>
-          <p class="text-secondary text-sm leading-relaxed mb-6">
-            Present your peer-reviewed posters and oral presentations at premier international conferences. UKABCS covers registration fees, abstract submission expenses, and international travel stipends for selected researchers.
-          </p>
-          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary text-sm">
-            Apply for Conference Aid
-          </a>
-        </div>
-      </div>
+  <!-- 3. Conference Aid & Travel Stipends (Reversed) -->
+  <TextContentSection
+    tag="Conference & Travel Aid"
+    title="International Conference Presentation Grants"
+    subtitle="Presenting peer-reviewed posters and oral papers at premier symposia."
+    content="Present your peer-reviewed posters and oral presentations at premier international conferences. UKABCS covers registration fees, abstract submission expenses, and international travel stipends for selected early career researchers and PhD candidates."
+    image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Explore Travel Grant Call →"
+    ctaHref="/calls/international-conference-travel-2026"
+    reversed={true}
+  />
 
-      <!-- Journal Partnership Callout -->
-      <div class="flat-surface p-12 max-w-4xl mx-auto">
-        <div class="text-center">
-          <span class="badge-pill badge-emerald mb-3">Official Journal Collaboration</span>
-          <h3 class="text-2xl font-bold mb-3">£220,000 In-Kind Publication Allocation</h3>
-          <p class="text-secondary mb-6 leading-relaxed">
-            In partnership with the International Journal of Biotechnology &amp; Computational Science (IJBTCS), UKABCS provides guaranteed fast-track review and complete open-access fee waivers for papers authored by UKABCS grant awardees.
-          </p>
-          <a href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary">
-            Request Journal Waiver Guidelines
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- 4. Official Journal Partnership Callout -->
+  <TextContentSection
+    tag="Official Journal Collaboration"
+    title="International Journal of Biotechnology & Computational Science (IJBTCS)"
+    subtitle="£220,000 In-Kind Publication Allocation."
+    content="In partnership with the International Journal of Biotechnology & Computational Science (IJBTCS), UKABCS provides guaranteed fast-track review and complete open-access fee waivers for papers authored by UKABCS grant awardees and active members."
+    image="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Read Partnership Details →"
+    ctaHref="/partnerships/ijbtcs-220k"
+  />
+
+  <!-- 5. Partner Marquee Ribbon -->
+  <PartnerRibbonSection />
+
+  <!-- 6. Newsletter Bulletin -->
+  <NewsletterSection />
+
+  <!-- 7. Promo CTA -->
+  <PromoCTASection />
 </BaseLayout>
-
-<style>
-  .py-20 { padding-top: 5rem; padding-bottom: 5rem; }
-  .py-16 { padding-top: 4rem; padding-bottom: 4rem; }
-  .text-center { text-align: center; }
-  .mx-auto { margin-inline: auto; }
-  .max-w-3xl { max-width: 48rem; }
-  .max-w-4xl { max-width: 56rem; }
-  .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
-  .gap-8 { gap: 2rem; }
-  .p-10 { padding: 2.5rem; }
-  .p-12 { padding: 3rem; }
-  .mt-4 { margin-top: 1rem; }
-  .mb-3 { margin-bottom: 0.75rem; }
-  .mb-4 { margin-bottom: 1rem; }
-  .mb-6 { margin-bottom: 1.5rem; }
-  .mb-16 { margin-bottom: 4rem; }
-  .text-2xl { font-size: 1.5rem; }
-  .text-sm { font-size: 0.875rem; }
-  .font-bold { font-weight: 700; }
-  .text-secondary { color: var(--color-text-secondary); }
-  .leading-relaxed { line-height: 1.7; }
-  .icon-circle { font-size: 2.5rem; }
-
-  @media (max-width: 768px) {
-    .grid-2 { grid-template-columns: 1fr; }
-  }
-</style>

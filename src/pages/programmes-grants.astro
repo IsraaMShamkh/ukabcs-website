@@ -1,7 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
 import FaqAccordion from '../components/ui/FaqAccordion.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
+import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
 import NumbersCounterSection from '../components/sections/NumbersCounterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
@@ -26,20 +28,19 @@ const faqs = [
 ];
 ---
 
-<BaseLayout title="Programmes & Grants | UK Association for Biotechnology & Computational Science">
-  <!-- Page Header -->
-  <section class="page-header py-20 text-center">
-    <div class="container">
-      <span class="badge-pill badge-emerald">Funding Opportunities</span>
-      <h1 class="page-title mt-4">Programmes &amp; Competitive Grants</h1>
-      <p class="page-subtitle max-w-3xl mx-auto">
-        Empowering researchers with fair, merit-based, and transparent peer-reviewed funding to advance open science, biological discoveries, and computational innovation.
-      </p>
-    </div>
-  </section>
+<BaseLayout title={`Programmes & Grants | ${siteConfig.publicName}`} description="Empowering researchers with fair, merit-based, and transparent peer-reviewed funding to advance open science, biological discoveries, and computational innovation.">
+  <PageHero
+    eyebrow="Funding Opportunities"
+    title="Programmes & Competitive Grants"
+    description="Empowering researchers with fair, merit-based, and transparent peer-reviewed funding to advance open science, biological discoveries, and computational innovation."
+    image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop"
+  />
 
   <!-- Numbers Counter Section -->
   <NumbersCounterSection />
+
+  <!-- Programme Overview Cards from Pool -->
+  <SalesPromoSection />
 
   <!-- 6-Stage Application Process -->
   <section class="py-16">
@@ -91,60 +92,121 @@ const faqs = [
   </section>
 
   <!-- Open Calls Section -->
-  <section class="py-16 section-alt">
+  <!-- Open Calls Section -->
+  <section class="py-16 section-alt" id="all-calls">
     <div class="container">
       <div class="text-center mb-16">
-        <span class="badge-pill badge-emerald">Active Grant Calls</span>
-        <h2 class="text-3xl font-bold mt-2">Current Open Calls</h2>
-        <p class="text-secondary mt-2">Submit your proposal directly through our official ClientFlow portal.</p>
+        <span class="badge-pill">Grant Portfolio</span>
+        <h2 class="text-3xl font-bold mt-2">UKABCS Grant Calls &amp; Programmes</h2>
+        <p class="text-secondary mt-2">Explore available grant opportunities, review previous cohort guidelines, and download full submission dossiers.</p>
       </div>
 
-      <div class="grid-3 gap-8 max-w-5xl mx-auto">
+      <div class="grid-3 gap-8 max-w-6xl mx-auto">
         <!-- Call 1 -->
-        <div class="card-aceternity call-card">
-          <div class="call-badge">Open Call</div>
-          <h3 class="text-xl font-bold mb-3">UKABCS Capacity Building Grants 2026</h3>
-          <p class="text-secondary text-sm mb-6 leading-relaxed">
-            Targeting academic research laboratories requiring computational upgrades, molecular simulation tools, and collaborative student training.
-          </p>
-          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
-            Apply for Grant
+        <article class="card-aceternity call-article-card">
+          <a href="/news/ukabcs-inaugural-capacity-building-call-2026" class="card-image-link" aria-label="UKABCS Capacity Building Grants 2026">
+            <div class="card-image-wrap">
+              <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" alt="UKABCS Capacity Building Grants 2026" loading="lazy" />
+              <span class="badge-pill image-badge badge-closed">Closed Call</span>
+            </div>
           </a>
-        </div>
+          <div class="card-body">
+            <div class="call-meta">
+              <span class="call-deadline">Deadline: 1 Nov 2025 (Closed)</span>
+              <span class="call-type">Institutional Grant</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              <a href="/news/ukabcs-inaugural-capacity-building-call-2026" class="hover:text-primary">UKABCS Capacity Building Grants 2026</a>
+            </h3>
+            <p class="text-secondary text-sm mb-6 leading-relaxed flex-grow">
+              Professional Diploma in Computational Chemistry 2026. £32,000 fully covered institutional grant supporting 5 research teams across 14 integrated modules.
+            </p>
+            <a href="/news/ukabcs-inaugural-capacity-building-call-2026" class="btn-fluent-primary w-full text-center">
+              Explore Call Details →
+            </a>
+          </div>
+        </article>
 
         <!-- Call 2 -->
-        <div class="card-aceternity call-card">
-          <div class="call-badge">Open Call</div>
-          <h3 class="text-xl font-bold mb-3">Graduation Project Grants 2026</h3>
-          <p class="text-secondary text-sm mb-6 leading-relaxed">
-            Empowering outstanding undergraduate and master's degree students completing graduation theses in biotechnology and computational science.
-          </p>
-          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
-            Apply for Grant
+        <article class="card-aceternity call-article-card">
+          <a href="/news/ukabcs-graduation-project-grant-2026" class="card-image-link" aria-label="UKABCS Graduation Project Capacity Building Grants">
+            <div class="card-image-wrap">
+              <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop" alt="UKABCS Graduation Project Capacity Building Grants" loading="lazy" />
+              <span class="badge-pill image-badge badge-closed">Closed Call</span>
+            </div>
           </a>
-        </div>
+          <div class="card-body">
+            <div class="call-meta">
+              <span class="call-deadline">Deadline: 30 July (Closed)</span>
+              <span class="call-type">Student Award &amp; PI Grant</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              <a href="/news/ukabcs-graduation-project-grant-2026" class="hover:text-primary">Graduation Project Capacity Building Grants</a>
+            </h3>
+            <p class="text-secondary text-sm mb-6 leading-relaxed flex-grow">
+              Empowering undergraduate student teams executing computational theses. £3,250+ research support package and £1,200/year PI supervisor allowance.
+            </p>
+            <a href="/news/ukabcs-graduation-project-grant-2026" class="btn-fluent-secondary w-full text-center">
+              Explore Call Details →
+            </a>
+          </div>
+        </article>
 
         <!-- Call 3 -->
-        <div class="card-aceternity call-card">
-          <div class="call-badge">Open Call</div>
-          <h3 class="text-xl font-bold mb-3">UKABCS INNOFUND Grant</h3>
-          <p class="text-secondary text-sm mb-6 leading-relaxed">
-            Supporting applied computational software, open-source biotechnology databases, and AI algorithms solving healthcare challenges.
-          </p>
-          <a href={siteConfig.clientFlow.grantApplicationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
-            Apply for Grant
+        <article class="card-aceternity call-article-card">
+          <a href="/news/ukabcs-innofund-grant" class="card-image-link" aria-label="UKABCS INNOFUND GRANT">
+            <div class="card-image-wrap">
+              <img src="https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop" alt="UKABCS INNOFUND GRANT" loading="lazy" />
+              <span class="badge-pill image-badge badge-closed">Closed Call</span>
+            </div>
           </a>
-        </div>
+          <div class="card-body">
+            <div class="call-meta">
+              <span class="call-deadline">Round 1 Closed: 10 Sept</span>
+              <span class="call-type">Tri-Annual Innovation Grant</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">
+              <a href="/news/ukabcs-innofund-grant" class="hover:text-primary">UKABCS INNOFUND GRANT</a>
+            </h3>
+            <p class="text-secondary text-sm mb-6 leading-relaxed flex-grow">
+              Standing tri-annual framework for 1 to 20 teams. Up to 5-year PI academic membership, full APC publishing waiver in IJBTCS, and £3,250+ support per team.
+            </p>
+            <a href="/news/ukabcs-innofund-grant" class="btn-fluent-secondary w-full text-center">
+              Explore Call Details →
+            </a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Prominent Grants & Academic Society CTA Section -->
+  <section class="py-20 grants-society-cta text-center">
+    <div class="container max-w-4xl mx-auto">
+      <span class="badge-pill mb-3" style="background: rgba(255, 255, 255, 0.15); color: #7dd3fc;">Global Research Ecosystem</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+        Interested in UKABCS Grants or Research Collaboration?
+      </h2>
+      <p class="text-white/80 text-lg max-w-2xl mx-auto mb-8 leading-relaxed">
+        Explore our complete portfolio of funding streams, submit institutional proposals, or join the UKABCS Academic Society to review university grant dossiers and evaluate scientific benchmarks.
+      </p>
+      <div class="flex-center gap-4">
+        <a href="/news" class="btn-fluent-primary">
+          Browse All Grants &amp; Announcements →
+        </a>
+        <a href="/memberships#academic-society" class="btn-fluent-secondary">
+          Join Academic Society &amp; Review Board
+        </a>
       </div>
     </div>
   </section>
 
   <!-- Text & Guidelines Section -->
   <TextContentSection
-    tag="Peer Review Protocol"
+    badge="Peer Review Protocol"
     title="Strict UKRI-Aligned Peer Review Standard"
     subtitle="Double-blind evaluation conducted by independent university professors."
-    content="To guarantee academic integrity, all submitted proposals are anonymized and evaluated against 5 criteria: scientific novelty, technical methodology feasibility, researcher track record, societal impact, and budget efficiency."
+    description="To guarantee academic integrity, all submitted proposals are anonymized and evaluated against 5 criteria: scientific novelty, technical methodology feasibility, researcher track record, societal impact, and budget efficiency."
     image="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop"
     ctaText="Read Due Diligence Policy"
     ctaHref="/transparency"
@@ -176,15 +238,86 @@ const faqs = [
     margin-bottom: 0.5rem;
   }
 
-  .call-badge {
+  .call-article-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.25rem;
+    border-radius: var(--radius-lg);
+  }
+
+  .card-image-link {
+    display: block;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .card-image-wrap {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: var(--radius-md);
+  }
+
+  .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform var(--transition-medium);
+  }
+
+  .card-image-link:hover .card-image-wrap img {
+    transform: scale(1.05);
+  }
+
+  .image-badge {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 2;
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.25rem 0.65rem;
     border-radius: var(--radius-full);
-    background: rgba(16, 185, 129, 0.15);
-    color: #10b981;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  .badge-closed {
+    background: rgba(15, 23, 42, 0.88);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(4px);
+  }
+
+  .grants-society-cta {
+    background: linear-gradient(135deg, var(--color-navy, #081731) 0%, #0d2347 100%);
+    color: #ffffff;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .call-article-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .call-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 </style>

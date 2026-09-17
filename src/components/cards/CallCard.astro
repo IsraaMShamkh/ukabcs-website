@@ -1,0 +1,122 @@
+---
+import { Calendar, FileText, ArrowRight, ShieldCheck } from 'lucide-astro';
+
+interface Props {
+  title: string;
+  programme: string;
+  kind: 'journal' | 'conference' | 'education' | 'software' | 'grant';
+  status: 'open' | 'upcoming' | 'closed';
+  language?: string;
+  summary: string;
+  opensAt?: string;
+  closesAt?: string;
+  eligibility?: string;
+  budget?: string;
+  detailSlug: string;
+  featuredImage?: string;
+}
+
+const {
+  title,
+  programme,
+  kind,
+  status,
+  language = 'en',
+  summary,
+  opensAt,
+  closesAt,
+  eligibility,
+  budget,
+  detailSlug,
+  featuredImage,
+} = Astro.props;
+
+const statusStyles = {
+  open: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+  upcoming: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+  closed: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+};
+
+const statusLabels = {
+  open: 'Open Call',
+  upcoming: 'Upcoming',
+  closed: 'Closed',
+};
+
+const kindLabels = {
+  journal: 'Journal Call',
+  conference: 'Conference Call',
+  education: 'Educational Grant',
+  software: 'Software Support',
+  grant: 'Research Grant',
+};
+---
+
+<article class="flex flex-col h-full rounded-xl border border-border/80 bg-card/60 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-primary/40 group">
+  {featuredImage && (
+    <div class="aspect-video w-full overflow-hidden relative bg-muted">
+      <img
+        src={featuredImage}
+        alt={title}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+      />
+      <div class="absolute top-3 right-3 flex items-center gap-2">
+        <span class={`px-2.5 py-1 text-xs font-semibold rounded-full border backdrop-blur-md ${statusStyles[status]}`}>
+          {statusLabels[status]}
+        </span>
+      </div>
+    </div>
+  )}
+
+  <div class="p-6 flex-1 flex flex-col justify-between">
+    <div>
+      {!featuredImage && (
+        <div class="flex items-center justify-between gap-2 mb-4">
+          <span class="text-xs font-mono tracking-wider uppercase text-primary/80 font-medium">
+            {kindLabels[kind]}
+          </span>
+          <span class={`px-2.5 py-1 text-xs font-semibold rounded-full border ${statusStyles[status]}`}>
+            {statusLabels[status]}
+          </span>
+        </div>
+      )}
+
+      <div class="mb-2">
+        <span class="text-xs font-semibold text-primary">{programme}</span>
+        <h3 class="text-lg font-bold text-foreground mt-1 group-hover:text-primary transition-colors line-clamp-2">
+          {title}
+        </h3>
+      </div>
+
+      <p class="text-sm text-muted-foreground line-clamp-3 mb-6 leading-relaxed">
+        {summary}
+      </p>
+    </div>
+
+    <div class="space-y-4 pt-4 border-t border-border/60">
+      <div class="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+        {closesAt && (
+          <div class="flex items-center gap-1.5">
+            <Calendar className="w-3.5 h-3.5 text-primary shrink-0" />
+            <span class="truncate">Deadline: {closesAt}</span>
+          </div>
+        )}
+        {budget && (
+          <div class="flex items-center gap-1.5 font-semibold text-foreground">
+            <ShieldCheck className="w-3.5 h-3.5 text-emerald-400 shrink-0" />
+            <span class="truncate">{budget}</span>
+          </div>
+        )}
+      </div>
+
+      <a
+        href={detailSlug.startsWith('/') ? detailSlug : `/news/${detailSlug}`}
+        class="w-full py-2.5 px-4 rounded-lg bg-secondary hover:bg-primary hover:text-primary-foreground text-foreground text-sm font-semibold inline-flex items-center justify-center gap-2 transition-colors duration-200"
+      >
+        <span>Explore Full Call</span>
+        <ArrowRight className="w-4 h-4" />
+      </a>
+    </div>
+  </div>
+</article>

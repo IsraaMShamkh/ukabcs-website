@@ -6,52 +6,111 @@ export interface Props {
   primaryBtnHref?: string;
   secondaryBtnText?: string;
   secondaryBtnHref?: string;
+  tertiaryBtnText?: string;
+  tertiaryBtnHref?: string;
 }
 
 const {
-  title = "Accelerate Your Scientific Research with UKABCS",
-  subtitle = "Apply for peer-reviewed grant calls, join our UK-Arab bioinformatics network, and publish open-access research with 100% APC waivers.",
-  primaryBtnText = "Apply Portal",
-  primaryBtnHref = "https://docs.google.com/forms/d/e/1FAIpQLScXGZkM3_bWzGgQ8k9zK0L1a4z9b6Z5y7x8v9w0a1b2c3d4e5/viewform",
-  secondaryBtnText = "Explore Grant Calls",
-  secondaryBtnHref = "/programmes-grants"
+  title = 'Ready to join UKABCS?',
+  subtitle = 'Discover the programmes, resources, funding, and international connections available to the UKABCS scientific community.',
+  primaryBtnText = 'Apply for Membership',
+  primaryBtnHref = '/memberships',
+  secondaryBtnText = 'Join as a Partner',
+  secondaryBtnHref = '/partnerships',
+  tertiaryBtnText = 'Contact Us',
+  tertiaryBtnHref = '#contact'
 } = Astro.props;
 ---
 
-<section class="py-16 section-promo-cta">
-  <div class="container">
-    <div class="promo-box card-aceternity p-12 text-center">
-      <span class="badge-pill badge-emerald mb-4">Official Non-Profit Academic Call</span>
-      <h2 class="text-3xl font-bold mb-4 max-w-3xl mx-auto">{title}</h2>
-      <p class="text-lg text-secondary mb-8 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
-      
-      <div class="cta-actions flex-center gap-4">
-        <a href={primaryBtnHref} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary text-base py-3 px-8">
-          <span>{primaryBtnText}</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"></line>
-            <polyline points="7 7 17 7 17 17"></polyline>
-          </svg>
+<section class="promo-cta" id="contact">
+  <div class="container promo-content">
+    <span class="promo-kicker">UKABCS Community</span>
+    <h2>{title}</h2>
+    <p>{subtitle}</p>
+    <div class="cta-actions">
+      <a href={primaryBtnHref} class="btn-fluent-primary">
+        {primaryBtnText} <span aria-hidden="true">→</span>
+      </a>
+      {secondaryBtnText && (
+        <a href={secondaryBtnHref} class="btn-fluent-secondary">
+          {secondaryBtnText}
         </a>
-
-        <a href={secondaryBtnHref} class="btn-fluent-secondary text-base py-3 px-8">
-          <span>{secondaryBtnText}</span>
+      )}
+      {tertiaryBtnText && (
+        <a href={tertiaryBtnHref} class="btn-fluent-secondary btn-contact-trigger" data-open-modal="true">
+          {tertiaryBtnText}
         </a>
-      </div>
+      )}
     </div>
   </div>
 </section>
 
 <style>
-  .promo-box {
-    background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-bg-secondary) 100%);
-    border: 1px solid var(--color-border);
+  .promo-cta {
+    padding: clamp(5rem, 8vw, 7rem) 0;
+    background: var(--color-navy, #081731);
+    color: #ffffff;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
   }
 
-  .flex-center {
+  .promo-content {
+    max-width: 58rem;
+    margin: 0 auto;
+  }
+
+  .promo-kicker {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #7dd3fc;
+    margin-bottom: 0.5rem;
+  }
+
+  .promo-cta h2 {
+    color: #ffffff;
+    font-size: clamp(2.2rem, 4vw, 3.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.025em;
+    margin: 1rem auto;
+  }
+
+  .promo-cta p {
+    max-width: 44rem;
+    margin: 0 auto 2.25rem;
+    color: rgba(255, 255, 255, 0.84);
+    font-size: 1.12rem;
+    line-height: 1.65;
+  }
+
+  .cta-actions {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 1rem;
     flex-wrap: wrap;
+  }
+
+  .promo-cta .btn-fluent-primary {
+    background: #ffffff;
+    color: var(--color-primary, #0284c7);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  }
+
+  .promo-cta .btn-fluent-primary:hover {
+    background: #eaf6fd;
+  }
+
+  .promo-cta .btn-fluent-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.52);
+  }
+
+  .promo-cta .btn-fluent-secondary:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: #ffffff;
   }
 </style>

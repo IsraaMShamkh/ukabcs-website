@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import GrantAttachments from '../../components/ui/GrantAttachments.astro';
 
 export async function getStaticPaths() {
   const newsItems = await getCollection('news');
@@ -44,7 +45,7 @@ const articleJsonLd = {
           <line x1="19" y1="12" x2="5" y2="12"></line>
           <polyline points="12 19 5 12 12 5"></polyline>
         </svg>
-        <span>Back to Articles & News</span>
+        <span>Back to Articles &amp; News</span>
       </a>
 
       <!-- Article Header Meta -->
@@ -66,18 +67,23 @@ const articleJsonLd = {
         <img src={heroImage} alt={item.data.title} loading="eager" />
       </div>
 
-      <!-- Main Article Body -->
-      <div class="card-aceternity p-8 mb-10 prose-content">
+      <!-- Main Article Body (Calm reading surface, no card-hover effect) -->
+      <div class="article-reading-surface p-8 mb-10 prose-content">
         <Content />
       </div>
 
+      <!-- Official Grant Attachments & Application Dossier (if present) -->
+      {item.data.attachments && item.data.attachments.length > 0 && (
+        <GrantAttachments items={item.data.attachments} />
+      )}
+
       <!-- Action Footer -->
-      <div class="article-cta-box flat-surface p-8 text-center">
+      <div class="article-cta-box flat-surface p-8 text-center mt-12">
         <h3 class="text-xl font-bold mb-2">Interested in UKABCS Grants or Research?</h3>
         <p class="text-secondary mb-6 max-w-2xl mx-auto">Explore our capacity building programs or contact our academic committee for research proposals.</p>
         <div class="flex-center gap-4">
           <a href="/programmes-grants" class="btn-fluent-primary">Browse All Grants</a>
-          <a href="/memberships" class="btn-fluent-secondary">Join Academic Society</a>
+          <a href="/memberships#academic-society" class="btn-fluent-secondary">Join Academic Society</a>
         </div>
       </div>
     </div>
@@ -137,9 +143,39 @@ const articleJsonLd = {
     object-fit: cover;
   }
 
+  .article-reading-surface {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  }
+
   .prose-content {
     font-size: 1.05rem;
     line-height: 1.8;
+    color: var(--color-text-primary);
+  }
+
+  .prose-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2rem 0;
+    font-size: 0.92rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 8px);
+    overflow: hidden;
+  }
+
+  .prose-content :global(th), .prose-content :global(td) {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    text-align: left;
+  }
+
+  .prose-content :global(th) {
+    background: var(--color-bg-secondary, #f8fafc);
+    font-weight: 700;
     color: var(--color-text-primary);
   }
 

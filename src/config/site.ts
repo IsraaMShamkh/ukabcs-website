@@ -24,9 +24,10 @@ export const siteConfig = {
     donationLink: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
     grantApplicationForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
     partnershipForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
+    newsletterEndpoint: "https://clientflow-crm.com/f/ukabcs/newsletter/subscribe-form",
   },
 
-  // Main Header Navigation
+  // Main Header Navigation (Ordered per Master Plan Section 3)
   nav: [
     { label: "Home", href: "/" },
     { label: "About Us", href: "/about-us" },
@@ -42,24 +43,24 @@ export const siteConfig = {
         { label: "Women Researchers Support", href: "/women-in-science", description: "Targeted research funding and conference childcare assistance" },
       ],
     },
+    { label: "Funded Projects", href: "/funded-projects" },
+    { label: "News", href: "/news" },
+    { label: "Partnerships", href: "/partnerships" },
     {
       label: "Governance",
       href: "/governance",
       children: [
-        { label: "Governance & Leadership", href: "/governance", description: "Board of Trustees, Directors, and specialised committees" },
-        { label: "Transparency & Due Diligence", href: "/transparency", description: "Grant-making rules, ethical policies, and audits" },
+        { label: "Board of Trustees & Leadership", href: "/governance", description: "Board of Trustees, Directors, and specialised committees" },
+        { label: "Transparency & Reports", href: "/transparency", description: "Grant-making rules, ethical policies, and audits" },
         { label: "Policies & Legal Information", href: "/legal", description: "Privacy policy, terms of use, and GDPR compliance" },
       ],
     },
-    { label: "Partnerships", href: "/partnerships" },
-    { label: "Funded Projects", href: "/funded-projects" },
-    { label: "News", href: "/news" },
   ] as NavItem[],
 
   // Key stats
   stats: [
     { value: "14+", label: "Funded Universities & Labs" },
-    { value: "£417K+", label: "In-Kind & Financial Grants" },
+    { value: "£417K+", label: "Research & Grant Funding" },
     { value: "5+", label: "Active Grant Programmes" },
     { value: "100%", label: "Peer-Reviewed Transparency" },
   ],

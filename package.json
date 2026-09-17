@@ -10,9 +10,14 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/react": "^6.0.6",
     "@astrojs/sitemap": "^3.2.1",
     "astro": "^5.4.2",
-    "lucide-astro": "^0.556.0"
+    "cn": "^0.3.0",
+    "lucide-astro": "^0.556.0",
+    "motion": "^13.4.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
   },
   "devDependencies": {
     "typescript": "^5.8.2"

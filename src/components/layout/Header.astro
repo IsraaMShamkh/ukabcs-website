@@ -3,10 +3,10 @@ import { siteConfig } from '../../config/site';
 ---
 
 <header class="header-glass sticky-header">
-  <div class="container header-inner">
+  <div class="container-fluid header-inner">
     <!-- Logo -->
     <a href="/" class="brand-link" aria-label="UKABCS Home">
-      <img src="/brand/logo-symbol.svg" alt="UKABCS" class="brand-logo" />
+      <img src="/brand/ukabcs-mark.png" alt="" class="brand-logo" /><span class="brand-wordmark">UKABCS</span>
     </a>
 
     <!-- Desktop Navigation -->
@@ -60,14 +60,11 @@ import { siteConfig } from '../../config/site';
         </svg>
       </button>
 
-      <!-- Apply Portal CTA Button -->
-      <a href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary header-cta">
+      <!-- Apply Portal is intentionally deferred until the real portal exists. -->
+      <span class="btn-fluent-primary header-cta header-cta--pending" aria-disabled="true" title="Application portal coming soon">
         <span>Apply Portal</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
-      </a>
+        <span class="header-cta-status">Soon</span>
+      </span>
 
       <!-- Mobile Hamburger Button -->
       <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu">
@@ -84,7 +81,7 @@ import { siteConfig } from '../../config/site';
   <div id="mobile-menu-overlay" class="mobile-menu-overlay">
     <div class="mobile-menu-drawer">
       <div class="mobile-menu-header">
-        <img src="/brand/logo-symbol.svg" alt="UKABCS" class="brand-logo-mobile" />
+        <div class="mobile-brand"><img src="/brand/ukabcs-mark.png" alt="" class="brand-logo-mobile" /><span>UKABCS</span></div>
         <button id="mobile-menu-close" class="mobile-close-btn" aria-label="Close Navigation Menu">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <line x1="18" y1="6" x2="6" y2="18"></line>
@@ -112,9 +109,7 @@ import { siteConfig } from '../../config/site';
         </ul>
 
         <div class="mobile-nav-cta">
-          <a href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
-            Apply Portal
-          </a>
+          <span class="btn-fluent-primary w-full text-center header-cta--pending" aria-disabled="true">Apply Portal — soon</span>
         </div>
       </nav>
     </div>
@@ -142,10 +137,9 @@ import { siteConfig } from '../../config/site';
     text-decoration: none;
   }
 
-  .brand-logo {
-    width: 3.25rem;
-    height: 3.25rem;
-  }
+  .brand-logo { width: 2.6rem; height: 2.6rem; object-fit: contain; }
+  .brand-wordmark, .mobile-brand span { color: var(--color-primary); font-weight: 850; font-size: 1.2rem; letter-spacing: -.04em; margin-left: .45rem; }
+  .mobile-brand { display:flex; align-items:center; }
 
   /* Desktop Nav */
   .desktop-nav {
@@ -208,7 +202,8 @@ import { siteConfig } from '../../config/site';
     pointer-events: none;
   }
 
-  .has-dropdown:hover .dropdown-menu {
+  .has-dropdown:hover .dropdown-menu,
+  .has-dropdown:focus-within .dropdown-menu {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -279,6 +274,9 @@ import { siteConfig } from '../../config/site';
   .header-cta {
     display: none;
   }
+
+  .header-cta--pending { cursor: not-allowed; opacity: .72; }
+  .header-cta-status { font-size: .67rem; opacity: .8; }
 
   @media (min-width: 640px) {
     .header-cta {

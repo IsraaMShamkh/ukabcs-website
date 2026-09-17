@@ -13,6 +13,7 @@ const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
 
 <section class="page-hero" style={`--hero-image: url('${image}')`}>
   <div class="page-hero__overlay"></div>
+  <div class="page-hero__grid" aria-hidden="true"></div>
   <div class="container page-hero__content">
     <nav class="page-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{eyebrow ?? title}</span></nav>
     {eyebrow && <p class="page-hero__eyebrow">{eyebrow}</p>}
@@ -23,13 +24,98 @@ const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
 </section>
 
 <style>
-  .page-hero { position: relative; isolation: isolate; min-height: clamp(31rem, 58vw, 45rem); display: grid; align-items: end; overflow: hidden; background: #0d1829 var(--hero-image) center / cover no-repeat; color: #fff; }
-  .page-hero__overlay { position: absolute; inset: 0; z-index: -1; background: linear-gradient(90deg, rgba(8, 23, 49, .95) 0%, rgba(8, 23, 49, .77) 48%, rgba(8, 23, 49, .36) 100%), linear-gradient(0deg, rgba(8, 23, 49, .58), transparent 58%); }
-  .page-hero__content { padding-top: 7rem; padding-bottom: clamp(4rem, 7vw, 7rem); max-width: 1600px; }
-  .page-hero h1 { max-width: 850px; color: #fff; font-size: clamp(2.75rem, 5.5vw, 5.25rem); line-height: 1.04; letter-spacing: -.04em; }
-  .page-hero__eyebrow { margin: 1rem 0 .65rem; color: #7dd3fc; font-size: .8rem; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
-  .page-hero__description { max-width: 680px; margin-top: 1.25rem; color: rgba(255,255,255,.85); font-size: clamp(1.05rem, 1.6vw, 1.25rem); }
-  .page-hero__breadcrumb { display: flex; gap: .55rem; align-items: center; color: rgba(255,255,255,.67); font-size: .85rem; }
-  .page-hero__breadcrumb a:hover { color: #fff; }
-  .page-hero__cta { margin-top: 1.75rem; }
+  .page-hero {
+    position: relative;
+    isolation: isolate;
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    min-height: clamp(32rem, 70vh, 48rem);
+    display: grid;
+    align-items: end;
+    overflow: hidden;
+    background: var(--color-navy, #081731) var(--hero-image) center / cover no-repeat;
+    color: #ffffff;
+    margin-top: 0;
+  }
+
+  .page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(8, 17, 31, 0.82);
+  }
+
+  .page-hero__grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    opacity: .22;
+    background-image:
+      linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px);
+    background-size: 56px 56px;
+
+  }
+  .page-hero__content {
+    padding-top: clamp(8rem, 12vw, 10rem);
+    padding-bottom: clamp(3.5rem, 6vw, 5rem);
+    max-width: var(--container-max-width, 1440px);
+    width: 100%;
+  }
+
+  .page-hero h1 {
+    max-width: 850px;
+    color: #ffffff;
+    font-size: clamp(2.25rem, 4.5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+  }
+
+  .page-hero__eyebrow {
+    margin: 1rem 0 0.65rem;
+    color: #7dd3fc;
+    font-size: 0.825rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .page-hero__description {
+    max-width: 680px;
+    margin-top: 1.25rem;
+    color: rgba(255, 255, 255, 0.88);
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    line-height: 1.6;
+  }
+
+  .page-hero__breadcrumb {
+    display: flex;
+    gap: 0.55rem;
+    align-items: center;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.85rem;
+  }
+
+  .page-hero__breadcrumb a {
+    color: rgba(255, 255, 255, 0.85);
+    transition: color var(--transition-fast);
+  }
+
+  .page-hero__breadcrumb a:hover {
+    color: #ffffff;
+    text-decoration: underline;
+  }
+
+  .page-hero__cta {
+    margin-top: 1.75rem;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .page-hero {
+      background-attachment: scroll !important;
+    }
+  }
 </style>

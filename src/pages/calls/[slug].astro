@@ -1,0 +1,115 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/hero/PageHero.astro';
+import GrantAttachments from '../../components/ui/GrantAttachments.astro';
+import NewsletterSection from '../../components/sections/NewsletterSection.astro';
+import PromoCTASection from '../../components/sections/PromoCTASection.astro';
+import { getCollection } from 'astro:content';
+import { Calendar, ShieldCheck, FileText, ArrowRight, ExternalLink } from 'lucide-astro';
+
+export async function getStaticPaths() {
+  const calls = await getCollection('calls');
+  return calls.map((call) => ({
+    params: { slug: call.data.detailSlug || call.slug },
+    props: { call },
+  }));
+}
+
+const { call } = Astro.props;
+const { Content } = await call.render();
+const data = call.data;
+---
+
+<BaseLayout title={`${data.title} | UKABCS Calls`} description={data.summary}>
+  <!-- Page Hero -->
+  <PageHero
+    eyebrow={data.programme}
+    title={data.title}
+    description={data.summary}
+    image={data.featuredImage || "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=90&w=2200&auto=format&fit=crop"}
+  />
+
+  <!-- Metadata Summary Bar -->
+  <section class="py-8 bg-card border-b border-border/60">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs md:text-sm">
+        <div class="space-y-1">
+          <span class="text-muted-foreground block text-[11px] uppercase tracking-wider font-semibold">Call Status</span>
+          <span class={`inline-block px-2.5 py-1 rounded-full text-xs font-bold border ${
+            data.status === 'open'
+              ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30'
+              : 'bg-rose-500/10 text-rose-400 border-rose-500/30'
+          }`}>
+            {data.status.toUpperCase()}
+          </span>
+        </div>
+
+        {data.closesAt && (
+          <div class="space-y-1">
+            <span class="text-muted-foreground block text-[11px] uppercase tracking-wider font-semibold">Deadline</span>
+            <span class="font-bold text-foreground flex items-center gap-1.5">
+              <Calendar class="w-4 h-4 text-primary shrink-0" />
+              <span>{data.closesAt}</span>
+            </span>
+          </div>
+        )}
+
+        {data.budget && (
+          <div class="space-y-1">
+            <span class="text-muted-foreground block text-[11px] uppercase tracking-wider font-semibold">Budget / Coverage</span>
+            <span class="font-bold text-emerald-400 flex items-center gap-1.5">
+              <ShieldCheck class="w-4 h-4 shrink-0" />
+              <span>{data.budget}</span>
+            </span>
+          </div>
+        )}
+
+        {data.eligibility && (
+          <div class="space-y-1">
+            <span class="text-muted-foreground block text-[11px] uppercase tracking-wider font-semibold">Eligibility</span>
+            <span class="font-medium text-foreground truncate block">{data.eligibility}</span>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <!-- Call Body & Attached Dossier -->
+  <section class="py-16 bg-background">
+    <div class="container mx-auto px-4 max-w-4xl space-y-12">
+      <!-- Article Prose Body -->
+      <article class="prose prose-slate dark:prose-invert max-w-none prose-headings:font-bold prose-a:text-primary leading-relaxed">
+        <Content />
+      </article>
+
+      <!-- Full-Width Attached Files Section -->
+      {data.attachments && data.attachments.length > 0 && (
+        <div class="pt-6 border-t border-border/60">
+          <GrantAttachments items={data.attachments} />
+        </div>
+      )}
+
+      <!-- Submission Link / Application Action -->
+      {data.applicationUrl && (
+        <div class="p-6 md:p-8 rounded-2xl bg-card border border-border/80 shadow-md space-y-4 text-center">
+          <h3 class="text-xl font-bold text-foreground">Ready to Submit Your Application?</h3>
+          <p class="text-xs text-muted-foreground max-w-lg mx-auto">
+            Applications are submitted through our secure ClientFlow CRM portal. Ensure all required dossier documents are attached before submission.
+          </p>
+          <a
+            href={data.applicationUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="py-3 px-8 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm inline-flex items-center gap-2 transition-all shadow-md shadow-primary/25"
+          >
+            <span>Submit Official Application</span>
+            <ExternalLink class="w-4 h-4" />
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <NewsletterSection />
+  <PromoCTASection />
+</BaseLayout>

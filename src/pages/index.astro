@@ -1,118 +1,96 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { homeContent } from '../config/home';
 import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
 import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
 import ArticlesBlogEventsSection from '../components/sections/ArticlesBlogEventsSection.astro';
-import ImageComparisonSection from '../components/sections/ImageComparisonSection.astro';
-import TeamSection from '../components/sections/TeamSection.astro';
-import GallerySection from '../components/sections/GallerySection.astro';
-import TestimonialsSection from '../components/sections/TestimonialsSection.astro';
-import FaqSection from '../components/sections/FaqSection.astro';
-import ContactSection from '../components/sections/ContactSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import NumbersCounterSection from '../components/sections/NumbersCounterSection.astro';
+import GeneralSupportSection from '../components/sections/GeneralSupportSection.astro';
+import DonationSection from '../components/sections/DonationSection.astro';
+import PartnerRibbonSection from '../components/sections/PartnerRibbonSection.astro';
 import Modal from '../components/ui/Modal.astro';
 ---
 
-<BaseLayout title="Welcome to the UKABCS | UK Association for Biotechnology & Computational Science">
-  <!-- Hero Section -->
-  <section class="hero-section py-20">
-    <div class="container hero-container text-center">
-      <div class="hero-badge-wrap mb-4">
-        <span class="badge-pill badge-emerald">UK-Registered Non-Profit Society</span>
-        <span class="hero-incorporation text-sm text-muted">Incorporated in 2025</span>
-      </div>
-
-      <h1 class="hero-title font-extrabold text-4xl mb-4 max-w-4xl mx-auto">
-        Advancing Global <span class="text-primary-color">Biotechnology</span> &amp; <span class="text-accent">Computational Science</span>
-      </h1>
-
-      <p class="hero-subtitle text-lg text-secondary max-w-3xl mx-auto mb-8 leading-relaxed">
-        A UK-registered non-profit academic society dedicated to supporting international researchers, transparent peer-reviewed grant funding, and open-access innovation across bioinformatics and chemoinformatics.
-      </p>
-
-      <div class="hero-cta-group flex-center gap-4 mb-16">
-        <a href="/programmes-grants" class="btn-fluent-primary text-base py-3 px-8">
-          <span>Explore Open Grant Calls</span>
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="5" y1="12" x2="19" y2="12"></line>
-            <polyline points="12 5 19 12 12 19"></polyline>
-          </svg>
-        </a>
-
-        <a href="/memberships" class="btn-fluent-secondary text-base py-3 px-8">
-          <span>Become a Member</span>
-        </a>
+<BaseLayout title="UKABCS | UK Organisation for Biotechnology and Computational Science">
+  <section class="home-hero">
+    <div class="hero-grid" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <span class="hero-eyebrow">{homeContent.hero.eyebrow}</span>
+      <h1 class="hero-title">{homeContent.hero.title}</h1>
+      <p class="hero-subtitle">{homeContent.hero.description}</p>
+      <div class="hero-cta-group">
+        <a href="/programmes-grants" class="btn-fluent-primary">Explore programmes &amp; grants <span aria-hidden="true">→</span></a>
+        <a href="/memberships" class="btn-fluent-secondary">Become a member</a>
       </div>
     </div>
   </section>
 
-  <!-- Numbers Counter Stats Section -->
-  <NumbersCounterSection />
-
-  <!-- Features Bento Grid Section (Aceternity UI Style) -->
+  <TextContentSection {...homeContent.welcome} ctaText="Discover UKABCS" ctaHref="/about-us" />
+  <TextContentSection {...homeContent.membership} ctaText="Explore membership" ctaHref="/memberships" reversed />
+  <TextContentSection {...homeContent.mission} ctaText="About our work" ctaHref="/about-us" />
+  <TextContentSection {...homeContent.vision} ctaText="Explore UKABCS" ctaHref="/about-us" reversed />
   <FeaturesBentoSection />
-
-  <!-- Text & Split Guidelines Section -->
-  <TextContentSection
-    tag="Grant Guidelines & Criteria"
-    title="Transparent Peer-Review & Rigorous Governance"
-    subtitle="All grants are evaluated by independent academic referees from UK & international universities."
-    content="Our non-profit governance model ensures 100% of public funds and donor contributions are directly disbursed into peer-reviewed grants, HPC server allocations, and open-access journal APC waivers with complete public auditing."
-    image="https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Review Grant Auditing Policies"
-    ctaHref="/transparency"
-  />
-
-  <!-- Academic Sales / Program Tiers Section -->
+  <PromoCTASection title="Join our community" subtitle="Researchers, universities, institutions and industry partners can collaborate with UKABCS to turn research ideas into meaningful outcomes." primaryBtnText="Explore partnerships" primaryBtnHref="/partnerships" secondaryBtnText="Explore memberships" secondaryBtnHref="/memberships" />
   <SalesPromoSection />
-
-  <!-- Articles, Blog & News Section (Cards with Images & Slug Links) -->
+  <NumbersCounterSection />
+  <GeneralSupportSection />
+  <DonationSection />
   <ArticlesBlogEventsSection limit={3} />
-
-  <!-- Tool Comparison Section (Before & After Pipeline Benchmarks) -->
-  <ImageComparisonSection />
-
-  <!-- Academic Leadership & Board Team Section -->
-  <TeamSection />
-
-  <!-- Photo Gallery & Event Archive Section -->
-  <GallerySection />
-
-  <!-- Testimonials & Endorsements Section -->
-  <TestimonialsSection />
-
-  <!-- FAQ Section -->
-  <FaqSection />
-
-  <!-- Direct Contact Section -->
-  <ContactSection />
-
-  <!-- Final High-Impact Promo CTA Banner -->
-  <PromoCTASection />
-
-  <!-- ClientFlow Modal Handler -->
+  <PartnerRibbonSection />
+  <PromoCTASection
+    title="Ready to join UKABCS?"
+    subtitle="Join a growing international community working to advance biotechnology and computational science."
+    primaryBtnText="Apply for Membership"
+    primaryBtnHref="/memberships"
+    secondaryBtnText="Join as a Partner"
+    secondaryBtnHref="/partnerships"
+    tertiaryBtnText="Contact Us"
+    tertiaryBtnHref="#contact"
+  />
   <Modal />
 </BaseLayout>
 
 <style>
-  .hero-section {
-    padding-top: 5rem;
-    padding-bottom: 3rem;
-    background: radial-gradient(circle at 50% 0%, var(--color-primary-soft) 0%, transparent 60%);
-  }
-
-  .hero-title {
-    font-size: clamp(2.25rem, 4.5vw, 3.75rem);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-  }
-
-  .flex-center {
+  .home-hero {
+    min-height: calc(100svh - 5rem);
     display: flex;
-    justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    color: #fff;
+    background: var(--color-navy);
   }
+
+  .home-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=90&w=2200&auto=format&fit=crop') center / cover;
+  }
+
+  .home-hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: rgba(8, 17, 31, 0.82);
+  }
+
+  .hero-grid { position:absolute; inset:0; z-index:-1; opacity:.24; background-image:linear-gradient(rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px); background-size:50px 50px; }
+  .hero-content { padding-top:7rem; padding-bottom:7rem; max-width:1600px; }
+  .hero-eyebrow { display:inline-block; max-width:43rem; font-size:.8rem; font-weight:800; letter-spacing:.13em; text-transform:uppercase; color:#c9efff; }
+  .hero-title { margin-top:1rem; max-width:55rem; color:#fff; font-size:clamp(4rem,11vw,9rem); font-weight:850; line-height:.88; letter-spacing:-.075em; text-shadow:0 3px 22px rgba(0,0,0,.34); }
+  .hero-subtitle { margin-top:1.75rem; max-width:43rem; color:#f4f8fc; font-size:clamp(1.08rem,1.7vw,1.38rem); line-height:1.65; text-shadow:0 2px 14px rgba(0,0,0,.35); }
+  .hero-cta-group { margin-top:2.5rem; display:flex; gap:.9rem; flex-wrap:wrap; }
+  .home-hero .btn-fluent-primary { background:#fff; color:var(--color-primary); box-shadow:0 12px 28px rgba(0,0,0,.18); }
+  .home-hero .btn-fluent-primary:hover { background:#eaf6fd; }
+  .home-hero .btn-fluent-secondary { color:#fff; border-color:rgba(255,255,255,.72); background:rgba(255,255,255,.08); }
+  .home-hero .btn-fluent-secondary:hover { background:rgba(255,255,255,.16); border-color:#fff; }
+  .section-text-content .text-primary-color { color:var(--color-primary); }
+  @media(max-width:720px){.home-hero{min-height:calc(100svh - 5rem)}.hero-content{padding-top:5rem;padding-bottom:5rem}.hero-title{font-size:clamp(3.7rem,18vw,5.8rem)}.hero-grid{mask-image:none}.home-hero::before{background-position:64% center}}
 </style>

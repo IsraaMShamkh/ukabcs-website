@@ -1,0 +1,178 @@
+---
+export interface Attachment {
+  title: string;
+  format: string;
+  size: string;
+  url: string;
+}
+
+export interface Props {
+  items: Attachment[];
+}
+
+const { items = [] } = Astro.props;
+---
+
+{items && items.length > 0 && (
+  <section class="grant-attachments my-12" aria-labelledby="attachments-title">
+    <div class="attachments-header">
+      <div class="flex items-center gap-2 mb-2">
+        <svg class="text-primary" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"></path>
+        </svg>
+        <span class="badge-pill badge-primary">Official Documents</span>
+      </div>
+      <h3 id="attachments-title" class="text-2xl font-bold">Attached Documents &amp; Application Dossier</h3>
+      <p class="text-secondary text-sm mt-1">Download official application templates, guidance notes, timelines, and contract agreements.</p>
+    </div>
+
+    <div class="attachments-grid">
+      {items.map((doc) => {
+        const isPdf = doc.format.toUpperCase().includes('PDF');
+        return (
+          <div class="attachment-card">
+            <div class="attachment-icon-wrap" class:list={[isPdf ? 'pdf-wrap' : 'docx-wrap']}>
+              <span class="attachment-format">{doc.format.toUpperCase()}</span>
+            </div>
+            <div class="attachment-details">
+              <h4 class="attachment-title">{doc.title}</h4>
+              <span class="attachment-meta">{doc.format.toUpperCase()} • {doc.size}</span>
+            </div>
+            <a
+              href={doc.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="attachment-download-btn"
+              download
+            >
+              <span>Download</span>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                <polyline points="7 10 12 15 17 10"></polyline>
+                <line x1="12" y1="15" x2="12" y2="3"></line>
+              </svg>
+            </a>
+          </div>
+        );
+      })}
+    </div>
+  </section>
+)}
+
+<style>
+  .grant-attachments {
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+  }
+
+  .attachments-header {
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .attachments-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.25rem;
+  }
+
+  .attachment-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.15rem;
+    background: var(--color-bg-secondary, #f8fafc);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-md, 8px);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+
+  .attachment-card:hover {
+    border-color: var(--color-primary, #0284c7);
+    transform: translateY(-2px);
+  }
+
+  .attachment-icon-wrap {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md, 8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-weight: 800;
+    font-size: 0.75rem;
+  }
+
+  .docx-wrap {
+    background: #e0f2fe;
+    color: #0284c7;
+    border: 1px solid #bae6fd;
+  }
+
+  .pdf-wrap {
+    background: #fee2e2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+  }
+
+  .attachment-details {
+    flex-grow: 1;
+    min-width: 0;
+  }
+
+  .attachment-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--color-text-primary, #0f172a);
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .attachment-meta {
+    font-size: 0.8rem;
+    color: var(--color-text-muted, #64748b);
+    font-weight: 500;
+  }
+
+  .attachment-download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 0.85rem;
+    background: #ffffff;
+    color: var(--color-primary, #0284c7);
+    border: 1px solid var(--color-border, #cbd5e1);
+    border-radius: var(--radius-sm, 6px);
+    font-size: 0.82rem;
+    font-weight: 700;
+    transition: all var(--transition-fast);
+    flex-shrink: 0;
+    text-decoration: none;
+  }
+
+  .attachment-download-btn:hover {
+    background: var(--color-primary, #0284c7);
+    color: #ffffff;
+    border-color: var(--color-primary, #0284c7);
+  }
+
+  @media (max-width: 640px) {
+    .attachments-grid {
+      grid-template-columns: 1fr;
+    }
+    .attachment-card {
+      flex-wrap: wrap;
+    }
+    .attachment-download-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
