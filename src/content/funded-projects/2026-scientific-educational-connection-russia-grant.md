@@ -13,8 +13,8 @@ budget: "£9,000 (£3,000/yr Chemical Fund) + Full Computational Platforms"
 grantCycle: "2026–2029 (3-Year Cycle)"
 datePublished: "2026-08-20"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1518770660439-4636190af475?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6aa42b58bd22c.webp"
+image: "/images/universities/800_6aa42b58bd22c.webp"
 summary: "Advancing computational engineering, cross-border biological modeling, big data analytics, and laboratory materials for researchers."
 verificationStatus: "VERIFIED"
 ---

@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6964fb709f0c3.webp"
+image: "/images/universities/800_6964fb709f0c3.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Federal University of Alfenas (Brazil) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6964fe38d28e2.webp"
+image: "/images/universities/800_6964fe38d28e2.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Helwan National University (Egypt) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

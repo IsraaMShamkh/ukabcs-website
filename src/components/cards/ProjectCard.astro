@@ -34,16 +34,22 @@ const {
 // Fallback high-res lab/project image
 const defaultImage = "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop";
 const cardImage = image || defaultImage;
+
+// Shorten grant badge name for compact, clean appearance
+const displayGrantType = grantType && grantType.includes('Graduation Project')
+  ? 'Graduation Project Grant'
+  : grantType;
 ---
 
-<article class="card-aceternity project-card">
+<article class="project-card">
   <div class="card-image-wrap">
     <a href={`/funded-projects/${slug}`} class="card-image-link" aria-label={title}>
       <img src={cardImage} alt={title} loading="lazy" />
     </a>
     <div class="badge-group">
-      <span class="year-pill">{year} Cohort</span>
-      <span class="badge-pill">{grantType}</span>
+      <span class="grant-pill">
+        {displayGrantType}
+      </span>
     </div>
   </div>
 
@@ -56,33 +62,18 @@ const cardImage = image || defaultImage;
       <span class="institution-name">{institution} • {country}</span>
     </div>
 
-    {mainPI && (
-      <div class="pi-tag">
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
-        </svg>
-        <span class="pi-text"><strong>PI:</strong> {mainPI}</span>
-      </div>
-    )}
-
     <h3 class="card-title">
       <a href={`/funded-projects/${slug}`}>{title}</a>
     </h3>
 
-    {budget && (
-      <div class="budget-badge">
-        <span class="budget-dot"></span>
-        <span class="budget-text">{budget}</span>
-      </div>
-    )}
-
     <p class="card-excerpt">{description}</p>
 
     <div class="card-footer">
-      <span class="date-text">Published: {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
+      <span class="date-text">
+        Published: {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
+      </span>
       <a href={`/funded-projects/${slug}`} class="read-link">
-        <span>Read Full Article</span>
+        <span>View Project</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -113,27 +104,44 @@ const cardImage = image || defaultImage;
   .card-image-wrap {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 220px;
+    min-height: 220px;
+    max-height: 220px;
     border-radius: var(--radius-md, 8px);
     overflow: hidden;
+    background: #ffffff;
+    border: 1px solid var(--color-border, #f1f5f9);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  :global(.dark) .card-image-wrap {
     background: #0f172a;
+    border-color: #1e293b;
   }
 
   .card-image-link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
     height: 100%;
+    padding: 1.25rem;
   }
 
   .card-image-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
     transition: transform 0.35s ease;
   }
 
   .project-card:hover .card-image-wrap img {
-    transform: scale(1.04);
+    transform: scale(1.06);
   }
 
   .badge-group {
@@ -146,14 +154,33 @@ const cardImage = image || defaultImage;
     flex-wrap: wrap;
   }
 
-  .year-pill {
+  .cohort-pill {
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.25rem 0.65rem;
     border-radius: var(--radius-full, 9999px);
-    background: var(--color-primary, #005a9c);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  }
+
+  .cohort-2026 {
+    background: #0284c7;
     color: #ffffff;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  }
+
+  .cohort-2025 {
+    background: #7c3aed;
+    color: #ffffff;
+  }
+
+  .grant-pill {
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.6rem;
+    border-radius: var(--radius-full, 9999px);
+    background: rgba(15, 23, 42, 0.85);
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(6px);
   }
 
   .card-body {
@@ -172,26 +199,6 @@ const cardImage = image || defaultImage;
     margin-bottom: 0.4rem;
   }
 
-  .pi-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.8rem;
-    color: var(--color-text-secondary, #475569);
-    background: var(--color-surface-hover, #f1f5f9);
-    padding: 0.2rem 0.55rem;
-    border-radius: var(--radius-sm, 4px);
-    margin-bottom: 0.6rem;
-    width: fit-content;
-  }
-
-  .pi-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: 280px;
-  }
-
   .card-title {
     font-size: 1.15rem;
     font-weight: 800;
@@ -207,35 +214,7 @@ const cardImage = image || defaultImage;
   }
 
   .card-title a:hover {
-    color: var(--color-primary, #0284c7);
-  }
-
-  .budget-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35rem;
-    font-size: 0.78rem;
-    font-weight: 700;
-    color: #065f46;
-    background: #ecfdf5;
-    border: 1px solid #a7f3d0;
-    padding: 0.15rem 0.55rem;
-    border-radius: var(--radius-full, 9999px);
-    margin-bottom: 0.6rem;
-    width: fit-content;
-  }
-
-  :global(.dark) .budget-badge {
-    color: #34d399;
-    background: rgba(6, 95, 70, 0.25);
-    border-color: rgba(52, 211, 153, 0.3);
-  }
-
-  .budget-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #10b981;
+    color: var(--color-primary, #005a9c);
   }
 
   .card-excerpt {

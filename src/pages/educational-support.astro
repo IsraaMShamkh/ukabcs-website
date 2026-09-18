@@ -6,49 +6,456 @@ import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.as
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
+import { AlertCircle, ExternalLink } from 'lucide-astro';
+
+const educationalServices = [
+  {
+    title: "Training Workshops & Webinars",
+    description: "Practical sessions designed to build technical knowledge and hands-on skills in biotechnology, computational chemistry, and bioinformatics pipelines."
+  },
+  {
+    title: "Free & Discounted Courses",
+    description: "Access to certified introductory and advanced online diploma courses at no cost or with significant subsidies to support continuous lifelong learning."
+  },
+  {
+    title: "Mentorship Programs with Experts",
+    description: "One-to-one or group guidance from senior computational biologists to support postgraduate research, dissertation design, and career growth."
+  },
+  {
+    title: "Book Club & Discussion Groups",
+    description: "Interactive academic forums where members engage in critical discussions about foundational reference books, cutting-edge papers, and research methods."
+  },
+  {
+    title: "Digital Resources & Templates",
+    description: "A comprehensive library of ready-to-use research scripts, Google Colab notebooks, grant proposal templates, and open data archives."
+  },
+  {
+    title: "Career Development & Internships",
+    description: "Expert support in scientific CV drafting, personal statement refinement, mock interviews, and priority matching with industry partner internships."
+  }
+];
 ---
 
-<BaseLayout title={`Events & Educational Support | ${siteConfig.publicName}`} description="UKABCS offers fully-subsidized diploma courses, scientific audiobooks, student competitions, and research mentorship for biotechnology scholars.">
+<BaseLayout
+  title={`Events & Educational Support | ${siteConfig.publicName}`}
+  description="Empowering researchers and students through education, funding, and equal opportunities in biotechnology and computational science."
+>
   <!-- 1. Hero -->
   <PageHero
-    eyebrow="Capacity Development"
+    eyebrow="Academic Capacity & Skills"
     title="Events & Educational Support"
-    description="UKABCS offers fully-subsidized diploma courses, scientific audiobooks, student competitions, and research mentorship for biotechnology scholars."
+    description="Empowering researchers and students through education, funding, and equal opportunities in biotechnology and computational science."
     image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=90&w=2200&auto=format&fit=crop"
   />
 
-  <!-- 2. Non-Financial Training & Course Support -->
+  <!-- 2. Non-Financial Training & Course Support (TextContentSection) -->
   <TextContentSection
     tag="Certified Training"
     title="Professional Diploma in Chemoinformatics & CADD"
     subtitle="Fully-subsidized 14-module interactive online diploma course."
-    content="Access certified CADD online diplomas, Python for bioinformatics video modules, scientific audiobook libraries, and automated Google Colab analysis scripts. All educational assets are provided free or fully-subsidized for verified academic students."
+    content="The Educational Support program of UKABCS is designed to empower students, researchers, and institutions by providing access to academic resources, professional training, and financial aid. Access certified CADD online diplomas, Python for bioinformatics video modules, scientific audiobook libraries, and automated Google Colab analysis scripts."
     image="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop"
     ctaText="Explore Diploma Course Call →"
-    ctaHref="/calls/chemoinformatics-diploma-course"
+    ctaHref="/calls/intro-chemoinformatics-course-arabic"
   />
 
-  <!-- 3. Financial Graduation & Competition Grants (Reversed) -->
+  <!-- 3. Financial Graduation & Competition Grants (Reversed TextContentSection) -->
   <TextContentSection
     tag="Student Research Grants"
     title="Graduation Project & Student Competition Support"
     subtitle="Institutional support for BSc and MSc graduation research teams."
-    content="UKABCS provides direct grant funding for undergraduate and postgraduate graduation projects across partner universities in the UK and internationally. Winning teams receive research software packages, publication support, and travel awards."
+    content="Our goal is to reduce barriers to education and research by offering scholarships, fee waivers, mentorship, and special programs. UKABCS provides direct grant funding for undergraduate and postgraduate graduation projects across partner universities in the UK and internationally, alongside software suites and travel awards."
     image="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop"
     ctaText="Explore Graduation Project Grant →"
     ctaHref="/news/ukabcs-graduation-project-grant-2026"
     reversed={true}
   />
 
-  <!-- 4. Educational Tracks (Bento Grid) -->
+  <!-- 4. Important Notice Alert Banner -->
+  <section class="py-8 bg-slate-50 dark:bg-slate-950 border-y border-slate-200 dark:border-slate-800">
+    <div class="container max-w-5xl mx-auto px-4 sm:px-6">
+      <div class="p-6 sm:p-7 rounded-2xl bg-amber-500/10 border-2 border-amber-500/30 dark:bg-amber-950/20 dark:border-amber-500/40 flex flex-col sm:flex-row items-start gap-4">
+        <div class="p-2.5 rounded-xl bg-amber-500/20 text-amber-600 dark:text-amber-400 shrink-0">
+          <AlertCircle class="w-6 h-6" />
+        </div>
+        <div class="space-y-1.5">
+          <h3 class="text-base font-bold text-amber-900 dark:text-amber-300">
+            Important Notice: Official Open Call Applications Only
+          </h3>
+          <p class="text-xs sm:text-sm text-amber-800/90 dark:text-amber-200/90 leading-relaxed">
+            Applications for Educational Support are <strong>only accepted during official open calls</strong> announced on this page. If there is no active call announced, applications will not be reviewed or processed. Please check regularly for updates or subscribe to our newsletter to stay informed.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Active Educational Open Calls (3 in a Row Grid from Section Pool) -->
+  <section class="py-20 section-articles" id="open-calls">
+    <div class="container">
+      <div class="insights-heading">
+        <span class="badge-pill mb-2">Open Calls & Opportunities</span>
+        <h2 class="text-3xl font-bold">Active Educational Grants & Training Calls</h2>
+        <p class="text-secondary mt-1 max-w-2xl mx-auto">
+          Gain new skills through free and subsidized courses, practical workshops, and reference audio resources.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="insights-tabs" role="tablist">
+        <button type="button" class="insights-tab is-active" data-call-tab="all">
+          All Calls (4)
+        </button>
+        <button type="button" class="insights-tab" data-call-tab="courses">
+          🎓 Courses & Training (2)
+        </button>
+        <button type="button" class="insights-tab" data-call-tab="books">
+          🎧 Books & Audio-Resources (2)
+        </button>
+      </div>
+
+      <!-- 3-Column Card Grid -->
+      <div class="articles-cards-grid" id="edu-calls-cards">
+        <!-- Call 1 -->
+        <article class="call-pool-card" data-call-cat="courses">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=800&auto=format&fit=crop" alt="CADD Course Arabic" loading="lazy" />
+            <span class="badge-tag bg-emerald-600">100% Free</span>
+            <span class="badge-lang">العربية</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Courses & Training Call</span>
+            <h3 class="call-title">
+              <a href="/calls/intro-chemoinformatics-course-arabic">
+                Introduction to Chemo-informatics and Computational Drug Discovery (Arabic)
+              </a>
+            </h3>
+            <p class="call-desc">
+              Comprehensive introductory course in Arabic covering CADD, Molecular Docking, MD Simulations, and QSAR.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Tuition: £0 (Free)</span>
+              <a href="/calls/intro-chemoinformatics-course-arabic" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 2 -->
+        <article class="call-pool-card" data-call-cat="courses">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=800&auto=format&fit=crop" alt="CADD Course English" loading="lazy" />
+            <span class="badge-tag bg-emerald-600">100% Free</span>
+            <span class="badge-lang">English</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Courses & Training Call</span>
+            <h3 class="call-title">
+              <a href="/calls/intro-chemoinformatics-course-english">
+                Introduction to Chemo-informatics and Computational Drug Discovery (English)
+              </a>
+            </h3>
+            <p class="call-desc">
+              5 structured video modules delivered by EBO Bio Solution (UK) explaining virtual screening and docking protocols.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Tuition: £0 (Free)</span>
+              <a href="/calls/intro-chemoinformatics-course-english" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 3 -->
+        <article class="call-pool-card" data-call-cat="books">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=800&auto=format&fit=crop" alt="Audiobook Arabic" loading="lazy" />
+            <span class="badge-tag bg-blue-600">50% Subsidized</span>
+            <span class="badge-lang">العربية</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Books & Audio Resources</span>
+            <h3 class="call-title">
+              <a href="/calls/audiobook-computational-chemistry-arabic">
+                Reference Audio Book: Essentials of Computational Chemistry (Arabic)
+              </a>
+            </h3>
+            <p class="call-desc">
+              Dual-language audio study companion explaining quantum mechanics, DFT, and force fields in clear Arabic narration.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Member Price: £5</span>
+              <a href="/calls/audiobook-computational-chemistry-arabic" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 4 -->
+        <article class="call-pool-card" data-call-cat="books">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=800&auto=format&fit=crop" alt="Audiobook English" loading="lazy" />
+            <span class="badge-tag bg-blue-600">50% Subsidized</span>
+            <span class="badge-lang">English</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Books & Audio Resources</span>
+            <h3 class="call-title">
+              <a href="/calls/audiobook-computational-chemistry-english">
+                Reference Audio Book: Essentials of Computational Chemistry (English)
+              </a>
+            </h3>
+            <p class="call-desc">
+              Authoritative English audio reference edition explaining molecular mechanics, Hartree-Fock, and solvation dynamics.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Member Price: £30</span>
+              <a href="/calls/audiobook-computational-chemistry-english" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Educational Services Bento Grid (from Section Pool) -->
   <FeaturesBentoSection
-    title="Educational Resources & Mentorship Tracks"
-    subtitle="Empowering early-career scholars with practical learning tools and 1-on-1 academic guidance."
+    title="Educational Services (Non-Financial Support)"
+    subtitle="Non-financial support that focuses on building knowledge, skills, and professional growth."
+    badge="Educational Services"
+    items={educationalServices}
   />
 
-  <!-- 5. Newsletter Bulletin -->
+  <!-- 7. Newsletter Bulletin -->
   <NewsletterSection />
 
-  <!-- 6. Promo CTA -->
+  <!-- 8. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>
+
+<style>
+  .insights-heading {
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .insights-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2.5rem;
+  }
+
+  .insights-tab {
+    appearance: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding: 0.85rem 1.25rem;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .insights-tab:hover {
+    color: var(--color-primary);
+  }
+
+  .insights-tab.is-active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .articles-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .articles-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .articles-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .call-pool-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .call-pool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1));
+  }
+
+  .call-pool-card.is-hidden {
+    display: none !important;
+  }
+
+  .card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .call-pool-card:hover .card-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .badge-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .badge-lang {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.25rem;
+  }
+
+  .call-type {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary, #005a9c);
+    margin-bottom: 0.35rem;
+  }
+
+  .call-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-primary, #0f172a);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .call-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .call-title a:hover {
+    color: var(--color-primary, #005a9c);
+  }
+
+  .call-desc {
+    font-size: 0.86rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .call-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .fee-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  .btn-pool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-primary, #005a9c);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-pool-link:hover {
+    transform: translateX(3px);
+  }
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll<HTMLButtonElement>('[data-call-tab]');
+  const cards = document.querySelectorAll<HTMLElement>('#edu-calls-cards .call-pool-card');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-call-tab') || 'all';
+      tabBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-call-cat');
+        if (target === 'all' || target === cat) {
+          card.classList.remove('is-hidden');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+</script>

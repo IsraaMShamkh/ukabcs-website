@@ -3,62 +3,216 @@ import NewsCard from '../cards/NewsCard.astro';
 import { getCollection } from 'astro:content';
 
 export interface Props { title?: string; subtitle?: string; limit?: number; }
-const { title = 'News & Insights', subtitle = 'Research articles, UKABCS news and grant-call announcements from their respective content records.', limit = 3 } = Astro.props;
+const { title = 'News & Insights', subtitle = 'Research articles, official announcements, and grant-call releases.', limit = 6 } = Astro.props;
+
 const allNews = await getCollection('news');
 const byNewest = (items: typeof allNews) => items.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()).slice(0, limit);
-const articles = byNewest(allNews.filter((item) => !['Grant Call', 'Governance'].includes(item.data.category)));
-const news = byNewest(allNews.filter((item) => item.data.category === 'Governance'));
-const calls = byNewest(allNews.filter((item) => item.data.category === 'Grant Call'));
+
+// Split news into intuitive distinct categories
+const articles = byNewest(allNews.filter((item) => {
+  const cat = (item.data.category || '').toLowerCase();
+  return cat.includes('impact') || cat.includes('research') || (!cat.includes('grant') && !cat.includes('govern'));
+}));
+
+const calls = byNewest(allNews.filter((item) => {
+  const cat = (item.data.category || '').toLowerCase();
+  return cat.includes('grant') || cat.includes('call');
+}));
+
+const news = byNewest(allNews.filter((item) => {
+  const cat = (item.data.category || '').toLowerCase();
+  return cat.includes('govern') || cat.includes('news') || cat.includes('report');
+}));
+
+const allRecent = byNewest(allNews);
+
 const tabs = [
-  { id: 'articles', label: 'Latest research articles', allLabel: 'View all research articles', items: articles, empty: 'Research articles will appear here when published.' },
-  { id: 'news', label: 'News', allLabel: 'View all news', items: news, empty: 'News updates will appear here when published.' },
-  { id: 'calls', label: 'Open calls & announcements', allLabel: 'Explore all calls', items: calls, empty: 'Calls and announcements will appear here when published.' },
+  { id: 'all', label: 'All Updates', allLabel: 'View all updates', items: allRecent, empty: 'Updates will appear here when published.' },
+  { id: 'articles', label: 'Research Articles', allLabel: 'View all research articles', items: articles, empty: 'Research articles will appear here when published.' },
+  { id: 'calls', label: 'Grant Calls & Opportunities', allLabel: 'Explore all calls', items: calls, empty: 'Grant calls will appear here when published.' },
+  { id: 'news', label: 'Announcements & Governance', allLabel: 'View all announcements', items: news, empty: 'Announcements will appear here when published.' },
 ];
 ---
 
 <section class="py-20 section-articles" id="news-insights">
   <div class="container">
     <div class="insights-heading">
-      <span class="badge-pill mb-2">News & insights</span>
+      <span class="badge-pill mb-2">News & Insights Hub</span>
       <h2 class="text-3xl font-bold">{title}</h2>
       <p class="text-secondary mt-1 max-w-2xl">{subtitle}</p>
     </div>
 
     <div class="insights-tabs" role="tablist" aria-label="News and insights categories">
-      {tabs.map((tab, index) => <button class:list={['insights-tab', index === 0 && 'is-active']} type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} aria-controls={`panel-${tab.id}`} data-tab={tab.id} data-all-label={tab.allLabel}>{tab.label}</button>)}
+      {tabs.map((tab, index) => (
+        <button
+          class:list={['insights-tab', index === 0 && 'is-active']}
+          type="button"
+          role="tab"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-controls={`panel-${tab.id}`}
+          data-tab={tab.id}
+          data-all-label={tab.allLabel}
+        >
+          {tab.label} ({tab.items.length})
+        </button>
+      ))}
     </div>
 
     {tabs.map((tab, index) => (
-      <div class:list={['insights-panel', index === 0 && 'is-active']} id={`panel-${tab.id}`} role="tabpanel" data-panel={tab.id}>
-        {tab.items.length ? <div class="grid-3 gap-6">{tab.items.map((item) => <NewsCard title={item.data.title} datePublished={item.data.datePublished} category={item.data.category} author={item.data.author} description={item.data.description} slug={item.slug} image={item.data.image} />)}</div> : <p class="empty-state">{tab.empty}</p>}
+      <div
+        class:list={['insights-panel', index === 0 && 'is-active']}
+        id={`panel-${tab.id}`}
+        role="tabpanel"
+        data-panel={tab.id}
+      >
+        {tab.items.length ? (
+          <div class="articles-cards-grid">
+            {tab.items.map((item) => (
+              <NewsCard
+                title={item.data.title}
+                datePublished={item.data.datePublished}
+                category={item.data.category}
+                author={item.data.author}
+                description={item.data.description}
+                slug={item.slug}
+                image={item.data.image}
+              />
+            ))}
+          </div>
+        ) : (
+          <p class="empty-state">{tab.empty}</p>
+        )}
       </div>
     ))}
-    <div class="insights-all-action"><a id="insights-view-all" href="/news" class="btn-fluent-secondary">View all research articles <span aria-hidden="true">→</span></a></div>
+
+    <div class="insights-all-action">
+      <a id="insights-view-all" href="/news" class="btn-fluent-secondary">
+        View all research articles <span aria-hidden="true">→</span>
+      </a>
+    </div>
   </div>
 </section>
 
 <style>
-  .insights-heading { max-width:48rem; margin:0 auto 2rem; text-align:center; }
-  .insights-tabs { display:flex; justify-content:center; flex-wrap:wrap; gap:.55rem; border-bottom:1px solid var(--color-border); margin-bottom:2rem; }
-  .insights-tab { appearance:none; border:0; border-bottom:2px solid transparent; margin-bottom:-1px; background:transparent; color:var(--color-text-secondary); padding:.85rem 1rem; font:inherit; font-size:.9rem; font-weight:700; cursor:pointer; }
-  .insights-tab:hover, .insights-tab.is-active { color:var(--color-primary); border-bottom-color:var(--color-primary); }
-  .insights-panel { display:none; }
-  .insights-panel.is-active { display:block; animation:insight-enter .24s ease both; }
-  .empty-state { padding:2.25rem 0; color:var(--color-text-secondary); text-align:center; }
-  .insights-all-action { display:flex; justify-content:center; margin-top:2.25rem; }
-  @keyframes insight-enter { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
-  @media(max-width:720px){.insights-tab{padding:.75rem .5rem;font-size:.82rem}}
-  @media(prefers-reduced-motion:reduce){.insights-panel.is-active{animation:none}}
+  .insights-heading {
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .insights-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2.5rem;
+  }
+
+  .insights-tab {
+    appearance: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding: 0.85rem 1.25rem;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .insights-tab:hover {
+    color: var(--color-primary);
+  }
+
+  .insights-tab.is-active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .insights-panel {
+    display: none;
+  }
+
+  .insights-panel.is-active {
+    display: block;
+    animation: insight-enter 0.24s ease both;
+  }
+
+  .articles-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .articles-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .articles-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .empty-state {
+    padding: 3rem 0;
+    color: var(--color-text-secondary);
+    text-align: center;
+    font-size: 1rem;
+  }
+
+  .insights-all-action {
+    display: flex;
+    justify-content: center;
+    margin-top: 2.75rem;
+  }
+
+  @keyframes insight-enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 720px) {
+    .insights-tab {
+      padding: 0.75rem 0.6rem;
+      font-size: 0.85rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .insights-panel.is-active {
+      animation: none;
+    }
+  }
 </style>
 
 <script>
   const tabButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-tab]'));
   const tabPanels = Array.from(document.querySelectorAll<HTMLElement>('[data-panel]'));
   const viewAll = document.getElementById('insights-view-all');
-  tabButtons.forEach((button) => button.addEventListener('click', () => {
-    const target = button.dataset.tab;
-    tabButtons.forEach((tab) => { const active = tab === button; tab.classList.toggle('is-active', active); tab.setAttribute('aria-selected', String(active)); });
-    tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.panel === target));
-    if (viewAll) viewAll.childNodes[0].textContent = `${button.dataset.allLabel} `;
-  }));
+
+  tabButtons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const target = button.dataset.tab;
+      tabButtons.forEach((tab) => {
+        const active = tab === button;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', String(active));
+      });
+      tabPanels.forEach((panel) => panel.classList.toggle('is-active', panel.dataset.panel === target));
+      if (viewAll) viewAll.childNodes[0].textContent = `${button.dataset.allLabel} `;
+    })
+  );
 </script>

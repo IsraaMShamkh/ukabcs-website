@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6965019c6c204.webp"
+image: "/images/universities/800_6965019c6c204.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Cairo University (Egypt) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

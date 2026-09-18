@@ -12,8 +12,8 @@ budget: "£9,000 (£3,000/yr Chemical Fund) + Full Computational Platforms"
 grantCycle: "2026–2029 (3-Year Cycle)"
 datePublished: "2026-09-01"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6aa0027874ef8.webp"
+image: "/images/universities/800_6aa0027874ef8.webp"
 summary: "Empowering talented undergraduate researchers across Upper Egypt with bio-computational training and enhanced wet-lab chemical support over the 3-year cycle."
 verificationStatus: "VERIFIED"
 ---

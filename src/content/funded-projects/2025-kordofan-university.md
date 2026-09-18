@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6964f71c26023.webp"
+image: "/images/universities/800_6964f71c26023.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that the University of Kordofan (Sudan) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

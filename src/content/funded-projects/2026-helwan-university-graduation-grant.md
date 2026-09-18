@@ -12,8 +12,8 @@ budget: "£9,000 (£3,000/yr Chemical Fund) + Full Computational Platforms"
 grantCycle: "2026–2029 (3-Year Cycle)"
 datePublished: "2026-09-01"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6aa002f61246b.webp"
+image: "/images/universities/800_6aa002f61246b.webp"
 summary: "Empowering undergraduate researchers across Biotechnology, Biochemistry, and Biological Sciences with computational pipelines and practical chemical consumables."
 verificationStatus: "VERIFIED"
 ---

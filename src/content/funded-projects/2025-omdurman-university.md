@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6965026337e9b.webp"
+image: "/images/universities/800_6965026337e9b.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Omdurman Islamic University (Sudan) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

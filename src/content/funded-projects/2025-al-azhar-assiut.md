@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6964ff6c203ec.webp"
+image: "/images/universities/800_6964ff6c203ec.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Al-Azhar University – Assiut Branch (Egypt) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

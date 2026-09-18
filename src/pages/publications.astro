@@ -8,55 +8,413 @@ import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
 ---
 
-<BaseLayout title={`Publications & Conferences Support | ${siteConfig.publicName}`} description="UKABCS actively assists researchers with open-access publishing fees and offers travel grants for presenting at leading international biotechnology conferences.">
+<BaseLayout
+  title={`Publications & Conferences Support | ${siteConfig.publicName}`}
+  description="Publishing and presenting research are essential steps in any researcher's journey. UKABCS provides open-access APC waivers and international conference grants."
+>
   <!-- 1. Hero -->
   <PageHero
     eyebrow="Research Dissemination"
     title="Publications & Conferences Support"
-    description="UKABCS actively assists researchers with open-access publishing fees (APC waivers) and offers travel grants for presenting at leading international biotechnology conferences."
+    description="Publishing and presenting research are essential steps in any researcher's journey. Through this programme, UKABCS provides practical support to help researchers publish open-access articles and participate in international conferences, ensuring that their work reaches a wider audience and creates real impact."
     image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=90&w=2200&auto=format&fit=crop"
   />
 
-  <!-- 2. Open-Access Publishing Support -->
+  <!-- 2. Open-Access Publishing Support (TextContentSection) -->
   <TextContentSection
     tag="Open Access Publishing"
     title="Open-Access Article Processing Charge (APC) Waivers"
     subtitle="Removing financial barriers to international open-access dissemination."
-    content="High article processing charges shouldn't prevent your discoveries from being cited. UKABCS provides full 100% and partial APC fee waivers across indexed international partner journals, ensuring your computational and biological findings are published open-access with maximum reach."
+    content="High article processing charges shouldn't prevent your discoveries from being cited. We cover article processing charges (APCs) in selected high-impact indexed journals, or provide free publication in the official UKABCS journal through an annual institutional support quota, ensuring your computational findings are published Gold Open Access with maximum global reach."
     image="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Explore Open Call Details →"
-    ctaHref="/calls/journal-apc-waiver-2026"
+    ctaText="Explore APC Waiver Call →"
+    ctaHref="/calls/open-access-publication-grant-ijbtcs"
   />
 
-  <!-- 3. Conference Aid & Travel Stipends (Reversed) -->
+  <!-- 3. Conference Aid & Travel Stipends (Reversed TextContentSection) -->
   <TextContentSection
     tag="Conference & Travel Aid"
     title="International Conference Presentation Grants"
     subtitle="Presenting peer-reviewed posters and oral papers at premier symposia."
-    content="Present your peer-reviewed posters and oral presentations at premier international conferences. UKABCS covers registration fees, abstract submission expenses, and international travel stipends for selected early career researchers and PhD candidates."
+    content="Present your peer-reviewed posters and oral presentations at premier international conferences. UKABCS provides financial support for researchers to attend and present at international conferences—covering registration fees (50% to 100%), abstract submission expenses, and up to $2,000 USD travel stipends for selected early-career scholars."
     image="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Explore Travel Grant Call →"
-    ctaHref="/calls/international-conference-travel-2026"
+    ctaText="Explore Conference Calls →"
+    ctaHref="#conference-calls"
     reversed={true}
   />
 
-  <!-- 4. Official Journal Partnership Callout -->
+  <!-- 4. Official Journal Partnership (TextContentSection) -->
   <TextContentSection
     tag="Official Journal Collaboration"
     title="International Journal of Biotechnology & Computational Science (IJBTCS)"
     subtitle="£220,000 In-Kind Publication Allocation."
-    content="In partnership with the International Journal of Biotechnology & Computational Science (IJBTCS), UKABCS provides guaranteed fast-track review and complete open-access fee waivers for papers authored by UKABCS grant awardees and active members."
+    content="In partnership with the International Journal of Biotechnology & Computational Science (IJBTCS), UKABCS members and grant awardees receive guaranteed fast-track review and full APC waivers under an allocated £220,000 institutional quota, providing an accelerated, peer-reviewed Gold Open Access venue."
     image="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1000&auto=format&fit=crop"
     ctaText="Read Partnership Details →"
     ctaHref="/partnerships/ijbtcs-220k"
   />
 
-  <!-- 5. Partner Marquee Ribbon -->
+  <!-- 5. Active Publications & Conferences Open Calls (3-Column Grid from Section Pool) -->
+  <section class="py-20 section-articles" id="conference-calls">
+    <div class="container">
+      <div class="insights-heading">
+        <span class="badge-pill mb-2">Funding & Subsidies</span>
+        <h2 class="text-3xl font-bold">Publications & Conferences Open Calls</h2>
+        <p class="text-secondary mt-1 max-w-2xl mx-auto">
+          Select a category to filter active conference subsidies and journal APC waivers.
+        </p>
+      </div>
+
+      <!-- Filter Tabs -->
+      <div class="insights-tabs" role="tablist">
+        <button type="button" class="insights-tab is-active" data-pub-tab="all">
+          All Calls (4)
+        </button>
+        <button type="button" class="insights-tab" data-pub-tab="conferences">
+          🏛️ Conferences Grants (3)
+        </button>
+        <button type="button" class="insights-tab" data-pub-tab="publications">
+          📄 Publication Waivers (1)
+        </button>
+      </div>
+
+      <!-- 3-Column Card Grid -->
+      <div class="articles-cards-grid" id="pub-calls-cards">
+        <!-- Call 1 -->
+        <article class="call-pool-card" data-pub-cat="conferences">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=800&auto=format&fit=crop" alt="Advanced Computational Models" loading="lazy" />
+            <span class="badge-tag bg-blue-600">50% Fee Subsidy</span>
+            <span class="badge-lang">London (Hybrid)</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Conference Support Call</span>
+            <h3 class="call-title">
+              <a href="/calls/conference-support-advanced-computational-models">
+                Int'l Conference on Advanced Computational Models in Medicine & Biotech
+              </a>
+            </h3>
+            <p class="call-desc">
+              50% reduction in official registration fees for accepted oral/poster presenters and delegates attending in London or virtually.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Deadline: 10 Dec 2025</span>
+              <a href="/calls/conference-support-advanced-computational-models" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 2 -->
+        <article class="call-pool-card" data-pub-cat="conferences">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=800&auto=format&fit=crop" alt="Computational Science Conference" loading="lazy" />
+            <span class="badge-tag bg-blue-600">50% Fee Subsidy</span>
+            <span class="badge-lang">London (Hybrid)</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Conference Support Call</span>
+            <h3 class="call-title">
+              <a href="/calls/conference-support-3rd-computational-science">
+                3rd Int'l Conference on Computational Science and Biotechnology
+              </a>
+            </h3>
+            <p class="call-desc">
+              50% registration fee support for academic scholars, postgraduates, and undergraduate teams presenting computational research.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Deadline: 15 Mar 2026</span>
+              <a href="/calls/conference-support-3rd-computational-science" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 3 -->
+        <article class="call-pool-card" data-pub-cat="conferences">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=800&auto=format&fit=crop" alt="Cairo Conference" loading="lazy" />
+            <span class="badge-tag bg-emerald-600">Up to $2,000 USD</span>
+            <span class="badge-lang">Cairo University</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Travel & Registration Grant</span>
+            <h3 class="call-title">
+              <a href="/calls/conference-participation-grant-cairo">
+                UKABCS Conference Participation Support Grant (Cairo University)
+              </a>
+            </h3>
+            <p class="call-desc">
+              Full registration coverage (Track A) and up to $2,000 travel & accommodation stipend (Track B) at Cairo University Faculty of Science.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Deadline: 20 Sep 2026</span>
+              <a href="/calls/conference-participation-grant-cairo" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Call 4 -->
+        <article class="call-pool-card" data-pub-cat="publications">
+          <div class="card-img-wrap">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop" alt="Open Access Journal" loading="lazy" />
+            <span class="badge-tag bg-purple-600">100% APC Waiver</span>
+            <span class="badge-lang">IJBTCS Journal</span>
+          </div>
+          <div class="card-content">
+            <span class="call-type">Publication Support Call</span>
+            <h3 class="call-title">
+              <a href="/calls/open-access-publication-grant-ijbtcs">
+                UKABCS Open-Access Publication Support Grant (IJBTCS Journal)
+              </a>
+            </h3>
+            <p class="call-desc">
+              100% full and partial Article Processing Charge (APC) waivers exclusively for accepted papers in the official IJBTCS journal.
+            </p>
+            <div class="call-footer">
+              <span class="fee-text">Value: £1,200 GBP</span>
+              <a href="/calls/open-access-publication-grant-ijbtcs" class="btn-pool-link">
+                <span>View Call</span>
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Partner Marquee Ribbon -->
   <PartnerRibbonSection />
 
-  <!-- 6. Newsletter Bulletin -->
+  <!-- 7. Newsletter Bulletin -->
   <NewsletterSection />
 
-  <!-- 7. Promo CTA -->
+  <!-- 8. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>
+
+<style>
+  .insights-heading {
+    max-width: 48rem;
+    margin: 0 auto 2rem;
+    text-align: center;
+  }
+
+  .insights-tabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    border-bottom: 1px solid var(--color-border);
+    margin-bottom: 2.5rem;
+  }
+
+  .insights-tab {
+    appearance: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    background: transparent;
+    color: var(--color-text-secondary);
+    padding: 0.85rem 1.25rem;
+    font: inherit;
+    font-size: 0.92rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .insights-tab:hover {
+    color: var(--color-primary);
+  }
+
+  .insights-tab.is-active {
+    color: var(--color-primary);
+    border-bottom-color: var(--color-primary);
+  }
+
+  .articles-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+
+  @media (max-width: 1024px) {
+    .articles-cards-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .articles-cards-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .call-pool-card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .call-pool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1));
+  }
+
+  .call-pool-card.is-hidden {
+    display: none !important;
+  }
+
+  .card-img-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #0f172a;
+    overflow: hidden;
+  }
+
+  .card-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .call-pool-card:hover .card-img-wrap img {
+    transform: scale(1.06);
+  }
+
+  .badge-tag {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    color: #ffffff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .badge-lang {
+    position: absolute;
+    top: 0.75rem;
+    right: 0.75rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(4px);
+  }
+
+  .card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    padding: 1.25rem;
+  }
+
+  .call-type {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary, #005a9c);
+    margin-bottom: 0.35rem;
+  }
+
+  .call-title {
+    font-size: 1.05rem;
+    font-weight: 800;
+    color: var(--color-text-primary, #0f172a);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .call-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .call-title a:hover {
+    color: var(--color-primary, #005a9c);
+  }
+
+  .call-desc {
+    font-size: 0.86rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+    flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .call-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .fee-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--color-text-muted, #64748b);
+  }
+
+  .btn-pool-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-primary, #005a9c);
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-pool-link:hover {
+    transform: translateX(3px);
+  }
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll<HTMLButtonElement>('[data-pub-tab]');
+  const cards = document.querySelectorAll<HTMLElement>('#pub-calls-cards .call-pool-card');
+
+  tabBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-pub-tab') || 'all';
+      tabBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-pub-cat');
+        if (target === 'all' || target === cat) {
+          card.classList.remove('is-hidden');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+</script>

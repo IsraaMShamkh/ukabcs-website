@@ -1,19 +1,29 @@
 ---
 import { homeContent } from '../../config/home';
 
-export interface Props { title?: string; subtitle?: string; }
-const { title = 'What We Do', subtitle = 'Practical support for a connected, responsible and inclusive scientific community.' } = Astro.props;
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  badge?: string;
+  items?: Array<{ title: string; description: string }>;
+}
+const {
+  title = 'What We Do',
+  subtitle = 'Practical support for a connected, responsible and inclusive scientific community.',
+  badge = 'Our work',
+  items = homeContent.whatWeDo,
+} = Astro.props;
 ---
 
 <section class="py-20 section-bento" id="what-we-do">
   <div class="container">
     <div class="section-heading max-w-3xl mb-12">
-      <span class="badge-pill mb-3">Our work</span>
+      <span class="badge-pill mb-3">{badge}</span>
       <h2 class="text-3xl font-bold mb-3">{title}</h2>
       <p class="text-secondary">{subtitle}</p>
     </div>
     <div class="bento-grid">
-      {homeContent.whatWeDo.map((item, index) => (
+      {items.map((item, index) => (
         <article class:list={['card-aceternity', 'bento-card', index === 0 ? 'bento-col-8' : index === 3 ? 'bento-col-8' : 'bento-col-4']}>
           <span class="bento-index">0{index + 1}</span>
           <h3 class="text-xl font-bold mb-3">{item.title}</h3>

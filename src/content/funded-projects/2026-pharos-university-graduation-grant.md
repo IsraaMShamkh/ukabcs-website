@@ -13,8 +13,8 @@ budget: "£9,000 (£3,000/yr Chemical Fund) + Full Computational Platforms"
 grantCycle: "2026–2029 (3-Year Cycle)"
 datePublished: "2026-08-19"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6aa002895ffed.webp"
+image: "/images/universities/800_6aa002895ffed.webp"
 summary: "Empowering pharmacy graduates with Computer-Aided Drug Design (CADD), molecular docking simulations, and wet-lab pharmacological assay support."
 verificationStatus: "VERIFIED"
 ---

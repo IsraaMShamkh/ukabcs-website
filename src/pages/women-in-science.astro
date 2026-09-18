@@ -6,9 +6,39 @@ import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.as
 import GeneralSupportSection from '../components/sections/GeneralSupportSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
+
+const womenInitiatives = [
+  {
+    title: "Childcare & Conference Travel Subsidies",
+    description: "Direct financial stipends covering certified childcare expenses so mother scientists can present oral and poster papers at international conferences without family compromise."
+  },
+  {
+    title: "Re-entry Research Fellowships",
+    description: "Targeted bridging grants and computational resources for female scholars resuming scientific research following maternity, caregiving, or family career breaks."
+  },
+  {
+    title: "Women in STEM Academic Mentorship",
+    description: "Pairing early-career female researchers and doctoral candidates with senior women research directors and PIs across UK and international laboratories."
+  },
+  {
+    title: "Laboratory Leadership & PI Workshops",
+    description: "Executive training modules on research grant negotiation, dry/wet lab resource allocation, patent filings, and managing multi-institutional consortia."
+  },
+  {
+    title: "Keynote Parity & Research Visibility",
+    description: "Enforcing guaranteed gender parity across invited keynote speakers, session chairs, and scientific panels in all UKABCS co-sponsored symposiums."
+  },
+  {
+    title: "Double-Blind Peer Review Grant Policy",
+    description: "Eliminating unconscious bias in all funding and software allocation decisions through mandatory institutional anonymization during peer review."
+  }
+];
 ---
 
-<BaseLayout title={`Empowering Women Researchers Support | ${siteConfig.publicName}`} description="Targeted research grants, conference childcare subsidies, and academic mentorship for female scientists in computational biology and biotechnology.">
+<BaseLayout
+  title={`Empowering Women Researchers Support | ${siteConfig.publicName}`}
+  description="Targeted research grants, conference childcare subsidies, and academic mentorship for female scientists in computational biology and biotechnology."
+>
   <!-- 1. Hero -->
   <PageHero
     eyebrow="Equality & Inclusion"
@@ -19,21 +49,21 @@ import { siteConfig } from '../config/site';
 
   <!-- 2. Stream 1: Peer-Reviewed Competitive Grants -->
   <TextContentSection
-    tag="Stream 1: Peer-Reviewed Grants"
+    tag="Stream 1: Competitive Funding"
     title="Earmarked Research Grants & Fellowships"
     subtitle="Guaranteeing equitable representation across all UKABCS research awards."
-    content="Female PIs and early career researchers apply through standard peer-reviewed calls, with earmarked grant quotas guaranteeing equitable representation across all UKABCS capacity building and scientific software awards. Applications are evaluated under double-blind peer-review guidelines."
+    content="Female PIs and early career researchers apply through standard peer-reviewed calls, with earmarked grant quotas guaranteeing equitable representation across all UKABCS capacity building and scientific software awards. Applications are evaluated under strict double-blind peer-review guidelines to ensure merit-driven selection."
     image="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Explore Capacity Building Calls →"
+    ctaText="Explore Open Grant Calls →"
     ctaHref="/programmes-grants"
   />
 
   <!-- 3. Stream 2: Non-Competitive Conference Childcare & KidCamp (Reversed) -->
   <TextContentSection
-    tag="Stream 2: Family Support"
+    tag="Stream 2: Family & Conference Support"
     title="Conference Childcare Subsidies & KidCamp Initiative"
     subtitle="Enabling mother scientists to present international research without compromise."
-    content="UKABCS provides direct travel stipends and organized on-site childcare (KidCamp initiative) during UKABCS-sponsored offline conferences so mother scientists can present oral and poster papers without family compromise."
+    content="UKABCS provides direct travel stipends and organized on-site childcare (KidCamp initiative) during UKABCS-sponsored conferences so mother scientists can present oral and poster papers without family compromise. Additional funding is allocated for verified travel and accommodation expenses."
     image="https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=1000&auto=format&fit=crop"
     ctaText="Request Family Support via Portal →"
     ctaHref={siteConfig.clientFlow.generalSupportForm}
@@ -43,7 +73,9 @@ import { siteConfig } from '../config/site';
   <!-- 4. 6 Core Support Initiatives (Bento Grid) -->
   <FeaturesBentoSection
     title="6 Core Initiatives for Women in Science"
-    subtitle="Empowering female computational biologists with mentorship, fellowships, and practical family support."
+    subtitle="Empowering female computational biologists with mentorship, fellowships, and practical career enablers."
+    badge="Actionable Programs"
+    items={womenInitiatives}
   />
 
   <!-- 5. General Support Request -->

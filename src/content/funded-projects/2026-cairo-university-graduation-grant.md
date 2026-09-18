@@ -12,8 +12,8 @@ budget: "£9,000 (£3,000/yr Chemical Fund) + Full Computational Platforms"
 grantCycle: "2026–2029 (3-Year Cycle)"
 datePublished: "2026-09-01"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6aa00240be2d1.jpg"
+image: "/images/universities/800_6aa00240be2d1.jpg"
 summary: "Empowering 20 Graduation Project Teams per year (200 undergraduate students annually, 600 young scientists over 3 years) with computational suites and direct experimental chemical support."
 verificationStatus: "VERIFIED"
 ---

@@ -11,8 +11,8 @@ grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?q=80&w=1200&auto=format&fit=crop"
+featuredImage: "/images/universities/800_6964facf6b20c.webp"
+image: "/images/universities/800_6964facf6b20c.webp"
 summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Hajjah University (Yemen) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---

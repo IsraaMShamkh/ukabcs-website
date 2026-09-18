@@ -3,7 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/hero/PageHero.astro';
 import TextContentSection from '../../components/sections/TextContentSection.astro';
 import NumbersCounterSection from '../../components/sections/NumbersCounterSection.astro';
-import TestimonialsMarqueeSection from '../../components/sections/TestimonialsMarqueeSection.astro';
+
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
 import ProjectCard from '../../components/cards/ProjectCard.astro';
 import { siteConfig } from '../../config/site';
@@ -62,27 +62,39 @@ const totalGrants = allProjects.length;
   <!-- 3. Key Impact & Stats Counter -->
   <NumbersCounterSection />
 
-  <!-- 4. Interactive Cohort Navigation Bar -->
-  <nav class="cohort-filter-bar sticky top-20 z-20 py-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur border-y border-slate-200 dark:border-slate-800 shadow-sm" aria-label="Grant Cohort Filter">
-    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-wrap items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <span class="text-sm font-bold text-slate-800 dark:text-slate-200">Filter Cohort:</span>
-        <div class="flex items-center gap-2 flex-wrap" id="project-filters">
-          <button type="button" class="filter-btn is-active" data-filter="all">
-            All Grants ({totalGrants})
-          </button>
-          <button type="button" class="filter-btn" data-filter="2026">
-            2026 Graduation Grants ({projects2026.length})
-          </button>
-          <button type="button" class="filter-btn" data-filter="2025">
-            2025 Capacity Grants ({projects2025.length})
-          </button>
-        </div>
+  <!-- 4. Section Title Above Tabs -->
+  <section class="funded-awards-header pt-16 pb-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 text-center">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center">
+      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 mb-3">
+        Awarded Grants & Registry
+      </div>
+      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+        Institutional Grants & Funded Project Directory
+      </h2>
+      <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg mt-2 max-w-2xl mx-auto">
+        Explore verified academic grant awards, computational infrastructure funding, and graduation research teams across international partner institutions.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. Interactive Cohort Navigation Bar -->
+  <nav class="cohort-filter-bar sticky top-16 z-30 py-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-y border-slate-200 dark:border-slate-800 shadow-sm" aria-label="Grant Cohort Filter">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center gap-2 text-center">
+      <div class="flex items-center justify-center gap-3 flex-wrap" id="project-filters">
+        <button type="button" class="filter-btn is-active" data-filter="all">
+          All Grants ({totalGrants})
+        </button>
+        <button type="button" class="filter-btn btn-2026" data-filter="2026">
+          🎓 2026 Graduation Grants ({projects2026.length})
+        </button>
+        <button type="button" class="filter-btn btn-2025" data-filter="2025">
+          🏛️ 2025 Capacity Grants ({projects2025.length})
+        </button>
       </div>
 
-      <div class="text-xs text-slate-500 dark:text-slate-400 hidden sm:block">
-        Showing verified institutional peer-reviewed awards
-      </div>
+      <p class="text-xs font-medium text-slate-500 dark:text-slate-400" id="cohort-filter-summary">
+        Showing all verified institutional awards across 2025 and 2026 funding cycles
+      </p>
     </div>
   </nav>
 
@@ -111,7 +123,7 @@ const totalGrants = allProjects.length;
       </div>
 
       <!-- 2026 Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="projects-grid">
         {projects2026.map((project) => {
           const year = project.data.year || project.data.awardYear || 2026;
           return (
@@ -163,7 +175,7 @@ const totalGrants = allProjects.length;
       </div>
 
       <!-- 2025 Projects Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="projects-grid">
         {projects2025.map((project) => {
           const year = project.data.year || project.data.awardYear || 2025;
           return (
@@ -189,8 +201,7 @@ const totalGrants = allProjects.length;
     </div>
   </section>
 
-  <!-- 7. Testimonials from University PIs -->
-  <TestimonialsMarqueeSection />
+
 
   <!-- 8. Promo CTA -->
   <PromoCTASection
@@ -205,13 +216,13 @@ const totalGrants = allProjects.length;
 
 <style>
   .filter-btn {
-    padding: 0.45rem 1rem;
+    padding: 0.55rem 1.25rem;
     border-radius: var(--radius-full, 9999px);
-    font-size: 0.82rem;
+    font-size: 0.88rem;
     font-weight: 700;
     color: var(--color-text-secondary, #64748b);
     background: var(--color-surface, #ffffff);
-    border: 1px solid var(--color-border, #e2e8f0);
+    border: 1.5px solid var(--color-border, #cbd5e1);
     cursor: pointer;
     transition: all 0.2s ease;
   }
@@ -219,23 +230,43 @@ const totalGrants = allProjects.length;
   .filter-btn:hover {
     color: var(--color-primary, #005a9c);
     border-color: var(--color-primary, #005a9c);
+    background: #f8fafc;
   }
 
   .filter-btn.is-active {
     background: var(--color-primary, #005a9c);
     color: #ffffff;
     border-color: var(--color-primary, #005a9c);
-    box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2);
+    box-shadow: 0 4px 14px rgba(0, 90, 156, 0.25);
   }
 
   .cohort-section.is-hidden {
     display: none !important;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  @media (max-width: 1024px) {
+    .projects-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
 <script>
   const filterBtns = document.querySelectorAll<HTMLButtonElement>('#project-filters .filter-btn');
   const cohortSections = document.querySelectorAll<HTMLElement>('.cohort-section');
+  const summaryEl = document.getElementById('cohort-filter-summary');
 
   filterBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
@@ -243,6 +274,16 @@ const totalGrants = allProjects.length;
 
       filterBtns.forEach((b) => b.classList.remove('is-active'));
       btn.classList.add('is-active');
+
+      if (summaryEl) {
+        if (filter === '2026') {
+          summaryEl.textContent = 'Showing 6 graduation project awards from the 2026 funding cycle';
+        } else if (filter === '2025') {
+          summaryEl.textContent = 'Showing 8 capacity building grants (£32,000 each) from the 2025 cycle';
+        } else {
+          summaryEl.textContent = 'Showing all verified institutional awards across 2025 and 2026 funding cycles';
+        }
+      }
 
       cohortSections.forEach((section) => {
         const group = section.getAttribute('data-cohort-group');
