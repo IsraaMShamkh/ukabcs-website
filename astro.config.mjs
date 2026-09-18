@@ -5,5 +5,10 @@ import react from '@astrojs/react';
 export default defineConfig({
   site: 'https://www.ukabcs.co.uk',
   integrations: [sitemap(), react()],
-  output: 'static'
+  output: 'static',
+  vite: {
+    optimizeDeps: {
+      include: ['react', 'react-dom', 'motion', 'motion/react', 'class-variance-authority', 'cn']
+    }
+  }
 });

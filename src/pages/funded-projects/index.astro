@@ -2,19 +2,49 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/hero/PageHero.astro';
 import TextContentSection from '../../components/sections/TextContentSection.astro';
-import SalesPromoSection from '../../components/sections/SalesPromoSection.astro';
 import NumbersCounterSection from '../../components/sections/NumbersCounterSection.astro';
-import NewsletterSection from '../../components/sections/NewsletterSection.astro';
+import TestimonialsMarqueeSection from '../../components/sections/TestimonialsMarqueeSection.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
+import ProjectCard from '../../components/cards/ProjectCard.astro';
+import { FocusCards } from '../../components/ui/focus-cards';
 import { siteConfig } from '../../config/site';
+import { getCollection } from 'astro:content';
+
+// Fetch all peer-reviewed funded university projects
+const allProjects = await getCollection('funded-projects');
+
+// Sort by year (2026 first) then date
+const sortedProjects = allProjects.sort((a, b) => {
+  const yearA = a.data.year || a.data.awardYear || 2025;
+  const yearB = b.data.year || b.data.awardYear || 2025;
+  if (yearB !== yearA) return yearB - yearA;
+  const dateA = a.data.datePublished ? new Date(a.data.datePublished).getTime() : 0;
+  const dateB = b.data.datePublished ? new Date(b.data.datePublished).getTime() : 0;
+  return dateB - dateA;
+});
+
+// Prepare featured projects for Aceternity Focus Cards
+const featuredFocusCards = sortedProjects.slice(0, 6).map((proj) => ({
+  title: proj.data.title,
+  src: proj.data.image || proj.data.featuredImage || "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop",
+  href: `/funded-projects/${proj.slug}`,
+  institution: proj.data.institution,
+  country: proj.data.country,
+  year: proj.data.year || proj.data.awardYear || 2025,
+  grantType: proj.data.grantType,
+  summary: proj.data.summary || proj.data.description,
+}));
 ---
 
-<BaseLayout title={`Funded Projects & Awardees | ${siteConfig.publicName}`} description="Explore peer-reviewed university grant awards, capacity building projects, and graduation support recipients across international institutions.">
+<BaseLayout
+  title={`Funded Projects & Award Registry | ${siteConfig.publicName}`}
+  description="Explore peer-reviewed university grant awards, capacity building projects, and graduation research support recipients across international partner institutions."
+>
   <!-- 1. Hero -->
   <PageHero
-    eyebrow="Award Registry"
-    title="Funded Projects & Awardees"
-    description="Explore peer-reviewed university grant awards, capacity building projects, and graduation support recipients across international partner institutions."
+    eyebrow="Official Award Registry"
+    title="Funded University Projects & Awardees"
+    description="Explore peer-reviewed university grant awards, capacity building projects, and graduation research support recipients across international partner institutions."
     image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=90&w=2200&auto=format&fit=crop"
   />
 
@@ -22,8 +52,8 @@ import { siteConfig } from '../../config/site';
   <TextContentSection
     tag="Transparent Grant Index"
     title="University Research Grants & Capacity Building Awards"
-    subtitle="Enabling AI computational drug discovery and student capacity building."
-    content="UKABCS non-profit research grants are awarded through independent peer-review evaluation. Across 2025 and 2026, UKABCS has funded research teams and graduation projects across leading universities in the UK, Brazil, Sudan, Iraq, and Egypt."
+    subtitle="Democratizing high-performance AI drug discovery and laboratory capacity."
+    content="UKABCS research grants are awarded through strict double-blind peer review. Across the 2025 and 2026 cycles, UKABCS has funded innovative research teams across leading institutions in the UK, Egypt, Iraq, Sudan, Brazil, and Saudi Arabia."
     image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
     ctaText="Explore Open Grant Calls →"
     ctaHref="/programmes-grants"
@@ -32,15 +62,157 @@ import { siteConfig } from '../../config/site';
   <!-- 3. Key Impact & Stats Counter -->
   <NumbersCounterSection />
 
-  <!-- 4. Projects & Programmes Showcase -->
-  <SalesPromoSection
-    title="Funded University Projects & Awardees"
-    subtitle="Discover complete award details, participating faculties, and research milestones."
+  <!-- 4. Featured Spotlight: Aceternity Focus Cards -->
+  <section class="py-16 sm:py-20 bg-slate-900 text-white relative overflow-hidden" id="spotlight">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 mb-3">
+          Interactive Spotlight
+        </span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-white mb-4">
+          Featured University Awardees
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg">
+          Hover over any institution below to inspect grant milestones, and click to view the complete award article and research terms.
+        </p>
+      </div>
+
+      <!-- React Focus Cards with Links -->
+      <FocusCards client:visible cards={featuredFocusCards} />
+    </div>
+  </section>
+
+  <!-- 5. Complete Directory of All 14 University Projects -->
+  <section class="py-20 bg-slate-50 dark:bg-slate-950" id="all-projects">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div>
+          <span class="badge-pill mb-2">Complete Index</span>
+          <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">
+            All Funded University Grants ({sortedProjects.length})
+          </h2>
+          <p class="text-slate-600 dark:text-slate-400 text-sm mt-1">
+            Browse full award documentation across all cohorts and academic faculties.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex items-center gap-2 flex-wrap" id="project-filters">
+          <button type="button" class="filter-btn is-active" data-filter="all">All Cohorts ({sortedProjects.length})</button>
+          <button type="button" class="filter-btn" data-filter="2026">2026 Cohort</button>
+          <button type="button" class="filter-btn" data-filter="2025">2025 Cohort</button>
+          <button type="button" class="filter-btn" data-filter="capacity">Capacity Building</button>
+          <button type="button" class="filter-btn" data-filter="graduation">Graduation Support</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
+        {sortedProjects.map((project) => {
+          const year = project.data.year || project.data.awardYear || 2025;
+          const grantType = project.data.grantType || "University Grant";
+          
+          let filterType = 'other';
+          if (grantType.toLowerCase().includes('capacity')) filterType = 'capacity';
+          if (grantType.toLowerCase().includes('graduation')) filterType = 'graduation';
+
+          return (
+            <div
+              class="project-grid-item"
+              data-year={String(year)}
+              data-type={filterType}
+            >
+              <ProjectCard
+                title={project.data.title}
+                year={year}
+                institution={project.data.institution}
+                country={project.data.country}
+                grantType={grantType}
+                datePublished={project.data.datePublished || "2025-01-01"}
+                description={project.data.summary || project.data.description || ""}
+                slug={project.slug}
+                image={project.data.image || project.data.featuredImage}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Testimonials from University PIs -->
+  <TestimonialsMarqueeSection />
+
+  <!-- 7. Promo CTA -->
+  <PromoCTASection
+    title="Ready to Submit a Project Proposal?"
+    subtitle="Learn more about UKABCS peer review criteria, funding windows, and university eligibility guidelines."
+    primaryBtnText="Explore Grant Calls"
+    primaryBtnHref="/programmes-grants"
+    secondaryBtnText="Audit & Due Diligence Policies"
+    secondaryBtnHref="/transparency"
   />
-
-  <!-- 5. Newsletter Bulletin -->
-  <NewsletterSection />
-
-  <!-- 6. Promo CTA -->
-  <PromoCTASection />
 </BaseLayout>
+
+<style>
+  .filter-btn {
+    padding: 0.45rem 1rem;
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-text-secondary, #64748b);
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-btn:hover {
+    color: var(--color-primary, #0284c7);
+    border-color: var(--color-primary, #0284c7);
+  }
+
+  .filter-btn.is-active {
+    background: var(--color-primary, #005a9c);
+    color: #ffffff;
+    border-color: var(--color-primary, #005a9c);
+    box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2);
+  }
+
+  .project-grid-item.is-hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll<HTMLButtonElement>('#project-filters .filter-btn');
+  const projectItems = document.querySelectorAll<HTMLElement>('.project-grid-item');
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter') || 'all';
+
+      filterBtns.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      projectItems.forEach((item) => {
+        const itemYear = item.getAttribute('data-year');
+        const itemType = item.getAttribute('data-type');
+
+        if (filter === 'all') {
+          item.classList.remove('is-hidden');
+        } else if (filter === '2026' && itemYear === '2026') {
+          item.classList.remove('is-hidden');
+        } else if (filter === '2025' && itemYear === '2025') {
+          item.classList.remove('is-hidden');
+        } else if (filter === 'capacity' && itemType === 'capacity') {
+          item.classList.remove('is-hidden');
+        } else if (filter === 'graduation' && itemType === 'graduation') {
+          item.classList.remove('is-hidden');
+        } else {
+          item.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+</script>

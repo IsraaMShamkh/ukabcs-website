@@ -1,0 +1,214 @@
+---
+import { getCollection } from 'astro:content';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  categoryFilter?: string;
+  limit?: number;
+  showFilters?: boolean;
+}
+
+const {
+  title = "Research Papers, Calls & Official Insights",
+  subtitle = "Peer-reviewed publications, institutional funding announcements, and community bulletins.",
+  categoryFilter,
+  limit,
+  showFilters = true,
+} = Astro.props;
+
+const allNews = await getCollection('news');
+
+// Sort newest first
+const sorted = allNews.sort(
+  (a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()
+);
+
+const items = categoryFilter
+  ? sorted.filter((item) => item.data.category === categoryFilter || item.data.contentType === categoryFilter)
+  : sorted;
+
+const displayItems = limit ? items.slice(0, limit) : items;
+
+// Available categories for filter pills
+const categories = [
+  { id: 'all', label: 'All Updates' },
+  { id: 'research', label: 'Research Articles' },
+  { id: 'calls', label: 'Grant Calls' },
+  { id: 'governance', label: 'Governance' },
+  { id: 'impact', label: 'Impact & Community' },
+];
+---
+
+<section class="py-16 sm:py-20 blog-grid-section" id="blog-grid">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+    <!-- Section Header -->
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Academic Publications &amp; Releases</span>
+      <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight text-slate-900 dark:text-white mb-4">
+        {title}
+      </h2>
+      <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        {subtitle}
+      </p>
+    </div>
+
+    <!-- Category Filter Pills (if enabled) -->
+    {showFilters && (
+      <div class="filter-bar flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-12">
+        {categories.map((cat, idx) => (
+          <button
+            type="button"
+            class:list={['filter-pill', idx === 0 && 'is-active']}
+            data-filter={cat.id}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+    )}
+
+    <!-- Blog Grid (Aceternity Simple Blog with Grid) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-grid-items">
+      {displayItems.map((post) => {
+        const image = post.data.image || post.data.featuredImage || "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop";
+        const cat = post.data.category || (post.data.contentType === 'open-call' ? 'Grant Call' : 'Article');
+        const formattedDate = new Date(post.data.datePublished).toLocaleDateString('en-GB', {
+          day: 'numeric',
+          month: 'short',
+          year: 'numeric',
+        });
+
+        // Determine data category for client filtering
+        let filterTag = 'research';
+        if (cat.toLowerCase().includes('call') || post.slug.includes('grant') || post.slug.includes('call')) {
+          filterTag = 'calls';
+        } else if (cat.toLowerCase().includes('governance') || post.slug.includes('governance')) {
+          filterTag = 'governance';
+        } else if (cat.toLowerCase().includes('impact') || post.slug.includes('credit')) {
+          filterTag = 'impact';
+        }
+
+        return (
+          <article
+            class="group flex flex-col bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 blog-card"
+            data-category={filterTag}
+          >
+            <!-- Image Wrap -->
+            <a href={`/news/${post.slug}`} class="block relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-slate-800">
+              <img
+                src={image}
+                alt={post.data.title}
+                class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500 ease-out"
+                loading="lazy"
+              />
+              <div class="absolute top-4 left-4 flex gap-2">
+                <span class="px-3 py-1 rounded-full text-xs font-bold bg-white/90 dark:bg-slate-900/90 text-slate-800 dark:text-cyan-300 backdrop-blur-md shadow-sm border border-black/5">
+                  {cat}
+                </span>
+              </div>
+            </a>
+
+            <!-- Card Body -->
+            <div class="p-6 flex flex-col flex-grow">
+              <!-- Meta Row -->
+              <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                <time datetime={post.data.datePublished}>{formattedDate}</time>
+                <span>•</span>
+                <span>4 min read</span>
+              </div>
+
+              <!-- Title -->
+              <h3 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-primary dark:group-hover:text-cyan-400 transition-colors line-clamp-2 leading-snug mb-3">
+                <a href={`/news/${post.slug}`}>
+                  {post.data.title}
+                </a>
+              </h3>
+
+              <!-- Excerpt -->
+              <p class="text-sm text-slate-600 dark:text-slate-300 line-clamp-3 leading-relaxed mb-6 flex-grow">
+                {post.data.description || post.data.summary || "Explore the complete details, methodology, and outcomes of this official UKABCS initiative."}
+              </p>
+
+              <!-- Footer with Author & Link -->
+              <div class="pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between mt-auto">
+                <div class="flex items-center gap-2.5">
+                  <div class="w-7 h-7 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs">
+                    {(post.data.author || 'U')[0]}
+                  </div>
+                  <span class="text-xs font-medium text-slate-700 dark:text-slate-300">
+                    {post.data.author || "UKABCS Secretariat"}
+                  </span>
+                </div>
+
+                <a
+                  href={`/news/${post.slug}`}
+                  class="inline-flex items-center gap-1 text-xs font-bold text-primary dark:text-cyan-400 group-hover:translate-x-0.5 transition-transform"
+                >
+                  <span>Read</span>
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12" />
+                    <polyline points="12 5 19 12 12 19" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
+<style>
+  .filter-pill {
+    padding: 0.5rem 1.15rem;
+    border-radius: var(--radius-full, 9999px);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-secondary, #64748b);
+    background: var(--color-surface, #f8fafc);
+    border: 1px solid var(--color-border, #e2e8f0);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .filter-pill:hover {
+    color: var(--color-primary, #0284c7);
+    border-color: var(--color-primary, #0284c7);
+  }
+
+  .filter-pill.is-active {
+    background: var(--color-primary, #005a9c);
+    color: #ffffff;
+    border-color: var(--color-primary, #005a9c);
+    box-shadow: 0 4px 12px rgba(0, 90, 156, 0.2);
+  }
+
+  .blog-card.is-hidden {
+    display: none !important;
+  }
+</style>
+
+<script>
+  const filterButtons = document.querySelectorAll<HTMLButtonElement>('.filter-pill');
+  const cards = document.querySelectorAll<HTMLElement>('.blog-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-filter') || 'all';
+
+      filterButtons.forEach((b) => b.classList.remove('is-active'));
+      btn.classList.add('is-active');
+
+      cards.forEach((card) => {
+        const cat = card.getAttribute('data-category');
+        if (target === 'all' || cat === target) {
+          card.classList.remove('is-hidden');
+        } else {
+          card.classList.add('is-hidden');
+        }
+      });
+    });
+  });
+</script>

@@ -1,0 +1,170 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Get in Touch with the UKABCS Secretariat",
+  subtitle = "Whether you are applying for grant funding, seeking institutional membership, or establishing a computational research partnership.",
+} = Astro.props;
+---
+
+<section class="py-20 relative overflow-hidden bg-slate-950 text-white" id="contact">
+  <!-- Dither / Dot Pattern Overlay -->
+  <div class="absolute inset-0 pointer-events-none opacity-20 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:16px_16px]"></div>
+  <div class="absolute -top-40 -right-40 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+  <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Left Column: Context & Dither Visual Box -->
+      <div class="lg:col-span-5 flex flex-col justify-between">
+        <div>
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-cyan-950 text-cyan-300 border border-cyan-800/60 mb-4">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+            Official Secretariat Inquiry
+          </span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4 text-white leading-tight">
+            {title}
+          </h2>
+          <p class="text-slate-400 text-base sm:text-lg leading-relaxed mb-8">
+            {subtitle}
+          </p>
+        </div>
+
+        <!-- Dither Styled Card Box -->
+        <div class="p-6 sm:p-8 rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-900/40 border border-white/10 backdrop-blur-xl relative overflow-hidden group">
+          <div class="relative z-10 space-y-6">
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="20" height="16" x="2" y="4" rx="2"></rect>
+                  <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">Direct Email</h4>
+                <p class="text-sm text-slate-400">info@ukabcs.co.uk</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">UK Registered Seat</h4>
+                <p class="text-sm text-slate-400">London, United Kingdom • Supporting Global Research</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <div class="w-10 h-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 shrink-0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div>
+                <h4 class="text-sm font-semibold text-white">Response Commitment</h4>
+                <p class="text-sm text-slate-400">Official inquiries reviewed within 2 business days</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Form with Elegant Inputs -->
+      <div class="lg:col-span-7">
+        <form class="p-8 sm:p-10 rounded-3xl bg-slate-900/60 border border-white/10 backdrop-blur-2xl shadow-2xl space-y-6">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="dither-name" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                Full Name *
+              </label>
+              <input
+                type="text"
+                id="dither-name"
+                required
+                placeholder="Dr. Nourhan Hassan"
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors text-sm"
+              />
+            </div>
+            <div>
+              <label for="dither-email" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                Institutional Email *
+              </label>
+              <input
+                type="email"
+                id="dither-email"
+                required
+                placeholder="name@university.ac.uk"
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors text-sm"
+              />
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div>
+              <label for="dither-institution" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                University or Organization *
+              </label>
+              <input
+                type="text"
+                id="dither-institution"
+                required
+                placeholder="Cairo University / Faculty of Science"
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors text-sm"
+              />
+            </div>
+            <div>
+              <label for="dither-topic" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+                Inquiry Topic *
+              </label>
+              <select
+                id="dither-topic"
+                class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-white/10 text-white focus:outline-none focus:border-cyan-400 transition-colors text-sm"
+              >
+                <option value="grant-proposal">Grant Application &amp; Funding Streams</option>
+                <option value="membership">Academic Society Membership</option>
+                <option value="compute-credits">HPC &amp; In-Kind Compute Credits</option>
+                <option value="partnership">Institutional MoU &amp; Partnership</option>
+                <option value="other">General Inquiries</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="dither-message" class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">
+              Message &amp; Proposal Summary *
+            </label>
+            <textarea
+              id="dither-message"
+              rows="4"
+              required
+              placeholder="Outline your research domain, proposed collaboration, or question for the UKABCS review committee..."
+              class="w-full px-4 py-3 rounded-xl bg-slate-950/80 border border-white/10 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 transition-colors text-sm resize-y"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="w-full py-3.5 px-6 rounded-xl font-bold text-sm text-slate-950 bg-gradient-to-r from-cyan-400 to-sky-300 hover:from-cyan-300 hover:to-sky-200 transition-all shadow-lg hover:shadow-cyan-500/25 flex items-center justify-center gap-2 cursor-pointer"
+          >
+            <span>Submit Official Inquiry</span>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+</section>

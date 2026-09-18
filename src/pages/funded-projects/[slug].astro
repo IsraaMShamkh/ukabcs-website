@@ -13,7 +13,9 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { Content } = await project.render();
 
-const heroImage = project.data.image || "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop";
+const heroImage = project.data.image || project.data.featuredImage || "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=1200&auto=format&fit=crop";
+const awardYear = project.data.year || project.data.awardYear || 2025;
+const projectSummary = project.data.description || project.data.summary || "";
 ---
 
 <BaseLayout title={`${project.data.title} | UKABCS Funded Project`}>
@@ -31,12 +33,14 @@ const heroImage = project.data.image || "https://images.unsplash.com/photo-15791
       <!-- Header Meta -->
       <header class="mb-8">
         <div class="meta-row mb-4">
-          <span class="year-pill">{project.data.year} Award</span>
+          <span class="year-pill">{awardYear} Award</span>
           <span class="badge-pill">{project.data.grantType}</span>
           <span class="country-pill">{project.data.country}</span>
-          <time class="meta-text" datetime={project.data.datePublished}>
-            {new Date(project.data.datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
-          </time>
+          {project.data.datePublished && (
+            <time class="meta-text" datetime={project.data.datePublished}>
+              {new Date(project.data.datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
+            </time>
+          )}
         </div>
 
         <h1 class="project-title">{project.data.title}</h1>
@@ -49,7 +53,7 @@ const heroImage = project.data.image || "https://images.unsplash.com/photo-15791
           <span>Lead Institution: <strong>{project.data.institution} ({project.data.country})</strong></span>
         </div>
 
-        <p class="project-subtitle mt-4">{project.data.description}</p>
+        {projectSummary && <p class="project-subtitle mt-4">{projectSummary}</p>}
       </header>
 
       <!-- Hero Image -->

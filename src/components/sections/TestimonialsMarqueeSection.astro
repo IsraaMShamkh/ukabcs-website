@@ -1,0 +1,130 @@
+---
+export interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Trusted by Leading University Researchers Worldwide",
+  subtitle = "Feedback from Principal Investigators, Faculty Deans, and Student Cohort Leaders supported by UKABCS Grants.",
+} = Astro.props;
+
+const testimonials = [
+  {
+    name: "Dr. Nourhan Hassan",
+    role: "Lead PI, Computer-Aided Drug Discovery",
+    institution: "Cairo University (Egypt)",
+    quote: "The UKABCS Capacity Building Grant provided our laboratory with the critical compute resources and structure to screen thousands of novel natural compounds in record time.",
+    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop",
+    year: "2025 Awardee",
+  },
+  {
+    name: "Prof. Ahmed Al-Mansoori",
+    role: "Department of Genomics",
+    institution: "University of Basrah (Iraq)",
+    quote: "UKABCS's peer review process was rigorous, fair, and exceptionally transparent. The grant helped our graduate researchers access international sequencing databases.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+    year: "2026 Awardee",
+  },
+  {
+    name: "Dr. Mahmoud El-Sayed",
+    role: "Faculty of Science",
+    institution: "Al-Azhar University, Assiut (Egypt)",
+    quote: "Receiving the UKABCS Chemoinformatics grant allowed our faculty to establish a dedicated multi-workstation lab for molecular modeling, directly benefiting over 60 students.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+    year: "2025 & 2026 Awardee",
+  },
+  {
+    name: "Dr. Elena Rossi",
+    role: "Biotechnology Collaborator",
+    institution: "Federal University of Alfenas (Brazil)",
+    quote: "The international collaboration stream enabled cross-border scientific data exchange between South America and UK research mentors with complete transparency.",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=200&auto=format&fit=crop",
+    year: "2026 Awardee",
+  },
+  {
+    name: "Tariq Abdelrahim",
+    role: "Graduation Project Team Lead",
+    institution: "University of Kordofan (Sudan)",
+    quote: "The graduation project capacity grant provided software licensing and APC waiver support that made our thesis publication possible in an indexed journal.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+    year: "2025 Awardee",
+  },
+  {
+    name: "Dr. Sarah Jenkins",
+    role: "Academic Review Board Member",
+    institution: "Imperial College London Affiliate (UK)",
+    quote: "Evaluating proposals for UKABCS is inspiring. The double-blind peer review guarantees that only top-tier scientific novelty and budget integrity receive funding.",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+    year: "Review Panelist",
+  },
+];
+---
+
+<section class="py-20 bg-slate-50 dark:bg-slate-950 overflow-hidden relative" id="testimonials">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 mb-12 text-center">
+    <span class="badge-pill mb-3">Academic Recognition &amp; Testimonials</span>
+    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mb-4">
+      {title}
+    </h2>
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed">
+      {subtitle}
+    </p>
+  </div>
+
+  <!-- Marquee Row 1 -->
+  <div class="marquee-wrapper relative w-full overflow-hidden mb-6">
+    <div class="marquee-track flex gap-6 animate-marquee">
+      {[...testimonials, ...testimonials].map((t) => (
+        <div class="w-[340px] sm:w-[400px] shrink-0 p-6 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col justify-between hover:border-primary/50 transition-colors">
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-3">
+              <span class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-primary/10 text-primary dark:text-cyan-300">
+                {t.year}
+              </span>
+              <div class="flex text-amber-400 text-xs">★★★★★</div>
+            </div>
+            <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed italic">
+              "{t.quote}"
+            </p>
+          </div>
+
+          <div class="flex items-center gap-3 pt-4 border-t border-slate-100 dark:border-slate-800">
+            <img src={t.avatar} alt={t.name} class="w-10 h-10 rounded-full object-cover border border-primary/20" loading="lazy" />
+            <div>
+              <h4 class="text-sm font-bold text-slate-900 dark:text-white leading-tight">{t.name}</h4>
+              <p class="text-xs text-slate-500 dark:text-slate-400 leading-tight">{t.role}</p>
+              <p class="text-[11px] font-semibold text-primary dark:text-cyan-400 mt-0.5">{t.institution}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .marquee-wrapper {
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .animate-marquee {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 45s linear infinite;
+  }
+
+  .marquee-wrapper:hover .animate-marquee {
+    animation-play-state: paused;
+  }
+
+  @keyframes marquee-scroll {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
