@@ -1,25 +1,33 @@
 ---
-title: "University of Basrah Announces Winning the UKABCS Capacity Building Grant 2026"
+title: "The UKABCS Announces that Federal University of Alfenas Wins the Capacity Building Grant 2026"
 awardYear: 2025
 year: 2025
 cohort: "2025"
-institution: "University of Basrah"
-country: "Iraq"
-faculty: "College of Science – Department of Chemistry"
-mainPI: "Assoc. Prof. Dr. Iman A. J. Al-Timimi"
+institution: "Federal University of Alfenas"
+country: "Brazil"
+faculty: "Institute of Exact Sciences – Physics Department"
+mainPI: "Ihosvany Camps (Prof. Ph.D)"
 grantType: "Capacity Building Grant"
 budget: "£32,000 (Fully Funded)"
 datePublished: "2025-09-15"
 featured: true
-featuredImage: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
-image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=1200&auto=format&fit=crop"
-summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that the University of Basrah has been awarded the UKABCS Capacity Building Grant, as part of an international 2.5-year program."
+featuredImage: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1200&auto=format&fit=crop"
+image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=1200&auto=format&fit=crop"
+summary: "The UK Association for Biotechnology & Computational Science (UKABCS) announces that Federal University of Alfenas (Brazil) has been awarded the UKABCS Capacity Building Grant."
 verificationStatus: "VERIFIED"
 ---
 
-The UK Association for Biotechnology & Computational Science (UKABCS) announces that the University of Basrah has been awarded the UKABCS Capacity Building Grant 2026, as part of an international program with a duration of two and a half years, aimed at enhancing the academic and research capacities of universities worldwide.
+The UK Association for Biotechnology & Computational Science (UKABCS) announces that Federal University of Alfenas (Brazil) has been awarded the UKABCS Capacity Building Grant 2026, as part of an international program with a duration of two and a half years, aimed at enhancing the academic and research capacities of universities worldwide.
 
 This achievement reflects the university’s research excellence and its ability to meet international standards for scientific quality, institutional governance, and sustainable research development.
+
+---
+
+## About UKABCS
+
+The UKABCS is a UK-based non-profit scientific association dedicated to supporting and advancing the fields of biotechnology, computational sciences, computational chemistry, and AI-driven drug design through capacity-building programs targeted at universities, research centers, and scientific societies globally.
+
+The association pursues a long-term strategic vision to foster institutional transformation in research ecosystems, keeping pace with rapid developments in computational and AI sciences.
 
 ---
 
@@ -76,13 +84,13 @@ The program provides full financial coverage for all core educational and resear
 
 ---
 
-## Academic Representation – University of Basrah
+## Academic Representation – Federal University of Alfenas
 
-The University of Basrah is represented in the program by:  
-**Assoc. Prof. Dr. Iman A. J. Al-Timimi**  
-*Associate Professor of Chemistry – College of Science – Department of Chemistry – University of Basrah*
+Federal University of Alfenas is represented in the program by:  
+**Ihosvany Camps**  
+*Prof. Ph.D – Physics Department – Institute of Exact Sciences – Federal University of Alfenas (Brazil)*
 
-Her participation supports the program’s academic objectives and fosters the integration of computational methods into chemical research, enhancing the quality of scientific analysis and research outputs in alignment with international standards.
+His participation supports the program’s academic objectives and fosters the integration of computational methods into physics and research disciplines, enhancing the quality of scientific analysis and research outputs in alignment with international standards.
 
 ---
 
@@ -100,7 +108,7 @@ Her role was pivotal in designing the program framework, aligning academic visio
 
 ## Future Impact and Sustainability
 
-Winning this grant represents a strategic step toward building a sustainable research ecosystem at the University of Basrah. The program is expected to:
+Winning this grant represents a strategic step toward building a sustainable research ecosystem at Federal University of Alfenas. The program is expected to:
 - Increase the quality of research outputs.
 - Enhance opportunities for international publication.
 - Develop academic competencies.

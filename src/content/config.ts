@@ -68,6 +68,9 @@ const fundedProjectsCollection = defineCollection({
     sourceUrl: z.string().optional(),
     verificationStatus: z.enum(['VERIFIED', 'PENDING_APPROVAL']).default('VERIFIED'),
     featured: z.boolean().default(false),
+    applicationId: z.string().optional(),
+    grantCycle: z.string().optional(),
+    cohort: z.string().optional(),
   }),
 });
 

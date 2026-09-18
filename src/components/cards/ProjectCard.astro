@@ -9,9 +9,27 @@ export interface Props {
   description: string;
   slug: string;
   image?: string;
+  faculty?: string;
+  mainPI?: string;
+  budget?: string;
+  cohort?: string;
 }
 
-const { title, year, institution, country, grantType, datePublished, description, slug, image } = Astro.props;
+const {
+  title,
+  year,
+  institution,
+  country,
+  grantType,
+  datePublished,
+  description,
+  slug,
+  image,
+  faculty,
+  mainPI,
+  budget,
+  cohort,
+} = Astro.props;
 
 // Fallback high-res lab/project image
 const defaultImage = "https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop";
@@ -19,15 +37,15 @@ const cardImage = image || defaultImage;
 ---
 
 <article class="card-aceternity project-card">
-  <a href={`/funded-projects/${slug}`} class="card-image-link" aria-label={title}>
-    <div class="card-image-wrap">
+  <div class="card-image-wrap">
+    <a href={`/funded-projects/${slug}`} class="card-image-link" aria-label={title}>
       <img src={cardImage} alt={title} loading="lazy" />
-      <div class="badge-group">
-        <span class="year-pill">{year} Award</span>
-        <span class="badge-pill">{grantType}</span>
-      </div>
+    </a>
+    <div class="badge-group">
+      <span class="year-pill">{year} Cohort</span>
+      <span class="badge-pill">{grantType}</span>
     </div>
-  </a>
+  </div>
 
   <div class="card-body">
     <div class="institution-row">
@@ -38,16 +56,33 @@ const cardImage = image || defaultImage;
       <span class="institution-name">{institution} • {country}</span>
     </div>
 
+    {mainPI && (
+      <div class="pi-tag">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+        <span class="pi-text"><strong>PI:</strong> {mainPI}</span>
+      </div>
+    )}
+
     <h3 class="card-title">
       <a href={`/funded-projects/${slug}`}>{title}</a>
     </h3>
+
+    {budget && (
+      <div class="budget-badge">
+        <span class="budget-dot"></span>
+        <span class="budget-text">{budget}</span>
+      </div>
+    )}
 
     <p class="card-excerpt">{description}</p>
 
     <div class="card-footer">
       <span class="date-text">Published: {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
       <a href={`/funded-projects/${slug}`} class="read-link">
-        <span>Project & Terms Details</span>
+        <span>Read Full Article</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -64,12 +99,41 @@ const cardImage = image || defaultImage;
     height: 100%;
     padding: 1.25rem;
     gap: 1.25rem;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 12px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1));
+  }
+
+  .card-image-wrap {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    border-radius: var(--radius-md, 8px);
+    overflow: hidden;
+    background: #0f172a;
   }
 
   .card-image-link {
     display: block;
-    border-radius: var(--radius-md);
-    overflow: hidden;
+    width: 100%;
+    height: 100%;
+  }
+
+  .card-image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.35s ease;
+  }
+
+  .project-card:hover .card-image-wrap img {
+    transform: scale(1.04);
   }
 
   .badge-group {
@@ -79,16 +143,17 @@ const cardImage = image || defaultImage;
     display: flex;
     gap: 0.4rem;
     z-index: 2;
+    flex-wrap: wrap;
   }
 
   .year-pill {
     font-size: 0.75rem;
     font-weight: 700;
     padding: 0.25rem 0.65rem;
-    border-radius: var(--radius-full);
-    background: var(--color-primary);
+    border-radius: var(--radius-full, 9999px);
+    background: var(--color-primary, #005a9c);
     color: #ffffff;
-    box-shadow: var(--shadow-sm);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   }
 
   .card-body {
@@ -101,30 +166,88 @@ const cardImage = image || defaultImage;
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    color: var(--color-accent);
-    font-size: 0.85rem;
-    font-weight: 600;
+    color: var(--color-primary, #005a9c);
+    font-size: 0.88rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .pi-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.8rem;
+    color: var(--color-text-secondary, #475569);
+    background: var(--color-surface-hover, #f1f5f9);
+    padding: 0.2rem 0.55rem;
+    border-radius: var(--radius-sm, 4px);
     margin-bottom: 0.6rem;
+    width: fit-content;
+  }
+
+  .pi-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 280px;
   }
 
   .card-title {
     font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--color-text-primary);
-    margin-bottom: 0.6rem;
-    line-height: 1.35;
+    font-weight: 800;
+    color: var(--color-text-primary, #0f172a);
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+  }
+
+  .card-title a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.2s ease;
   }
 
   .card-title a:hover {
-    color: var(--color-primary);
+    color: var(--color-primary, #0284c7);
+  }
+
+  .budget-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #065f46;
+    background: #ecfdf5;
+    border: 1px solid #a7f3d0;
+    padding: 0.15rem 0.55rem;
+    border-radius: var(--radius-full, 9999px);
+    margin-bottom: 0.6rem;
+    width: fit-content;
+  }
+
+  :global(.dark) .budget-badge {
+    color: #34d399;
+    background: rgba(6, 95, 70, 0.25);
+    border-color: rgba(52, 211, 153, 0.3);
+  }
+
+  .budget-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #10b981;
   }
 
   .card-excerpt {
     font-size: 0.9rem;
-    color: var(--color-text-secondary);
+    color: var(--color-text-secondary, #64748b);
     line-height: 1.6;
     margin-bottom: 1.25rem;
     flex-grow: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .card-footer {
@@ -132,12 +255,13 @@ const cardImage = image || defaultImage;
     align-items: center;
     justify-content: space-between;
     padding-top: 0.85rem;
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid var(--color-border, #e2e8f0);
+    gap: 0.5rem;
   }
 
   .date-text {
     font-size: 0.78rem;
-    color: var(--color-text-muted);
+    color: var(--color-text-muted, #94a3b8);
   }
 
   .read-link {
@@ -145,13 +269,14 @@ const cardImage = image || defaultImage;
     align-items: center;
     gap: 0.4rem;
     font-size: 0.85rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    transition: transform var(--transition-fast), color var(--transition-fast);
+    font-weight: 700;
+    color: var(--color-primary, #005a9c);
+    text-decoration: none;
+    transition: transform var(--transition-fast, 0.2s), color var(--transition-fast, 0.2s);
   }
 
   .read-link:hover {
-    color: var(--color-primary-hover);
+    color: var(--color-primary-hover, #0284c7);
     transform: translateX(3px);
   }
 </style>

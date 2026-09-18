@@ -176,6 +176,45 @@ const projectSummary = project.data.description || project.data.summary || "";
     margin-bottom: 0.5rem;
   }
 
+  .prose-content :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.75rem 0;
+    font-size: 0.95rem;
+    overflow-x: auto;
+    display: table;
+  }
+
+  .prose-content :global(th) {
+    background: var(--color-surface-hover, #f1f5f9);
+    color: var(--color-text-primary, #0f172a);
+    font-weight: 700;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .prose-content :global(td) {
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--color-border, #e2e8f0);
+    color: var(--color-text-secondary, #475569);
+  }
+
+  .prose-content :global(tr:nth-child(even)) {
+    background: rgba(0, 90, 156, 0.02);
+  }
+
+  :global(.dark) .prose-content :global(th) {
+    background: #1e293b;
+    border-color: #334155;
+    color: #f8fafc;
+  }
+
+  :global(.dark) .prose-content :global(td) {
+    border-color: #334155;
+    color: #cbd5e1;
+  }
+
   .flex-center {
     display: flex;
     justify-content: center;
