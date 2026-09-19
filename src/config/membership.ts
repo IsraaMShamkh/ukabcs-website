@@ -26,7 +26,7 @@ export const membershipConfig = {
   hero: {
     eyebrow: "Global Academic Society",
     title: "UKABCS Academic Membership",
-    description: "Connect with leading researchers, access high-performance computing credits, receive journal APC waivers, and participate in peer-reviewed grant committees worldwide.",
+    description: "Connect with leading researchers, discover partner offers, receive journal APC waivers, and participate in peer-reviewed grant committees worldwide.",
     image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=90&w=2200&auto=format&fit=crop",
   },
 

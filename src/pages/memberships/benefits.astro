@@ -2,231 +2,233 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/hero/PageHero.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
-import { getCollection } from 'astro:content';
-import { ShieldCheck, Lock, ExternalLink, ArrowRight, Tag, Info } from 'lucide-astro';
+import { ShieldCheck, Lock, ExternalLink, ArrowRight, Tag, BookOpen, Cpu, Award, HeartPulse } from 'lucide-astro';
 
-const benefitEntries = await getCollection('benefits');
-const categories = ['All', 'Computing', 'Services', 'Publishing', 'Software', 'Training'];
+const pools = [
+  {
+    id: 'training-pool',
+    title: 'Training & Educational Diplomas Pool',
+    tag: 'Capacity Building & Workshops',
+    icon: BookOpen,
+    description: 'Specialised CADD, chemoinformatics, and bioinformatics hands-on workshops and professional diploma subsidies.',
+    items: [
+      {
+        partnerName: 'Bioinformatics Gate',
+        logo: '/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg',
+        website: 'https://bioinformaticsgate.com',
+        category: 'Training',
+        image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop',
+        shortDescription: 'Certified professional diplomas and hands-on workshops in CADD, structural bioinformatics, and chemoinformatics.',
+        discountValue: '25% Member Grant Subsidy',
+        eligibility: 'All Active UKABCS Member Categories',
+        terms: 'Discount applied automatically during diploma enrollment upon membership verification.',
+        ctaLink: '/memberships#pricing',
+        ctaText: 'Claim 25% Discount'
+      },
+      {
+        partnerName: 'EBO Bio Solution (UK)',
+        logo: '/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg',
+        website: 'https://ebobio.co.uk',
+        category: 'Training',
+        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
+        shortDescription: 'Hands-on computational pipeline training, Python for drug discovery, and molecular modeling bootcamps.',
+        discountValue: '30% Member Subsidy',
+        eligibility: 'Academic & Individual Members',
+        terms: 'Free entry for top 10 UKABCS graduation grant awardees each cohort.',
+        ctaLink: '/memberships#pricing',
+        ctaText: 'Access Training Discount'
+      }
+    ]
+  },
+  {
+    id: 'software-pool',
+    title: 'Scientific Software & Compute Tools Pool',
+    tag: 'Computational Infrastructure',
+    icon: Cpu,
+    description: 'High-performance computing workflows, molecular modeling suites, and scientific analysis tools.',
+    items: [
+      {
+        partnerName: 'Exovion',
+        logo: '/partners/Blue Purple Modern Molecule Technology Logo.jpg',
+        website: 'https://exovion.com',
+        category: 'Software',
+        image: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop',
+        shortDescription: 'Advanced computational biology software suite for sequence analysis and protein structure prediction.',
+        discountValue: 'Free Member License Tier',
+        eligibility: 'All Active Members & Partner Institutions',
+        terms: 'Includes 1-year renewable academic license key for registered UKABCS members.',
+        ctaLink: '/memberships#pricing',
+        ctaText: 'Get Free Software License'
+      }
+    ]
+  },
+  {
+    id: 'publishing-pool',
+    title: 'Open-Access Publishing & APC Waivers Pool',
+    tag: 'Academic Journals & Dissemination',
+    icon: Award,
+    description: 'Peer-reviewed open-science publication waivers and expedited peer-review support for scientific papers.',
+    items: [
+      {
+        partnerName: 'IJBTCS Journal',
+        logo: '/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png',
+        website: 'https://ijbtcs.org',
+        category: 'Publishing',
+        image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop',
+        shortDescription: 'International Journal of Biotechnology & Computational Science — indexed open-access peer-reviewed journal.',
+        discountValue: '100% Full APC Waiver',
+        eligibility: 'Corresponding Authors with Active UKABCS Membership',
+        terms: 'Full waiver of Article Processing Charges (£1,200 value) upon manuscript acceptance.',
+        ctaLink: '/publications',
+        ctaText: 'Submit Paper with Waiver'
+      }
+    ]
+  },
+  {
+    id: 'healthtech-pool',
+    title: 'Health-Tech & Analytical Support Pool',
+    tag: 'Bio-Data & Health Analytics',
+    icon: HeartPulse,
+    description: 'Specialised bio-data analytics, clinical research assistance, and health technology project support.',
+    items: [
+      {
+        partnerName: 'Healora',
+        logo: '/partners/Untitled design.png',
+        website: 'https://healora.org',
+        category: 'Services',
+        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop',
+        shortDescription: 'Health-tech analytical platform and computational medicine research support services.',
+        discountValue: '20% Partner Discount',
+        eligibility: 'Individual & Institutional Members',
+        terms: 'Applies to computational analysis contracts and health data pipeline consultations.',
+        ctaLink: '/memberships#pricing',
+        ctaText: 'Access Analytical Discount'
+      }
+    ]
+  }
+];
 ---
 
-<BaseLayout title="Member Benefits Directory | UKABCS" description="Explore verified compute allocations, APC publishing waivers, partner software discounts, and research credits available to UKABCS members.">
+<BaseLayout title="Member Benefit Pools | UKABCS" description="Explore verified training, scientific software, computational collaboration and publishing offers organized into member benefit pools.">
   <PageHero
     eyebrow="Exclusive Directory"
-    title="Member Benefits & Partner Credits"
-    description="Explore verified computing allocations, publication waivers, software licenses, and training resources available to active UKABCS members."
+    title="UKABCS Member Benefit Pools"
+    description="Explore verified partner offers organized by domain: training diplomas, computational software, publishing APC waivers, and health-tech analytics."
     image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=90&w=2200&auto=format&fit=crop"
   />
 
-  <section class="py-12 md:py-20 bg-background">
-    <div class="container mx-auto px-4 max-w-6xl space-y-10">
-      <!-- Permanent Mandatory Membership Callout -->
-      <div class="p-4 md:p-6 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-200 flex items-start gap-4">
-        <Lock class="w-5 h-5 text-amber-400 shrink-0 mt-0.5" />
-        <div class="space-y-1 text-xs md:text-sm">
-          <strong class="font-bold text-amber-300 block text-base">Mandatory Access Requirement</strong>
-          <p>
-            You must be an active UKABCS member to access these offers, compute vouchers, and APC waivers. All discounts are subject to member identity verification upon application.
+  <section class="benefits-pools-section py-16">
+    <div class="container space-y-16 max-w-6xl mx-auto">
+      <!-- Mandatory Access Callout -->
+      <div class="p-5 md:p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 flex items-start gap-4">
+        <Lock class="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
+        <div class="space-y-1 text-sm">
+          <strong class="font-bold text-amber-300 text-base block">Mandatory Access Requirement</strong>
+          <p class="leading-relaxed">
+            All discounts, grant subsidies, and APC waivers listed below are exclusively available to verified UKABCS members. Active membership status is checked automatically upon enrollment or submission.
           </p>
         </div>
       </div>
 
-      <!-- Header & Filter Bar -->
-      <div class="text-center max-w-3xl mx-auto space-y-4">
-        <span class="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
-          Partner Ecosystem
-        </span>
-        <h2 class="text-3xl font-bold text-foreground">Verified Partner & Grant Offers</h2>
-        <p class="text-muted-foreground text-sm">
-          Strategic collaborations with non-profit computational providers, academic software vendors, and indexed journals.
-        </p>
+      <!-- Section Pools Render Loop -->
+      {pools.map((pool) => {
+        const IconComp = pool.icon;
+        return (
+          <div id={pool.id} class="pool-block space-y-8 pt-4">
+            <!-- Pool Header -->
+            <div class="pool-header flex items-center justify-between pb-4 border-b border-border/80 flex-wrap gap-4">
+              <div class="space-y-1">
+                <span class="badge-pill mb-2">{pool.tag}</span>
+                <h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3 text-foreground">
+                  <IconComp class="w-7 h-7 text-primary shrink-0" />
+                  <span>{pool.title}</span>
+                </h2>
+                <p class="text-secondary text-sm max-w-2xl">{pool.description}</p>
+              </div>
+            </div>
 
-        <!-- Category Filters -->
-        <div class="flex flex-wrap items-center justify-center gap-2 pt-4" id="benefit-filters">
-          {categories.map((cat, idx) => (
-            <button
-              type="button"
-              data-category={cat}
-              class={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 ${
-                idx === 0
-                  ? 'bg-primary text-primary-foreground shadow-md'
-                  : 'bg-secondary text-muted-foreground hover:text-foreground hover:bg-secondary/80'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <!-- Benefits Directory Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="benefits-grid">
-        {benefitEntries.map((entry) => {
-          const data = entry.data;
-          return (
-            <article
-              class="benefit-item flex flex-col justify-between h-full p-6 rounded-xl bg-card border border-border/80 shadow-sm hover:border-primary/40 transition-all duration-300 group"
-              data-category={data.category}
-            >
-              <div class="space-y-4">
-                <!-- Card Top: Partner Name Left, Category Right -->
-                <div class="flex items-start justify-between gap-3 pb-3 border-b border-border/60">
-                  <div class="flex items-center gap-3">
-                    {data.logo ? (
-                      <img
-                        src={data.logo}
-                        alt={data.partnerName}
-                        class="w-10 h-10 rounded-full object-cover border border-border/60 shrink-0"
-                      />
-                    ) : (
-                      <div class="w-10 h-10 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center shrink-0">
-                        {data.partnerName.substring(0, 2).toUpperCase()}
+            <!-- Pool Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {pool.items.map((item) => (
+                <article class="flat-surface pool-card flex flex-col justify-between h-full p-0 rounded-2xl overflow-hidden border border-border group hover:border-primary/50 transition-all">
+                  <!-- Card Image Banner -->
+                  <div class="relative w-full h-48 overflow-hidden bg-navy">
+                    <img
+                      src={item.image}
+                      alt={item.partnerName}
+                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
+                      <div class="flex items-center gap-2.5">
+                        <img src={item.logo} alt={item.partnerName} class="w-9 h-9 rounded-full object-cover border-2 border-white shadow-md bg-white" />
+                        <span class="text-white font-bold text-base shadow-sm">{item.partnerName}</span>
                       </div>
-                    )}
-                    <div>
-                      <h3 class="font-bold text-foreground text-sm line-clamp-1 group-hover:text-primary transition-colors">
-                        {data.partnerName}
-                      </h3>
-                      {data.website && (
-                        <a
-                          href={data.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="text-xs text-muted-foreground hover:text-primary inline-flex items-center gap-1"
-                        >
-                          <span>Website</span>
-                          <ExternalLink class="w-3 h-3" />
-                        </a>
-                      )}
+                      <span class="badge-pill bg-white/90 text-navy font-bold text-xs">{item.category}</span>
                     </div>
                   </div>
 
-                  <span class="px-2.5 py-1 rounded-full bg-secondary text-secondary-foreground text-xs font-semibold shrink-0">
-                    {data.category}
-                  </span>
-                </div>
+                  <!-- Card Body -->
+                  <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
+                    <p class="text-secondary text-sm leading-relaxed">
+                      {item.shortDescription}
+                    </p>
 
-                <!-- Description & Services -->
-                <p class="text-xs text-muted-foreground leading-relaxed">
-                  {data.shortDescription}
-                </p>
+                    <!-- Discount Highlight Box -->
+                    <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-1.5">
+                      <div class="flex items-center gap-2 text-xs font-bold text-emerald-500">
+                        <Tag class="w-4 h-4" />
+                        <span>UKABCS Member Benefit</span>
+                      </div>
+                      <div class="text-lg font-extrabold text-emerald-400">
+                        {item.discountValue}
+                      </div>
+                      <div class="text-xs text-secondary">
+                        <strong>Eligible:</strong> {item.eligibility}
+                      </div>
+                    </div>
 
-                {data.services && data.services.length > 0 && (
-                  <div class="flex flex-wrap gap-1.5 pt-1">
-                    {data.services.map((service) => (
-                      <span class="px-2 py-0.5 rounded bg-muted text-[11px] text-muted-foreground font-medium">
-                        {service}
-                      </span>
-                    ))}
+                    <p class="text-xs text-muted leading-relaxed italic">
+                      ℹ️ {item.terms}
+                    </p>
+
+                    <!-- Actions -->
+                    <div class="pt-4 border-t border-border/60 flex items-center justify-between gap-3">
+                      {item.website && (
+                        <a
+                          href={item.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="btn-fluent-secondary text-xs py-2 px-3 inline-flex items-center gap-1.5"
+                        >
+                          <span>Partner Site</span>
+                          <ExternalLink class="w-3.5 h-3.5" />
+                        </a>
+                      )}
+                      <a
+                        href={item.ctaLink}
+                        class="btn-fluent-primary text-xs py-2 px-4 inline-flex items-center gap-2 ml-auto"
+                      >
+                        <span>{item.ctaText}</span>
+                        <ArrowRight class="w-4 h-4" />
+                      </a>
+                    </div>
                   </div>
-                )}
-
-                <!-- Highlight Box: Member Offer Only (No Contribution confusion) -->
-                <div class="p-3.5 rounded-lg bg-emerald-500/10 border border-emerald-500/20 space-y-1">
-                  <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-400">
-                    <Tag class="w-3.5 h-3.5" />
-                    <span>Member Discount / Offer</span>
-                  </div>
-                  <div class="text-base font-extrabold text-emerald-300">
-                    {data.discountValue}
-                  </div>
-                  <div class="text-[11px] text-emerald-200/80">
-                    Eligible: {data.eligibility}
-                  </div>
-                </div>
-
-                {data.terms && (
-                  <div class="text-[11px] text-muted-foreground flex items-start gap-1.5 pt-1">
-                    <Info class="w-3.5 h-3.5 text-muted-foreground shrink-0 mt-0.5" />
-                    <span>{data.terms}</span>
-                  </div>
-                )}
-              </div>
-
-              <!-- Action Bar -->
-              <div class="pt-4 mt-6 border-t border-border/60 flex flex-col gap-2">
-                {data.partnershipSlug && (
-                  <a
-                    href={`/partnerships/${data.partnershipSlug}`}
-                    class="w-full py-2 px-3 rounded-lg bg-secondary hover:bg-secondary/80 text-foreground text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition-colors"
-                  >
-                    <span>View Partnership Details</span>
-                    <ArrowRight class="w-3.5 h-3.5" />
-                  </a>
-                )}
-                
-                <a
-                  href="/memberships#pricing"
-                  class="w-full py-2 px-3 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground text-xs font-semibold inline-flex items-center justify-center gap-1.5 transition-colors shadow-sm"
-                >
-                  <ShieldCheck class="w-3.5 h-3.5" />
-                  <span>Access Offer as Member</span>
-                </a>
-              </div>
-            </article>
-          );
-        })}
-      </div>
-
-      <!-- Empty State -->
-      <div id="empty-state" class="hidden p-12 text-center rounded-xl bg-card border border-border/60 space-y-3">
-        <Info class="w-8 h-8 text-muted-foreground mx-auto" />
-        <h3 class="text-lg font-bold text-foreground">No Offers Found in this Category</h3>
-        <p class="text-xs text-muted-foreground">Select another category or choose "All" to browse available benefits.</p>
-      </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        );
+      })}
     </div>
   </section>
 
   <PromoCTASection />
 </BaseLayout>
 
-<script>
-  document.addEventListener('astro:page-load', () => {
-    setupBenefitFilters();
-  });
-
-  setupBenefitFilters();
-
-  function setupBenefitFilters() {
-    const filterButtons = document.querySelectorAll<HTMLButtonElement>('#benefit-filters button');
-    const items = document.querySelectorAll<HTMLElement>('.benefit-item');
-    const emptyState = document.getElementById('empty-state');
-
-    if (!filterButtons.length || !items.length) return;
-
-    filterButtons.forEach((btn) => {
-      btn.addEventListener('click', () => {
-        const cat = btn.getAttribute('data-category');
-
-        // Update button states
-        filterButtons.forEach((b) => {
-          b.classList.remove('bg-primary', 'text-primary-foreground', 'shadow-md');
-          b.classList.add('bg-secondary', 'text-muted-foreground');
-        });
-
-        btn.classList.remove('bg-secondary', 'text-muted-foreground');
-        btn.classList.add('bg-primary', 'text-primary-foreground', 'shadow-md');
-
-        // Filter items
-        let visibleCount = 0;
-        items.forEach((item) => {
-          const itemCat = item.getAttribute('data-category');
-          if (cat === 'All' || itemCat === cat) {
-            item.style.display = 'flex';
-            visibleCount++;
-          } else {
-            item.style.display = 'none';
-          }
-        });
-
-        // Toggle empty state
-        if (emptyState) {
-          if (visibleCount === 0) {
-            emptyState.classList.remove('hidden');
-          } else {
-            emptyState.classList.add('hidden');
-          }
-        }
-      });
-    });
-  }
-</script>
+<style>
+  .benefits-pools-section { background: var(--color-bg-secondary, #f8fafc); }
+  .pool-card { background: var(--color-surface, #ffffff); box-shadow: var(--shadow-sm); }
+  .pool-card:hover { box-shadow: var(--shadow-md); }
+</style>

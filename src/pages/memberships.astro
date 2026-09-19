@@ -30,6 +30,24 @@ import { siteConfig } from '../config/site';
     ctaHref="/memberships/benefits"
   />
 
+  <!-- 3. What members receive -->
+  <section class="membership-benefits-section" id="member-benefits">
+    <div class="container membership-benefits-layout">
+      <div class="membership-benefits-copy">
+        <span class="badge-pill mb-3">Member value</span>
+        <h2 class="text-3xl font-bold mb-4">What do you get as a UKABCS member?</h2>
+        <p class="text-secondary leading-relaxed mb-6">Your membership connects you to practical opportunities across training, scientific software, computational collaboration, publishing and peer-reviewed calls.</p>
+        <a href="/memberships/benefits" class="btn-fluent-primary">Discover Member Benefits Directory <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="membership-benefits-points">
+        <div><strong>Training access</strong><span>Partner courses, workshops and capacity-building programmes.</span></div>
+        <div><strong>Software &amp; compute</strong><span>Eligible partner offers for scientific software and computational workflows.</span></div>
+        <div><strong>Publishing &amp; review</strong><span>Open-science publishing, peer review and research communication opportunities.</span></div>
+        <div><strong>Collaboration</strong><span>Academic and industry partners aligned with your research direction.</span></div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3. Shared Academic Infrastructure (Bento Grid) -->
   <FeaturesBentoSection
     title={membershipConfig.sharedInfrastructure.title}
@@ -89,6 +107,93 @@ import { siteConfig } from '../config/site';
     reversed={true}
   />
 
+  <!-- 5.5 Member Benefits & Partner Discount Marketplace Matrix -->
+  <section class="py-20 section-alt" id="member-marketplace">
+    <div class="container">
+      <div class="section-heading text-center max-w-3xl mx-auto mb-14">
+        <span class="badge-pill mb-3">Exclusive Member Ecosystem</span>
+        <h2 class="text-3xl font-bold mb-3">Partner Benefits & Discount Marketplace</h2>
+        <p class="text-secondary">As an active UKABCS member, you receive immediate discounts, publishing waivers, and partner subsidies across all verified scientific providers.</p>
+      </div>
+
+      <div class="flat-surface overflow-x-auto p-0 rounded-2xl border border-border">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-primary/10 border-b border-border text-xs uppercase tracking-wider font-bold text-primary">
+              <th class="p-4">Partner Provider</th>
+              <th class="p-4">Specialised Service / Resource</th>
+              <th class="p-4">UKABCS Member Discount</th>
+              <th class="p-4">Eligible Tiers</th>
+              <th class="p-4 text-center">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-border/60 text-sm">
+            <tr class="hover:bg-primary/5 transition-colors">
+              <td class="p-4 font-bold flex items-center gap-3">
+                <img src="/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg" alt="Bioinformatics Gate" class="partner-logo-img" />
+                <span>Bioinformatics Gate</span>
+              </td>
+              <td class="p-4 text-secondary">CADD & Chemoinformatics Professional Diplomas</td>
+              <td class="p-4"><span class="badge-pill badge-emerald">25% Grant Subsidy</span></td>
+              <td class="p-4 text-xs font-semibold text-secondary">All Membership Tiers</td>
+              <td class="p-4 text-center">
+                <a href="/memberships/benefits" class="btn-fluent-primary py-1.5 px-3 text-xs">Access Offer</a>
+              </td>
+            </tr>
+            <tr class="hover:bg-primary/5 transition-colors">
+              <td class="p-4 font-bold flex items-center gap-3">
+                <img src="/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg" alt="EBO Bio Solution UK" class="partner-logo-img" />
+                <span>EBO Bio Solution (UK)</span>
+              </td>
+              <td class="p-4 text-secondary">Hands-on Pipeline Training & Computational Workshops</td>
+              <td class="p-4"><span class="badge-pill badge-emerald">30% Member Discount</span></td>
+              <td class="p-4 text-xs font-semibold text-secondary">Individual & Academic</td>
+              <td class="p-4 text-center">
+                <a href="/memberships/benefits" class="btn-fluent-primary py-1.5 px-3 text-xs">Access Offer</a>
+              </td>
+            </tr>
+            <tr class="hover:bg-primary/5 transition-colors">
+              <td class="p-4 font-bold flex items-center gap-3">
+                <img src="/partners/Blue Purple Modern Molecule Technology Logo.jpg" alt="Exovion" class="partner-logo-img" />
+                <span>Exovion</span>
+              </td>
+              <td class="p-4 text-secondary">Scientific Software & Computational Analysis Suite</td>
+              <td class="p-4"><span class="badge-pill badge-emerald">Free Member License</span></td>
+              <td class="p-4 text-xs font-semibold text-secondary">All Membership Tiers</td>
+              <td class="p-4 text-center">
+                <a href="/memberships/benefits" class="btn-fluent-primary py-1.5 px-3 text-xs">Access Offer</a>
+              </td>
+            </tr>
+            <tr class="hover:bg-primary/5 transition-colors">
+              <td class="p-4 font-bold flex items-center gap-3">
+                <img src="/partners/Untitled design.png" alt="Healora" class="partner-logo-img" />
+                <span>Healora</span>
+              </td>
+              <td class="p-4 text-secondary">Health-Tech & Bio-Data Analytical Support</td>
+              <td class="p-4"><span class="badge-pill badge-emerald">20% Partner Discount</span></td>
+              <td class="p-4 text-xs font-semibold text-secondary">All Membership Tiers</td>
+              <td class="p-4 text-center">
+                <a href="/memberships/benefits" class="btn-fluent-primary py-1.5 px-3 text-xs">Access Offer</a>
+              </td>
+            </tr>
+            <tr class="hover:bg-primary/5 transition-colors">
+              <td class="p-4 font-bold flex items-center gap-3">
+                <img src="/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png" alt="IJBTCS Journal" class="partner-logo-img" />
+                <span>IJBTCS Journal</span>
+              </td>
+              <td class="p-4 text-secondary">Peer-Reviewed Open-Access Scientific Publishing</td>
+              <td class="p-4"><span class="badge-pill badge-emerald">100% Full APC Waiver</span></td>
+              <td class="p-4 text-xs font-semibold text-secondary">Academic & Institutional</td>
+              <td class="p-4 text-center">
+                <a href="/memberships/benefits" class="btn-fluent-primary py-1.5 px-3 text-xs">Submit Article</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- 6. Partner Marquee Ribbon -->
   <PartnerRibbonSection />
 
@@ -127,5 +232,24 @@ import { siteConfig } from '../config/site';
   .plan-features {
     list-style: none;
     flex-grow: 1;
+  }
+
+  .membership-benefits-section { padding: 5rem 0; background: var(--color-bg-secondary, #f8fafc); border-block: 1px solid var(--color-border, #e2e8f0); }
+  .membership-benefits-layout { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 4rem; align-items: center; }
+  .membership-benefits-copy { max-width: 34rem; }
+  .membership-benefits-points { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+  .membership-benefits-points > div { padding: 1.35rem; background: var(--color-surface, #fff); border: 1px solid var(--color-border, #e2e8f0); border-radius: var(--radius-lg); }
+  .membership-benefits-points strong, .membership-benefits-points span { display: block; }
+  .membership-benefits-points strong { margin-bottom: .45rem; color: var(--color-text-primary); }
+  .membership-benefits-points span { color: var(--color-text-secondary); font-size: .9rem; line-height: 1.55; }
+  .partner-logo-img {
+    width: 2.25rem !important;
+    height: 2.25rem !important;
+    max-width: 2.25rem !important;
+    max-height: 2.25rem !important;
+    border-radius: 9999px;
+    object-fit: cover !important;
+    flex-shrink: 0;
+    border: 1px solid var(--color-border);
   }
 </style>

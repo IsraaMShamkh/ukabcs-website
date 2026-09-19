@@ -3,34 +3,31 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/hero/PageHero.astro';
 import TextContentSection from '../../components/sections/TextContentSection.astro';
 import NumbersCounterSection from '../../components/sections/NumbersCounterSection.astro';
-
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
 import ProjectCard from '../../components/cards/ProjectCard.astro';
 import { siteConfig } from '../../config/site';
 import { getCollection } from 'astro:content';
 
 // Fetch all peer-reviewed funded university projects
-const allProjects = await getCollection('funded-projects');
+const allProjectsCollection = await getCollection('funded-projects');
 
-// Split projects into 2026 and 2025 cohorts
+// Sort all projects by date published
+const allProjects = allProjectsCollection.sort((a, b) => {
+  const dateA = a.data.datePublished ? new Date(a.data.datePublished).getTime() : 0;
+  const dateB = b.data.datePublished ? new Date(b.data.datePublished).getTime() : 0;
+  return dateB - dateA;
+});
+
 const projects2026 = allProjects.filter((p) => {
   const year = p.data.year || p.data.awardYear || 2025;
   const cohort = p.data.cohort || String(year);
   return cohort === '2026' || year === 2026;
-}).sort((a, b) => {
-  const dateA = a.data.datePublished ? new Date(a.data.datePublished).getTime() : 0;
-  const dateB = b.data.datePublished ? new Date(b.data.datePublished).getTime() : 0;
-  return dateB - dateA;
 });
 
 const projects2025 = allProjects.filter((p) => {
   const year = p.data.year || p.data.awardYear || 2025;
   const cohort = p.data.cohort || String(year);
   return cohort === '2025' || year === 2025;
-}).sort((a, b) => {
-  const dateA = a.data.datePublished ? new Date(a.data.datePublished).getTime() : 0;
-  const dateB = b.data.datePublished ? new Date(b.data.datePublished).getTime() : 0;
-  return dateB - dateA;
 });
 
 const totalGrants = allProjects.length;
@@ -62,25 +59,19 @@ const totalGrants = allProjects.length;
   <!-- 3. Key Impact & Stats Counter -->
   <NumbersCounterSection />
 
-  <!-- 4. Section Title Above Tabs -->
-  <section class="funded-awards-header pt-16 pb-4 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 text-center">
-    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 mb-3">
-        Awarded Grants & Registry
-      </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+  <!-- 4. Section Title & Interactive Cohort Filter -->
+  <section class="funded-awards-header py-16 bg-surface border-t border-border text-center" id="awards-directory">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center space-y-4">
+      <span class="badge-pill mb-1">Awarded Grants & Registry</span>
+      <h2 class="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
         Institutional Grants & Funded Project Directory
       </h2>
-      <p class="text-slate-600 dark:text-slate-400 text-base sm:text-lg mt-2 max-w-2xl mx-auto">
+      <p class="text-secondary text-base sm:text-lg max-w-2xl mx-auto">
         Explore verified academic grant awards, computational infrastructure funding, and graduation research teams across international partner institutions.
       </p>
-    </div>
-  </section>
 
-  <!-- 5. Interactive Cohort Navigation Bar -->
-  <nav class="cohort-filter-bar sticky top-16 z-30 py-4 bg-white/95 dark:bg-slate-900/95 backdrop-blur-md border-y border-slate-200 dark:border-slate-800 shadow-sm" aria-label="Grant Cohort Filter">
-    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center gap-2 text-center">
-      <div class="flex items-center justify-center gap-3 flex-wrap" id="project-filters">
+      <!-- Cohort Filter Buttons -->
+      <div class="flex items-center justify-center gap-3 flex-wrap pt-4" id="project-filters">
         <button type="button" class="filter-btn is-active" data-filter="all">
           All Grants ({totalGrants})
         </button>
@@ -92,94 +83,21 @@ const totalGrants = allProjects.length;
         </button>
       </div>
 
-      <p class="text-xs font-medium text-slate-500 dark:text-slate-400" id="cohort-filter-summary">
-        Showing all verified institutional awards across 2025 and 2026 funding cycles
+      <p class="text-xs font-medium text-muted pt-1" id="cohort-filter-summary">
+        Showing all {totalGrants} verified institutional awards across 2025 and 2026 funding cycles
       </p>
-    </div>
-  </nav>
-
-  <!-- 5. Cohort 2026: Graduation Project Support & Enhanced Experimental Grants -->
-  <section class="cohort-section py-16 bg-slate-50 dark:bg-slate-950" id="cohort-2026" data-cohort-group="2026">
-    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-600/10 text-blue-600 dark:bg-blue-400/10 dark:text-blue-400 mb-2">
-            2026 Approved Cycle
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            2026 Cohort: Graduation Project & Enhanced Experimental Grants
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
-            Providing comprehensive computational platforms alongside annual £3,000 GBP cash funding for laboratory kits & reagents disbursed directly to verified vendors via Lab Chem Flow.
-          </p>
-        </div>
-
-        <div class="flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 border border-emerald-200 dark:border-emerald-800/60 shrink-0">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-          </svg>
-          <span>Enhanced Wet-Lab Track Active</span>
-        </div>
-      </div>
-
-      <!-- 2026 Projects Grid -->
-      <div class="projects-grid">
-        {projects2026.map((project) => {
-          const year = project.data.year || project.data.awardYear || 2026;
-          return (
-            <div class="project-grid-item" data-year="2026">
-              <ProjectCard
-                title={project.data.title}
-                year={year}
-                institution={project.data.institution}
-                country={project.data.country}
-                grantType={project.data.grantType}
-                datePublished={project.data.datePublished || "2026-09-01"}
-                description={project.data.summary || project.data.description || ""}
-                slug={project.slug}
-                image={project.data.image || project.data.featuredImage}
-                mainPI={project.data.mainPI}
-                budget={project.data.budget}
-                cohort="2026"
-              />
-            </div>
-          );
-        })}
-      </div>
     </div>
   </section>
 
-  <!-- 6. Cohort 2025: Institutional Capacity Building Grants (£32,000 Fully Funded) -->
-  <section class="cohort-section py-16 bg-white dark:bg-slate-900" id="cohort-2025" data-cohort-group="2025">
+  <!-- 5. Unified Projects Grid (Single Grid for All) -->
+  <section class="py-16 bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800">
     <div class="container max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10 pb-6 border-b border-slate-200 dark:border-slate-800">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-purple-600/10 text-purple-600 dark:bg-purple-400/10 dark:text-purple-400 mb-2">
-            2025 Established Cycle
-          </div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">
-            2025 Cohort: Institutional Capacity Building Grants
-          </h2>
-          <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
-            Long-term 2.5-year institutional agreements with full financial coverage (£32,000 GBP per institution) encompassing 14 integrated training modules, research infrastructure, and open-access publication charges.
-          </p>
-        </div>
-
-        <div class="flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-lg bg-blue-50 dark:bg-blue-950/40 text-blue-700 dark:text-blue-300 border border-blue-200 dark:border-blue-800/60 shrink-0">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
-            <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
-          </svg>
-          <span>£32,000 Fully Funded Program</span>
-        </div>
-      </div>
-
-      <!-- 2025 Projects Grid -->
-      <div class="projects-grid">
-        {projects2025.map((project) => {
+      <div class="projects-grid" id="projects-grid-container">
+        {allProjects.map((project) => {
           const year = project.data.year || project.data.awardYear || 2025;
+          const cohort = project.data.cohort || String(year);
           return (
-            <div class="project-grid-item" data-year="2025">
+            <div class="project-grid-item" data-cohort={cohort}>
               <ProjectCard
                 title={project.data.title}
                 year={year}
@@ -192,7 +110,7 @@ const totalGrants = allProjects.length;
                 image={project.data.image || project.data.featuredImage}
                 mainPI={project.data.mainPI}
                 budget={project.data.budget}
-                cohort="2025"
+                cohort={cohort}
               />
             </div>
           );
@@ -201,9 +119,7 @@ const totalGrants = allProjects.length;
     </div>
   </section>
 
-
-
-  <!-- 8. Promo CTA -->
+  <!-- 6. Promo CTA -->
   <PromoCTASection
     title="Ready to Submit a Project Proposal?"
     subtitle="Learn more about UKABCS peer review criteria, funding windows, and university eligibility guidelines."
@@ -216,7 +132,7 @@ const totalGrants = allProjects.length;
 
 <style>
   .filter-btn {
-    padding: 0.55rem 1.25rem;
+    padding: 0.6rem 1.35rem;
     border-radius: var(--radius-full, 9999px);
     font-size: 0.88rem;
     font-weight: 700;
@@ -240,14 +156,14 @@ const totalGrants = allProjects.length;
     box-shadow: 0 4px 14px rgba(0, 90, 156, 0.25);
   }
 
-  .cohort-section.is-hidden {
-    display: none !important;
-  }
-
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
+  }
+
+  .project-grid-item.is-hidden {
+    display: none !important;
   }
 
   @media (max-width: 1024px) {
@@ -264,38 +180,47 @@ const totalGrants = allProjects.length;
 </style>
 
 <script>
-  const filterBtns = document.querySelectorAll<HTMLButtonElement>('#project-filters .filter-btn');
-  const cohortSections = document.querySelectorAll<HTMLElement>('.cohort-section');
-  const summaryEl = document.getElementById('cohort-filter-summary');
+  document.addEventListener('astro:page-load', () => {
+    setupProjectFilters();
+  });
 
-  filterBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      const filter = btn.getAttribute('data-filter') || 'all';
+  setupProjectFilters();
 
-      filterBtns.forEach((b) => b.classList.remove('is-active'));
-      btn.classList.add('is-active');
+  function setupProjectFilters() {
+    const filterBtns = document.querySelectorAll<HTMLButtonElement>('#project-filters .filter-btn');
+    const projectItems = document.querySelectorAll<HTMLElement>('.project-grid-item');
+    const summaryEl = document.getElementById('cohort-filter-summary');
 
-      if (summaryEl) {
-        if (filter === '2026') {
-          summaryEl.textContent = 'Showing 6 graduation project awards from the 2026 funding cycle';
-        } else if (filter === '2025') {
-          summaryEl.textContent = 'Showing 8 capacity building grants (£32,000 each) from the 2025 cycle';
-        } else {
-          summaryEl.textContent = 'Showing all verified institutional awards across 2025 and 2026 funding cycles';
-        }
-      }
+    if (!filterBtns.length || !projectItems.length) return;
 
-      cohortSections.forEach((section) => {
-        const group = section.getAttribute('data-cohort-group');
+    filterBtns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.getAttribute('data-filter') || 'all';
 
-        if (filter === 'all') {
-          section.classList.remove('is-hidden');
-        } else if (filter === group) {
-          section.classList.remove('is-hidden');
-        } else {
-          section.classList.add('is-hidden');
+        filterBtns.forEach((b) => b.classList.remove('is-active'));
+        btn.classList.add('is-active');
+
+        let visibleCount = 0;
+        projectItems.forEach((item) => {
+          const cohort = item.getAttribute('data-cohort');
+          if (filter === 'all' || cohort === filter) {
+            item.classList.remove('is-hidden');
+            visibleCount++;
+          } else {
+            item.classList.add('is-hidden');
+          }
+        });
+
+        if (summaryEl) {
+          if (filter === '2026') {
+            summaryEl.textContent = `Showing ${visibleCount} graduation project awards from the 2026 funding cycle`;
+          } else if (filter === '2025') {
+            summaryEl.textContent = `Showing ${visibleCount} capacity building grants (£32,000 each) from the 2025 cycle`;
+          } else {
+            summaryEl.textContent = `Showing all ${visibleCount} verified institutional awards across 2025 and 2026 funding cycles`;
+          }
         }
       });
     });
-  });
+  }
 </script>

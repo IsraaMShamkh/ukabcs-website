@@ -48,10 +48,10 @@ export const homeContent = {
     { title: 'Researcher Memberships', description: 'Resources, training, calls and global networking for the UKABCS community.', href: '/memberships' },
   ],
   achievements: [
-    { number: '3,000', label: 'Researchers Supported' },
-    { number: '5', label: 'Countries Reached' },
-    { number: '8', label: 'Funded Projects' },
-    { number: '10', label: 'Strategic Partnerships' },
+    { number: '200+', label: 'Researchers Supported' },
+    { number: '8', label: 'Countries Represented' },
+    { number: '14', label: 'Funded Projects' },
+    { number: '5', label: 'Strategic Partners' },
   ],
   partners: ['Partner logos will be added here as they are supplied.'],
 };

@@ -5,60 +5,112 @@ export interface Props {
 }
 
 const {
-  title = "UKABCS Board of Trustees & Executive Council",
-  subtitle = "Distinguished researchers, university professors, and computational biology leads steering the UK-Arab Academic Association."
+  title = "UKABCS Board of Trustees & Directors",
+  subtitle = "Distinguished academics, research directors, and UK administrative leads steering the UK Association for Biotechnology & Computational Science."
 } = Astro.props;
 
-const teamMembers = [
+const boardMembers = [
   {
-    name: "Prof. Tariq Al-Mansoor",
-    role: "President & Chair of Trustees",
-    institution: "Imperial College London / UKABCS",
-    bio: "Pioneer in computational genomics, structural biology, and cross-border research funding policy.",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop"
+    name: "Ms. Israa Mohamed Shamkh",
+    country: "UK / Egypt",
+    role: "Trustee / Partnerships & Strategic Development Lead",
+    institution: "EBO Bio Solution Ltd / UKABCS",
+    bio: "Head of Computational Chemistry and Full-Stack Developer at EBO Bio Solution Ltd, specialising in AI-driven drug discovery and computational platform architecture.",
+    avatar: "/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg",
+    initials: "IS"
   },
   {
-    name: "Dr. Elena Rostova",
-    role: "VP for Scientific Software & HPC",
-    institution: "University of Cambridge",
-    bio: "Expert in GPU-accelerated molecular dynamics pipelines, open-source bioinformatics tools, and HPC cluster management.",
-    avatar: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop"
+    name: "Mr. Khizar Hayat",
+    country: "United Kingdom",
+    role: "Managing Director",
+    institution: "UKABCS Executive Operations",
+    bio: "Administrative Director responsible for legal compliance, operations, and corporate governance in the UK. Oversees registration, reporting, and UK Companies House alignment.",
+    avatar: "", // Explicitly no photo per user audio directive
+    initials: "KH"
   },
   {
-    name: "Prof. Ahmed Hassan",
-    role: "Director of Arab Region Grants",
-    institution: "Cairo University Faculty of Science",
-    bio: "Head of computational biology initiatives across North Africa & Middle East, championing early-career grants.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop"
+    name: "Prof. Dr. Ihosvany Camps",
+    country: "Brazil",
+    role: "Trustee / Scientific Advisor",
+    institution: "Federal University of Alfenas, Brazil",
+    bio: "Full Professor of Physics at the Federal University of Alfenas, Brazil. CRO Manager, Scientific Supervisor, and Editor-in-Chief. Expert in computational modelling and scientific innovation.",
+    avatar: "/board/board_member_1.jpg",
+    initials: "IC"
   },
   {
-    name: "Dr. Miriam Vance",
-    role: "Head of Audit & Due Diligence",
-    institution: "Oxford University Science Secretariat",
-    bio: "Specialist in non-profit charity compliance, peer-review integrity, and transparent grant allocation standards.",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop"
+    name: "Dr. Mahmoud Abdel Rahman",
+    country: "USA",
+    role: "Trustee / Ethics & EDI Lead",
+    institution: "Northeastern University, USA",
+    bio: "Lecturer at Northeastern University (USA). CRO Manager, Scientific Supervisor, and Instructor. Responsible for ethical oversight, research integrity, and EDI initiatives.",
+    avatar: "/board/board_member_3.jpg",
+    initials: "MA"
+  },
+  {
+    name: "Dr. Amina Ibrahim Dirar",
+    country: "Sudan",
+    role: "Partnerships & Strategic Development Lead",
+    institution: "UKABCS Strategic Development",
+    bio: "Specialises in strategic research partnerships, academic collaborations, and university development across the MENA region.",
+    avatar: "/board/board_member_7.jpg",
+    initials: "AD"
+  },
+  {
+    name: "Dr. Mohamed Soliman",
+    country: "Azerbaijan",
+    role: "Trustee / Research Monitoring & Grants Reporting Lead",
+    institution: "Western Caspian University, Baku",
+    bio: "Department of Life Sciences, Western Caspian University, Baku, Azerbaijan. Oversees research progress and ensures high-quality reporting of scientific outcomes.",
+    avatar: "/board/board_member_2.jpg",
+    initials: "MS"
+  },
+  {
+    name: "Mr. Mahmoud Ayman El Morsy",
+    country: "Egypt",
+    role: "Trustee / Accreditation & Grants Coordinator",
+    institution: "Research Associate & Accreditation Coordinator",
+    bio: "Oversees the academic quality of training programmes and assists in coordinating grants and research evaluations.",
+    avatar: "/board/board_member_4.jpg",
+    initials: "ME"
   }
 ];
 ---
 
-<section class="py-20 section-team" id="team">
+<section class="py-20 section-team" id="board-members">
   <div class="container">
-    <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="badge-pill mb-3">Academic Leadership</span>
+    <div class="text-center max-w-3xl mx-auto mb-14">
+      <span class="badge-pill mb-3">Governance & Leadership</span>
       <h2 class="text-3xl font-bold mb-3">{title}</h2>
       <p class="text-secondary">{subtitle}</p>
     </div>
 
-    <div class="grid-4 gap-6">
-      {teamMembers.map((member) => (
-        <div class="card-aceternity team-card text-center">
-          <div class="avatar-wrap mx-auto mb-4">
-            <img src={member.avatar} alt={member.name} loading="lazy" />
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {boardMembers.map((member) => (
+        <div class="card-aceternity team-card p-6 flex flex-col justify-between text-left h-full border border-border/80 hover:border-primary/50 transition-all">
+          <div>
+            <div class="flex items-center gap-4 mb-4">
+              {member.avatar ? (
+                <img
+                  src={member.avatar}
+                  alt={member.name}
+                  class="w-14 h-14 rounded-full object-cover border-2 border-primary/20 shrink-0"
+                  loading="lazy"
+                />
+              ) : (
+                <div class="w-14 h-14 rounded-full bg-primary/10 text-primary font-extrabold text-base flex items-center justify-center border-2 border-primary/30 shrink-0">
+                  {member.initials}
+                </div>
+              )}
+              <div>
+                <h3 class="font-bold text-base text-foreground line-clamp-1">{member.name}</h3>
+                <span class="badge-pill text-[11px] py-0.5 px-2 mt-1">{member.country}</span>
+              </div>
+            </div>
+
+            <p class="text-primary-color font-bold text-xs mb-1.5">{member.role}</p>
+            <p class="text-muted text-xs mb-3 font-medium">{member.institution}</p>
+            <p class="text-secondary text-xs leading-relaxed">{member.bio}</p>
           </div>
-          <h3 class="font-bold text-lg mb-1">{member.name}</h3>
-          <p class="text-primary-color font-semibold text-xs mb-1">{member.role}</p>
-          <p class="text-muted text-xs mb-3">{member.institution}</p>
-          <p class="text-secondary text-sm leading-relaxed">{member.bio}</p>
         </div>
       ))}
     </div>
@@ -66,17 +118,8 @@ const teamMembers = [
 </section>
 
 <style>
-  .avatar-wrap {
-    width: 90px;
-    height: 90px;
-    border-radius: var(--radius-full);
-    overflow: hidden;
-    border: 2px solid var(--color-primary-soft);
-  }
-
-  .avatar-wrap img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .team-card {
+    background: var(--color-surface, #ffffff);
+    border-radius: var(--radius-lg, 12px);
   }
 </style>

@@ -1,16 +1,15 @@
 ---
-title: "Bioinformatics Gate Donates £35,000 in Research Credits to UKABCS"
+title: "Bioinformatics Gate & UKABCS Training Collaboration"
 partnerName: "Bioinformatics Gate"
 value: "£35,000"
-type: "In-Kind Research Credits"
+type: "Training Collaboration"
 datePublished: "2025-08-10"
 featured: true
-description: "Empowering Arabic-speaking researchers in computational chemistry and bioinformatics with cloud computing credits."
+image: "/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg"
+description: "Empowering researchers in computational chemistry and bioinformatics through training and practical learning pathways."
 ---
 
-In a major milestone for open science, **Bioinformatics Gate** has contributed **£35,000 in Research Credits** to UKABCS.
-
-### Contribution Details
+**Bioinformatics Gate** collaborates with UKABCS on practical training pathways in computational chemistry and bioinformatics.
 - Dedicated GPU-accelerated server hours for molecular dynamics simulations.
 - Full access to curated Arabic-language educational workshops and protocol libraries.
 - Priority computing queues for UKABCS grant awardees across the Middle East and North Africa.

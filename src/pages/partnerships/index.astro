@@ -5,7 +5,6 @@ import TextContentSection from '../../components/sections/TextContentSection.ast
 import PartnerRibbonSection from '../../components/sections/PartnerRibbonSection.astro';
 import SalesPromoSection from '../../components/sections/SalesPromoSection.astro';
 import GeneralSupportSection from '../../components/sections/GeneralSupportSection.astro';
-import DonationSection from '../../components/sections/DonationSection.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../../config/site';
 ---
@@ -15,7 +14,7 @@ import { siteConfig } from '../../config/site';
   <PageHero
     eyebrow="Global Consortium"
     title="Partnerships & Collaborations"
-    description="Strategic collaborations with academic institutions, biotechnology companies, and scientific publishers advancing computational biology and open science."
+    description="Strategic collaborations across training, scientific software, computational collaboration, publishing and open science."
     image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=90&w=2200&auto=format&fit=crop"
   />
 
@@ -24,7 +23,7 @@ import { siteConfig } from '../../config/site';
     tag="Collaborative Ecosystem"
     title="Why Partner with UKABCS?"
     subtitle="Connecting researchers, academic societies, and technology partners across the globe."
-    content="UKABCS unites university research departments, software vendors, and indexed journals under a governed, non-profit academic framework to deliver high-impact computational resources directly to researchers."
+    content="UKABCS connects universities, training providers, software teams and scientific publishers under a governed, non-profit academic framework."
     image="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1000&auto=format&fit=crop"
     ctaText="Submit Partnership Proposal →"
     ctaHref={siteConfig.clientFlow.partnershipForm}
@@ -35,16 +34,13 @@ import { siteConfig } from '../../config/site';
 
   <!-- 4. Active Partnership Allocations (SalesPromo) -->
   <SalesPromoSection
-    title="Active Partnership & Credit Allocations"
-    subtitle="Explore current industry, university, and publishing agreements supporting UKABCS programs."
+    title="Active Partner Programmes & Collaborations"
+    subtitle="Explore current training, software, computational collaboration, and publishing agreements supporting UKABCS programmes."
   />
 
   <!-- 5. General Support / Partnership Request -->
   <GeneralSupportSection />
 
-  <!-- 6. Donation / Research Support Section -->
-  <DonationSection />
-
-  <!-- 7. Promo CTA -->
+  <!-- 6. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>

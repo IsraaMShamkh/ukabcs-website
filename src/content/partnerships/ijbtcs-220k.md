@@ -1,10 +1,11 @@
 ---
-title: "IJBTCS Provides £220,000 in In-Kind Waivers for Publishing & Conferences"
+title: "IJBTCS & UKABCS Open-Science Publishing Partnership"
 partnerName: "IJBTCS"
 value: "£220,000"
 type: "Publication & Conference Waivers"
 datePublished: "2025-10-01"
 featured: true
+image: "/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png"
 description: "Comprehensive open-access APC waivers and international conference registrations for UKABCS members."
 ---
 

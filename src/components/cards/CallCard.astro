@@ -61,10 +61,10 @@ const kindLabels = {
         class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
         loading="lazy"
       />
-      <div class="absolute top-3 right-3 flex items-center gap-2">
-        <span class={`px-2.5 py-1 text-xs font-semibold rounded-full border backdrop-blur-md ${statusStyles[status]}`}>
-          {statusLabels[status]}
-        </span>
+      <div class="corner-ribbon-wrapper">
+        <div class={`corner-ribbon ${status}`}>
+          {status === 'open' ? 'OPEN' : status === 'closed' ? 'CLOSED' : 'UPCOMING'}
+        </div>
       </div>
     </div>
   )}
@@ -76,7 +76,7 @@ const kindLabels = {
           <span class="text-xs font-mono tracking-wider uppercase text-primary/80 font-medium">
             {kindLabels[kind]}
           </span>
-          <span class={`px-2.5 py-1 text-xs font-semibold rounded-full border ${statusStyles[status]}`}>
+          <span class={`call-status-label ${status} ${statusStyles[status]}`}>
             {statusLabels[status]}
           </span>
         </div>
@@ -120,3 +120,46 @@ const kindLabels = {
     </div>
   </div>
 </article>
+
+<style>
+  .corner-ribbon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    height: 120px;
+    overflow: hidden;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .corner-ribbon {
+    position: absolute;
+    top: 20px;
+    right: -35px;
+    transform: rotate(45deg);
+    width: 150px;
+    padding: 5px 0;
+    text-align: center;
+    font-size: 0.72rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
+  }
+
+  .corner-ribbon.open {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .corner-ribbon.closed {
+    background: linear-gradient(135deg, #e11d48, #be123c);
+  }
+
+  .corner-ribbon.upcoming {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
+  }
+
+  .call-status-label { display: inline-block; padding: .35rem .65rem; border-left: 3px solid currentColor; border-radius: .15rem; }
+</style>

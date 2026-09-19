@@ -2,7 +2,7 @@
 title: "Digital Campus Transformation & Software Grant 2026"
 programme: "Scientific Software Support"
 kind: "software"
-status: "closed"
+status: "open"
 language: "en"
 summary: "Providing institutional cloud compute architecture, ClientFlow CRM deployment, and automated bioinformatics pipelines for university departments."
 opensAt: "2025-09-01"

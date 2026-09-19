@@ -9,5 +9,5 @@ const { title = 'Our Achievements' } = Astro.props;
   <div class="container">
     <div class="text-center mb-10"><span class="badge-pill mb-3">Our achievements</span><h2 class="text-3xl font-bold">{title}</h2><p class="text-secondary mt-2">Move the cards to explore the current UKABCS impact figures.</p></div>
   </div>
-  <AchievementDraggableCards client:load achievements={homeContent.achievements} />
+  <AchievementDraggableCards client:visible achievements={homeContent.achievements} />
 </section>

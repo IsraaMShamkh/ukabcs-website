@@ -2,57 +2,268 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
-import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
 import TeamSection from '../components/sections/TeamSection.astro';
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../config/site';
+
+const orgStructureSteps = [
+  {
+    step: "01",
+    title: "Board of Trustees",
+    desc: "Sets the overall strategy, approves policies, and ensures legal and ethical compliance. Reviews quarterly performance and endorses final decisions."
+  },
+  {
+    step: "02",
+    title: "Managing Director",
+    desc: "Implements the Board's resolutions and oversees legal, financial, and administrative compliance within the UK (UK Companies House & Charity Commission)."
+  },
+  {
+    step: "03",
+    title: "Specialised Committees",
+    desc: "Provide expert recommendations on specific areas: Audit & Finance, Grants Review, Ethics & EDI, Advisory, and Partnerships."
+  },
+  {
+    step: "04",
+    title: "Decision Flow",
+    desc: "Committees review → issue recommendations → Managing Director verifies compliance → Board of Trustees gives final approval → Operational Teams implement."
+  },
+  {
+    step: "05",
+    title: "Accountability",
+    desc: "All decisions are documented in official minutes, audited annually, and published in the UKABCS Annual Governance Report to ensure transparency."
+  }
+];
+
+const boardResponsibilities = [
+  "Define and monitor the Association's long-term strategic objectives.",
+  "Oversee financial planning, ethical conduct, and programme execution.",
+  "Approve institutional policies and evaluate committee recommendations.",
+  "Ensure compliance with UKRI and Charity Commission governance standards.",
+  "Supervise administrative and operational procedures under the Managing Director.",
+  "Evaluate the annual impact of UKABCS initiatives across all sectors."
+];
+
+const committees = [
+  {
+    icon: "💰",
+    name: "Audit & Finance Committee",
+    desc: "Supervises all financial governance, budgeting, and auditing activities within UKABCS. It ensures that all resources, donations, and grants are managed transparently and efficiently, in compliance with UKRI and Charity Commission standards."
+  },
+  {
+    icon: "🔬",
+    name: "Grants Review Committee",
+    desc: "Manages the peer-review process for all research and capacity-building grant applications. It ensures that funding decisions are made based on scientific merit, innovation, and impact, maintaining fairness and transparency at every stage."
+  },
+  {
+    icon: "⚖️",
+    name: "Ethics & EDI Committee",
+    desc: "Ensures that UKABCS upholds the highest standards of ethical research practice and inclusivity. It reviews policies, training activities, and funded projects to guarantee compliance with UKRI's research integrity and EDI standards."
+  },
+  {
+    icon: "🎓",
+    name: "Advisory Committee",
+    desc: "Supports the Board of Trustees by offering independent, expert advice on scientific priorities, capacity-building programmes, and research collaborations, helping shape the strategic direction and innovation roadmap."
+  },
+  {
+    icon: "🤝",
+    name: "Partnership Committee",
+    desc: "Responsible for establishing and maintaining collaborations between UKABCS and academic, governmental, and corporate institutions worldwide, evaluating MoUs, strategic alliances, and knowledge exchange."
+  }
+];
+
+const coiPoints = [
+  { num: "1", title: "Purpose", text: "Ensures all decisions are made with integrity, independence, and transparency, in line with UKRI and Charity Commission standards." },
+  { num: "2", title: "Definition", text: "A conflict of interest arises when a Trustee, Committee Member, or staff member's personal, financial, or professional interests could influence—or appear to influence—their judgment." },
+  { num: "3", title: "Member Responsibilities", text: "Submit an annual declaration of interests, disclose potential conflicts before meetings, and abstain from participating in discussions or decisions where a conflict exists." },
+  { num: "4", title: "Register & Oversight", text: "All declarations are recorded in the official Conflict of Interest Register, maintained by the Chair of the Board, reviewed annually, and available for internal and external audit." },
+  { num: "5", title: "Enforcement", text: "Failure to disclose a conflict may result in a formal review by the Board of Trustees to protect the credibility and ethical reputation of UKABCS." },
+  { num: "6", title: "Commitment to Transparency", text: "By ensuring full disclosure and accountability, UKABCS upholds the highest standards of trust, fairness, and ethical governance." }
+];
 ---
 
-<BaseLayout title={`Board of Trustees & Leadership | ${siteConfig.publicName}`} description="UKABCS operates under independent UK non-profit governance standards, ensuring transparency, collective decision-making, and fiduciary accountability.">
+<BaseLayout
+  title={`Governance Framework & Board of Trustees | ${siteConfig.publicName}`}
+  description="UKABCS operates under independent UK governance standards, ensuring legal compliance, scientific integrity, transparent grant evaluation, and UKRI alignment."
+>
   <!-- 1. Hero -->
   <PageHero
-    eyebrow="Institutional Oversight"
-    title="Board of Trustees & Leadership"
-    description="UKABCS operates under independent non-profit governance standards, ensuring transparency, collective decision-making, and fiduciary accountability."
+    eyebrow="Institutional Governance"
+    title="Governance Framework & Board of Trustees"
+    description="UKABCS is governed by a Board of Trustees who provide strategic oversight, ensure legal compliance, and uphold accountability in full alignment with UKRI standards and UK law."
     image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=90&w=2200&auto=format&fit=crop"
   />
 
-  <!-- 2. Governance Framework Editorial -->
+  <!-- 2. Governance Statement & Overview -->
   <TextContentSection
     tag="Governance Principles"
-    title="Independent Academic Governance"
-    subtitle="Fiduciary oversight & UK non-profit regulatory compliance."
-    content="UKABCS is governed as an independent non-profit academic society. Our governance model separates executive operations from grant evaluation committees to guarantee complete scientific integrity, UKRI alignment, and unbiased funding allocations."
-    image="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Review Transparency Disclosures →"
+    title="Independent Academic Governance & Integrity"
+    subtitle="Operating transparently and ethically in full alignment with UKRI standards and UK company law."
+    content="The UK Association for Biotechnology & Computational Science (UKABCS) governance framework ensures that all activities — including grants, training, publishing, and partnerships — operate with absolute transparency. Under the leadership of Chair Dr. Israa Shamkh and Managing Director Mr. Khizar Hayat, UKABCS bridges science, education, and governance through ethical excellence."
+    image="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1000&auto=format&fit=crop"
+    ctaText="Explore Transparency & Financial Audits →"
     ctaHref="/transparency"
   />
 
-  <!-- 3. Leadership Team (TeamSection) -->
+  <!-- 3. Organisational Structure (5-Step Pool) -->
+  <section class="py-20 bg-surface border-t border-b border-border">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge-pill mb-3">Organisational Structure</span>
+        <h2 class="text-3xl font-bold text-foreground mb-4">Five-Stage Governance Architecture</h2>
+        <p class="text-secondary text-base">
+          This structure ensures UKABCS meets full UKRI governance standards through collective leadership, transparent evaluation, and documented accountability.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+        {orgStructureSteps.map((step) => (
+          <div class="p-6 rounded-xl bg-background border border-border/80 hover:border-primary/50 transition-all flex flex-col justify-between">
+            <div>
+              <span class="text-xs font-black tracking-widest text-primary/80 uppercase block mb-2">
+                Stage {step.step}
+              </span>
+              <h3 class="font-bold text-lg text-foreground mb-2">{step.title}</h3>
+              <p class="text-xs text-secondary leading-relaxed">{step.desc}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Board Responsibilities & Renewal -->
+  <section class="py-20 bg-background">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 space-y-6">
+          <span class="badge-pill">Fiduciary Duties</span>
+          <h2 class="text-3xl font-bold text-foreground">Board Responsibilities & Statutory Mandate</h2>
+          <p class="text-secondary text-sm leading-relaxed">
+            The Board consists of distinguished professionals and academics in biotechnology, computational chemistry, education, and governance, supported by an appointed British administrative director.
+          </p>
+
+          <ul class="space-y-3 pt-2">
+            {boardResponsibilities.map((item) => (
+              <li class="flex items-start gap-3 text-sm text-foreground">
+                <span class="text-primary font-bold shrink-0 mt-0.5">✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div class="lg:col-span-6">
+          <div class="p-8 rounded-2xl bg-surface border border-border space-y-6 shadow-sm">
+            <div class="flex items-center gap-3">
+              <span class="text-2xl">🏛️</span>
+              <h3 class="text-xl font-bold text-foreground">Transparency & Renewal Policy</h3>
+            </div>
+            <p class="text-xs text-secondary leading-relaxed">
+              The Board of Trustees is renewed annually in accordance with the Association's constitution and governance policy. Detailed profiles of Trustees and Directors are maintained internally and made available upon request, with public summaries displayed to demonstrate commitment to transparency.
+            </p>
+            <div class="p-4 rounded-xl bg-primary/5 border border-primary/20 text-xs text-foreground font-medium">
+              "The Board of Trustees, under the leadership of Chair Dr. Israa Shamkh and Managing Director Mr. Khizar Hayat, ensures that UKABCS operates as a transparent, ethical, and globally engaged organisation."
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Leadership Team Roster -->
   <TeamSection />
 
-  <!-- 4. 5 Specialised Standing Committees (Bento Grid) -->
-  <FeaturesBentoSection
-    title="5 Specialised Standing Committees"
-    subtitle="Guaranteeing rigorous oversight across grant evaluation, ethics, finance, EDI, and scientific advisory."
-  />
+  <!-- 6. Specialised Standing Committees -->
+  <section class="py-20 bg-surface border-t border-border">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
+        <span class="badge-pill">Specialised Committees</span>
+        <h2 class="text-3xl font-bold text-foreground">Standing Governance Committees</h2>
+        <p class="text-sm font-semibold text-primary italic">
+          "Collective Leadership for a Fair and Inclusive Research Future."
+        </p>
+      </div>
 
-  <!-- 5. Annual Reports & Legal Disclosures (Reversed) -->
-  <TextContentSection
-    tag="Statutory Disclosures"
-    title="Annual Reports & Statutory Compliance"
-    subtitle="Audited financial records and open governance rules."
-    content="UKABCS annual reports, conflict of interest rules, due diligence protocols, and legal policies are freely accessible to researchers, partner universities, and regulatory bodies."
-    image="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=80&w=1000&auto=format&fit=crop"
-    ctaText="Explore Legal & Policy Index →"
-    ctaHref="/legal"
-    reversed={true}
-  />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {committees.map((committee) => (
+          <div class="p-6 rounded-xl bg-background border border-border/80 hover:border-primary/40 transition-all space-y-3">
+            <div class="text-3xl mb-1">{committee.icon}</div>
+            <h3 class="font-bold text-lg text-foreground">{committee.name}</h3>
+            <p class="text-xs text-secondary leading-relaxed">{committee.desc}</p>
+            <p class="text-[11px] text-muted italic pt-2 border-t border-border/50">
+              Chaired by appointed members approved by the Board of Trustees. Composition available upon request.
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-  <!-- 6. Newsletter Bulletin -->
+  <!-- 7. Conflict of Interest Policy -->
+  <section class="py-20 bg-background border-t border-border">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-14">
+        <span class="badge-pill mb-3">Ethical Standards</span>
+        <h2 class="text-3xl font-bold text-foreground mb-3">Conflict of Interest Policy</h2>
+        <p class="text-secondary text-sm">
+          Ensuring all UKABCS decisions are made with absolute integrity, independence, and transparency.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {coiPoints.map((coi) => (
+          <div class="p-6 rounded-xl bg-surface border border-border/80 space-y-2">
+            <div class="flex items-center gap-3">
+              <span class="w-7 h-7 rounded-full bg-primary/10 text-primary font-bold text-xs flex items-center justify-center shrink-0">
+                {coi.num}
+              </span>
+              <h3 class="font-bold text-base text-foreground">{coi.title}</h3>
+            </div>
+            <p class="text-xs text-secondary leading-relaxed pt-1">{coi.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. Annual Reports & Accountability -->
+  <section class="py-20 bg-surface border-t border-border">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="max-w-4xl mx-auto p-8 sm:p-10 rounded-2xl bg-background border border-border text-center space-y-6 shadow-sm">
+        <span class="badge-pill">Annual Reports & Accountability</span>
+        <h2 class="text-3xl font-bold text-foreground">Inaugural Annual Report 2025</h2>
+        <p class="text-secondary text-sm leading-relaxed max-w-2xl mx-auto">
+          As a newly established academic association, UKABCS is currently in its inaugural operational year (2025). The organization is committed to producing an Annual Governance & Impact Report each year starting from 2025 to ensure full transparency and compliance.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left pt-2">
+          <div class="p-4 rounded-xl bg-surface border border-border text-xs space-y-1">
+            <span class="font-bold text-primary block">📜 Establishment & Scope</span>
+            <span class="text-secondary">Summary of governance framework & initial capacity building programs.</span>
+          </div>
+          <div class="p-4 rounded-xl bg-surface border border-border text-xs space-y-1">
+            <span class="font-bold text-primary block">🎓 Funded Grants</span>
+            <span class="text-secondary">Comprehensive review of 2025 and 2026 institutional grant awards.</span>
+          </div>
+          <div class="p-4 rounded-xl bg-surface border border-border text-xs space-y-1">
+            <span class="font-bold text-primary block">📊 Financial Summary</span>
+            <span class="text-secondary">Audit of in-kind donations, Lab Chem Flow disbursements, and operating expenses.</span>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted">
+          <span>The first official Inaugural Annual Report 2025 will be published in <strong>January 2026</strong>.</span>
+          <span class="badge-pill bg-primary/10 text-primary border-0">Coverage Period: Jan - Dec 2025</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. Newsletter Bulletin -->
   <NewsletterSection />
 
-  <!-- 7. Promo CTA -->
+  <!-- 10. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>
+

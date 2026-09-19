@@ -12,17 +12,20 @@ const partners = partnersCollection.map(p => ({
     : 'UK'
 }));
 
-// Fallback list if collection is empty
-const displayPartners = partners.length > 0 ? partners : [
-  { name: 'Bioinformatics Gate', type: 'Research Credits', slug: 'bioinformatics-gate-35k', initials: 'BG', image: '' },
-  { name: 'EBO Bio Solution', type: 'Strategic Partner', slug: 'ebo-bio-solution-150k', initials: 'EB', image: '' },
-  { name: 'IJBTCS Journal', type: 'Publishing Partner', slug: 'ijbtcs-220k', initials: 'IJ', image: '' },
-  { name: 'Exovion', type: 'Tech Partner', slug: 'exovion-10k', initials: 'EX', image: '' },
-  { name: 'Healora', type: 'Biotech Partner', slug: 'healora-12k', initials: 'HO', image: '' }
+// Fallback Partner list with real brand assets
+const fallbackPartners = [
+  { name: 'Bioinformatics Gate', type: 'Training Partner', slug: 'bioinformatics-gate-35k', initials: 'BG', image: '/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg' },
+  { name: 'EBO Bio Solution', type: 'Strategic Partner', slug: 'ebo-bio-solution-150k', initials: 'EB', image: '/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg' },
+  { name: 'IJBTCS Journal', type: 'Publishing Partner', slug: 'ijbtcs-220k', initials: 'IJ', image: '/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png' },
+  { name: 'Exovion', type: 'Tech Partner', slug: 'exovion-10k', initials: 'EX', image: '/partners/Blue Purple Modern Molecule Technology Logo.jpg' },
+  { name: 'Healora', type: 'Biotech Partner', slug: 'healora-12k', initials: 'HO', image: '/partners/Untitled design.png' },
+  { name: 'ClientFlow CRM', type: 'CRM & Systems Partner', slug: 'clientflow-crm', initials: 'CF', image: '/partners/Clint Flow CRM.png' }
 ];
 
+const activePartners = partners.length > 0 ? partners : fallbackPartners;
+
 // Duplicate for continuous seamless marquee loop
-const marqueeList = [...displayPartners, ...displayPartners, ...displayPartners];
+const marqueeList = [...activePartners, ...activePartners, ...activePartners];
 ---
 
 <section class="partner-ribbon py-16" aria-labelledby="partners-title">

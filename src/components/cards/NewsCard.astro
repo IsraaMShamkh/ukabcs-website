@@ -58,6 +58,13 @@ if (catLower.includes('call') || catLower.includes('grant')) {
         {badgeLabel}
       </span>
     </div>
+    {badgeType === 'call' && (
+      <div class="news-corner-ribbon-wrapper">
+        <div class="news-corner-ribbon open">
+          OPEN
+        </div>
+      </div>
+    )}
   </a>
 
   <!-- Content Body -->
@@ -263,5 +270,40 @@ if (catLower.includes('call') || catLower.includes('grant')) {
   .read-btn:hover {
     color: #0284c7;
     gap: 0.65rem;
+  }
+
+  .news-corner-ribbon-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 110px;
+    height: 110px;
+    overflow: hidden;
+    z-index: 10;
+    pointer-events: none;
+  }
+
+  .news-corner-ribbon {
+    position: absolute;
+    top: 18px;
+    right: -32px;
+    transform: rotate(45deg);
+    width: 140px;
+    padding: 4px 0;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 850;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+  }
+
+  .news-corner-ribbon.open {
+    background: linear-gradient(135deg, #10b981, #059669);
+  }
+
+  .news-corner-ribbon.closed {
+    background: linear-gradient(135deg, #e11d48, #be123c);
   }
 </style>
