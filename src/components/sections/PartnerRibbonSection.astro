@@ -2,55 +2,152 @@
 import { getCollection } from 'astro:content';
 
 const partnersCollection = await getCollection('partnerships');
-const partners = partnersCollection.map(p => ({
-  name: p.data.partnerName,
-  type: p.data.type,
-  slug: p.slug,
-  image: p.data.image,
-  initials: p.data.partnerName
-    ? p.data.partnerName.split(' ').map((n: string) => n[0]).join('').slice(0, 2).toUpperCase()
-    : 'UK'
-}));
 
-// Fallback Partner list with real brand assets
-const fallbackPartners = [
-  { name: 'Bioinformatics Gate', type: 'Training Partner', slug: 'bioinformatics-gate-35k', initials: 'BG', image: '/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg' },
-  { name: 'EBO Bio Solution', type: 'Strategic Partner', slug: 'ebo-bio-solution-150k', initials: 'EB', image: '/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg' },
-  { name: 'IJBTCS Journal', type: 'Publishing Partner', slug: 'ijbtcs-220k', initials: 'IJ', image: '/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png' },
-  { name: 'Exovion', type: 'Tech Partner', slug: 'exovion-10k', initials: 'EX', image: '/partners/Blue Purple Modern Molecule Technology Logo.jpg' },
-  { name: 'Healora', type: 'Biotech Partner', slug: 'healora-12k', initials: 'HO', image: '/partners/Untitled design.png' },
-  { name: 'ClientFlow CRM', type: 'CRM & Systems Partner', slug: 'clientflow-crm', initials: 'CF', image: '/partners/Clint Flow CRM.png' }
+// Default fallback catalog with rich descriptions and logos for all 9 partners
+const defaultPartners = [
+  {
+    name: 'Bioinformatics Gate',
+    type: 'Training Partner',
+    slug: 'bioinformatics-gate-35k',
+    initials: 'BG',
+    image: '/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg',
+    description: 'Empowering researchers in computational chemistry and bioinformatics through hands-on workshops and training pathways.',
+    value: '£35,000'
+  },
+  {
+    name: 'EBO Bio Solution',
+    type: 'Strategic Partner',
+    slug: 'ebo-bio-solution-150k',
+    initials: 'EB',
+    image: '/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg',
+    description: 'High-performance compute clusters, GPU node allocations, and computational modeling resources for research labs.',
+    value: '£150,000'
+  },
+  {
+    name: 'IJBTCS Journal',
+    type: 'Publishing Partner',
+    slug: 'ijbtcs-220k',
+    initials: 'IJ',
+    image: '/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png',
+    description: 'Open-access APC waivers and peer-reviewed scientific publishing support for UKABCS grant awardees.',
+    value: '£220,000'
+  },
+  {
+    name: 'Exovion',
+    type: 'Tech Partner',
+    slug: 'exovion-10k',
+    initials: 'EX',
+    image: '/partners/Blue Purple Modern Molecule Technology Logo.jpg',
+    description: 'Next-generation biotechnology software, AI molecular models, and cloud infrastructure integration.',
+    value: '£10,000'
+  },
+  {
+    name: 'Healora',
+    type: 'Biotech Partner',
+    slug: 'healora-12k',
+    initials: 'HO',
+    image: '/partners/Untitled design.png',
+    description: 'AI healthcare analytics, translational medicine datasets, and clinical bio-data systems.',
+    value: '£12,000'
+  },
+  {
+    name: 'ClientFlow CRM',
+    type: 'Software & Digital Platforms',
+    slug: 'clientflow-crm',
+    initials: 'CF',
+    image: '/partners/Clint Flow CRM.png',
+    description: 'Client relationship management, institutional workflows, and automated grant administration systems.',
+    value: '50% Member Benefit'
+  },
+  {
+    name: 'Ebonex Technologies',
+    type: 'Software & Digital Platforms',
+    slug: 'ebonex-technologies',
+    initials: 'ET',
+    image: '/partners/ebonex-technologies.png',
+    description: 'Digital tech solutions, cloud software architecture, and specialized AI integrations.',
+    value: '50% Member Benefit'
+  },
+  {
+    name: 'GetDocsTalk',
+    type: 'AI Research Platforms',
+    slug: 'getdocstalk',
+    initials: 'GD',
+    image: '/partners/getdocstalk.png',
+    description: 'Interactive AI reading support and automated scientific paper document processing.',
+    value: '50% Member Benefit'
+  },
+  {
+    name: 'SciFreelance',
+    type: 'Research Marketplace',
+    slug: 'scifreelance',
+    initials: 'SF',
+    image: '/partners/scifreelance.png',
+    description: 'Specialist digital marketplace connecting researchers with verified scientific computational services.',
+    value: '50% Member Benefit'
+  }
 ];
 
-const activePartners = partners.length > 0 ? partners : fallbackPartners;
-
-// Duplicate for continuous seamless marquee loop
-const marqueeList = [...activePartners, ...activePartners, ...activePartners];
+// Merge collection items with defaults to guarantee all 9 partners are fully populated
+const activePartners = defaultPartners.map((def) => {
+  const match = partnersCollection.find((p) => p.slug === def.slug || p.data.partnerName === def.name);
+  if (match) {
+    return {
+      name: match.data.partnerName || def.name,
+      type: match.data.type || match.data.contributionType || def.type,
+      slug: match.slug,
+      initials: def.initials,
+      image: match.data.image || match.data.featuredImage || def.image,
+      description: match.data.description || def.description,
+      value: match.data.value || match.data.contributionValue || def.value
+    };
+  }
+  return def;
+});
 ---
 
-<section class="partner-ribbon py-16" aria-labelledby="partners-title">
-  <div class="container">
-    <div class="text-center mb-10">
-      <span class="badge-pill mb-3">Partnerships</span>
-      <h2 id="partners-title" class="text-2xl font-bold">Our Partners &amp; Collaborators</h2>
-      <p class="text-secondary mt-2">Connecting researchers, academic societies, and technology partners across the globe.</p>
-    </div>
-  </div>
+<section class="logo-cloud-section py-24" aria-labelledby="partners-cloud-title">
+  <!-- Aceternity Ambient Grid & Glow Effects -->
+  <div class="logo-cloud-bg-grid" aria-hidden="true"></div>
+  <div class="logo-cloud-glow-blue" aria-hidden="true"></div>
+  <div class="logo-cloud-glow-emerald" aria-hidden="true"></div>
 
-  <div class="marquee-wrap">
-    <div class="marquee-track">
-      {marqueeList.map((partner) => (
-        <a href={`/partnerships/${partner.slug}`} class="partner-card-pill">
-          <span class="partner-avatar">
-            {partner.image ? (
-              <img src={partner.image} alt={partner.name} class="partner-avatar-img" />
-            ) : (
-              <span class="partner-initials">{partner.initials}</span>
-            )}
-          </span>
-          <div class="partner-info">
-            <span class="partner-name">{partner.name}</span>
-            <span class="partner-type">{partner.type}</span>
+  <div class="container logo-cloud-container">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="badge-pill mb-3">Global Academic &amp; Industry Ecosystem</span>
+      <h2 id="partners-cloud-title" class="text-3xl font-bold logo-cloud-title">Our Partners &amp; Collaborators</h2>
+      <p class="text-secondary mt-3 text-lg">Connecting researchers, academic societies, technology pioneers, and open-access publishers across the globe.</p>
+    </div>
+
+    <!-- Aceternity Logo Cloud Grid -->
+    <div class="logo-cloud-grid">
+      {activePartners.map((partner) => (
+        <a href={`/partnerships/${partner.slug}`} class="logo-cloud-card group">
+          <div class="logo-cloud-card-header">
+            <div class="logo-cloud-img-wrap">
+              {partner.image ? (
+                <img src={partner.image} alt={partner.name} class="logo-cloud-img" loading="lazy" />
+              ) : (
+                <span class="logo-cloud-initials">{partner.initials}</span>
+              )}
+            </div>
+            <span class="logo-cloud-type-pill">{partner.type}</span>
+          </div>
+
+          <div class="logo-cloud-card-body">
+            <h3 class="logo-cloud-partner-name">{partner.name}</h3>
+            <p class="logo-cloud-partner-desc">{partner.description}</p>
+          </div>
+
+          <div class="logo-cloud-card-footer">
+            <span class="logo-cloud-link-text">
+              <span>Explore Partnership</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="logo-cloud-arrow">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </span>
           </div>
         </a>
       ))}
@@ -59,121 +156,204 @@ const marqueeList = [...activePartners, ...activePartners, ...activePartners];
 </section>
 
 <style>
-  .partner-ribbon {
+  .logo-cloud-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
     background-color: var(--color-bg-secondary, #f8fafc);
     border-top: 1px solid var(--color-border, #e2e8f0);
     border-bottom: 1px solid var(--color-border, #e2e8f0);
-    padding-top: 4rem;
-    padding-bottom: 4rem;
-    overflow: hidden;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
   }
 
-  .marquee-wrap {
-    width: 100%;
-    overflow: hidden;
-    white-space: nowrap;
+  /* Aceternity Grid & Ambient Glows */
+  .logo-cloud-bg-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.12;
+    background-image: 
+      linear-gradient(var(--color-border, #cbd5e1) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border, #cbd5e1) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+
+  .logo-cloud-glow-blue {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .logo-cloud-glow-emerald {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .logo-cloud-container {
     position: relative;
-    padding: 1rem 0;
-    mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%);
+    z-index: 1;
   }
 
-  .marquee-track {
-    display: inline-flex;
+  .logo-cloud-title {
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  /* Logo Cloud Card Grid (3 Columns) */
+  .logo-cloud-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    .logo-cloud-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .logo-cloud-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* Aceternity UI Inspired Logo Cloud Card */
+  .logo-cloud-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
+    padding: 1.65rem;
+    text-decoration: none;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1), 
+                border-color 0.3s ease;
+  }
+
+  .logo-cloud-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--color-primary, #0284c7);
+    box-shadow: 0 16px 36px -8px rgba(13, 25, 42, 0.12);
+  }
+
+  .logo-cloud-card-header {
+    display: flex;
     align-items: center;
-    gap: 1.75rem;
-    animation: marquee 35s linear infinite;
-    will-change: transform;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1.1rem;
   }
 
-  .marquee-track:hover {
-    animation-play-state: paused;
-  }
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-33.333%); }
-  }
-
-  .partner-card-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.85rem;
-    padding: 0.75rem 1.35rem;
+  .logo-cloud-img-wrap {
+    width: 6.5rem;
+    height: 3.25rem;
     background: #ffffff;
     border: 1px solid var(--color-border, #e2e8f0);
-    border-radius: var(--radius-full, 9999px);
-    box-shadow: 0 4px 14px rgba(12, 40, 77, 0.07);
-    transition: all 0.25s ease;
-    text-decoration: none;
-    flex-shrink: 0;
-    white-space: nowrap;
-  }
-
-  .partner-card-pill:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-primary, #0284c7);
-    box-shadow: 0 8px 24px rgba(12, 40, 77, 0.14);
-    background: #ffffff;
-  }
-
-  .partner-avatar {
-    width: 2.35rem;
-    height: 2.35rem;
-    border-radius: 9999px;
-    background: var(--color-navy, #0f172a);
-    color: #ffffff;
-    font-size: 0.78rem;
-    font-weight: 800;
-    letter-spacing: 0.03em;
+    border-radius: var(--radius-md, 10px);
+    padding: 0.35rem 0.6rem;
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     flex-shrink: 0;
-    overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
   }
 
-  .partner-avatar-img {
+  .logo-cloud-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
 
-  .partner-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.15rem;
-    text-align: left;
-  }
-
-  .partner-name {
+  .logo-cloud-initials {
     font-weight: 700;
-    font-size: 0.92rem;
-    color: var(--color-text-primary, #0f172a);
-    line-height: 1.2;
+    font-size: 1rem;
+    color: var(--color-primary);
   }
 
-  .partner-type {
+  .logo-cloud-type-pill {
     font-size: 0.72rem;
     font-weight: 600;
     color: var(--color-primary, #0284c7);
-    background: var(--color-primary-soft, #e0f2fe);
-    padding: 0.1rem 0.5rem;
-    border-radius: var(--radius-sm, 4px);
-    display: inline-block;
-    width: fit-content;
+    background: var(--color-primary-soft, rgba(2, 132, 199, 0.08));
+    padding: 0.25rem 0.65rem;
+    border-radius: var(--radius-full, 9999px);
+    border: 1px solid rgba(2, 132, 199, 0.15);
+    white-space: nowrap;
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .marquee-track {
-      animation: none;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .marquee-wrap {
-      mask-image: none;
-      -webkit-mask-image: none;
-    }
+  .logo-cloud-card-body {
+    flex-grow: 1;
+  }
+
+  .logo-cloud-partner-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    line-height: 1.3;
+    color: var(--color-text-primary, #0f172a);
+    margin-bottom: 0.45rem;
+    letter-spacing: -0.01em;
+    transition: color 0.2s ease;
+  }
+
+  .logo-cloud-card:hover .logo-cloud-partner-name {
+    color: var(--color-primary, #0284c7);
+  }
+
+  .logo-cloud-partner-desc {
+    font-size: 0.88rem;
+    color: var(--color-text-secondary, #64748b);
+    line-height: 1.55;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .logo-cloud-card-footer {
+    margin-top: 1.25rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--color-border, #f1f5f9);
+  }
+
+  .logo-cloud-link-text {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.825rem;
+    font-weight: 600;
+    color: var(--color-primary, #0284c7);
+    transition: color 0.2s ease;
+  }
+
+  .logo-cloud-arrow {
+    transition: transform 0.25s ease;
+  }
+
+  .logo-cloud-card:hover .logo-cloud-arrow {
+    transform: translateX(4px);
   }
 </style>

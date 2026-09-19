@@ -4,6 +4,8 @@ import PageHero from '../../components/hero/PageHero.astro';
 import TextContentSection from '../../components/sections/TextContentSection.astro';
 import PartnerRibbonSection from '../../components/sections/PartnerRibbonSection.astro';
 import SalesPromoSection from '../../components/sections/SalesPromoSection.astro';
+import FeaturesBentoSection from '../../components/sections/FeaturesBentoSection.astro';
+import ArticlesBlogEventsSection from '../../components/sections/ArticlesBlogEventsSection.astro';
 import GeneralSupportSection from '../../components/sections/GeneralSupportSection.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
 import { siteConfig } from '../../config/site';
@@ -29,18 +31,68 @@ import { siteConfig } from '../../config/site';
     ctaHref={siteConfig.clientFlow.partnershipForm}
   />
 
-  <!-- 3. Partner Marquee Ribbon -->
+  <!-- 3. Partner icons/logos -->
   <PartnerRibbonSection />
 
-  <!-- 4. Active Partnership Allocations (SalesPromo) -->
+  <!-- 4. Partnership types: existing programme-card section -->
   <SalesPromoSection
-    title="Active Partner Programmes & Collaborations"
-    subtitle="Explore current training, software, computational collaboration, and publishing agreements supporting UKABCS programmes."
+    sectionId="partnership-types"
+    badge="Types of Partnerships"
+    title="How We Can Work Together"
+    subtitle="Partnerships designed to strengthen research, education, and global scientific collaboration."
+    items={[
+      { title: 'Partnership & Donation', description: 'Support research, education, and innovation through financial or non-financial contributions that empower researchers and strengthen scientific collaboration.' },
+      { title: 'Academic Partnerships', description: 'Collaborate with universities and academic institutions to support researchers and students and co-develop research projects.' },
+      { title: 'Technology Partnerships', description: 'Develop and use innovative software and tools with technology companies to facilitate and disseminate research.' },
+      { title: 'Philanthropic Partnerships', description: 'Support research activities through donations, sponsorships, and scholarships to maximise scientific and social impact.' },
+      { title: 'Educational Partnerships', description: 'Work with schools, training centres, and educational platforms to expand access to knowledge and build student capacity.' },
+      { title: 'Industry Partnerships', description: 'Bridge scientific research with industry needs through applied projects and real-world products or solutions.' },
+      { title: 'Service Partnerships', description: 'Provide in-kind resources or services, such as lab equipment, software platforms, products, or specialist training.' },
+      { title: 'Other Partnership Models', description: 'We welcome innovative partnership ideas. Contact us and submit your proposal for review.' },
+    ]}
   />
 
-  <!-- 5. General Support / Partnership Request -->
+  <!-- 5. Partnership process: existing Bento section -->
+  <FeaturesBentoSection
+    sectionId="partnership-process"
+    badge="Partnership Process"
+    title="A Clear Route to Collaboration"
+    subtitle="From your first enquiry to being listed as an official UKABCS partner."
+    items={[
+      { title: '01 · Get in Touch', description: 'Submit your interest via the partnership form or email.' },
+      { title: '02 · Initial Review', description: 'Our team reviews your proposal to ensure alignment with our mission.' },
+      { title: '03 · Partnership Agreement (MOU)', description: 'We prepare a Memorandum of Understanding outlining roles and mutual benefits.' },
+      { title: '04 · Official Approval', description: 'The partnership is formally approved within three working days after signing.' },
+      { title: '05 · Listing as a Partner', description: 'Your organisation’s name and logo are added to our Partners page and highlighted in our projects.' },
+    ]}
+  />
+
+  <!-- 6. Same article-card section used on the Home page -->
+  <ArticlesBlogEventsSection
+    title="Partnerships & Collaborations Articles"
+    subtitle="Updates on UKABCS collaborations, research credits, services, publishing support, and joint scientific impact."
+    category="Partnerships"
+    limit={6}
+    tabs={[
+      { id: 'all', label: 'All Partners' },
+      { id: 'technology', label: 'Technology & Innovation', match: 'partnership-exovion|partnership-healora' },
+      { id: 'research', label: 'Research & Industry', match: 'partnership-ebo' },
+      { id: 'publishing', label: 'Publishing & Conferences', match: 'partnership-ijbtcs' },
+      { id: 'education', label: 'Education & Training', match: 'partnership-bioinformatics-gate' },
+    ]}
+  />
+
+  <!-- 7. Existing application/support section -->
   <GeneralSupportSection />
 
-  <!-- 6. Promo CTA -->
+  <!-- 8. Promo CTA -->
   <PromoCTASection />
 </BaseLayout>
+
+<style>
+  :global(.section-articles .news-card-media img[src^='/partners/']) {
+    object-fit: contain;
+    padding: 0.75rem;
+    background: #ffffff;
+  }
+</style>

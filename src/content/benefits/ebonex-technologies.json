@@ -1,0 +1,13 @@
+{
+  "partnerName": "Ebonex Technologies",
+  "logo": "/partners/ebonex-technologies.png",
+  "category": "Software",
+  "shortDescription": "Digital technology solutions supporting scientific organisations and researchers.",
+  "services": ["Digital Platforms", "Technology Solutions"],
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
+  "partnershipSlug": "ebonex-technologies",
+  "verified": true
+}

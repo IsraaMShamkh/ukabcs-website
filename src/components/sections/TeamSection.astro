@@ -6,7 +6,7 @@ export interface Props {
 
 const {
   title = "UKABCS Board of Trustees & Directors",
-  subtitle = "Distinguished academics, research directors, and UK administrative leads steering the UK Association for Biotechnology & Computational Science."
+  subtitle = "The Board of Trustees of the UK Association for Biotechnology & Computational Science (UKABCS) is the highest governing body responsible for the Association’s strategic direction, compliance with UK law, and the preservation of transparency and research integrity."
 } = Astro.props;
 
 const boardMembers = [
@@ -15,16 +15,16 @@ const boardMembers = [
     country: "UK / Egypt",
     role: "Trustee / Partnerships & Strategic Development Lead",
     institution: "EBO Bio Solution Ltd / UKABCS",
-    bio: "Head of Computational Chemistry and Full-Stack Developer at EBO Bio Solution Ltd, specialising in AI-driven drug discovery and computational platform architecture.",
-    avatar: "/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg",
+    bio: "Israa M. Shamkh is the Head of Computational Chemistry and a Full-Stack Developer at EBO Bio Solution Ltd, specialising in AI-driven drug discovery and the development of advanced computational platforms.",
+    avatar: "/board/board_member_5.jpg",
     initials: "IS"
   },
   {
     name: "Mr. Khizar Hayat",
-    country: "United Kingdom",
+    country: "UK",
     role: "Managing Director",
     institution: "UKABCS Executive Operations",
-    bio: "Administrative Director responsible for legal compliance, operations, and corporate governance in the UK. Oversees registration, reporting, and UK Companies House alignment.",
+    bio: "Administrative Director responsible for legal compliance, operations, and corporate governance in the UK. Oversees registration, reporting, and alignment with UK Companies House and Charity Commission regulations.",
     avatar: "", // Explicitly no photo per user audio directive
     initials: "KH"
   },
@@ -33,7 +33,7 @@ const boardMembers = [
     country: "Brazil",
     role: "Trustee / Scientific Advisor",
     institution: "Federal University of Alfenas, Brazil",
-    bio: "Full Professor of Physics at the Federal University of Alfenas, Brazil. CRO Manager, Scientific Supervisor, and Editor-in-Chief. Expert in computational modelling and scientific innovation.",
+    bio: "Full Professor of Physics at the Federal University of Alfenas, Brazil. CRO Manager, Scientific Supervisor, and Editor-in-Chief. Expert in academic collaboration, computational modelling, and scientific innovation.",
     avatar: "/board/board_member_1.jpg",
     initials: "IC"
   },
@@ -42,16 +42,16 @@ const boardMembers = [
     country: "USA",
     role: "Trustee / Ethics & EDI Lead",
     institution: "Northeastern University, USA",
-    bio: "Lecturer at Northeastern University (USA). CRO Manager, Scientific Supervisor, and Instructor. Responsible for ethical oversight, research integrity, and EDI initiatives.",
+    bio: "Lecturer at Northeastern University (USA). CRO Manager, Scientific Supervisor, and Instructor. Responsible for ethical oversight, research integrity, and Equality, Diversity & Inclusion (EDI) initiatives within UKABCS.",
     avatar: "/board/board_member_3.jpg",
     initials: "MA"
   },
   {
     name: "Dr. Amina Ibrahim Dirar",
-    country: "Sudan",
+    country: "",
     role: "Partnerships & Strategic Development Lead",
-    institution: "UKABCS Strategic Development",
-    bio: "Specialises in strategic research partnerships, academic collaborations, and university development across the MENA region.",
+    institution: "",
+    bio: "",
     avatar: "/board/board_member_7.jpg",
     initials: "AD"
   },
@@ -103,13 +103,13 @@ const boardMembers = [
               )}
               <div>
                 <h3 class="font-bold text-base text-foreground line-clamp-1">{member.name}</h3>
-                <span class="badge-pill text-[11px] py-0.5 px-2 mt-1">{member.country}</span>
+                {member.country && <span class="badge-pill text-[11px] py-0.5 px-2 mt-1">{member.country}</span>}
               </div>
             </div>
 
             <p class="text-primary-color font-bold text-xs mb-1.5">{member.role}</p>
-            <p class="text-muted text-xs mb-3 font-medium">{member.institution}</p>
-            <p class="text-secondary text-xs leading-relaxed">{member.bio}</p>
+            {member.institution && <p class="text-muted text-xs mb-3 font-medium">{member.institution}</p>}
+            {member.bio && <p class="text-secondary text-xs leading-relaxed">{member.bio}</p>}
           </div>
         </div>
       ))}
@@ -118,8 +118,41 @@ const boardMembers = [
 </section>
 
 <style>
+  .section-team .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
   .team-card {
     background: var(--color-surface, #ffffff);
     border-radius: var(--radius-lg, 12px);
+    padding: 1.5rem;
+    height: 100%;
+    border: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .team-card > div > div:first-child {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .team-card img {
+    width: 3.5rem !important;
+    height: 3.5rem !important;
+    max-width: 3.5rem !important;
+    flex: 0 0 3.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+  }
+
+  @media (min-width: 768px) {
+    .section-team .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (min-width: 1024px) {
+    .section-team .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   }
 </style>

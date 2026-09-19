@@ -1,14 +1,14 @@
 {
   "partnerName": "HealOra Diagnostics",
-  "logo": "https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format&fit=crop",
+  "logo": "/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg",
   "website": "https://healora.co.uk",
   "category": "Services",
   "shortDescription": "Clinical Biomarker Analytics & Genomic Diagnostics Consultation.",
   "services": ["Biomarker Discovery", "Genomic Sequencing Consult", "Clinical Trials Analytics"],
-  "discountValue": "Free Initial Consultation",
-  "discountType": "Service Credit",
-  "eligibility": "Professional & Institution Members",
-  "terms": "Includes 1-hour expert diagnostic workflow review.",
+  "discountValue": "40% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
   "partnershipSlug": "healora-12k",
   "verified": true
 }

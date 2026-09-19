@@ -1,0 +1,13 @@
+{
+  "partnerName": "ClientFlow CRM",
+  "logo": "/partners/clientflow-crm.png",
+  "category": "Software",
+  "shortDescription": "Client relationship management and workflow tools for research organisations.",
+  "services": ["CRM", "Workflow Automation"],
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
+  "partnershipSlug": "clientflow-crm",
+  "verified": true
+}

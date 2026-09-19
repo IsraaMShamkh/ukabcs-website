@@ -5,7 +5,7 @@ value: "£35,000"
 type: "Training Collaboration"
 datePublished: "2025-08-10"
 featured: true
-image: "/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg"
+image: "/partners/COVERS  (Youtube Banner) (4).png"
 description: "Empowering researchers in computational chemistry and bioinformatics through training and practical learning pathways."
 ---
 

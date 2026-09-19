@@ -2,233 +2,41 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/hero/PageHero.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
-import { ShieldCheck, Lock, ExternalLink, ArrowRight, Tag, BookOpen, Cpu, Award, HeartPulse } from 'lucide-astro';
+import { getCollection } from 'astro:content';
 
-const pools = [
-  {
-    id: 'training-pool',
-    title: 'Training & Educational Diplomas Pool',
-    tag: 'Capacity Building & Workshops',
-    icon: BookOpen,
-    description: 'Specialised CADD, chemoinformatics, and bioinformatics hands-on workshops and professional diploma subsidies.',
-    items: [
-      {
-        partnerName: 'Bioinformatics Gate',
-        logo: '/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg',
-        website: 'https://bioinformaticsgate.com',
-        category: 'Training',
-        image: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?q=80&w=800&auto=format&fit=crop',
-        shortDescription: 'Certified professional diplomas and hands-on workshops in CADD, structural bioinformatics, and chemoinformatics.',
-        discountValue: '25% Member Grant Subsidy',
-        eligibility: 'All Active UKABCS Member Categories',
-        terms: 'Discount applied automatically during diploma enrollment upon membership verification.',
-        ctaLink: '/memberships#pricing',
-        ctaText: 'Claim 25% Discount'
-      },
-      {
-        partnerName: 'EBO Bio Solution (UK)',
-        logo: '/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg',
-        website: 'https://ebobio.co.uk',
-        category: 'Training',
-        image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=800&auto=format&fit=crop',
-        shortDescription: 'Hands-on computational pipeline training, Python for drug discovery, and molecular modeling bootcamps.',
-        discountValue: '30% Member Subsidy',
-        eligibility: 'Academic & Individual Members',
-        terms: 'Free entry for top 10 UKABCS graduation grant awardees each cohort.',
-        ctaLink: '/memberships#pricing',
-        ctaText: 'Access Training Discount'
-      }
-    ]
-  },
-  {
-    id: 'software-pool',
-    title: 'Scientific Software & Compute Tools Pool',
-    tag: 'Computational Infrastructure',
-    icon: Cpu,
-    description: 'High-performance computing workflows, molecular modeling suites, and scientific analysis tools.',
-    items: [
-      {
-        partnerName: 'Exovion',
-        logo: '/partners/Blue Purple Modern Molecule Technology Logo.jpg',
-        website: 'https://exovion.com',
-        category: 'Software',
-        image: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=80&w=800&auto=format&fit=crop',
-        shortDescription: 'Advanced computational biology software suite for sequence analysis and protein structure prediction.',
-        discountValue: 'Free Member License Tier',
-        eligibility: 'All Active Members & Partner Institutions',
-        terms: 'Includes 1-year renewable academic license key for registered UKABCS members.',
-        ctaLink: '/memberships#pricing',
-        ctaText: 'Get Free Software License'
-      }
-    ]
-  },
-  {
-    id: 'publishing-pool',
-    title: 'Open-Access Publishing & APC Waivers Pool',
-    tag: 'Academic Journals & Dissemination',
-    icon: Award,
-    description: 'Peer-reviewed open-science publication waivers and expedited peer-review support for scientific papers.',
-    items: [
-      {
-        partnerName: 'IJBTCS Journal',
-        logo: '/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png',
-        website: 'https://ijbtcs.org',
-        category: 'Publishing',
-        image: 'https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=800&auto=format&fit=crop',
-        shortDescription: 'International Journal of Biotechnology & Computational Science — indexed open-access peer-reviewed journal.',
-        discountValue: '100% Full APC Waiver',
-        eligibility: 'Corresponding Authors with Active UKABCS Membership',
-        terms: 'Full waiver of Article Processing Charges (£1,200 value) upon manuscript acceptance.',
-        ctaLink: '/publications',
-        ctaText: 'Submit Paper with Waiver'
-      }
-    ]
-  },
-  {
-    id: 'healthtech-pool',
-    title: 'Health-Tech & Analytical Support Pool',
-    tag: 'Bio-Data & Health Analytics',
-    icon: HeartPulse,
-    description: 'Specialised bio-data analytics, clinical research assistance, and health technology project support.',
-    items: [
-      {
-        partnerName: 'Healora',
-        logo: '/partners/Untitled design.png',
-        website: 'https://healora.org',
-        category: 'Services',
-        image: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=800&auto=format&fit=crop',
-        shortDescription: 'Health-tech analytical platform and computational medicine research support services.',
-        discountValue: '20% Partner Discount',
-        eligibility: 'Individual & Institutional Members',
-        terms: 'Applies to computational analysis contracts and health data pipeline consultations.',
-        ctaLink: '/memberships#pricing',
-        ctaText: 'Access Analytical Discount'
-      }
-    ]
-  }
-];
+const benefits = await getCollection('benefits');
+const categoryLabels: Record<string, string> = {
+  Training: 'Education & Training', Computing: 'Scientific Software & Compute', Software: 'Software & Digital Platforms', Publishing: 'Publishing & Conferences', Services: 'Analytical & Research Services',
+};
+const tabs = [{ id: 'all', label: 'All Benefits' }, ...Object.entries(categoryLabels).map(([category, label]) => ({ id: category.toLowerCase(), label, category }))];
 ---
 
-<BaseLayout title="Member Benefit Pools | UKABCS" description="Explore verified training, scientific software, computational collaboration and publishing offers organized into member benefit pools.">
-  <PageHero
-    eyebrow="Exclusive Directory"
-    title="UKABCS Member Benefit Pools"
-    description="Explore verified partner offers organized by domain: training diplomas, computational software, publishing APC waivers, and health-tech analytics."
-    image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=90&w=2200&auto=format&fit=crop"
-  />
+<BaseLayout title="Partner Benefits & Discount Marketplace | UKABCS" description="Verified UKABCS member discounts and partner offers in one marketplace.">
+  <PageHero eyebrow="Exclusive Member Ecosystem" title="Partner Benefits & Discount Marketplace" description="As an active UKABCS member, you receive verified partner discounts and member offers across scientific providers." image="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=90&w=2200&auto=format&fit=crop" />
 
-  <section class="benefits-pools-section py-16">
-    <div class="container space-y-16 max-w-6xl mx-auto">
-      <!-- Mandatory Access Callout -->
-      <div class="p-5 md:p-6 rounded-2xl bg-amber-500/10 border border-amber-500/30 text-amber-200 flex items-start gap-4">
-        <Lock class="w-6 h-6 text-amber-400 shrink-0 mt-0.5" />
-        <div class="space-y-1 text-sm">
-          <strong class="font-bold text-amber-300 text-base block">Mandatory Access Requirement</strong>
-          <p class="leading-relaxed">
-            All discounts, grant subsidies, and APC waivers listed below are exclusively available to verified UKABCS members. Active membership status is checked automatically upon enrollment or submission.
-          </p>
-        </div>
+  <section class="benefits-marketplace py-20" id="benefit-marketplace">
+    <div class="container">
+      <div class="marketplace-heading"><span class="badge-pill mb-3">Exclusive Member Ecosystem</span><h2 class="text-3xl font-bold">Partner Benefits &amp; Discount Marketplace</h2><p class="text-secondary mt-2 max-w-3xl">Browse verified member offers by category, with a clear description and direct route to each partner offer.</p></div>
+      <div class="member-access-note" role="note"><strong>Member discount announcement.</strong> Active UKABCS members receive partner discounts typically ranging from 25% to 65%. Any limited-time or special partner offer will be announced separately by UKABCS.</div>
+
+      <div class="marketplace-tabs" role="tablist" aria-label="Partner benefit categories">
+        {tabs.map((tab, index) => <button class:list={['marketplace-tab', index === 0 && 'is-active']} type="button" role="tab" aria-selected={index === 0 ? 'true' : 'false'} data-category={tab.category || 'all'}>{tab.label} ({tab.category ? benefits.filter((benefit) => benefit.data.category === tab.category).length : benefits.length})</button>)}
       </div>
 
-      <!-- Section Pools Render Loop -->
-      {pools.map((pool) => {
-        const IconComp = pool.icon;
-        return (
-          <div id={pool.id} class="pool-block space-y-8 pt-4">
-            <!-- Pool Header -->
-            <div class="pool-header flex items-center justify-between pb-4 border-b border-border/80 flex-wrap gap-4">
-              <div class="space-y-1">
-                <span class="badge-pill mb-2">{pool.tag}</span>
-                <h2 class="text-2xl md:text-3xl font-bold flex items-center gap-3 text-foreground">
-                  <IconComp class="w-7 h-7 text-primary shrink-0" />
-                  <span>{pool.title}</span>
-                </h2>
-                <p class="text-secondary text-sm max-w-2xl">{pool.description}</p>
-              </div>
-            </div>
-
-            <!-- Pool Cards Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {pool.items.map((item) => (
-                <article class="flat-surface pool-card flex flex-col justify-between h-full p-0 rounded-2xl overflow-hidden border border-border group hover:border-primary/50 transition-all">
-                  <!-- Card Image Banner -->
-                  <div class="relative w-full h-48 overflow-hidden bg-navy">
-                    <img
-                      src={item.image}
-                      alt={item.partnerName}
-                      class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      loading="lazy"
-                    />
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
-                    <div class="absolute bottom-3 left-4 right-4 flex items-center justify-between">
-                      <div class="flex items-center gap-2.5">
-                        <img src={item.logo} alt={item.partnerName} class="w-9 h-9 rounded-full object-cover border-2 border-white shadow-md bg-white" />
-                        <span class="text-white font-bold text-base shadow-sm">{item.partnerName}</span>
-                      </div>
-                      <span class="badge-pill bg-white/90 text-navy font-bold text-xs">{item.category}</span>
-                    </div>
-                  </div>
-
-                  <!-- Card Body -->
-                  <div class="p-6 flex-1 flex flex-col justify-between space-y-5">
-                    <p class="text-secondary text-sm leading-relaxed">
-                      {item.shortDescription}
-                    </p>
-
-                    <!-- Discount Highlight Box -->
-                    <div class="p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/30 space-y-1.5">
-                      <div class="flex items-center gap-2 text-xs font-bold text-emerald-500">
-                        <Tag class="w-4 h-4" />
-                        <span>UKABCS Member Benefit</span>
-                      </div>
-                      <div class="text-lg font-extrabold text-emerald-400">
-                        {item.discountValue}
-                      </div>
-                      <div class="text-xs text-secondary">
-                        <strong>Eligible:</strong> {item.eligibility}
-                      </div>
-                    </div>
-
-                    <p class="text-xs text-muted leading-relaxed italic">
-                      ℹ️ {item.terms}
-                    </p>
-
-                    <!-- Actions -->
-                    <div class="pt-4 border-t border-border/60 flex items-center justify-between gap-3">
-                      {item.website && (
-                        <a
-                          href={item.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="btn-fluent-secondary text-xs py-2 px-3 inline-flex items-center gap-1.5"
-                        >
-                          <span>Partner Site</span>
-                          <ExternalLink class="w-3.5 h-3.5" />
-                        </a>
-                      )}
-                      <a
-                        href={item.ctaLink}
-                        class="btn-fluent-primary text-xs py-2 px-4 inline-flex items-center gap-2 ml-auto"
-                      >
-                        <span>{item.ctaText}</span>
-                        <ArrowRight class="w-4 h-4" />
-                      </a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        );
-      })}
+      <div class="marketplace-table-wrap"><table class="marketplace-table"><thead><tr><th>Verified Partner</th><th>About the offer</th><th>Discount</th><th aria-label="Action"></th></tr></thead><tbody>
+        {benefits.map((benefit) => <tr data-category={benefit.data.category}><td><div class="partner-cell">{benefit.data.logo && <img src={benefit.data.logo} alt={benefit.data.partnerName} loading="lazy" />}<div><strong>{benefit.data.partnerName}</strong><span>{categoryLabels[benefit.data.category]}</span></div></div></td><td><p class="offer-description">{benefit.data.shortDescription}</p></td><td><strong class="discount-value">{benefit.data.discountValue.replace(/\s*Member Discount$/i, '')}</strong></td><td><a class="btn-fluent-primary table-action" href={`/partnerships/${benefit.data.partnershipSlug}`}>Get offer <span aria-hidden="true">→</span></a></td></tr>)}
+      </tbody></table></div>
     </div>
   </section>
-
   <PromoCTASection />
 </BaseLayout>
 
 <style>
-  .benefits-pools-section { background: var(--color-bg-secondary, #f8fafc); }
-  .pool-card { background: var(--color-surface, #ffffff); box-shadow: var(--shadow-sm); }
-  .pool-card:hover { box-shadow: var(--shadow-md); }
+  .benefits-marketplace{background:var(--color-bg-secondary,#f8fafc)}.benefits-marketplace .container{width:min(95%,1440px);max-width:none}.marketplace-heading{max-width:54rem;margin:0 auto 2rem;text-align:center}.member-access-note{margin:0 auto 2rem;padding:1rem 1.25rem;color:var(--color-primary);background:var(--color-primary-soft);border:1px solid color-mix(in srgb,var(--color-primary) 25%,transparent);border-radius:var(--radius-md,8px);line-height:1.65}.marketplace-tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:.45rem;border-bottom:1px solid var(--color-border);margin-bottom:1.75rem}.marketplace-tab{appearance:none;border:0;border-bottom:2px solid transparent;background:transparent;color:var(--color-text-secondary);padding:.85rem 1rem;margin-bottom:-1px;font:inherit;font-size:.9rem;font-weight:700;cursor:pointer}.marketplace-tab:hover,.marketplace-tab.is-active{color:var(--color-primary);border-bottom-color:var(--color-primary)}.marketplace-table-wrap{overflow-x:auto;background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-lg,12px)}.marketplace-table{width:100%;min-width:880px;border-collapse:collapse}.marketplace-table th{padding:1rem 1.25rem;text-align:left;background:var(--color-bg-secondary);color:var(--color-text-secondary);font-size:.78rem;letter-spacing:.04em;text-transform:uppercase}.marketplace-table td{padding:1.15rem 1.25rem;border-top:1px solid var(--color-border);vertical-align:middle;color:var(--color-text-secondary);font-size:.9rem;line-height:1.55}.marketplace-table tr[hidden]{display:none}.partner-cell{display:flex;align-items:center;gap:.85rem;min-width:210px}.partner-cell img{width:4rem;height:2.75rem;padding:.2rem;object-fit:contain;background:#fff;border:1px solid var(--color-border);border-radius:.45rem}.partner-cell strong{display:block;color:var(--color-text-primary);font-weight:750}.partner-cell span{display:block;margin-top:.2rem;color:var(--color-primary);font-size:.77rem;font-weight:700}.offer-description{margin:0;max-width:40rem}.discount-value{display:inline-flex;align-items:center;justify-content:center;min-width:4.5rem;color:var(--color-primary);font-size:1rem;font-weight:800}.table-action{white-space:nowrap;font-size:.82rem;padding:.65rem .9rem}@media(max-width:640px){.benefits-marketplace .container{width:95%}.marketplace-tab{padding:.7rem .55rem;font-size:.8rem}}
 </style>
+
+<script>
+  const tabButtons = Array.from(document.querySelectorAll<HTMLButtonElement>('.marketplace-tab'));
+  const rows = Array.from(document.querySelectorAll<HTMLTableRowElement>('.marketplace-table tbody tr'));
+  tabButtons.forEach((button) => button.addEventListener('click', () => { const category = button.dataset.category; tabButtons.forEach((tab) => { const active = tab === button; tab.classList.toggle('is-active', active); tab.setAttribute('aria-selected', String(active)); }); rows.forEach((row) => { row.hidden = category !== 'all' && row.dataset.category !== category; }); }));
+</script>

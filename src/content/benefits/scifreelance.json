@@ -1,0 +1,13 @@
+{
+  "partnerName": "SciFreelance",
+  "logo": "/partners/scifreelance.png",
+  "category": "Software",
+  "shortDescription": "A specialist digital platform for scientific freelance services and collaboration.",
+  "services": ["Scientific Freelance", "Collaboration Tools"],
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
+  "partnershipSlug": "scifreelance",
+  "verified": true
+}

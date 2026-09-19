@@ -1,25 +1,45 @@
 ---
 import { homeContent } from '../../config/home';
 
-export interface Props { title?: string; subtitle?: string; }
-const { title = 'Partner Programmes & Collaborations', subtitle = 'Explore the training, software, computational collaboration and publishing pathways available through UKABCS partnerships.' } = Astro.props;
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  badge?: string;
+  sectionId?: string;
+  items?: Array<{ title: string; description: string; href?: string; linkLabel?: string }>;
+}
+const {
+  title = 'Partner Programmes & Collaborations',
+  subtitle = 'Explore the training, software, computational collaboration and publishing pathways available through UKABCS partnerships.',
+  badge = 'Programmes & grants',
+  sectionId = 'programmes',
+  items = homeContent.programmes,
+} = Astro.props;
 ---
 
-<section class="py-20 section-sales-promo" id="programmes">
+<section class="py-20 section-sales-promo" id={sectionId}>
   <div class="container">
     <div class="section-heading max-w-3xl mb-12">
-      <span class="badge-pill mb-3">Programmes & grants</span>
+      <span class="badge-pill mb-3">{badge}</span>
       <h2 class="text-3xl font-bold mb-3">{title}</h2>
       <p class="text-secondary">{subtitle}</p>
     </div>
     <div class="grid-3 gap-6">
-      {homeContent.programmes.map((programme) => (
+      {items.map((programme) => (
+        programme.href ? (
         <a href={programme.href} class="card-aceternity programme-card">
           <span class="programme-arrow" aria-hidden="true">↗</span>
           <h3 class="font-bold text-xl mb-3">{programme.title}</h3>
           <p class="text-secondary text-sm leading-relaxed">{programme.description}</p>
-          <span class="programme-link">Explore programme <span aria-hidden="true">→</span></span>
+          <span class="programme-link">{programme.linkLabel ?? 'Explore programme'} <span aria-hidden="true">→</span></span>
         </a>
+        ) : (
+        <article class="card-aceternity programme-card">
+          <span class="programme-arrow" aria-hidden="true">↗</span>
+          <h3 class="font-bold text-xl mb-3">{programme.title}</h3>
+          <p class="text-secondary text-sm leading-relaxed">{programme.description}</p>
+        </article>
+        )
       ))}
     </div>
   </div>

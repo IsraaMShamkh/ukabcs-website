@@ -1,14 +1,14 @@
 {
   "partnerName": "Bioinformatics Gate",
-  "logo": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=400&auto=format&fit=crop",
+  "logo": "/partners/COVERS  (Youtube Banner) (4).png",
   "website": "https://bioinformaticsgate.com",
   "category": "Training",
   "shortDescription": "Certified professional diplomas and hands-on workshops in CADD and chemoinformatics.",
   "services": ["Professional Diploma", "Colab Pipeline Training", "Hands-on Workshops"],
-  "discountValue": "25% Grant Subsidy",
-  "discountType": "Grant Discount",
-  "eligibility": "All UKABCS Member Categories",
-  "terms": "Discount applied directly during diploma enrollment.",
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
   "partnershipSlug": "bioinformatics-gate-35k",
   "verified": true
 }

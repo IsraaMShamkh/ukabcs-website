@@ -5,7 +5,7 @@ value: "£12,000"
 type: "AI Healthcare Analytics"
 datePublished: "2025-09-05"
 featured: false
-image: "/partners/Untitled design.png"
+image: "/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg"
 description: "Supporting clinical bioinformatics investigations and AI-assisted clinical trial analysis."
 ---
 

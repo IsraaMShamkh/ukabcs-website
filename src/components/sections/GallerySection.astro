@@ -2,12 +2,10 @@
 export interface Props {
   title?: string;
   subtitle?: string;
+  badge?: string;
+  sectionId?: string;
+  items?: Array<{ title: string; location: string; image: string; category: string }>;
 }
-
-const {
-  title = "UKABCS Academic Summits & Lab Snapshots",
-  subtitle = "Glimpses into our UK-Arab bioinformatics workshops, high-performance compute lab trainings, and annual research symposiums."
-} = Astro.props;
 
 const galleryItems = [
   {
@@ -47,18 +45,26 @@ const galleryItems = [
     category: "Hackathon"
   }
 ];
+
+const {
+  title = "UKABCS Academic Summits & Lab Snapshots",
+  subtitle = "Glimpses into our UK-Arab bioinformatics workshops, high-performance compute lab trainings, and annual research symposiums.",
+  badge = "Photo Archive",
+  sectionId = "gallery",
+  items = galleryItems,
+} = Astro.props;
 ---
 
-<section class="py-20 section-gallery" id="gallery">
+<section class="py-20 section-gallery" id={sectionId}>
   <div class="container">
     <div class="text-center max-w-3xl mx-auto mb-12">
-      <span class="badge-pill mb-3">Photo Archive</span>
+      <span class="badge-pill mb-3">{badge}</span>
       <h2 class="text-3xl font-bold mb-3">{title}</h2>
       <p class="text-secondary">{subtitle}</p>
     </div>
 
     <div class="grid-3 gap-6">
-      {galleryItems.map((item) => (
+      {items.map((item) => (
         <div class="card-aceternity gallery-card">
           <div class="card-image-wrap gallery-image-wrap">
             <img src={item.image} alt={item.title} loading="lazy" />

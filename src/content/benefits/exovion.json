@@ -1,14 +1,14 @@
 {
   "partnerName": "Exovion Inc.",
-  "logo": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=400&auto=format&fit=crop",
+  "logo": "/partners/be7dcb13-5351-451b-921a-abd55739aea8.jpeg",
   "website": "https://exovion.com",
   "category": "Computing",
   "shortDescription": "High-Performance Cloud Compute & Molecular Dynamics GPU Clusters.",
   "services": ["GPU Acceleration", "MD Clusters", "Bioinformatics Pipeline Hosting"],
-  "discountValue": "15% Compute Discount",
-  "discountType": "Percentage",
-  "eligibility": "Active UKABCS Members",
-  "terms": "Valid for annual compute subscriptions.",
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
   "partnershipSlug": "exovion-10k",
   "verified": true
 }

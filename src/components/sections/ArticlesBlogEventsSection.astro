@@ -2,10 +2,28 @@
 import NewsCard from '../cards/NewsCard.astro';
 import { getCollection } from 'astro:content';
 
-export interface Props { title?: string; subtitle?: string; limit?: number; }
-const { title = 'News & Insights', subtitle = 'Research articles, official announcements, and grant-call releases.', limit = 6 } = Astro.props;
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  limit?: number;
+  category?: string;
+  showTabs?: boolean;
+  tabs?: Array<{ id: string; label: string; partner?: string; match?: string }>;
+  viewAllHref?: string;
+  viewAllLabel?: string;
+}
+const {
+  title = 'News & Insights',
+  subtitle = 'Research articles, official announcements, and grant-call releases.',
+  limit = 6,
+  category,
+  showTabs = true,
+  viewAllHref = '/news',
+  viewAllLabel = 'View all research articles',
+  tabs: customTabs,
+} = Astro.props;
 
-const allNews = await getCollection('news');
+const allNews = (await getCollection('news')).filter((item) => !category || item.data.category === category);
 const byNewest = (items: typeof allNews) => items.sort((a, b) => new Date(b.data.datePublished).getTime() - new Date(a.data.datePublished).getTime()).slice(0, limit);
 
 // Split news into intuitive distinct categories
@@ -26,12 +44,22 @@ const news = byNewest(allNews.filter((item) => {
 
 const allRecent = byNewest(allNews);
 
-const tabs = [
+const defaultTabs = [
   { id: 'all', label: 'All Updates', allLabel: 'View all updates', items: allRecent, empty: 'Updates will appear here when published.' },
   { id: 'articles', label: 'Research Articles', allLabel: 'View all research articles', items: articles, empty: 'Research articles will appear here when published.' },
   { id: 'calls', label: 'Grant Calls & Opportunities', allLabel: 'Explore all calls', items: calls, empty: 'Grant calls will appear here when published.' },
   { id: 'news', label: 'Announcements & Governance', allLabel: 'View all announcements', items: news, empty: 'Announcements will appear here when published.' },
 ];
+const tabs = customTabs
+  ? customTabs.map((tab) => ({
+      ...tab,
+      allLabel: `View all ${tab.label.toLowerCase()}`,
+      items: tab.partner || tab.match
+        ? byNewest(allNews.filter((item) => item.data.partner === tab.partner || (tab.match && tab.match.split('|').some((match) => item.id.includes(match)))))
+        : allRecent,
+      empty: `No ${tab.label.toLowerCase()} articles are available yet.`,
+    }))
+  : defaultTabs;
 ---
 
 <section class="py-20 section-articles" id="news-insights">
@@ -42,7 +70,7 @@ const tabs = [
       <p class="text-secondary mt-1 max-w-2xl">{subtitle}</p>
     </div>
 
-    <div class="insights-tabs" role="tablist" aria-label="News and insights categories">
+    {showTabs && <div class="insights-tabs" role="tablist" aria-label="News and insights categories">
       {tabs.map((tab, index) => (
         <button
           class:list={['insights-tab', index === 0 && 'is-active']}
@@ -56,9 +84,9 @@ const tabs = [
           {tab.label} ({tab.items.length})
         </button>
       ))}
-    </div>
+    </div>}
 
-    {tabs.map((tab, index) => (
+    {(showTabs ? tabs : [tabs[0]]).map((tab, index) => (
       <div
         class:list={['insights-panel', index === 0 && 'is-active']}
         id={`panel-${tab.id}`}
@@ -85,11 +113,11 @@ const tabs = [
       </div>
     ))}
 
-    <div class="insights-all-action">
-      <a id="insights-view-all" href="/news" class="btn-fluent-secondary">
-        View all research articles <span aria-hidden="true">→</span>
+    {showTabs && <div class="insights-all-action">
+      <a id="insights-view-all" href={viewAllHref} class="btn-fluent-secondary">
+        {viewAllLabel} <span aria-hidden="true">→</span>
       </a>
-    </div>
+    </div>}
   </div>
 </section>
 
@@ -119,7 +147,7 @@ const tabs = [
     padding: 0.85rem 1.25rem;
     font: inherit;
     font-size: 0.92rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
     transition: all 0.2s ease;
   }

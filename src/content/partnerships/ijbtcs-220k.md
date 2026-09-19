@@ -5,7 +5,7 @@ value: "£220,000"
 type: "Publication & Conference Waivers"
 datePublished: "2025-10-01"
 featured: true
-image: "/partners/ChatGPT Image Sep 13, 2026, 03_41_34 PM.png"
+image: "/partners/Blue Purple Modern Molecule Technology Logo.jpg"
 description: "Comprehensive open-access APC waivers and international conference registrations for UKABCS members."
 ---
 

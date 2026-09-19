@@ -5,17 +5,19 @@ export interface Props {
   title?: string;
   subtitle?: string;
   badge?: string;
+  sectionId?: string;
   items?: Array<{ title: string; description: string }>;
 }
 const {
   title = 'What We Do',
   subtitle = 'Practical support for a connected, responsible and inclusive scientific community.',
   badge = 'Our work',
+  sectionId = 'what-we-do',
   items = homeContent.whatWeDo,
 } = Astro.props;
 ---
 
-<section class="py-20 section-bento" id="what-we-do">
+<section class="py-20 section-bento" id={sectionId}>
   <div class="container">
     <div class="section-heading max-w-3xl mb-12">
       <span class="badge-pill mb-3">{badge}</span>

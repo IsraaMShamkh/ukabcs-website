@@ -5,7 +5,7 @@ value: "£150,000"
 type: "Computational Collaboration"
 datePublished: "2025-08-28"
 featured: true
-image: "/partners/0e79b389-8500-4630-a8b2-a71cd8768b1d.jpeg"
+image: "/partners/Untitled design.png"
 description: "Expanding computational biology capability through specialized pipelines, training and data analytics support."
 ---
 

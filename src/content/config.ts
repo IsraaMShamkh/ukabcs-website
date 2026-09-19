@@ -110,6 +110,7 @@ const newsCollection = defineCollection({
     title: z.string(),
     contentType: z.enum(['research-article', 'news', 'open-call', 'announcement']).default('news'),
     category: z.string().optional(),
+    partner: z.string().optional(),
     datePublished: z.string(),
     status: z.string().default('published'),
     author: z.string().default('UKABCS Secretariat'),
@@ -165,4 +166,3 @@ export const collections = {
   'governance': governanceCollection,
   'policies': policiesCollection,
 };
-

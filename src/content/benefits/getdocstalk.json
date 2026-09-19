@@ -1,0 +1,13 @@
+{
+  "partnerName": "GetDocsTalk",
+  "logo": "/partners/getdocstalk.png",
+  "category": "Software",
+  "shortDescription": "Interactive AI reading and study support for research documents.",
+  "services": ["Document AI", "Study Tools"],
+  "discountValue": "50% Member Discount",
+  "discountType": "Percentage discount",
+  "eligibility": "",
+  "terms": "",
+  "partnershipSlug": "getdocstalk",
+  "verified": true
+}
