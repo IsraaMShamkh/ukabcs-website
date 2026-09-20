@@ -9,7 +9,7 @@ const { limit = 10 } = Astro.props;
 
 const projectsCollection = await getCollection('funded-projects');
 
-// Default catalog for funded universities
+// Default catalog for funded universities (10 items)
 const defaultUniversities = [
   {
     name: 'Cairo University',
@@ -127,7 +127,7 @@ const uniCount = activeUniversities.length;
 
   <!-- Animated Ribbon Carousel Track (3 Items visible per row) -->
   <div class="uni-ribbon-track-wrapper">
-    <div class="uni-ribbon-track" style={`--uni-count: ${uniCount};`}>
+    <div class="uni-ribbon-track">
       {ribbonUniversities.map((uni) => (
         <a href={`/funded-projects/${uni.slug}`} class="uni-ribbon-item group" title={`View ${uni.name} Award`}>
           <div class="uni-logo-box">
@@ -264,6 +264,8 @@ const uniCount = activeUniversities.length;
   .uni-logo-box {
     width: 3.75rem;
     height: 3.75rem;
+    min-width: 3.75rem;
+    min-height: 3.75rem;
     background: #ffffff;
     border: 2px solid var(--color-border, #e2e8f0);
     border-radius: 50%;
@@ -286,8 +288,11 @@ const uniCount = activeUniversities.length;
   .uni-logo-img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
     border-radius: 50%;
+    display: block;
   }
 
   .uni-logo-initials {
@@ -355,13 +360,13 @@ const uniCount = activeUniversities.length;
     transform: translateX(4px);
   }
 
-  /* Keyframes for seamless scrolling */
+  /* Keyframes for seamless scrolling (10 items * 330px item width + 10 items * 1.5rem gap) */
   @keyframes uni-ribbon-scroll {
     0% {
       transform: translateX(0);
     }
     100% {
-      transform: translateX(calc(-330px * var(--uni-count) - 1.5rem * var(--uni-count)));
+      transform: translateX(calc(-330px * 10 - 1.5rem * 10));
     }
   }
 
@@ -373,6 +378,8 @@ const uniCount = activeUniversities.length;
     .uni-logo-box {
       width: 3.25rem;
       height: 3.25rem;
+      min-width: 3.25rem;
+      min-height: 3.25rem;
     }
     .uni-name {
       font-size: 0.98rem;
@@ -382,7 +389,7 @@ const uniCount = activeUniversities.length;
         transform: translateX(0);
       }
       100% {
-        transform: translateX(calc(-270px * var(--uni-count) - 1.5rem * var(--uni-count)));
+        transform: translateX(calc(-270px * 10 - 1.5rem * 10));
       }
     }
   }
