@@ -34,9 +34,9 @@ const policies = await getCollection('policies');
   />
 
   <!-- 3. Policy Index Grid (SectionPool Cards) -->
-  <section class="py-16 md:py-24 bg-background border-y border-border/60" id="policy-directory">
-    <div class="container mx-auto px-4 max-w-6xl space-y-10">
-      <div class="text-center max-w-3xl mx-auto space-y-3">
+  <section class="policy-directory-section" id="policy-directory">
+    <div class="container policy-directory-container">
+      <div class="policy-directory-heading">
         <span class="badge-pill">Directory</span>
         <h2 class="text-3xl font-bold text-foreground">Governance Policies & Statutory Rules</h2>
         <p class="text-sm text-secondary">
@@ -44,13 +44,13 @@ const policies = await getCollection('policies');
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div class="policy-directory-grid">
         {policies.map((p) => (
-          <article class="p-6 rounded-2xl bg-card border border-border/80 shadow-sm flex flex-col justify-between hover:border-primary/50 transition-all">
-            <div class="space-y-3">
-              <div class="flex items-center justify-between">
+          <article class="policy-directory-card">
+            <div class="policy-directory-card__body">
+              <div class="policy-directory-card__topline">
                 <FileText class="w-5 h-5 text-primary" />
-                <span class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-primary/10 text-primary border border-primary/20">
+                <span class="policy-directory-card__status">
                   {p.data.publicationStatus || 'PUBLISHED'}
                 </span>
               </div>
@@ -64,11 +64,11 @@ const policies = await getCollection('policies');
               </p>
             </div>
 
-            <div class="pt-4 mt-6 border-t border-border/60 flex items-center justify-between text-xs">
-              <span class="text-muted">Effective: {p.data.effectiveDate || '2025'}</span>
+            <div class="policy-directory-card__footer">
+              <span>Effective: {p.data.effectiveDate || '2025'}</span>
               <a
                 href={`/policies/${p.data.slug || p.slug}`}
-                class="btn-fluent-secondary py-1.5 px-3 text-xs"
+                class="btn-fluent-secondary policy-directory-card__link"
               >
                 <span>Read Policy</span>
                 <ArrowRight class="w-3.5 h-3.5" />
@@ -108,3 +108,58 @@ const policies = await getCollection('policies');
   <NewsletterSection />
   <PromoCTASection />
 </BaseLayout>
+
+<style>
+  .policy-directory-section {
+    padding: clamp(4rem, 8vw, 6rem) 0;
+    background: var(--color-bg);
+    border-block: 1px solid var(--color-border);
+  }
+
+  .policy-directory-container { max-width: 1200px; }
+  .policy-directory-heading { max-width: 46rem; margin: 0 auto 2.75rem; text-align: center; }
+  .policy-directory-heading h2 { margin: .75rem 0; }
+
+  .policy-directory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  .policy-directory-card {
+    display: flex;
+    min-width: 0;
+    min-height: 17rem;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast);
+  }
+
+  .policy-directory-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+  }
+
+  .policy-directory-card__body { display: grid; gap: .85rem; }
+  .policy-directory-card__topline { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+  .policy-directory-card__status { padding: .3rem .6rem; border: 1px solid color-mix(in srgb, var(--color-primary) 25%, transparent); border-radius: 999px; color: var(--color-primary); background: color-mix(in srgb, var(--color-primary) 10%, transparent); font-size: .68rem; font-weight: 800; letter-spacing: .05em; }
+  .policy-directory-card h3 { font-size: 1.1rem; line-height: 1.35; }
+  .policy-directory-card h3 a:hover { color: var(--color-primary); }
+  .policy-directory-card__footer { display: flex; align-items: center; justify-content: space-between; gap: .75rem; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--color-border); color: var(--color-text-muted); font-size: .78rem; }
+  .policy-directory-card__link { padding: .5rem .75rem; font-size: .75rem; white-space: nowrap; }
+
+  @media (max-width: 900px) {
+    .policy-directory-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+
+  @media (max-width: 640px) {
+    .policy-directory-grid { grid-template-columns: 1fr; }
+    .policy-directory-card { min-height: auto; }
+  }
+</style>
