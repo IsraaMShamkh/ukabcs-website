@@ -1,0 +1,91 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Outbound & Incoming International Exchange & Mobility Grants",
+  subtitle = "Supporting cross-border academic research visits, laboratory exchanges, and collaborative international fellowships between the UK, MENA, and global research institutions.",
+} = Astro.props;
+---
+
+<section class="mobility-section py-20" id="international-mobility">
+  <div class="container max-w-5xl mx-auto">
+    <div class="text-center max-w-3xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Global Academic Mobility</span>
+      <h2 class="text-3xl font-bold tracking-tight mb-3">{title}</h2>
+      <p class="text-secondary text-base leading-relaxed">{subtitle}</p>
+    </div>
+
+    <div class="grid-2 gap-8">
+      <!-- 1. Outbound International Exchange -->
+      <div class="card-aceternity mobility-card">
+        <div class="mobility-badge-pill">Outbound Fellowship</div>
+        <h3 class="text-xl font-bold mt-3 mb-2">Outbound International Exchange Grant</h3>
+        <p class="text-secondary text-sm mb-6 leading-relaxed flex-grow">
+          For UK and partner institution researchers seeking to conduct short-term research stays, lab visits, or collaborative bio-data workshops at international host institutions.
+        </p>
+        <div class="mobility-action">
+          <a href={siteConfig.clientFlow.outboundMobilityCandidateForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+            <span>Outbound Candidate Application Form</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. Incoming International Mobility -->
+      <div class="card-aceternity mobility-card">
+        <div class="mobility-badge-pill badge-incoming">Incoming Participant</div>
+        <h3 class="text-xl font-bold mt-3 mb-2">Incoming International Participant Grant</h3>
+        <p class="text-secondary text-sm mb-6 leading-relaxed flex-grow">
+          For international researchers, visiting scholars, and postgraduate fellows participating in UKABCS computational biology programs and host laboratory placements in the UK.
+        </p>
+        <div class="mobility-action">
+          <a href={siteConfig.clientFlow.incomingMobilityParticipantForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary w-full text-center">
+            <span>Incoming Participant Application Form</span>
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .mobility-section {
+    background: var(--color-surface, #ffffff);
+    border-top: 1px solid var(--color-border, #e2e8f0);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .mobility-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 2rem;
+    border-radius: var(--radius-lg, 16px);
+  }
+
+  .mobility-badge-pill {
+    display: inline-block;
+    width: fit-content;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    background: rgba(0, 90, 156, 0.1);
+    color: var(--color-primary, #005a9c);
+  }
+
+  .badge-incoming {
+    background: rgba(4, 120, 87, 0.1);
+    color: #047857;
+  }
+
+  .mobility-action {
+    margin-top: auto;
+  }
+</style>

@@ -1,0 +1,77 @@
+{
+  "$ref": "#/definitions/benefits",
+  "definitions": {
+    "benefits": {
+      "type": "object",
+      "properties": {
+        "partnerName": {
+          "type": "string"
+        },
+        "logo": {
+          "type": "string"
+        },
+        "website": {
+          "type": "string"
+        },
+        "category": {
+          "type": "string",
+          "enum": [
+            "Computing",
+            "Services",
+            "Publishing",
+            "Software",
+            "Training"
+          ]
+        },
+        "shortDescription": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "discountValue": {
+          "type": "string"
+        },
+        "discountType": {
+          "type": "string",
+          "default": "Percentage"
+        },
+        "eligibility": {
+          "type": "string",
+          "default": "Active UKABCS Members"
+        },
+        "terms": {
+          "type": "string"
+        },
+        "validFrom": {
+          "type": "string"
+        },
+        "validUntil": {
+          "type": "string"
+        },
+        "partnershipSlug": {
+          "type": "string"
+        },
+        "verified": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "partnerName",
+        "category",
+        "shortDescription",
+        "discountValue"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

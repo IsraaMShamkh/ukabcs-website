@@ -1,0 +1,96 @@
+{
+  "$ref": "#/definitions/funded-projects",
+  "definitions": {
+    "funded-projects": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "awardYear": {
+          "type": "number"
+        },
+        "year": {
+          "type": "number"
+        },
+        "programmeYear": {
+          "type": "number"
+        },
+        "institution": {
+          "type": "string"
+        },
+        "country": {
+          "type": "string"
+        },
+        "faculty": {
+          "type": "string"
+        },
+        "mainPI": {
+          "type": "string"
+        },
+        "grantType": {
+          "type": "string"
+        },
+        "datePublished": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "coverage": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "string"
+        },
+        "outcomes": {
+          "type": "string"
+        },
+        "featuredImage": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "verificationStatus": {
+          "type": "string",
+          "enum": [
+            "VERIFIED",
+            "PENDING_APPROVAL"
+          ],
+          "default": "VERIFIED"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "applicationId": {
+          "type": "string"
+        },
+        "grantCycle": {
+          "type": "string"
+        },
+        "cohort": {
+          "type": "string"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "institution",
+        "country",
+        "grantType"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

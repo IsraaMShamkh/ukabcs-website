@@ -59,11 +59,10 @@ import { siteConfig } from '../../config/site';
         </svg>
       </button>
 
-      <!-- Apply Portal is intentionally deferred until the real portal exists. -->
-      <span class="btn-fluent-primary header-cta header-cta--pending" aria-disabled="true" title="Application portal coming soon">
+      <!-- Apply Portal CTA Link -->
+      <a href={siteConfig.clientFlow.membershipForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary header-cta" title="Apply for UKABCS Membership">
         <span>Apply Portal</span>
-        <span class="header-cta-status">Soon</span>
-      </span>
+      </a>
 
       <!-- Mobile Hamburger Button -->
       <button id="mobile-menu-toggle" class="mobile-menu-btn" aria-label="Open Navigation Menu">
@@ -108,7 +107,7 @@ import { siteConfig } from '../../config/site';
         </ul>
 
         <div class="mobile-nav-cta">
-          <span class="btn-fluent-primary w-full text-center header-cta--pending" aria-disabled="true">Apply Portal — soon</span>
+          <a href={siteConfig.clientFlow.membershipForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">Apply Portal</a>
         </div>
       </nav>
     </div>

@@ -1,0 +1,102 @@
+{
+  "$ref": "#/definitions/calls",
+  "definitions": {
+    "calls": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "programme": {
+          "type": "string"
+        },
+        "kind": {
+          "type": "string",
+          "enum": [
+            "journal",
+            "conference",
+            "education",
+            "software",
+            "grant"
+          ]
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "open",
+            "upcoming",
+            "closed"
+          ],
+          "default": "closed"
+        },
+        "language": {
+          "type": "string",
+          "default": "en"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "opensAt": {
+          "type": "string"
+        },
+        "closesAt": {
+          "type": "string"
+        },
+        "eligibility": {
+          "type": "string"
+        },
+        "budget": {
+          "type": "string"
+        },
+        "detailSlug": {
+          "type": "string"
+        },
+        "applicationUrl": {
+          "type": "string"
+        },
+        "featuredImage": {
+          "type": "string"
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "format": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "format",
+              "size",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "programme",
+        "kind",
+        "summary"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

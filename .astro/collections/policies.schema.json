@@ -1,0 +1,45 @@
+{
+  "$ref": "#/definitions/policies",
+  "definitions": {
+    "policies": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "slug": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "effectiveDate": {
+          "type": "string"
+        },
+        "reviewDate": {
+          "type": "string"
+        },
+        "download": {
+          "type": "string"
+        },
+        "publicationStatus": {
+          "type": "string",
+          "enum": [
+            "PUBLISHED",
+            "PENDING_LEGAL_REVIEW"
+          ],
+          "default": "PUBLISHED"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "summary"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

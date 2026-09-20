@@ -26,10 +26,10 @@ const { tabs, defaultTab = tabs[0]?.id, urlParamName = 'tab', class: className =
         aria-selected={tab.id === defaultTab ? 'true' : 'false'}
         aria-controls={`tab-panel-${tab.id}`}
         tabIndex={tab.id === defaultTab ? 0 : -1}
-        class={`px-5 py-3.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 border-b-2 -mb-px flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 ${
+        class={`px-5 py-2.5 text-sm font-semibold whitespace-nowrap transition-all duration-200 rounded-full flex items-center gap-2 focus-visible:outline-none ${
           tab.id === defaultTab
-            ? 'border-primary text-primary bg-primary/5'
-            : 'border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/40'
+            ? 'bg-primary text-white shadow-sm'
+            : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
         }`}
       >
         <span>{tab.label}</span>
@@ -114,11 +114,11 @@ const { tabs, defaultTab = tabs[0]?.id, urlParamName = 'tab', class: className =
       btn.tabIndex = isSelected ? 0 : -1;
       
       if (isSelected) {
-        btn.classList.add('border-primary', 'text-primary', 'bg-primary/5');
-        btn.classList.remove('border-transparent', 'text-muted-foreground');
+        btn.classList.add('bg-primary', 'text-white', 'shadow-sm');
+        btn.classList.remove('text-muted-foreground');
       } else {
-        btn.classList.remove('border-primary', 'text-primary', 'bg-primary/5');
-        btn.classList.add('border-transparent', 'text-muted-foreground');
+        btn.classList.remove('bg-primary', 'text-white', 'shadow-sm');
+        btn.classList.add('text-muted-foreground');
       }
     });
 

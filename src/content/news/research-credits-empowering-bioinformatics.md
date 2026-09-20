@@ -22,17 +22,14 @@ Through strategic industrial collaborations with specialized scientific cloud pr
 
 In many developing research environments, academic teams possess world-class biological hypotheses and experimental validation capabilities, yet face multi-month backlogs when trying to execute resource-intensive computations on local workstations.
 
-```
-Common Computational Bottlenecks Addressed:
-┌──────────────────────────────────────┬───────────────────────────────┬──────────────────────────────┐
-│ Research Task                        │ Standard Local Workstation   │ UKABCS Cloud HPC Allocation  │
-├──────────────────────────────────────┼───────────────────────────────┼──────────────────────────────┤
-│ AlphaFold 3 / RoseTTAFold Inference │ 4-7 days per 100 complex structures │ 4.5 hours on NVIDIA H100 Node│
-│ 30x Human Genome WGS Variant Calling  │ 72 hours per sample           │ 4.5 hours (16x acceleration) │
-│ Virtual Screen (1M Small Molecules)  │ 120 hours (CPU limited)       │ 8 hours (CUDA parallelized)  │
-│ 100ns Molecular Dynamics (GROMACS)   │ 14-21 days per replica        │ 18 hours per simulation run  │
-└──────────────────────────────────────┴───────────────────────────────┴──────────────────────────────┘
-```
+#### Common Computational Bottlenecks Addressed
+
+| Research Task | Standard Local Workstation | UKABCS Cloud HPC Allocation |
+| :--- | :--- | :--- |
+| **AlphaFold 3 / RoseTTAFold Inference** | 4–7 days per 100 complex structures | **4.5 hours** on NVIDIA H100 Node |
+| **30x Human Genome WGS Variant Calling** | 72 hours per sample | **4.5 hours** (16x acceleration) |
+| **Virtual Screen (1M Small Molecules)** | 120 hours (CPU limited) | **8 hours** (CUDA parallelized) |
+| **100ns Molecular Dynamics (GROMACS)** | 14–21 days per replica | **18 hours** per simulation run |
 
 Without dedicated cloud credits, early-career researchers and postgraduate teams are often forced to downscale their experimental designs, truncate trajectory sampling times, or restrict high-throughput screens—ultimately reducing the impact and reproducibility of their publications.
 
@@ -78,14 +75,13 @@ In collaboration with international clinical genetics networks, UKABCS compute c
 
 ### Benchmark Metrics & Resource Utilization Summary
 
-```
-UKABCS 2025/2026 Resource Allocation Summary:
-• Total Compute Value Distributed: £412,500
-• Total GPU Compute Hours Delivered: 148,000+ Hours
-• Active Research Projects Supported: 47 Projects
-• Academic Institutions Involved: 28 Universities across 14 Nations
-• Peer-Reviewed Publications Acknowledging UKABCS: 19 Papers Published or In Press
-```
+| Metric Dimension | Recorded Value / Outcome |
+| :--- | :--- |
+| **Total Compute Value Distributed** | **£412,500** |
+| **Total GPU Compute Hours Delivered** | **148,000+ Hours** |
+| **Active Research Projects Supported** | **47 Projects** |
+| **Academic Institutions Involved** | **28 Universities across 14 Nations** |
+| **Peer-Reviewed Publications Acknowledging UKABCS** | **19 Papers Published or In Press** |
 
 ---
 

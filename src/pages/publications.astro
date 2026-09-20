@@ -191,6 +191,64 @@ import { siteConfig } from '../config/site';
     </div>
   </section>
 
+  <!-- 3-Track Direct Application Forms Section -->
+  <section class="py-16 bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800" id="apply-tracks">
+    <div class="container max-w-5xl mx-auto">
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <span class="badge-pill mb-3">Direct Application Streams</span>
+        <h2 class="text-3xl font-bold tracking-tight mb-3">Publications &amp; Conferences Support Tracks</h2>
+        <p class="text-secondary text-base leading-relaxed">
+          Submit your application directly to the corresponding funding track or general support program.
+        </p>
+      </div>
+
+      <div class="grid-3 gap-6">
+        <!-- Track 1 -->
+        <div class="card-aceternity p-6 flex flex-col h-full">
+          <span class="text-xs font-bold uppercase tracking-wider text-primary mb-2">Track 1</span>
+          <h3 class="text-lg font-bold mb-2">Conference Registration Fee Funding</h3>
+          <p class="text-secondary text-sm mb-6 flex-grow">
+            50% to 100% funding support covering official conference registration fees for accepted oral and poster presenters.
+          </p>
+          <a href={siteConfig.clientFlow.conferenceRegistrationFundingForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center text-sm">
+            <span>Apply for Track 1 →</span>
+          </a>
+        </div>
+
+        <!-- Track 2 -->
+        <div class="card-aceternity p-6 flex flex-col h-full">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-600 mb-2">Track 2</span>
+          <h3 class="text-lg font-bold mb-2">Travel &amp; Accommodation Support</h3>
+          <p class="text-secondary text-sm mb-6 flex-grow">
+            Up to $2,000 USD stipend covering travel and hotel accommodation for scholars presenting at international symposia.
+          </p>
+          <a href={siteConfig.clientFlow.conferenceTravelAccommodationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center text-sm">
+            <span>Apply for Track 2 →</span>
+          </a>
+        </div>
+
+        <!-- Track 3 -->
+        <div class="card-aceternity p-6 flex flex-col h-full">
+          <span class="text-xs font-bold uppercase tracking-wider text-purple-600 mb-2">Track 3</span>
+          <h3 class="text-lg font-bold mb-2">Publication Fee (APC) Waiver</h3>
+          <p class="text-secondary text-sm mb-6 flex-grow">
+            100% Gold Open Access Article Processing Charge (APC) waivers for peer-reviewed journal papers in partner titles.
+          </p>
+          <a href={siteConfig.clientFlow.publicationFeeWaiverForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center text-sm">
+            <span>Apply for Track 3 →</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="mt-10 text-center">
+        <a href={siteConfig.clientFlow.publicationsConferencesSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary inline-flex items-center gap-2">
+          <span>General Publications &amp; Conferences Support Form</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <!-- 6. Partner Marquee Ribbon -->
   <PartnerRibbonSection />
 

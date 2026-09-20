@@ -1,0 +1,103 @@
+{
+  "$ref": "#/definitions/news",
+  "definitions": {
+    "news": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "contentType": {
+          "type": "string",
+          "enum": [
+            "research-article",
+            "news",
+            "open-call",
+            "announcement"
+          ],
+          "default": "news"
+        },
+        "category": {
+          "type": "string"
+        },
+        "partner": {
+          "type": "string"
+        },
+        "datePublished": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string",
+          "default": "published"
+        },
+        "author": {
+          "type": "string",
+          "default": "UKABCS Secretariat"
+        },
+        "summary": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "featuredImage": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "relatedItems": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "attachments": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": {
+                "type": "string"
+              },
+              "format": {
+                "type": "string"
+              },
+              "size": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "title",
+              "format",
+              "size",
+              "url"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "datePublished"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

@@ -17,7 +17,16 @@ import { siteConfig } from '../../config/site';
         <li><strong>Research guidance</strong><span>Direct researchers toward suitable resources and next steps.</span></li>
         <li><strong>Innovation pathways</strong><span>Help connect research ideas with support that may be available.</span></li>
       </ul>
-      <a class="btn-fluent-primary support-action" href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer">Submit a support request <span aria-hidden="true">→</span></a>
+      <div class="support-actions-group">
+        <a class="btn-fluent-primary support-btn-primary" href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer">
+          <span>Submit Support Request Form</span>
+          <span aria-hidden="true" class="arrow">→</span>
+        </a>
+        <a class="btn-fluent-secondary support-btn-secondary" href="/news/ukabcs-eligibility-benefits-guide">
+          <span>Read Eligibility &amp; Benefits</span>
+          <span aria-hidden="true" class="arrow">→</span>
+        </a>
+      </div>
     </div>
   </div>
 </section>
@@ -30,12 +39,74 @@ import { siteConfig } from '../../config/site';
 .general-support h2 { max-width:42rem; font-size:clamp(2.5rem,5vw,5rem); line-height:.98; letter-spacing:-.06em; }
 .support-intro p { max-width:39rem; margin-top:1.5rem; color:var(--color-text-primary)!important; font-size:1.12rem; }
 .support-badge { background:rgba(255,255,255,.72); color:var(--color-primary); border-color:rgba(13,25,42,.12); }
-.support-detail { background:rgba(255,255,255,.76); padding:2.25rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-md); }
+.support-detail { background:rgba(255,255,255,.92); padding:2.25rem; border-radius:var(--radius-lg); box-shadow:var(--shadow-md); backdrop-filter:blur(10px); }
 .support-detail h3 { font-size:1.45rem; margin-bottom:1.35rem; }
 .support-detail ul { list-style:none; display:grid; gap:1rem; }
 .support-detail li { display:grid; gap:.15rem; padding-left:1rem; border-left:3px solid var(--color-accent); }
 .support-detail strong { color:var(--color-primary); font-size:.98rem; }
 .support-detail span { color:var(--color-text-secondary); font-size:.92rem; }
-.support-action { margin-top:1.8rem; }
+
+.support-actions-group {
+  margin-top: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.support-btn-primary {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background-color: var(--color-navy, #0d192a) !important;
+  color: #ffffff !important;
+  border-radius: var(--radius-md, 10px);
+  box-shadow: 0 4px 14px rgba(13, 25, 42, 0.2);
+  transition: all 0.2s ease;
+}
+
+.support-btn-primary *,
+.support-btn-primary span {
+  color: #ffffff !important;
+}
+
+.support-btn-primary:hover {
+  background-color: var(--color-primary-hover, #1d304f) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(13, 25, 42, 0.3);
+}
+
+.support-btn-secondary {
+  width: 100%;
+  padding: 0.85rem 1.5rem;
+  font-size: 0.95rem;
+  font-weight: 700;
+  background-color: #ffffff !important;
+  color: var(--color-navy, #0d192a) !important;
+  border: 1.5px solid var(--color-border, #e7e5e4);
+  border-radius: var(--radius-md, 10px);
+  transition: all 0.2s ease;
+}
+
+.support-btn-secondary *,
+.support-btn-secondary span {
+  color: var(--color-navy, #0d192a) !important;
+}
+
+.support-btn-secondary:hover {
+  background-color: var(--color-bg-secondary, #f5f5f4) !important;
+  border-color: var(--color-navy, #0d192a);
+  transform: translateY(-2px);
+}
+
+.arrow {
+  transition: transform 0.2s ease;
+}
+
+.support-btn-primary:hover .arrow,
+.support-btn-secondary:hover .arrow {
+  transform: translateX(4px);
+}
+
 @media(max-width:800px){.general-support{min-height:auto}.support-content{grid-template-columns:1fr;gap:2rem;padding-top:5rem;padding-bottom:5rem}.support-detail{padding:1.5rem}}
 </style>

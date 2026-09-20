@@ -1,0 +1,95 @@
+{
+  "$ref": "#/definitions/partnerships",
+  "definitions": {
+    "partnerships": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string"
+        },
+        "partnerName": {
+          "type": "string"
+        },
+        "partnerLogo": {
+          "type": "string"
+        },
+        "companyLocation": {
+          "type": "string"
+        },
+        "companyProfile": {
+          "type": "string"
+        },
+        "specialisation": {
+          "type": "string"
+        },
+        "services": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "contributionType": {
+          "type": "string"
+        },
+        "contributionValue": {
+          "type": "string"
+        },
+        "value": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "agreementDate": {
+          "type": "string"
+        },
+        "directorName": {
+          "type": "string"
+        },
+        "directorImage": {
+          "type": "string"
+        },
+        "ukabcsRepresentative": {
+          "type": "string"
+        },
+        "ukabcsRepresentativeImage": {
+          "type": "string"
+        },
+        "memberOffer": {
+          "type": "string"
+        },
+        "offerTerms": {
+          "type": "string"
+        },
+        "acknowledgements": {
+          "type": "string"
+        },
+        "featuredImage": {
+          "type": "string"
+        },
+        "image": {
+          "type": "string"
+        },
+        "sourceUrl": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "featured": {
+          "type": "boolean",
+          "default": false
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "title"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

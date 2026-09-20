@@ -16,15 +16,52 @@ export const siteConfig = {
   description: "A UK-registered non-profit academic society dedicated to supporting researchers, peer-reviewed grant funding, and advancing computational biology, bioinformatics, and chemoinformatics worldwide.",
   contactEmail: "info@ukabcs.co.uk",
   
-  // ClientFlow CRM endpoints and external form links
+  // ClientFlow CRM endpoints and external form links (29 Official Forms)
   clientFlow: {
+    // 1. General & Core Forms
     generalSupportForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
     contactUsForm: "https://clientflow-crm.com/f/ukabcs/contact/contact-us-form",
-    membershipForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
-    donationLink: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
-    grantApplicationForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
-    partnershipForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
-    newsletterEndpoint: "https://clientflow-crm.com/f/ukabcs/newsletter/subscribe-form",
+    membershipForm: "https://clientflow-crm.com/f/ukabcs/membership/ukabcs-membership-application-form",
+    subscriptionForm: "https://clientflow-crm.com/f/ukabcs/subscription/subscription-form",
+
+    // 2. Feedback, Suggestions & Inquiries
+    generalInquiryForm: "https://clientflow-crm.com/f/ukabcs/complains-suggestions-inquiries/general-inquiry-form",
+    suggestionsIdeasForm: "https://clientflow-crm.com/f/ukabcs/complains-suggestions-inquiries/suggestions-ideas-form",
+    feedbackComplaintForm: "https://clientflow-crm.com/f/ukabcs/complains-suggestions-inquiries/feedback-complaint-form",
+
+    // 3. Partnerships & Contributions
+    partnershipContributionForm: "https://clientflow-crm.com/f/ukabcs/partnership-donation/ukabcs-partnership-contribution-application-form",
+    partnershipDonationForm: "https://clientflow-crm.com/f/ukabcs/partnership-donations/partnership-and-donation-form",
+    impactFundDonationForm: "https://clientflow-crm.com/f/ukabcs/donations/ukabcs-global-scientific-impact-fund",
+
+    // 4. Grants — InnoFund
+    innoFundGrantForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-innofund-grant/ukabcs-innofund-grant",
+
+    // 5. Grants — Digital Campus Transformation
+    digitalCampusUniversityForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-digital-campus-university-transformation-grant-registration",
+    digitalCampusIndustrialForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-industrial-company-grant-application",
+
+    // 6. Grants — Graduation Projects
+    graduationProjectGrantForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant",
+    graduationProjectFacultyForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant-faculty-interest-form",
+
+    // 7. International Exchange & Mobility
+    outboundMobilityCandidateForm: "https://clientflow-crm.com/f/ukabcs/outbound-inbound-international-exchange-mobility/outbound-candidate-application-form",
+    incomingMobilityParticipantForm: "https://clientflow-crm.com/f/ukabcs/outbound-inbound-international-exchange-mobility/incoming-international-participant-form",
+
+    // 8. Conferences & Publications Support
+    publicationsConferencesSupportForm: "https://clientflow-crm.com/f/ukabcs/publications-conferences-support/publications-conferences-support-form",
+    conferenceRegistrationFundingForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/conference-registration-fee-funding-application",
+    conferenceTravelAccommodationForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-2-travel-accommodation-support",
+    publicationFeeWaiverForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-3-publication-fee-waiver-december-2026",
+
+    // 9. Women Researchers & KidCamp Support
+    womenResearchersSupportForm: "https://clientflow-crm.com/f/ukabcs/women-researchers-support/women-researchers-support-form",
+    kidCampRegistrationForm: "https://clientflow-crm.com/f/ukabcs/kidcamp-registration-supporting-researcher-mothers/kidcamp-registration",
+
+    // 10. Educational & Software Support
+    eventsEducationalSupportForm: "https://clientflow-crm.com/f/ukabcs/events-educational-support/events-educational-support-request-form",
+    scientificSoftwareDevSupportForm: "https://clientflow-crm.com/f/ukabcs/scientific-software-development-support/scientific-software-development-support-form",
   },
 
   // Main Header Navigation (Ordered per Master Plan Section 3)

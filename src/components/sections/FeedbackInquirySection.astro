@@ -1,0 +1,106 @@
+---
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  title = "Inquiries, Suggestions & Feedback Hub",
+  subtitle = "We welcome your inquiries, innovative ideas, and feedback to continually improve UKABCS research programs and community services.",
+} = Astro.props;
+---
+
+<section class="feedback-hub-section py-16" id="feedback-inquiries">
+  <div class="container max-w-5xl mx-auto">
+    <div class="text-center max-w-2xl mx-auto mb-12">
+      <span class="badge-pill mb-3">Community Dialogue</span>
+      <h2 class="text-3xl font-bold tracking-tight mb-3">{title}</h2>
+      <p class="text-secondary text-base leading-relaxed">{subtitle}</p>
+    </div>
+
+    <div class="grid-3 gap-6">
+      <!-- 1. General Inquiry Form -->
+      <div class="card-aceternity feedback-card">
+        <div class="feedback-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2">General Inquiry</h3>
+        <p class="text-secondary text-sm mb-6 flex-grow">
+          Have a question about UKABCS membership, grant calls, or upcoming scientific events? Send us your inquiry.
+        </p>
+        <a href={siteConfig.clientFlow.generalInquiryForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center text-sm">
+          <span>General Inquiry Form</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 2. Suggestions & Ideas Form -->
+      <div class="card-aceternity feedback-card">
+        <div class="feedback-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Suggestions &amp; Ideas</h3>
+        <p class="text-secondary text-sm mb-6 flex-grow">
+          Propose new workshop topics, scientific collaboration pathways, or institutional improvement ideas.
+        </p>
+        <a href={siteConfig.clientFlow.suggestionsIdeasForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary w-full text-center text-sm">
+          <span>Suggestions &amp; Ideas Form</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <!-- 3. Feedback & Complaints Form -->
+      <div class="card-aceternity feedback-card">
+        <div class="feedback-icon-box">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+          </svg>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Feedback &amp; Complaints</h3>
+        <p class="text-secondary text-sm mb-6 flex-grow">
+          Submit formal feedback or report any concerns regarding grant administration or society services.
+        </p>
+        <a href={siteConfig.clientFlow.feedbackComplaintForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary w-full text-center text-sm">
+          <span>Feedback &amp; Complaints Form</span>
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .feedback-hub-section {
+    background: var(--color-bg-secondary, #f8fafc);
+    border-top: 1px solid var(--color-border, #e2e8f0);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+  }
+
+  .feedback-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 1.6rem;
+    border-radius: var(--radius-lg, 14px);
+  }
+
+  .feedback-icon-box {
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-md, 10px);
+    background: var(--color-primary-soft, rgba(0, 90, 156, 0.08));
+    color: var(--color-primary, #005a9c);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+</style>

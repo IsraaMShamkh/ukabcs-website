@@ -1,0 +1,42 @@
+# UK Association for Biotechnology & Computational Science (UKABCS)
+> Official Portal: https://www.ukabcs.co.uk
+
+## About UKABCS
+The UK Association for Biotechnology & Computational Science (UKABCS) is a UK-registered non-profit academic society incorporated in 2025. UKABCS serves as a global bridge between academic research, open-access education, and biotechnology industry innovation. It provides peer-reviewed competitive research grants, in-kind computational research credits, student graduation project awards, open-access publication waivers, and conference travel funding.
+
+## Core Programmes & Grants
+- **UKABCS Capacity Building Grants**: Financial and technical support for academic research groups and computational laboratories.
+- **Graduation Project Capacity Building Grants**: Direct support for undergraduate and postgraduate students conducting cutting-edge biotechnology and chemoinformatics final projects.
+- **INNOFUND Grant**: Innovation-driven grant supporting applied scientific software and AI tool creation.
+- **Scientific Software Development Support**: Seed funding, cloud infrastructure, and peer mentorship for open-source computational tools.
+- **Publications & Conferences Support**: APC waivers in high-impact journals and registration/travel assistance for international symposiums.
+- **Women Researchers Support**: Dedicated funding allocations, career mentorship, and on-site childcare assistance at affiliated conferences.
+
+## Funded Institutions (2025 - 2026)
+UKABCS has awarded research funding and project support to researchers from leading international universities, including:
+- Cairo University (Egypt)
+- Al-Azhar University, Assiut (Egypt)
+- Helwan University & Helwan National University (Egypt)
+- Pharos University (Egypt)
+- University of Basrah (Iraq)
+- University of Kordofan (Sudan)
+- Omdurman Islamic University (Sudan)
+- Hajjah University (Yemen)
+- Federal University of Alfenas (Brazil)
+- Sulaiman Al-Rajhi University (Saudi Arabia)
+- Center for Development of Scientific & Educational Connection (Russia)
+
+## Major In-Kind Partners
+- Bioinformatics Gate (£35,000 research credit allocation)
+- EBO Bio Solution Ltd UK (£150,000 computational collaboration)
+- HealOra (£12,000 AI healthcare analytics support)
+- Exovion (£10,000 analytical services support)
+- IJBTCS (£220,000 publishing and conference waivers)
+
+## Governance & Compliance
+Operates under UK non-profit governance standards, with an independent Board of Trustees, Managing Director, and 5 specialised committees (Audit & Finance, Grants Review, Ethics & EDI, Advisory, Partnership).
+
+## Contact & Applications
+- Official website: https://www.ukabcs.co.uk
+- Inquiries: info@ukabcs.co.uk
+- Grant Applications: Managed via secure ClientFlow CRM portals linked on the website.

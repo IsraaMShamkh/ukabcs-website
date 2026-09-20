@@ -1,12 +1,13 @@
 ---
 // Reusable Fluent Modal component
+import { siteConfig } from '../../config/site';
 ---
 
 <div id="clientflow-modal" class="modal-backdrop" aria-hidden="true">
   <div class="modal-dialog flat-surface" role="dialog" aria-modal="true">
     <div class="modal-header">
-      <div class="modal-badge">
-        <span class="badge-pill badge-emerald">Open Window</span>
+      <div id="modal-badge-container" class="modal-badge">
+        <span id="modal-badge" class="badge-pill badge-emerald">Open Window</span>
       </div>
       <button id="modal-close-btn" class="modal-close" aria-label="Close modal">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -21,7 +22,7 @@
       You are accessing the official UKABCS submission portal managed via secure ClientFlow CRM. Please ensure you have prepared your project proposal and institutional identification before proceeding.
     </p>
 
-    <div class="modal-info-box">
+    <div id="modal-info-box" class="modal-info-box">
       <div class="info-row">
         <span class="info-label">Submission Protocol:</span>
         <span class="info-val">UKRI-Aligned Peer Review</span>
@@ -32,16 +33,19 @@
       </div>
     </div>
 
-    <div class="modal-actions">
-      <a id="modal-proceed-btn" href="https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form" target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
-        <span>Proceed to ClientFlow Portal</span>
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <div class="modal-actions" id="modal-actions-container">
+      <a id="modal-proceed-btn" href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary w-full text-center">
+        <span id="modal-proceed-btn-text">Proceed to ClientFlow Portal</span>
+        <svg class="w-4 h-4 shrink-0" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="7" y1="17" x2="17" y2="7"></line>
           <polyline points="7 7 17 7 17 17"></polyline>
         </svg>
       </a>
+      <a id="modal-support-btn" href={siteConfig.clientFlow.generalSupportForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary w-full text-center hidden">
+        <span>Contact General Support</span>
+      </a>
       <button id="modal-cancel-btn" class="btn-fluent-secondary w-full text-center">
-        Cancel
+        Close
       </button>
     </div>
   </div>
@@ -51,7 +55,8 @@
   .modal-backdrop {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
     z-index: 1000;
     display: none;
     align-items: center;
@@ -73,11 +78,11 @@
   .modal-dialog {
     width: 100%;
     max-width: 520px;
-    background: var(--color-surface);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-lg);
+    background: var(--color-surface, #ffffff);
+    border: 1px solid var(--color-border, #e2e8f0);
+    border-radius: var(--radius-lg, 16px);
     padding: 2rem;
-    box-shadow: var(--shadow-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
     transform: scale(0.95);
     transition: transform var(--transition-smooth);
   }
@@ -119,8 +124,8 @@
   }
 
   .modal-info-box {
-    background: var(--color-surface-translucent);
-    border-radius: var(--radius-sm);
+    background: var(--color-bg-secondary, #f8fafc);
+    border-radius: var(--radius-sm, 8px);
     padding: 1rem 1.25rem;
     margin-bottom: 1.75rem;
     display: flex;
@@ -151,30 +156,93 @@
 </style>
 
 <script>
-  const modalBackdrop = document.getElementById('clientflow-modal');
-  const modalClose = document.getElementById('modal-close-btn');
-  const modalCancel = document.getElementById('modal-cancel-btn');
-
-  function closeModal() {
-    modalBackdrop?.classList.remove('active');
+  declare global {
+    interface Window {
+      openClientFlowModal?: (title?: string, desc?: string, targetUrl?: string) => void;
+      openClosedCallModal?: (callTitle?: string) => void;
+    }
   }
 
-  modalClose?.addEventListener('click', closeModal);
-  modalCancel?.addEventListener('click', closeModal);
-  modalBackdrop?.addEventListener('click', (e) => {
-    if (e.target === modalBackdrop) closeModal();
-  });
+  document.addEventListener('astro:page-load', setupModal);
+  setupModal();
 
-  // Global helper for opening modal with custom context
-  window.openClientFlowModal = function(title?: string, desc?: string, targetUrl?: string) {
-    const titleEl = document.getElementById('modal-title');
-    const descEl = document.getElementById('modal-desc');
-    const proceedBtn = document.getElementById('modal-proceed-btn') as HTMLAnchorElement;
+  function setupModal() {
+    const modalBackdrop = document.getElementById('clientflow-modal');
+    const modalClose = document.getElementById('modal-close-btn');
+    const modalCancel = document.getElementById('modal-cancel-btn');
+    const modalBadge = document.getElementById('modal-badge');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDesc = document.getElementById('modal-desc');
+    const modalInfoBox = document.getElementById('modal-info-box');
+    const proceedBtn = document.getElementById('modal-proceed-btn') as HTMLAnchorElement | null;
+    const proceedBtnText = document.getElementById('modal-proceed-btn-text');
+    const supportBtn = document.getElementById('modal-support-btn') as HTMLAnchorElement | null;
 
-    if (title && titleEl) titleEl.textContent = title;
-    if (desc && descEl) descEl.textContent = desc;
-    if (targetUrl && proceedBtn) proceedBtn.href = targetUrl;
+    function closeModal() {
+      modalBackdrop?.classList.remove('active');
+    }
 
-    modalBackdrop?.classList.add('active');
-  };
+    if (modalClose) modalClose.onclick = closeModal;
+    if (modalCancel) modalCancel.onclick = closeModal;
+    if (modalBackdrop) {
+      modalBackdrop.onclick = (e) => {
+        if (e.target === modalBackdrop) closeModal();
+      };
+    }
+
+    window.openClientFlowModal = function(title?: string, desc?: string, targetUrl?: string) {
+      if (modalBadge) {
+        modalBadge.className = 'badge-pill badge-emerald';
+        modalBadge.textContent = 'Open Window';
+      }
+      if (modalInfoBox) modalInfoBox.style.display = 'flex';
+      if (supportBtn) supportBtn.classList.add('hidden');
+
+      if (title && modalTitle) modalTitle.textContent = title;
+      if (desc && modalDesc) modalDesc.textContent = desc;
+      if (proceedBtn) {
+        if (targetUrl) proceedBtn.href = targetUrl;
+        proceedBtn.target = '_blank';
+        proceedBtn.onclick = null;
+      }
+      if (proceedBtnText) proceedBtnText.textContent = 'Proceed to ClientFlow Portal';
+
+      modalBackdrop?.classList.add('active');
+    };
+
+    window.openClosedCallModal = function(callTitle?: string) {
+      if (modalBadge) {
+        modalBadge.className = 'badge-pill bg-rose-500/20 text-rose-400 border border-rose-500/30';
+        modalBadge.textContent = 'Grant Call Status: Closed';
+      }
+      if (modalInfoBox) modalInfoBox.style.display = 'none';
+
+      if (modalTitle) modalTitle.textContent = 'Grant Call Currently Closed | التقديم مغلق';
+      if (modalDesc) {
+        modalDesc.textContent = `Applications for "${callTitle || 'this grant call'}" are currently closed for new submissions. You can subscribe to our official bulletin below to be notified immediately when the next funding cycle opens, or submit a general inquiry to our academic committee.`;
+      }
+
+      if (proceedBtn) {
+        proceedBtn.href = '#newsletter';
+        proceedBtn.target = '_self';
+        proceedBtn.onclick = (e) => {
+          closeModal();
+          const nl = document.getElementById('newsletter');
+          if (nl) {
+            nl.scrollIntoView({ behavior: 'smooth' });
+          } else {
+            window.location.href = '/#newsletter';
+          }
+        };
+      }
+      if (proceedBtnText) proceedBtnText.textContent = 'Subscribe to Official Bulletin';
+
+      if (supportBtn) {
+        supportBtn.classList.remove('hidden');
+        supportBtn.onclick = () => closeModal();
+      }
+
+      modalBackdrop?.classList.add('active');
+    };
+  }
 </script>

@@ -4,6 +4,8 @@ import PageHero from '../../components/hero/PageHero.astro';
 import GrantAttachments from '../../components/ui/GrantAttachments.astro';
 import NewsletterSection from '../../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../../components/sections/PromoCTASection.astro';
+import Modal from '../../components/ui/Modal.astro';
+import { siteConfig } from '../../config/site';
 import { getCollection } from 'astro:content';
 import { Calendar, ShieldCheck, FileText, ArrowRight, ExternalLink } from 'lucide-astro';
 
@@ -89,27 +91,40 @@ const data = call.data;
         </div>
       )}
 
-      <!-- Submission Link / Application Action -->
-      {data.applicationUrl && (
-        <div class="p-6 md:p-8 rounded-2xl bg-card border border-border/80 shadow-md space-y-4 text-center">
-          <h3 class="text-xl font-bold text-foreground">Ready to Submit Your Application?</h3>
-          <p class="text-xs text-muted-foreground max-w-lg mx-auto">
-            Applications are submitted through our secure ClientFlow CRM portal. Ensure all required dossier documents are attached before submission.
-          </p>
+      <!-- Submission Link / Application Action (سيكشن التقديم) -->
+      <div class="p-6 md:p-8 rounded-2xl bg-card border border-border/80 shadow-md space-y-4 text-center my-8" id="application-section">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-primary/10 text-primary border border-primary/20">
+          <span>🎓 Official Grant Application Portal</span>
+        </div>
+        <h3 class="text-xl md:text-2xl font-bold text-foreground">Submit Application for {data.title}</h3>
+        <p class="text-xs md:text-sm text-muted-foreground max-w-lg mx-auto">
+          Applications are evaluated under peer-reviewed UKRI guidelines and submitted through our secure ClientFlow CRM portal.
+        </p>
+
+        {data.status === 'closed' ? (
+          <button
+            type="button"
+            class="btn-fluent-primary text-sm font-bold shadow-md cursor-pointer border-none"
+            onclick={`window.openClosedCallModal && window.openClosedCallModal("${data.title.replace(/"/g, '&quot;')}")`}
+          >
+            <span>Submit Application — Call Closed 🔒</span>
+          </button>
+        ) : (
           <a
-            href={data.applicationUrl}
+            href={data.applicationUrl || siteConfig.clientFlow.innoFundGrantForm}
             target="_blank"
             rel="noopener noreferrer"
-            class="py-3 px-8 rounded-lg bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-sm inline-flex items-center gap-2 transition-all shadow-md shadow-primary/25"
+            class="btn-fluent-primary py-3 px-8 text-sm font-bold shadow-md inline-flex items-center gap-2"
           >
-            <span>Submit Official Application</span>
+            <span>Submit Official Application Now</span>
             <ExternalLink class="w-4 h-4" />
           </a>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   </section>
 
   <NewsletterSection />
   <PromoCTASection />
+  <Modal />
 </BaseLayout>

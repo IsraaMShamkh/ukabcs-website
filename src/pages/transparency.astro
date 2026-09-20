@@ -5,6 +5,7 @@ import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
 import { getCollection } from 'astro:content';
 import { ShieldCheck, FileText, ArrowRight } from 'lucide-astro';
+import { siteConfig } from '../config/site';
 
 const policies = await getCollection('policies');
 ---
@@ -63,6 +64,27 @@ const policies = await getCollection('policies');
             </div>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Global Scientific Impact Fund Donation Section -->
+  <section class="py-16 bg-slate-900 text-white text-center border-t border-slate-800">
+    <div class="container max-w-4xl mx-auto px-4">
+      <span class="badge-pill mb-3" style="background: rgba(255, 255, 255, 0.15); color: #7dd3fc;">Philanthropic Impact</span>
+      <h2 class="text-3xl font-bold mb-3">UKABCS Global Scientific Impact Fund</h2>
+      <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto mb-8 leading-relaxed">
+        Support non-profit research grants, compute allocations for developing nation scientists, open-access APC waivers, and scientific education fellowships.
+      </p>
+      <div class="flex justify-center gap-4 flex-wrap">
+        <a href={siteConfig.clientFlow.impactFundDonationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary">
+          <span>Contribute to Global Scientific Impact Fund</span>
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href={siteConfig.clientFlow.partnershipDonationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-secondary">
+          <span>Partnership &amp; Donation Form</span>
+          <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>
