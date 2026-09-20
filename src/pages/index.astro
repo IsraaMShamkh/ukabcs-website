@@ -32,11 +32,12 @@ import Modal from '../components/ui/Modal.astro';
   <!-- 1. Funded Universities Roster Section -->
   <FundedUniversitiesSection limit={6} />
 
+  <TextContentSection {...homeContent.welcome} ctaText="Discover UKABCS" ctaHref="/about-us" />
+  <TextContentSection {...homeContent.membership} ctaText="Explore membership" ctaHref="/memberships" reversed />
+
   <!-- 2. Official Corporate & Academic Partners Ribbon -->
   <PartnerRibbonSection />
 
-  <TextContentSection {...homeContent.welcome} ctaText="Discover UKABCS" ctaHref="/about-us" />
-  <TextContentSection {...homeContent.membership} ctaText="Explore membership" ctaHref="/memberships" reversed />
   <TextContentSection {...homeContent.mission} ctaText="About our work" ctaHref="/about-us" />
   <TextContentSection {...homeContent.vision} ctaText="Explore UKABCS" ctaHref="/about-us" reversed />
   <FeaturesBentoSection />
