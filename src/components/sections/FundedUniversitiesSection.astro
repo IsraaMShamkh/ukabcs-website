@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import { Building2, Award, MapPin, ArrowRight } from 'lucide-astro';
+
+interface Props {
+  limit?: number;
+}
+
+const { limit = 6 } = Astro.props;
+
+const allProjects = await getCollection('funded-projects');
+
+// Sort by date or featured
+const featuredProjects = allProjects
+  .sort((a, b) => {
+    const yearA = a.data.year || a.data.awardYear || 2025;
+    const yearB = b.data.year || b.data.awardYear || 2025;
+    return yearB - yearA;
+  })
+  .slice(0, limit);
+---
+
+<section class="funded-universities-section py-16 bg-surface border-b border-border/60" id="funded-universities">
+  <div class="container mx-auto px-4 max-w-7xl space-y-10">
+    <div class="text-center max-w-3xl mx-auto space-y-3">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
+        <Building2 class="w-3.5 h-3.5" />
+        <span>Awarded Institutions &amp; Grants</span>
+      </div>
+      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
+        Funded Universities &amp; Award Recipients
+      </h2>
+      <p class="text-secondary text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
+        Peer-reviewed capacity building grants, compute allocations for computational tools, and graduation project research funding awarded to international partner universities.
+      </p>
+    </div>
+
+    <!-- Universities Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {featuredProjects.map((project) => {
+        const year = project.data.year || project.data.awardYear || 2025;
+        const cohort = project.data.cohort || String(year);
+        const image = project.data.image || project.data.featuredImage || "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=75&w=800&auto=format&fit=crop";
+
+        return (
+          <article class="university-card flat-surface p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:shadow-lg transition-all border border-border/80 group">
+            <div class="space-y-3">
+              <!-- Image Banner -->
+              <div class="h-44 rounded-xl overflow-hidden relative bg-slate-100 dark:bg-slate-800">
+                <img
+                  src={image}
+                  alt={project.data.institution}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                />
+                <div class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20">
+                  {cohort === '2026' ? '🎓 2026 Graduation Grant' : '🏛️ Capacity Grant'}
+                </div>
+              </div>
+
+              <!-- Institution Name & Meta -->
+              <div>
+                <div class="flex items-center gap-1.5 text-xs text-primary font-semibold mb-1">
+                  <MapPin class="w-3.5 h-3.5 shrink-0" />
+                  <span>{project.data.country}</span>
+                </div>
+                <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
+                  {project.data.institution}
+                </h3>
+              </div>
+
+              <p class="text-xs text-secondary leading-relaxed line-clamp-2">
+                {project.data.summary || project.data.description || project.data.title}
+              </p>
+            </div>
+
+            <div class="pt-4 border-t border-border/60 flex items-center justify-between">
+              <span class="text-[11px] font-semibold text-muted">
+                {project.data.mainPI ? `PI: ${project.data.mainPI}` : `Grant Award ${year}`}
+              </span>
+              <a
+                href={`/funded-projects/${project.slug}`}
+                class="btn-fluent-secondary text-xs py-1.5 px-3 inline-flex items-center gap-1"
+              >
+                <span>View Award</span>
+                <ArrowRight class="w-3.5 h-3.5" />
+              </a>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+
+    <!-- Bottom Action Button -->
+    <div class="text-center pt-4">
+      <a href="/funded-projects" class="btn-fluent-primary shadow-md">
+        <span>Explore All Funded University Projects</span>
+        <ArrowRight class="w-4 h-4 ml-1" />
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .university-card {
+    background: var(--color-surface);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+
+  .university-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-border-focus);
+  }
+</style>

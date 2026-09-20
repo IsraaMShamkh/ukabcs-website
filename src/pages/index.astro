@@ -10,6 +10,7 @@ import NumbersCounterSection from '../components/sections/NumbersCounterSection.
 import GeneralSupportSection from '../components/sections/GeneralSupportSection.astro';
 import DonationSection from '../components/sections/DonationSection.astro';
 import PartnerRibbonSection from '../components/sections/PartnerRibbonSection.astro';
+import FundedUniversitiesSection from '../components/sections/FundedUniversitiesSection.astro';
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import Modal from '../components/ui/Modal.astro';
 ---
@@ -28,6 +29,12 @@ import Modal from '../components/ui/Modal.astro';
     </div>
   </section>
 
+  <!-- 1. Funded Universities Roster Section -->
+  <FundedUniversitiesSection limit={6} />
+
+  <!-- 2. Official Corporate & Academic Partners Ribbon -->
+  <PartnerRibbonSection />
+
   <TextContentSection {...homeContent.welcome} ctaText="Discover UKABCS" ctaHref="/about-us" />
   <TextContentSection {...homeContent.membership} ctaText="Explore membership" ctaHref="/memberships" reversed />
   <TextContentSection {...homeContent.mission} ctaText="About our work" ctaHref="/about-us" />
@@ -38,7 +45,6 @@ import Modal from '../components/ui/Modal.astro';
   <NumbersCounterSection />
   <GeneralSupportSection />
   <ArticlesBlogEventsSection limit={3} />
-  <PartnerRibbonSection />
   <NewsletterSection />
   <PromoCTASection
     title="Ready to join UKABCS?"
