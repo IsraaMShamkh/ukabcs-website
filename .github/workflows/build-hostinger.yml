@@ -1,4 +1,4 @@
-name: Build Hostinger deployment
+name: Build and publish Hostinger site
 
 on:
   push:
@@ -15,6 +15,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
 
     steps:
@@ -33,17 +34,19 @@ jobs:
       - name: Build the Astro site
         run: npm run build
 
-      - name: Publish the static site branch
+      - name: Sync the build to the repository root
+        run: cp -a dist/. ./
+
+      - name: Commit the production build
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          cd dist
-          touch .nojekyll
-          git init
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git checkout -b hostinger
           git add --all
-          git commit -m "Deploy ${GITHUB_SHA}"
-          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
-          git push --force origin hostinger
+          if git diff --cached --quiet; then
+            echo "The production build is already current."
+            exit 0
+          fi
+          git commit -m "chore: publish static build [skip ci]"
+          git push "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:main
