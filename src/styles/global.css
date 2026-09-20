@@ -1,4 +1,16 @@
+@import 'tailwindcss';
 @import './tokens.css';
+
+@theme inline {
+  --color-background: var(--color-bg);
+  --color-card: var(--color-surface);
+  --color-foreground: var(--color-text-primary);
+  --color-secondary: var(--color-text-secondary);
+  --color-muted: var(--color-text-muted);
+  --color-primary: #0d192a;
+  --color-primary-foreground: var(--color-primary-text);
+  --color-border: #e7e5e4;
+}
 
 /* ──────────────────────────────────
    Reset & Box Sizing
