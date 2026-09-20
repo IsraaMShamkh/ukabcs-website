@@ -8,7 +8,15 @@ export default defineConfig({
   output: 'static',
   vite: {
     optimizeDeps: {
-      include: ['react', 'react-dom', 'motion', 'motion/react', 'class-variance-authority', 'cn']
+      include: [
+        'react',
+        'react-dom',
+        'lucide-astro',
+        'lucide-react',
+        'motion',
+        'class-variance-authority',
+        'cn'
+      ]
     }
   }
 });
