@@ -1,114 +1,390 @@
 ---
 import { getCollection } from 'astro:content';
-import { Building2, Award, MapPin, ArrowRight } from 'lucide-astro';
 
 interface Props {
   limit?: number;
 }
 
-const { limit = 6 } = Astro.props;
+const { limit = 10 } = Astro.props;
 
-const allProjects = await getCollection('funded-projects');
+const projectsCollection = await getCollection('funded-projects');
 
-// Sort by date or featured
-const featuredProjects = allProjects
-  .sort((a, b) => {
-    const yearA = a.data.year || a.data.awardYear || 2025;
-    const yearB = b.data.year || b.data.awardYear || 2025;
-    return yearB - yearA;
-  })
-  .slice(0, limit);
+// Default catalog for funded universities
+const defaultUniversities = [
+  {
+    name: 'Cairo University',
+    country: 'Egypt',
+    slug: '2025-cairo-university',
+    initials: 'CU',
+    image: '/images/universities/800_6965019c6c204.webp'
+  },
+  {
+    name: 'Helwan University',
+    country: 'Egypt',
+    slug: '2025-helwan-university',
+    initials: 'HU',
+    image: '/images/universities/800_6964fe38d28e2.webp'
+  },
+  {
+    name: 'Al-Azhar University (Assiut)',
+    country: 'Egypt',
+    slug: '2025-al-azhar-assiut',
+    initials: 'AZ',
+    image: '/images/universities/800_6964ff6c203ec.webp'
+  },
+  {
+    name: 'University of Basrah',
+    country: 'Iraq',
+    slug: '2025-basrah-university',
+    initials: 'BU',
+    image: '/images/universities/800_6964f4860dd27.webp'
+  },
+  {
+    name: 'Federal University of Alfenas',
+    country: 'Brazil',
+    slug: '2025-alfenas-brazil',
+    initials: 'UF',
+    image: '/images/universities/800_6964fb709f0c3.webp'
+  },
+  {
+    name: 'Omdurman Islamic University',
+    country: 'Sudan',
+    slug: '2025-omdurman-university',
+    initials: 'OI',
+    image: '/images/universities/800_6965026337e9b.webp'
+  },
+  {
+    name: 'University of Kordofan',
+    country: 'Sudan',
+    slug: '2025-kordofan-university',
+    initials: 'UK',
+    image: '/images/universities/800_6964f71c26023.webp'
+  },
+  {
+    name: 'Hajjah University',
+    country: 'Yemen',
+    slug: '2025-hajjah-university',
+    initials: 'HJ',
+    image: '/images/universities/800_6964facf6b20c.webp'
+  },
+  {
+    name: 'Pharos University in Alexandria',
+    country: 'Egypt',
+    slug: '2026-pharos-university-graduation-grant',
+    initials: 'PU',
+    image: '/images/universities/800_6aa002895ffed.webp'
+  },
+  {
+    name: 'Sulaiman Al-Rajhi University',
+    country: 'Saudi Arabia',
+    slug: '2026-sulaiman-al-rajhi-graduation-grant',
+    initials: 'SR',
+    image: '/images/universities/800_6aa6b3935bf4a.webp'
+  }
+];
+
+// Extract unique institutions dynamically
+const uniqueInstMap = new Map();
+
+projectsCollection.forEach((p) => {
+  const instName = p.data.institution;
+  if (!instName) return;
+  if (!uniqueInstMap.has(instName)) {
+    const words = instName.split(' ');
+    const initials = words.length >= 2 ? (words[0][0] + words[1][0]).toUpperCase() : instName.slice(0, 2).toUpperCase();
+    uniqueInstMap.set(instName, {
+      name: instName,
+      country: p.data.country || 'International',
+      slug: p.slug,
+      initials,
+      image: p.data.image || p.data.featuredImage || ''
+    });
+  }
+});
+
+const extractedList = Array.from(uniqueInstMap.values());
+const activeUniversities = extractedList.length >= 5 ? extractedList : defaultUniversities;
+
+// Quadruple for infinite continuous sliding loop without gaps
+const ribbonUniversities = [...activeUniversities, ...activeUniversities, ...activeUniversities, ...activeUniversities];
+const uniCount = activeUniversities.length;
 ---
 
-<section class="funded-universities-section py-16 bg-surface border-b border-border/60" id="funded-universities">
-  <div class="container mx-auto px-4 max-w-7xl space-y-10">
-    <div class="text-center max-w-3xl mx-auto space-y-3">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-semibold border border-primary/20">
-        <Building2 class="w-3.5 h-3.5" />
-        <span>Awarded Institutions &amp; Grants</span>
-      </div>
-      <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-foreground">
-        Funded Universities &amp; Award Recipients
-      </h2>
-      <p class="text-secondary text-sm md:text-base leading-relaxed max-w-2xl mx-auto">
-        Peer-reviewed capacity building grants, compute allocations for computational tools, and graduation project research funding awarded to international partner universities.
-      </p>
+<section class="funded-cloud-section py-20" aria-labelledby="funded-cloud-title">
+  <!-- Aceternity Ambient Grid & Glow Effects -->
+  <div class="funded-cloud-bg-grid" aria-hidden="true"></div>
+  <div class="funded-cloud-glow-blue" aria-hidden="true"></div>
+  <div class="funded-cloud-glow-emerald" aria-hidden="true"></div>
+
+  <div class="container funded-cloud-container mb-10">
+    <!-- Header -->
+    <div class="text-center max-w-3xl mx-auto">
+      <span class="badge-pill mb-3">Awarded Institutions &amp; Grants</span>
+      <h2 id="funded-cloud-title" class="text-3xl font-bold funded-cloud-title">Funded Universities &amp; Award Recipients</h2>
+      <p class="text-secondary mt-3 text-lg">Peer-reviewed capacity building grants, compute allocations for computational tools, and research funding awarded to international partner universities.</p>
     </div>
+  </div>
 
-    <!-- Universities Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {featuredProjects.map((project) => {
-        const year = project.data.year || project.data.awardYear || 2025;
-        const cohort = project.data.cohort || String(year);
-        const image = project.data.image || project.data.featuredImage || "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=75&w=800&auto=format&fit=crop";
-
-        return (
-          <article class="university-card flat-surface p-6 rounded-2xl flex flex-col justify-between space-y-4 hover:shadow-lg transition-all border border-border/80 group">
-            <div class="space-y-3">
-              <!-- Image Banner -->
-              <div class="h-44 rounded-xl overflow-hidden relative bg-slate-100 dark:bg-slate-800">
-                <img
-                  src={image}
-                  alt={project.data.institution}
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-                <div class="absolute top-3 left-3 bg-slate-900/85 backdrop-blur-md text-white text-[11px] font-bold px-2.5 py-1 rounded-full border border-white/20">
-                  {cohort === '2026' ? '🎓 2026 Graduation Grant' : '🏛️ Capacity Grant'}
-                </div>
-              </div>
-
-              <!-- Institution Name & Meta -->
-              <div>
-                <div class="flex items-center gap-1.5 text-xs text-primary font-semibold mb-1">
-                  <MapPin class="w-3.5 h-3.5 shrink-0" />
-                  <span>{project.data.country}</span>
-                </div>
-                <h3 class="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-1">
-                  {project.data.institution}
-                </h3>
-              </div>
-
-              <p class="text-xs text-secondary leading-relaxed line-clamp-2">
-                {project.data.summary || project.data.description || project.data.title}
-              </p>
-            </div>
-
-            <div class="pt-4 border-t border-border/60 flex items-center justify-between">
-              <span class="text-[11px] font-semibold text-muted">
-                {project.data.mainPI ? `PI: ${project.data.mainPI}` : `Grant Award ${year}`}
-              </span>
-              <a
-                href={`/funded-projects/${project.slug}`}
-                class="btn-fluent-secondary text-xs py-1.5 px-3 inline-flex items-center gap-1"
-              >
-                <span>View Award</span>
-                <ArrowRight class="w-3.5 h-3.5" />
-              </a>
-            </div>
-          </article>
-        );
-      })}
+  <!-- Animated Ribbon Carousel Track (3 Items visible per row) -->
+  <div class="uni-ribbon-track-wrapper">
+    <div class="uni-ribbon-track" style={`--uni-count: ${uniCount};`}>
+      {ribbonUniversities.map((uni) => (
+        <a href={`/funded-projects/${uni.slug}`} class="uni-ribbon-item group" title={`View ${uni.name} Award`}>
+          <div class="uni-logo-box">
+            {uni.image ? (
+              <img src={uni.image} alt={uni.name} class="uni-logo-img" loading="lazy" />
+            ) : (
+              <span class="uni-logo-initials">{uni.initials}</span>
+            )}
+          </div>
+          <div class="uni-info">
+            <span class="uni-name">{uni.name}</span>
+            {uni.country && <span class="uni-country">{uni.country}</span>}
+          </div>
+        </a>
+      ))}
     </div>
+  </div>
 
-    <!-- Bottom Action Button -->
-    <div class="text-center pt-4">
-      <a href="/funded-projects" class="btn-fluent-primary shadow-md">
-        <span>Explore All Funded University Projects</span>
-        <ArrowRight class="w-4 h-4 ml-1" />
-      </a>
-    </div>
+  <!-- Explore All Funded Projects CTA Button -->
+  <div class="funded-cloud-action mt-12 text-center">
+    <a href="/funded-projects" class="btn-fluent-primary uni-explore-btn">
+      <span>Explore All Funded Projects</span>
+      <span aria-hidden="true" class="btn-arrow">→</span>
+    </a>
   </div>
 </section>
 
 <style>
-  .university-card {
-    background: var(--color-surface);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  .funded-cloud-section {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background-color: var(--color-bg-secondary, #f8fafc);
+    border-top: 1px solid var(--color-border, #e2e8f0);
+    border-bottom: 1px solid var(--color-border, #e2e8f0);
+    padding-top: 4.5rem;
+    padding-bottom: 4.5rem;
   }
 
-  .university-card:hover {
-    transform: translateY(-3px);
-    border-color: var(--color-border-focus);
+  /* Aceternity Grid & Ambient Glows */
+  .funded-cloud-bg-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    opacity: 0.12;
+    background-image: 
+      linear-gradient(var(--color-border, #cbd5e1) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-border, #cbd5e1) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  }
+
+  .funded-cloud-glow-blue {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .funded-cloud-glow-emerald {
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  .funded-cloud-container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .funded-cloud-title {
+    color: var(--color-text-primary);
+    letter-spacing: -0.02em;
+  }
+
+  /* Infinite Ribbon Track Wrapper */
+  .uni-ribbon-track-wrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding: 0.75rem 0;
+    mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 6%, black 94%, transparent);
+  }
+
+  .uni-ribbon-track {
+    display: flex;
+    gap: 1.5rem;
+    width: max-content;
+    animation: uni-ribbon-scroll 35s linear infinite;
+    will-change: transform;
+  }
+
+  .uni-ribbon-track-wrapper:hover .uni-ribbon-track {
+    animation-play-state: paused;
+  }
+
+  /* University Item: Circular Logo + Name + Country */
+  .uni-ribbon-item {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    width: 330px;
+    flex-shrink: 0;
+    background: transparent;
+    border: none;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    box-shadow: none;
+    transition: transform 0.25s ease;
+    outline: none;
+  }
+
+  .uni-ribbon-item:hover,
+  .uni-ribbon-item:focus {
+    transform: translateY(-2px);
+    outline: none;
+  }
+
+  .uni-logo-box {
+    width: 3.75rem;
+    height: 3.75rem;
+    background: #ffffff;
+    border: 2px solid var(--color-border, #e2e8f0);
+    border-radius: 50%;
+    overflow: hidden;
+    padding: 0.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  }
+
+  .uni-ribbon-item:hover .uni-logo-box {
+    border-color: var(--color-primary, #005a9c);
+    box-shadow: 0 6px 18px rgba(0, 90, 156, 0.2);
+    transform: scale(1.05);
+  }
+
+  .uni-logo-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+  }
+
+  .uni-logo-initials {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--color-primary, #005a9c);
+  }
+
+  .uni-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .uni-name {
+    font-size: 1.08rem;
+    font-weight: 700;
+    line-height: 1.35;
+    color: var(--color-text-primary, #0f172a);
+    transition: color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .uni-country {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-primary, #005a9c);
+    margin-top: 0.15rem;
+  }
+
+  .uni-ribbon-item:hover .uni-name {
+    color: var(--color-primary, #005a9c);
+  }
+
+  /* Explore All Funded Projects CTA Button */
+  .funded-cloud-action {
+    position: relative;
+    z-index: 2;
+  }
+
+  .uni-explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.85rem 2.25rem;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 9999px;
+    box-shadow: 0 6px 20px rgba(0, 90, 156, 0.18);
+    transition: all 0.25s ease;
+  }
+
+  .uni-explore-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 28px rgba(0, 90, 156, 0.28);
+  }
+
+  .btn-arrow {
+    transition: transform 0.2s ease;
+  }
+
+  .uni-explore-btn:hover .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Keyframes for seamless scrolling */
+  @keyframes uni-ribbon-scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(calc(-330px * var(--uni-count) - 1.5rem * var(--uni-count)));
+    }
+  }
+
+  @media (max-width: 768px) {
+    .uni-ribbon-item {
+      width: 270px;
+      padding: 0.5rem 0.75rem;
+    }
+    .uni-logo-box {
+      width: 3.25rem;
+      height: 3.25rem;
+    }
+    .uni-name {
+      font-size: 0.98rem;
+    }
+    @keyframes uni-ribbon-scroll {
+      0% {
+        transform: translateX(0);
+      }
+      100% {
+        transform: translateX(calc(-270px * var(--uni-count) - 1.5rem * var(--uni-count)));
+      }
+    }
   }
 </style>
+
