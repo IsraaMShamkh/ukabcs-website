@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" fill="none">
+  <defs>
+    <linearGradient id="logo-grad-primary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3B82F6"/>
+      <stop offset="50%" stop-color="#2563EB"/>
+      <stop offset="100%" stop-color="#10B981"/>
+    </linearGradient>
+    <linearGradient id="logo-grad-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#60A5FA"/>
+      <stop offset="100%" stop-color="#34D399"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Modern Bioscience Helix & Computational Node Emblem -->
+  <g transform="translate(10, 8)">
+    <circle cx="32" cy="32" r="30" fill="#0D1829" stroke="url(#logo-grad-primary)" stroke-width="2.5"/>
+    <!-- Intertwined Data Helix Waves -->
+    <path d="M18 20 C24 20, 26 44, 32 44 C38 44, 40 20, 46 20" stroke="url(#logo-grad-glow)" stroke-width="3" stroke-linecap="round" fill="none"/>
+    <path d="M18 44 C24 44, 26 20, 32 20 C38 20, 40 44, 46 44" stroke="#3B82F6" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 4" fill="none"/>
+    <!-- Core Bioscience Nodes -->
+    <circle cx="21" cy="23" r="3.5" fill="#10B981"/>
+    <circle cx="32" cy="32" r="4.5" fill="#60A5FA"/>
+    <circle cx="43" cy="41" r="3.5" fill="#10B981"/>
+  </g>
+
+  <!-- Typography -->
+  <text x="86" y="38" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="28" font-weight="800" fill="#F8FAFC" letter-spacing="0.04em">
+    UK<tspan fill="#3B82F6">ABCS</tspan>
+  </text>
+  <text x="86" y="56" font-family="'Plus Jakarta Sans', system-ui, sans-serif" font-size="10.5" font-weight="600" fill="#94A3B8" letter-spacing="0.08em">
+    UK ASSOCIATION FOR BIOTECHNOLOGY &amp; COMPUTATIONAL SCIENCE
+  </text>
+</svg>
