@@ -60,32 +60,24 @@ const totalGrants = allProjects.length;
   <NumbersCounterSection />
 
   <!-- 4. Section Title & Interactive Cohort Filter -->
-  <section class="funded-awards-header py-16 bg-surface border-t border-border text-center" id="awards-directory">
-    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center space-y-4">
-      <span class="badge-pill mb-1">Awarded Grants & Registry</span>
+  <section class="funded-awards-header py-12 bg-surface border-t border-border text-center" id="awards-directory">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 flex flex-col items-center justify-center space-y-5">
       <h2 class="text-3xl sm:text-4xl font-bold text-foreground tracking-tight">
-        Institutional Grants & Funded Project Directory
+        Institutional Grants &amp; Funded Projects
       </h2>
-      <p class="text-secondary text-base sm:text-lg max-w-2xl mx-auto">
-        Explore verified academic grant awards, computational infrastructure funding, and graduation research teams across international partner institutions.
-      </p>
 
-      <!-- Cohort Filter Buttons -->
-      <div class="flex items-center justify-center gap-3 flex-wrap pt-4" id="project-filters">
+      <!-- Cohort Filter Buttons (Year Only) -->
+      <div class="flex items-center justify-center gap-3 flex-wrap" id="project-filters">
         <button type="button" class="filter-btn is-active" data-filter="all">
           All Grants ({totalGrants})
         </button>
-        <button type="button" class="filter-btn btn-2026" data-filter="2026">
-          🎓 2026 Graduation Grants ({projects2026.length})
+        <button type="button" class="filter-btn" data-filter="2026">
+          2026 ({projects2026.length})
         </button>
-        <button type="button" class="filter-btn btn-2025" data-filter="2025">
-          🏛️ 2025 Capacity Grants ({projects2025.length})
+        <button type="button" class="filter-btn" data-filter="2025">
+          2025 ({projects2025.length})
         </button>
       </div>
-
-      <p class="text-xs font-medium text-muted pt-1" id="cohort-filter-summary">
-        Showing all {totalGrants} verified institutional awards across 2025 and 2026 funding cycles
-      </p>
     </div>
   </section>
 

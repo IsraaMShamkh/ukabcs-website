@@ -37,25 +37,28 @@ const cardImage = image || defaultImage;
 
 // Shorten grant badge name for compact, clean appearance
 const displayGrantType = grantType && grantType.includes('Graduation Project')
-  ? 'Graduation Project Grant'
-  : grantType;
+  ? 'Graduation Grant'
+  : (grantType || 'Research Grant');
 ---
 
 <article class="project-card">
-  <div class="card-image-wrap">
-    <a href={`/funded-projects/${slug}`} class="card-image-link" aria-label={title}>
-      <img src={cardImage} alt={title} loading="lazy" />
+  <!-- Image Banner (Matching NewsCard full width style) -->
+  <div class="card-media-wrap">
+    <a href={`/funded-projects/${slug}`} class="card-media-link" aria-label={title}>
+      <img src={cardImage} alt={title} loading="lazy" class="card-media-img" />
     </a>
-    <div class="badge-group">
-      <span class="grant-pill">
+    <div class="badge-wrap">
+      <span class="news-type-pill pill-call">
         {displayGrantType}
       </span>
     </div>
   </div>
 
+  <!-- Content Body -->
   <div class="card-body">
+    <!-- Institution & Country Row -->
     <div class="institution-row">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg class="inst-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
         <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
       </svg>
@@ -66,14 +69,16 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
       <a href={`/funded-projects/${slug}`}>{title}</a>
     </h3>
 
-    <p class="card-excerpt">{description}</p>
+    {description && (
+      <p class="card-excerpt">{description}</p>
+    )}
 
     <div class="card-footer">
       <span class="date-text">
         Published: {new Date(datePublished).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}
       </span>
-      <a href={`/funded-projects/${slug}`} class="read-link">
-        <span>View Project</span>
+      <a href={`/funded-projects/${slug}`} class="read-btn">
+        <span>View Award</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <line x1="5" y1="12" x2="19" y2="12"></line>
           <polyline points="12 5 19 12 12 19"></polyline>
@@ -88,50 +93,47 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding: 1.25rem;
-    gap: 1.25rem;
     background: var(--color-surface, #ffffff);
     border: 1px solid var(--color-border, #e2e8f0);
     border-radius: var(--radius-lg, 12px);
-    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    outline: none;
   }
 
-  .project-card:hover {
+  .project-card:hover,
+  .project-card:focus-within {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-lg, 0 10px 25px -5px rgba(0, 0, 0, 0.1));
+    box-shadow: 0 12px 28px -6px rgba(0, 0, 0, 0.12);
+    border-color: var(--color-border, #e2e8f0);
   }
 
-  .card-image-wrap {
+  .card-media-wrap {
     position: relative;
     width: 100%;
-    height: 220px;
-    min-height: 220px;
-    max-height: 220px;
-    border-radius: var(--radius-md, 8px);
-    overflow: hidden;
+    height: 210px;
     background: #ffffff;
-    border: 1px solid var(--color-border, #f1f5f9);
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-bottom: 1px solid var(--color-border, #f1f5f9);
+    overflow: hidden;
   }
 
-  :global(.dark) .card-image-wrap {
+  :global(.dark) .card-media-wrap {
     background: #0f172a;
     border-color: #1e293b;
   }
 
-  .card-image-link {
+  .card-media-link {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
     height: 100%;
     padding: 1.25rem;
+    text-decoration: none;
   }
 
-  .card-image-wrap img {
+  .card-media-img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
@@ -140,71 +142,68 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
     transition: transform 0.35s ease;
   }
 
-  .project-card:hover .card-image-wrap img {
+  .project-card:hover .card-media-img {
     transform: scale(1.06);
   }
 
-  .badge-group {
+  .badge-wrap {
     position: absolute;
-    top: 0.75rem;
-    left: 0.75rem;
-    display: flex;
-    gap: 0.4rem;
+    top: 0.85rem;
+    left: 0.85rem;
     z-index: 2;
-    flex-wrap: wrap;
   }
 
-  .cohort-pill {
+  .news-type-pill {
+    display: inline-block;
+    padding: 0.3rem 0.75rem;
+    border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 700;
-    padding: 0.25rem 0.65rem;
-    border-radius: var(--radius-full, 9999px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.02em;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
   }
 
-  .cohort-2026 {
-    background: #0284c7;
-    color: #ffffff;
-  }
-
-  .cohort-2025 {
-    background: #7c3aed;
-    color: #ffffff;
-  }
-
-  .grant-pill {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.25rem 0.6rem;
-    border-radius: var(--radius-full, 9999px);
-    background: rgba(15, 23, 42, 0.85);
-    color: #f1f5f9;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(6px);
+  .pill-call {
+    background: rgba(6, 95, 70, 0.88);
+    color: #a7f3d0;
+    border: 1px solid rgba(167, 243, 208, 0.35);
   }
 
   .card-body {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    padding: 1.35rem;
   }
 
   .institution-row {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.5rem;
     color: var(--color-primary, #005a9c);
-    font-size: 0.88rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    margin-bottom: 0.4rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .inst-icon {
+    flex-shrink: 0;
+    color: var(--color-primary, #005a9c);
+  }
+
+  .institution-name {
+    line-height: 1.35;
+    word-break: break-word;
   }
 
   .card-title {
     font-size: 1.125rem;
     font-weight: 700;
+    line-height: 1.45;
+    letter-spacing: -0.01em;
     color: var(--color-text-primary, #0f172a);
-    margin-bottom: 0.5rem;
-    line-height: 1.4;
+    margin-bottom: 0.65rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
@@ -222,7 +221,7 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
   }
 
   .card-excerpt {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--color-text-secondary, #64748b);
     line-height: 1.6;
     margin-bottom: 1.25rem;
@@ -234,11 +233,12 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
   }
 
   .card-footer {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border, #f1f5f9);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding-top: 0.85rem;
-    border-top: 1px solid var(--color-border, #e2e8f0);
     gap: 0.5rem;
   }
 
@@ -247,7 +247,7 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
     color: var(--color-text-muted, #94a3b8);
   }
 
-  .read-link {
+  .read-btn {
     display: inline-flex;
     align-items: center;
     gap: 0.4rem;
@@ -255,11 +255,12 @@ const displayGrantType = grantType && grantType.includes('Graduation Project')
     font-weight: 700;
     color: var(--color-primary, #005a9c);
     text-decoration: none;
-    transition: transform var(--transition-fast, 0.2s), color var(--transition-fast, 0.2s);
+    transition: gap 0.2s ease, color 0.2s ease;
   }
 
-  .read-link:hover {
-    color: var(--color-primary-hover, #0284c7);
-    transform: translateX(3px);
+  .read-btn:hover {
+    color: #0284c7;
+    gap: 0.65rem;
   }
 </style>
+e>
