@@ -1,80 +1,65 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/hero/PageHero.astro';
+import TextContentSection from '../components/sections/TextContentSection.astro';
+import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
+import GeneralSupportSection from '../components/sections/GeneralSupportSection.astro';
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
-import { ShieldCheck, Lock, FileCode, CheckCircle2 } from 'lucide-astro';
+import { siteConfig } from '../config/site';
 
 const legalDocs = [
   {
     title: "Privacy Policy & UK GDPR Compliance",
-    id: "privacy",
-    effectiveDate: "01 January 2025",
-    reviewDate: "01 January 2026",
-    summary: "Details on how UKABCS collects, stores, and protects member and applicant personal data in accordance with UK GDPR and the Data Protection Act 2018."
+    description: "Details on how UKABCS collects, stores, and protects member and applicant personal data in accordance with UK GDPR and Data Protection Act 2018. Effective: 01 Jan 2025."
   },
   {
     title: "Terms of Use & Membership Conditions",
-    id: "terms",
-    effectiveDate: "01 January 2025",
-    reviewDate: "01 January 2026",
-    summary: "Rules governing access to the UKABCS website, portal submissions, partner compute credits, and membership certificate usage."
+    description: "Rules governing access to the UKABCS website, portal submissions, partner compute credits, and membership certificate usage. Effective: 01 Jan 2025."
   },
   {
     title: "Cookie Policy & Web Analytics",
-    id: "cookies",
-    effectiveDate: "01 January 2025",
-    reviewDate: "01 January 2026",
-    summary: "Information on essential functional cookies, analytics tracking, and privacy settings on www.ukabcs.co.uk."
+    description: "Information on essential functional cookies, analytics tracking, and privacy settings on www.ukabcs.co.uk. Effective: 01 Jan 2025."
   },
   {
     title: "Accessibility Statement",
-    id: "accessibility",
-    effectiveDate: "01 January 2025",
-    reviewDate: "01 January 2026",
-    summary: "Our commitment to ensuring digital accessibility for disabled researchers, including WCAG 2.1 AA compliance and screen reader support."
+    description: "Our commitment to ensuring digital accessibility for disabled researchers, including WCAG 2.1 AA compliance and screen reader support. Effective: 01 Jan 2025."
   }
 ];
 ---
 
 <BaseLayout title="Policies & Legal Information | UKABCS" description="Official UKABCS privacy policy, terms of use, cookie policy, and accessibility statements.">
-  <!-- Hero -->
+  <!-- 1. Hero -->
   <PageHero
     eyebrow="Compliance & Legal"
     title="Policies & Legal Information"
     description="Official UKABCS privacy policy, terms of use, cookie policy, and accessibility statements."
-    image="https://images.unsplash.com/photo-1450133064473-71024230f91b?q=90&w=2200&auto=format&fit=crop"
+    image="/images/legal_policies_hero.png"
   />
 
-  <section class="py-16 md:py-24 bg-background border-b border-border/60">
-    <div class="container mx-auto px-4 max-w-4xl space-y-12">
-      <!-- Legal Documents Grid -->
-      <div class="space-y-8">
-        {legalDocs.map((doc) => (
-          <div class="p-8 rounded-2xl bg-card border border-border/80 shadow-sm space-y-4" id={doc.id}>
-            <div class="flex items-center justify-between flex-wrap gap-2 pb-3 border-b border-border/60">
-              <h2 class="text-xl font-bold text-foreground">{doc.title}</h2>
-              <div class="text-xs text-muted-foreground font-medium">
-                Effective: <strong>{doc.effectiveDate}</strong> | Review: <strong>{doc.reviewDate}</strong>
-              </div>
-            </div>
+  <!-- 2. SectionPool Text Content Overview -->
+  <TextContentSection
+    tag="Legal & Data Protection"
+    title="UK GDPR & Member Privacy Commitments"
+    subtitle="Rigorous compliance standards safeguarding member research proposals and institutional data."
+    content="UKABCS enforces strict UK GDPR and UK Data Protection Act 2018 compliance across all digital portals, grant application forms, and member registrations. Personal data and peer-review submissions are encrypted and never disclosed to third parties without explicit legal consent."
+    image="/images/legal_policies_hero.png"
+    ctaText="Read Complete Privacy Policy →"
+    ctaHref="/policies/privacy-policy"
+  />
 
-            <p class="text-sm text-muted-foreground leading-relaxed">
-              {doc.summary}
-            </p>
+  <!-- 3. SectionPool Bento Grid for Legal Docs -->
+  <FeaturesBentoSection
+    title="Official Statutory Frameworks"
+    subtitle="Review the legally binding policies and terms governing UKABCS membership and digital services."
+    badge="Legal Index"
+    items={legalDocs}
+  />
 
-            <div class="pt-2 text-xs text-muted-foreground space-y-2">
-              <div class="flex items-center gap-2">
-                <CheckCircle2 class="w-4 h-4 text-emerald-500 shrink-0" />
-                <span>Compliant with UK Data Protection Act 2018 & UK GDPR</span>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
+  <!-- 4. General Support Section -->
+  <GeneralSupportSection />
 
+  <!-- 5. Newsletter & Promo CTA -->
   <NewsletterSection />
   <PromoCTASection />
 </BaseLayout>

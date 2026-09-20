@@ -5,9 +5,18 @@
     <link>https://www.ukabcs.co.uk</link>
     <description>Official RSS feed of the UK Association for Biotechnology &amp; Computational Science</description>
     <language>en-gb</language>
-    <lastBuildDate>Sat, 19 Sep 2026 20:32:43 GMT</lastBuildDate>
+    <lastBuildDate>Sun, 20 Sep 2026 11:18:36 GMT</lastBuildDate>
     <atom:link href="https://www.ukabcs.co.uk/rss.xml" rel="self" type="application/rss+xml"/>
     
+    <item>
+      <title><![CDATA[UKABCS General Research Support & Capacity Grants: Eligibility, Benefits & Application Guidelines]]></title>
+      <link>https://www.ukabcs.co.uk/news/ukabcs-eligibility-benefits-guide</link>
+      <guid>https://www.ukabcs.co.uk/news/ukabcs-eligibility-benefits-guide</guid>
+      <description><![CDATA[Comprehensive scientific eligibility criteria, institutional benefits, HPC compute credit allocations, APC publishing waivers, and step-by-step application guidelines for UKABCS research support grants.]]></description>
+      <pubDate>Sun, 01 Mar 2026 00:00:00 GMT</pubDate>
+      <author>info@ukabcs.co.uk (UKABCS Grants & Governance Committee)</author>
+    </item>
+
     <item>
       <title><![CDATA[Empowering Global Researchers: The Impact of UKABCS In-Kind Research Credits]]></title>
       <link>https://www.ukabcs.co.uk/news/research-credits-empowering-bioinformatics</link>

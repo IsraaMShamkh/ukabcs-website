@@ -9,6 +9,16 @@
   padding: 0;
 }
 
+::selection {
+  background: #005a9c;
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background: #005a9c;
+  color: #ffffff;
+}
+
 html {
   scroll-behavior: smooth;
   font-family: var(--font-sans);

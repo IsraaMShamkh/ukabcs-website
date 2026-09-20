@@ -11,13 +11,18 @@ export interface Props {
 const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
 ---
 
-<section class="page-hero" style={`--hero-image: url('${image}')`}>
+<section class="page-hero">
+  <div class="page-hero__bg" style={`background-image: url('${image}');`}></div>
   <div class="page-hero__overlay"></div>
   <div class="page-hero__grid" aria-hidden="true"></div>
   <div class="container page-hero__content">
-    <nav class="page-hero__breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span>{eyebrow ?? title}</span></nav>
+    <nav class="page-hero__breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>{eyebrow ?? title}</span>
+    </nav>
     {eyebrow && <p class="page-hero__eyebrow">{eyebrow}</p>}
-    <h1>{title}</h1>
+    <h1 class="page-hero__title">{title}</h1>
     {description && <p class="page-hero__description">{description}</p>}
     {ctaText && ctaHref && <a class="btn-fluent-primary page-hero__cta" href={ctaHref}>{ctaText}</a>}
   </div>
@@ -27,23 +32,31 @@ const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
   .page-hero {
     position: relative;
     isolation: isolate;
-    width: 100vw;
-    left: 50%;
-    transform: translateX(-50%);
-    min-height: clamp(32rem, 70vh, 48rem);
-    display: grid;
-    align-items: end;
+    width: 100%;
+    min-height: clamp(24rem, 42vh, 32rem);
+    display: flex;
+    align-items: flex-end;
     overflow: hidden;
-    background: var(--color-navy, #081731) var(--hero-image) center / cover no-repeat;
+    background-color: #081731;
     color: #ffffff;
     margin-top: 0;
+  }
+
+  .page-hero__bg {
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
   }
 
   .page-hero__overlay {
     position: absolute;
     inset: 0;
     z-index: -1;
-    background: rgba(8, 17, 31, 0.82);
+    background: linear-gradient(180deg, rgba(8, 23, 49, 0.75) 0%, rgba(8, 23, 49, 0.94) 100%);
+    pointer-events: none;
   }
 
   .page-hero__grid {
@@ -51,70 +64,83 @@ const { eyebrow, title, description, image, ctaText, ctaHref } = Astro.props;
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    opacity: .22;
+    opacity: .2;
     background-image:
       linear-gradient(rgba(255,255,255,.16) 1px, transparent 1px),
       linear-gradient(90deg, rgba(255,255,255,.16) 1px, transparent 1px);
     background-size: 56px 56px;
-
   }
+
   .page-hero__content {
-    padding-top: clamp(8rem, 12vw, 10rem);
-    padding-bottom: clamp(3.5rem, 6vw, 5rem);
+    padding-top: clamp(6rem, 10vw, 8rem);
+    padding-bottom: clamp(3rem, 5vw, 4.5rem);
     max-width: var(--container-max-width, 1440px);
     width: 100%;
+    position: relative;
+    z-index: 1;
   }
 
-  .page-hero h1 {
+  .page-hero__title {
     max-width: 850px;
-    color: #ffffff;
-    font-size: clamp(2.25rem, 4.5vw, 4rem);
-    line-height: 1.1;
+    color: #ffffff !important;
+    font-size: clamp(2.25rem, 4.5vw, 3.8rem);
+    line-height: 1.12;
     letter-spacing: -0.03em;
     font-weight: 700;
+    background: transparent !important;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    margin-top: 0.5rem;
   }
 
   .page-hero__eyebrow {
-    margin: 1rem 0 0.65rem;
-    color: #7dd3fc;
+    margin: 0.75rem 0 0.5rem;
+    color: #38bdf8 !important;
     font-size: 0.825rem;
     font-weight: 700;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    background: transparent !important;
   }
 
   .page-hero__description {
     max-width: 680px;
-    margin-top: 1.25rem;
-    color: rgba(255, 255, 255, 0.88);
+    margin-top: 1rem;
+    color: rgba(255, 255, 255, 0.9) !important;
     font-size: clamp(1rem, 1.4vw, 1.2rem);
     line-height: 1.6;
+    background: transparent !important;
+    text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
   }
 
   .page-hero__breadcrumb {
     display: flex;
     gap: 0.55rem;
     align-items: center;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.75) !important;
     font-size: 0.85rem;
+    background: transparent !important;
+  }
+
+  .page-hero__breadcrumb span, .page-hero__breadcrumb a {
+    background: transparent !important;
   }
 
   .page-hero__breadcrumb a {
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.85) !important;
     transition: color var(--transition-fast);
   }
 
   .page-hero__breadcrumb a:hover {
-    color: #ffffff;
+    color: #ffffff !important;
     text-decoration: underline;
   }
 
   .page-hero__cta {
-    margin-top: 1.75rem;
+    margin-top: 1.5rem;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .page-hero {
+    .page-hero__bg {
       background-attachment: scroll !important;
     }
   }
