@@ -17,17 +17,17 @@ const {
 const endpoint = siteConfig.clientFlow.subscriptionForm;
 ---
 
-<section class="newsletter-section py-16" id="newsletter">
-  <div class="container max-w-4xl mx-auto">
-    <div class="text-center max-w-2xl mx-auto mb-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary text-xs font-semibold mb-4 border border-primary/30">
-        <Mail class="w-3.5 h-3.5" />
+<section class="newsletter-section py-20" id="newsletter">
+  <div class="container max-w-4xl mx-auto px-4">
+    <div class="text-center max-w-2xl mx-auto mb-10">
+      <div class="newsletter-badge-pill mb-4">
+        <Mail class="w-3.5 h-3.5 text-sky-400" />
         <span>Official Bulletin</span>
       </div>
       <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white mb-3">
         {title}
       </h2>
-      <p class="text-slate-300 text-sm md:text-base leading-relaxed">
+      <p class="text-slate-200 text-sm md:text-base leading-relaxed">
         {subtitle}
       </p>
     </div>
@@ -36,11 +36,11 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
       id="newsletter-form"
       action={endpoint}
       method="POST"
-      class="newsletter-card max-w-xl mx-auto p-6 md:p-8 rounded-2xl shadow-2xl space-y-4"
+      class="newsletter-card max-w-xl mx-auto p-6 md:p-8 rounded-2xl shadow-2xl space-y-5"
     >
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label for="newsletter-name" class="block text-xs font-semibold text-slate-200 mb-1.5">
+          <label for="newsletter-name" class="block text-xs font-semibold text-slate-100 mb-1.5">
             Full Name <span class="text-rose-400">*</span>
           </label>
           <input
@@ -54,7 +54,7 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
         </div>
 
         <div>
-          <label for="newsletter-email" class="block text-xs font-semibold text-slate-200 mb-1.5">
+          <label for="newsletter-email" class="block text-xs font-semibold text-slate-100 mb-1.5">
             Institutional Email <span class="text-rose-400">*</span>
           </label>
           <input
@@ -62,7 +62,7 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
             id="newsletter-email"
             name="email"
             required
-            placeholder="Your institutional email"
+            placeholder="s.ahmed@university.ac.uk"
             class="newsletter-input"
           />
         </div>
@@ -74,10 +74,10 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
           id="newsletter-consent"
           name="consent"
           required
-          class="mt-1 w-4 h-4 rounded border-slate-700 text-primary focus:ring-primary bg-slate-900 cursor-pointer"
+          class="mt-1 w-4 h-4 rounded border-slate-600 text-sky-500 focus:ring-sky-500 bg-slate-900 cursor-pointer shrink-0"
         />
-        <label for="newsletter-consent" class="text-xs text-slate-300 leading-normal cursor-pointer">
-          I agree to receive UKABCS official announcements and grant updates. Your data is protected under our <a href="/legal" class="text-primary underline hover:text-primary/80">Privacy Policy</a>. No spam.
+        <label for="newsletter-consent" class="text-xs text-slate-200 leading-relaxed cursor-pointer">
+          I agree to receive UKABCS official announcements and grant updates. Your data is protected under our <a href="/legal" class="text-sky-300 underline hover:text-sky-200">Privacy Policy</a>. No spam.
         </label>
       </div>
 
@@ -90,7 +90,7 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
       <button
         type="submit"
         id="newsletter-submit-btn"
-        class="newsletter-btn w-full py-3 px-6 rounded-xl text-white font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-lg"
+        class="newsletter-btn w-full py-3.5 px-6 rounded-xl text-white font-bold text-sm transition-all duration-200 flex items-center justify-center gap-2 shadow-lg"
       >
         <span id="btn-text">Subscribe to Bulletin</span>
         <Loader2 id="btn-loader" class="w-4 h-4 animate-spin hidden" />
@@ -101,43 +101,65 @@ const endpoint = siteConfig.clientFlow.subscriptionForm;
 
 <style>
   .newsletter-section {
-    background: linear-gradient(135deg, #0b1526, #08111f);
+    position: relative;
+    background: linear-gradient(135deg, #09111e 0%, #0f172a 100%);
     color: #ffffff;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  .newsletter-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border-radius: 9999px;
+    background: rgba(56, 189, 248, 0.12);
+    color: #38bdf8;
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: 1px solid rgba(56, 189, 248, 0.3);
   }
 
   .newsletter-card {
-    background: rgba(15, 23, 42, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.12);
-    backdrop-filter: blur(12px);
+    background: rgba(15, 23, 42, 0.92);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.5);
   }
 
   .newsletter-input {
     width: 100%;
-    padding: 0.65rem 1rem;
+    padding: 0.75rem 1rem;
     border-radius: var(--radius-md, 8px);
-    background: rgba(8, 17, 31, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(2, 6, 23, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.22);
     color: #ffffff;
-    font-size: 0.875rem;
+    font-size: 0.88rem;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .newsletter-input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
   }
 
   .newsletter-input:focus {
     outline: none;
-    border-color: var(--color-primary, #0284c7);
-    box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.25);
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 3px rgba(56, 189, 248, 0.25);
+    background: rgba(2, 6, 23, 0.95);
   }
 
   .newsletter-btn {
-    background: var(--color-primary, #005a9c);
+    background: linear-gradient(135deg, #005a9c 0%, #0284c7 100%);
     border: none;
     cursor: pointer;
   }
 
   .newsletter-btn:hover {
-    background: #0284c7;
+    background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+    box-shadow: 0 8px 24px rgba(2, 132, 199, 0.35);
   }
 </style>
 
