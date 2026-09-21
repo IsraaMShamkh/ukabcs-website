@@ -164,6 +164,12 @@ a {
   background: rgba(8, 17, 31, 0.92);
 }
 
+[data-theme="dark"] .brand-logo,
+[data-theme="dark"] .brand-logo-mobile,
+[data-theme="dark"] .footer-logo {
+  filter: brightness(0) invert(1);
+}
+
 /* ──────────────────────────────────
    Buttons — Flat, Professional
    ────────────────────────────────── */
