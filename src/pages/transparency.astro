@@ -81,15 +81,17 @@ const policies = await getCollection('policies');
   </section>
 
   <!-- 4. Global Scientific Impact Fund (SectionPool CTA/Donation) -->
-  <section class="py-16 bg-slate-900 text-white text-center border-t border-slate-800">
+  <section class="py-20 bg-slate-900 text-white text-center border-t border-slate-800">
     <div class="container max-w-4xl mx-auto px-4 space-y-4">
-      <span class="badge-pill" style="background: rgba(255, 255, 255, 0.15); color: #7dd3fc;">Philanthropic Impact</span>
-      <h2 class="text-3xl font-bold">UKABCS Global Scientific Impact Fund</h2>
-      <p class="text-slate-300 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+      <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-500/20 text-sky-300 text-xs font-semibold mb-2 border border-sky-400/30">
+        Philanthropic Impact
+      </span>
+      <h2 class="text-3xl md:text-4xl font-bold text-white">UKABCS Global Scientific Impact Fund</h2>
+      <p class="text-slate-200 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
         Support non-profit research grants, compute allocations for developing nation scientists, open-access APC waivers, and scientific education fellowships.
       </p>
       <div class="flex justify-center gap-4 flex-wrap pt-4">
-        <a href={siteConfig.clientFlow.impactFundDonationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary">
+        <a href={siteConfig.clientFlow.impactFundDonationForm} target="_blank" rel="noopener noreferrer" class="btn-fluent-primary" style="background: #0284c7; color: #ffffff;">
           <span>Contribute to Global Impact Fund</span>
           <span aria-hidden="true">→</span>
         </a>
