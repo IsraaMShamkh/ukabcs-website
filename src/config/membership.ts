@@ -103,12 +103,12 @@ export const membershipConfig = {
         "Newsletter & call alerts subscription"
       ],
       ctaLabel: "Apply for Student Membership",
-      ctaHref: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form"
+      ctaHref: "https://wise.com/pay/r/ueC-o-76EMS1o3M"
     },
     {
       id: "professional",
       name: "Professional Researcher",
-      price: "£300",
+      price: "£200",
       billingPeriod: "Annual Renewal",
       popular: true,
       eligibility: "Postdocs, PIs, & University Lecturers",
@@ -121,7 +121,7 @@ export const membershipConfig = {
         "Official Member Credential & Digital Badge"
       ],
       ctaLabel: "Join as Professional Member",
-      ctaHref: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form"
+      ctaHref: "https://wise.com/pay/r/qgyg1BscMycFakA"
     },
     {
       id: "institution",
@@ -138,7 +138,7 @@ export const membershipConfig = {
         "Institutional recognition on UKABCS portal"
       ],
       ctaLabel: "Join as Institution / Lab",
-      ctaHref: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form"
+      ctaHref: "https://wise.com/pay/r/tqcFA-T8KdFLqw8"
     },
     {
       id: "fellow",
