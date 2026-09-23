@@ -14,7 +14,7 @@ export const GET: APIRoute = async () => {
       <guid>https://www.ukabcs.co.uk/news/${item.slug}</guid>
       <description><![CDATA[${item.data.description}]]></description>
       <pubDate>${new Date(item.data.datePublished).toUTCString()}</pubDate>
-      <author>info@ukabcs.co.uk (${item.data.author})</author>
+      <author>support@ukabcs.co.uk (${item.data.author})</author>
     </item>`
     )
     .join('\n');

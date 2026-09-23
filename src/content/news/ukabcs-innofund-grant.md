@@ -104,7 +104,7 @@ Under the INNOFUND framework, Principal Investigators receive high-level academi
 - **Review & Notification Period**: 11 September – 20 September (10 Days)
 - **Agreement Finalization**: 21 September – 25 September (5 Days)
 - **Team Formation & Registration**: 26 September – 05 October (10 Days)
-- **Official Inquiries**: `Programmes-Grants@ukabcs.co.uk`
+- **Official Inquiries**: `programmes-grants@ukabcs.co.uk`
 - **Submission Portals**:
   - [INNOFUND Grant Application Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-innofund-grant/ukabcs-innofund-grant)
   - [ClientFlow General Submission Form](https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant)

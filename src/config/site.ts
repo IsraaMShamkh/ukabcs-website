@@ -14,7 +14,7 @@ export const siteConfig = {
   legalStatus: "UK Registered Non-Profit Academic Society (Incorporated in 2025)",
   url: "https://www.ukabcs.co.uk",
   description: "A UK-registered non-profit academic society dedicated to supporting researchers, peer-reviewed grant funding, and advancing computational biology, bioinformatics, and chemoinformatics worldwide.",
-  contactEmail: "info@ukabcs.co.uk",
+  contactEmail: "support@ukabcs.co.uk",
   
   // ClientFlow CRM endpoints and external form links (29 Official Forms)
   clientFlow: {

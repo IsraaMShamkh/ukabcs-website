@@ -101,7 +101,7 @@ To ensure complete fairness, scientific integrity, and compliance with charitabl
 Applications for the upcoming **2026/2027 Research Credit Allocation Round** are open to principal investigators, postdoctoral researchers, and registered postgraduate research students worldwide.
 
 - **Application Portal:** [Submit Proposal via UKABCS Grant & Compute Portal](/programmes-grants)
-- **Technical Enquiries:** `compute-grants@ukabcs.co.uk`
+- **Technical Enquiries:** `programmes-grants@ukabcs.co.uk`
 - **Supported Formats:** Individual lab requests (£1,000 – £5,000 credit value) and multi-institutional consortium requests (up to £25,000 credit value).
 
 *UKABCS remains dedicated to building practical, transparent, and accessible pathways for scientific research, capacity building, and global computational collaboration.*

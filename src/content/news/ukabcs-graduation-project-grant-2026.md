@@ -128,7 +128,7 @@ Each accepted project nominates one Project Supervisor (Principal Investigator) 
 - **Application Window**: 15 June – 15 July *(Extended to 30 July)* *(Current Round Closed)*
 - **Eligible Applicants**: Principal Investigators (Professors, Lecturers) applying on behalf of accredited universities.
 - **Team Size**: 10 undergraduate students per graduation project team (10 to 20 teams per Faculty).
-- **Official Inquiries**: `Programmes-Grants@ukabcs.co.uk`
+- **Official Inquiries**: `programmes-grants@ukabcs.co.uk`
 - **Submission Portals**:
   - [ClientFlow Submission Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant)
   - [UKABCS Graduation Project Online Portal](https://app.site123.com/ukabcs-graduation-project-grant-online-portal-submission-form-1?w=11213251)

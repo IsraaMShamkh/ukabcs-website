@@ -98,7 +98,7 @@ Submitting a general research support request is straightforward and conducted t
 Ready to accelerate your computational biology or biotechnology research? Submit your intake form or consult our research board:
 
 - **Online Support Intake Form:** [Submit Official Support Request Form](https://clientflowcrm.com) *(Opens UKABCS Support Form)*
-- **General Inquiries & Institutional Partnerships:** `grants@ukabcs.co.uk`
-- **Technical Infrastructure Support:** `compute-support@ukabcs.co.uk`
+- **General Inquiries & Institutional Partnerships:** `programmes-grants@ukabcs.co.uk`
+- **Technical Infrastructure Support:** `programmes-grants@ukabcs.co.uk`
 
 *UKABCS is dedicated to empowering international scientific research, advancing open access, and removing computational barriers for researchers worldwide.*

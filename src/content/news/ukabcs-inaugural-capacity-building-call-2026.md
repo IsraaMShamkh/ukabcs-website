@@ -144,5 +144,5 @@ The programme’s academic curriculum provides both theoretical grounding and ha
 
 - **Application Window**: 1 October 2025 to 1 November 2025 *(Current Round Closed)*
 - **Selected Cohort Announcement**: 15 November 2025
-- **Official Inquiries**: `Programmes-Grants@ukabcs.co.uk`
+- **Official Inquiries**: `programmes-grants@ukabcs.co.uk`
 - **Submission Portal**: [UKABCS Capacity Building Grant Application Form](https://app.site123.com/application-form-ukabcs-capacity-building-grant-1?w=11213251?w=11213251)
