@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import { siteConfig } from '../config/site';
+
+const opportunities = [
+  {
+    id: 'academic-supervisors', tag: 'Academic supervision', title: 'Guide the next generation of researchers',
+    role: 'Volunteer Academic Supervisor',
+    description: 'Share your research experience with a student team working on a graduation or research project. Help students develop their ideas, navigate research challenges and build confidence in their scientific work.',
+    audience: 'For university faculty members and researchers with relevant research or supervision experience.',
+    details: ['Online', '3 months', 'Approximately 2 hours per week', 'Voluntary and unpaid'],
+    image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop', alt: 'Research work in a laboratory',
+    href: siteConfig.clientFlow.volunteerSupervisorForm, button: 'Apply as an Academic Supervisor',
+  },
+  {
+    id: 'workshop-instructors', tag: 'Teaching & workshops', title: 'Share your knowledge through workshops',
+    role: 'Volunteer Workshop Instructor',
+    description: 'Bring your expertise to learners through online scientific, technical or professional workshops. Choose a topic with the UKABCS team and help participants develop practical knowledge and skills.',
+    audience: 'For academics, researchers, industry professionals and experienced instructors.',
+    details: ['Online', 'Weekly participation by agreement', 'Workshops may run for 1–3 days', 'Voluntary and unpaid'],
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop', alt: 'People collaborating around a laptop',
+    href: siteConfig.clientFlow.volunteerWorkshopForm, button: 'Apply as a Workshop Instructor',
+  },
+  {
+    id: 'mentors', tag: 'Mentorship', title: 'Help others grow with your experience',
+    role: 'Volunteer Mentor',
+    description: 'Support groups of students and early-career researchers with guidance in research, academic development, projects or professional growth. Share perspectives that help participants take their next steps.',
+    audience: 'For academics, researchers, industry professionals and experienced specialists.',
+    details: ['Online group sessions', '2-month programme', 'Schedule agreed with UKABCS', 'Voluntary and unpaid'],
+    image: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000&auto=format&fit=crop', alt: 'People learning together',
+    href: siteConfig.clientFlow.volunteerMentorForm, button: 'Apply as a Volunteer Mentor',
+  },
+  {
+    id: 'association-support', tag: 'Organisation & operations', title: 'Support the work behind our community',
+    role: 'Association & Operations Volunteer',
+    description: 'Contribute your organisational and administrative skills to support the association’s activities. Volunteers can help with coordination, events and the day-to-day work that brings our community together.',
+    audience: 'For people who would like to contribute their time and organisational skills to the association.',
+    details: ['Responsibilities and availability agreed with UKABCS', 'Voluntary and unpaid'],
+    image: '/images/hero_hands_collaboration.jpg', alt: 'Hands joined in collaboration',
+    href: '', button: '',
+  },
+];
+---
+<BaseLayout title={`Volunteer | ${siteConfig.publicName}`} description="Share your knowledge, skills and time as a UKABCS volunteer. Explore opportunities in academic supervision, workshops, mentorship and association support.">
+  <PageHero eyebrow="Get Involved" title="Volunteer with UKABCS" description="Share your knowledge, skills and time to support researchers, students and our scientific community." image="/images/hero_hands_collaboration.jpg" ctaText="Explore volunteering opportunities" ctaHref="#opportunities" />
+
+  <section class="volunteer-intro" id="opportunities">
+    <div class="container intro-inner">
+      <span class="badge-pill">Make a difference</span>
+      <h2>Give your expertise a wider impact</h2>
+      <p>Volunteers help bring people, ideas and opportunities together. Whether you guide a research team, teach a workshop, mentor learners or support the association’s work, your contribution can help our community grow.</p>
+      <p>Explore the opportunities below and choose the role that fits your experience and interests.</p>
+    </div>
+  </section>
+
+  {opportunities.map((item, index) => (
+    <section class:list={['opportunity', { 'opportunity--alternate': index % 2 === 1 }]} id={item.id}>
+      <div class:list={['container', 'opportunity-inner', { 'opportunity-inner--reverse': index % 2 === 1 }]}>
+        <div class="opportunity-copy">
+          <span class="badge-pill">{item.tag}</span>
+          <p class="role-name">{item.role}</p>
+          <h2>{item.title}</h2>
+          <p class="description">{item.description}</p>
+          <p class="audience">{item.audience}</p>
+          <ul class="details" aria-label="Opportunity details">
+            {item.details.map(detail => <li>{detail}</li>)}
+          </ul>
+          {item.href ? <a class="btn-fluent-primary" href={item.href}>{item.button} <span aria-hidden="true">→</span></a> : <p class="pending">Application details coming soon.</p>}
+        </div>
+        <div class="opportunity-image card-aceternity p-2"><img src={item.image} alt={item.alt} loading="lazy" /></div>
+      </div>
+    </section>
+  ))}
+  <section class="volunteer-close">
+    <div class="container close-inner">
+      <span class="badge-pill">Get involved</span>
+      <h2>Ready to make a contribution?</h2>
+      <p>Discover the role that suits you and apply using the available application form.</p>
+      <a class="btn-fluent-primary" href="#academic-supervisors">Explore opportunities <span aria-hidden="true">↑</span></a>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .volunteer-intro, .opportunity, .volunteer-close { padding: clamp(4rem, 7vw, 6rem) 0; }
+  .volunteer-intro, .volunteer-close { text-align: center; }
+  .intro-inner, .close-inner { max-width: 800px; }
+  h2 { font-size: clamp(1.9rem, 3vw, 2.8rem); line-height: 1.16; letter-spacing: -.025em; font-weight: 700; margin: 1rem 0; }
+  .intro-inner p, .close-inner p, .description, .audience { color: var(--color-text-secondary); line-height: 1.75; margin: 0 0 1rem; }
+  .opportunity { border-top: 1px solid var(--color-border); scroll-margin-top: 6rem; }
+  .opportunity--alternate { background: var(--color-surface); }
+  .opportunity-inner { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+  .opportunity-inner--reverse .opportunity-copy { order: 2; }
+  .opportunity-inner--reverse .opportunity-image { order: 1; }
+  .role-name { color: var(--color-primary); font-weight: 700; margin: 1.2rem 0 0; }
+  .audience { font-weight: 600; }
+  .details { display: flex; flex-wrap: wrap; gap: .6rem; padding: 0; margin: 1.5rem 0 2rem; list-style: none; }
+  .details li { border: 1px solid var(--color-border); border-radius: 999px; padding: .4rem .8rem; color: var(--color-text-secondary); font-size: .85rem; }
+  .opportunity-image img { width: 100%; height: clamp(300px, 31vw, 420px); object-fit: cover; border-radius: .75rem; display: block; }
+  .pending { color: var(--color-text-secondary); font-weight: 600; }
+  .volunteer-close { border-top: 1px solid var(--color-border); }
+  .close-inner .btn-fluent-primary { margin-top: 1rem; }
+  @media (max-width: 900px) { .opportunity-inner { grid-template-columns: 1fr; } .opportunity-inner--reverse .opportunity-copy, .opportunity-inner--reverse .opportunity-image { order: initial; } }
+</style>

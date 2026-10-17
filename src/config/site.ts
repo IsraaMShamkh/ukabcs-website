@@ -62,6 +62,9 @@ export const siteConfig = {
     // 10. Educational & Software Support
     eventsEducationalSupportForm: "https://clientflow-crm.com/f/ukabcs/events-educational-support/events-educational-support-request-form",
     scientificSoftwareDevSupportForm: "https://clientflow-crm.com/f/ukabcs/scientific-software-development-support/scientific-software-development-support-form",
+    volunteerSupervisorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-academic-supervisor-application",
+    volunteerWorkshopForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-workshop-instructor-programme-application",
+    volunteerMentorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-mentor-application-form",
   },
 
   // Main Header Navigation (Ordered per Master Plan Section 3)
@@ -81,6 +84,7 @@ export const siteConfig = {
       ],
     },
     { label: "Funded Projects", href: "/funded-projects" },
+    { label: "Volunteer", href: "/volunteer" },
     { label: "News", href: "/news" },
     { label: "Partnerships", href: "/partnerships" },
     {
