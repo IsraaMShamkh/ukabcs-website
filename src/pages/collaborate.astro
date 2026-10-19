@@ -51,6 +51,24 @@ const steps = [
   <PageHero eyebrow="For Universities" title="Partner with UKABCS as a University" description="UKABCS works with universities as a co-funding partner. We cover part of the cost, and your institution or students cover only the essential part." image="/images/hero_hands_collaboration.jpg" ctaText="Request a partnership" ctaHref="#request" />
 
   <section class="block">
+    <div class="container intro">
+      <div>
+        <span class="badge-pill">What is the University Partner Programme?</span>
+        <h2>One agreement that opens many benefits</h2>
+        <p>The UKABCS University Partner Programme is a single, general cooperation protocol between your university and UKABCS. Once it is signed, your students, researchers and faculty can join UKABCS programmes without negotiating a new contract each time.</p>
+        <p>Through the programme, UKABCS brings together the support of its partner companies, partner universities and volunteer experts: graduation project support, training, compute and AI tools, mobility exchange, publication and conference support, and startup support.</p>
+        <a class="btn-fluent-primary" href="/news/ukabcs-university-partner-programme">Explore the programme <span aria-hidden="true">→</span></a>
+      </div>
+      <ul class="card-aceternity card facts">
+        <li><strong>Who it is for</strong><span>Universities, faculties and research institutes</span></li>
+        <li><strong>How it starts</strong><span>A Framework MoU signed directly with UKABCS</span></li>
+        <li><strong>What it covers</strong><span>Ten areas of cooperation, added as you need them</span></li>
+        <li><strong>How it is funded</strong><span>Shared cost: in-kind, subsidised or cash support from UKABCS</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="block alt">
     <div class="container narrow center">
       <span class="badge-pill">How our support works</span>
       <h2>A co-funded partnership, not only a grant</h2>
@@ -61,7 +79,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="block alt">
+  <section class="block">
     <div class="container narrow center">
       <span class="badge-pill">Areas of cooperation</span>
       <h2>Ten ways to work together</h2>
@@ -77,7 +95,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="block" id="agreements">
+  <section class="block alt" id="agreements">
     <div class="container narrow center">
       <span class="badge-pill">Agreements</span>
       <h2>Types of cooperation agreement</h2>
@@ -88,7 +106,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="block alt">
+  <section class="block">
     <div class="container narrow center">
       <span class="badge-pill">Rights & obligations</span>
       <h2>Know what you give and what you get</h2>
@@ -104,7 +122,7 @@ const steps = [
     </div>
   </section>
 
-  <section class="block">
+  <section class="block alt">
     <div class="container narrow center">
       <span class="badge-pill">Process</span>
       <h2>From request to results</h2>
@@ -114,7 +132,7 @@ const steps = [
     </ol>
   </section>
 
-  <section class="block alt" id="request">
+  <section class="block" id="request">
     <div class="container narrow center">
       <span class="badge-pill">Get started</span>
       <h2>Request a partnership</h2>
@@ -144,4 +162,11 @@ const steps = [
   .area:hover { transform: translateY(-3px); }
   .num { display: inline-block; color: var(--color-primary); font-weight: 700; margin-bottom: .5rem; }
   .note { font-size: .9rem; margin-top: 1.5rem; }
+  .intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: center; }
+  .intro p { color: var(--color-text-secondary); line-height: 1.75; margin: 0 0 1rem; }
+  .intro .btn-fluent-primary { margin-top: .75rem; }
+  .facts { list-style: none; display: grid; gap: 1.1rem; padding: 1.75rem; margin: 0; }
+  .facts li { display: grid; gap: .2rem; padding: 0; }
+  .facts strong { font-size: .8rem; text-transform: uppercase; letter-spacing: .06em; color: var(--color-primary); }
+  @media (max-width: 860px) { .intro { grid-template-columns: 1fr; gap: 2rem; } }
 </style>

@@ -70,13 +70,12 @@ export const siteConfig = {
   // Main Header Navigation (Ordered per Master Plan Section 3)
   nav: [
     { label: "Home", href: "/" },
-    { label: "About Us", href: "/about-us" },
-    { label: "Memberships", href: "/memberships" },
     {
       label: "Programmes & Grants",
       href: "/programmes-grants",
       children: [
         { label: "Overview & Open Calls", href: "/programmes-grants", description: "Explore competitive peer-reviewed research grants" },
+        { label: "Funded Projects", href: "/funded-projects", description: "Universities and labs we have already supported" },
         { label: "Mobility Exchange", href: "/mobility-exchange", description: "International exchange for students, researchers and faculty" },
         { label: "Software Development Support", href: "/scientific-software", description: "Grants & cloud compute for computational tools" },
         { label: "Events & Educational Support", href: "/educational-support", description: "Free courses, workshops, audiobooks, and mentorship" },
@@ -84,15 +83,23 @@ export const siteConfig = {
         { label: "Women Researchers Support", href: "/women-in-science", description: "Targeted research funding and conference childcare assistance" },
       ],
     },
-    { label: "Collaborate With Us", href: "/collaborate" },
-    { label: "Funded Projects", href: "/funded-projects" },
-    { label: "Volunteer", href: "/volunteer" },
-    { label: "News", href: "/news" },
-    { label: "Partnerships", href: "/partnerships" },
     {
-      label: "Governance",
-      href: "/governance",
+      label: "Collaborate With Us",
+      href: "/collaborate",
       children: [
+        { label: "University Partner Programme", href: "/news/ukabcs-university-partner-programme", description: "What the programme is and how it works" },
+        { label: "Academic Collaboration", href: "/collaborate", description: "Partnerships with universities and research institutes" },
+        { label: "Industrial Collaboration", href: "/partnerships", description: "Companies that support our programmes" },
+        { label: "Volunteer", href: "/volunteer", description: "Give your time as a mentor, reviewer or expert" },
+        { label: "Memberships", href: "/memberships", description: "Join UKABCS as an individual member" },
+      ],
+    },
+    { label: "News", href: "/news" },
+    {
+      label: "About Us",
+      href: "/about-us",
+      children: [
+        { label: "About UKABCS", href: "/about-us", description: "Our mission, story and team" },
         { label: "Board of Trustees & Leadership", href: "/governance", description: "Board of Trustees, Directors, and specialised committees" },
         { label: "Transparency & Reports", href: "/transparency", description: "Grant-making rules, ethical policies, and audits" },
         { label: "Policies & Legal Information", href: "/legal", description: "Privacy policy, terms of use, and GDPR compliance" },

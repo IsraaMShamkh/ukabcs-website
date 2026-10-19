@@ -3,6 +3,18 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import { siteConfig } from '../config/site';
 
+const terms = [
+  { term: 'Mobility Agreement', text: 'The agreement each university signs directly with UKABCS to join the exchange network.' },
+  { term: 'Sending university', text: 'The participant’s own university, which nominates them for the exchange.' },
+  { term: 'Host university', text: 'The partner university abroad that receives the participant and provides accommodation and supervision.' },
+  { term: 'Outbound exchange', text: 'A participant from a partner university going to a host institution abroad.' },
+  { term: 'Incoming exchange', text: 'An international participant joining UKABCS programmes or a host placement.' },
+  { term: 'Shared-cost exchange', text: 'A model where the participant, the host university and UKABCS each cover a clearly defined part of the cost.' },
+  { term: 'Pocket money', text: 'A cash allowance from UKABCS for daily living costs, set according to the host country and paid in pounds sterling (£).' },
+  { term: 'Support letter', text: 'A letter from UKABCS confirming the placement, which the participant can use in their visa application.' },
+  { term: 'Mobility focal point', text: 'The named person at each university who coordinates exchanges with UKABCS.' },
+];
+
 const costs = [
   { party: 'Student', role: 'Flights, visa application and fees, travel and health insurance.' },
   { party: 'Host university', role: 'Accommodation (hosting) for the exchange period and the academic acceptance.' },
@@ -25,6 +37,29 @@ const obligations = [
 ---
 <BaseLayout title={`Mobility Exchange | ${siteConfig.publicName}`} description="UKABCS Mobility Exchange: international exchange placements for students, researchers and faculty across the UKABCS partner university network.">
   <PageHero eyebrow="Programmes & Grants" title="Mobility Exchange" description="International exchange placements for students, researchers and faculty across the UKABCS partner university network." image="/images/hero_hands_collaboration.jpg" ctaText="Apply now" ctaHref="#apply" />
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">What is Mobility Exchange?</span>
+      <h2>A short academic placement at a partner university abroad</h2>
+      <p>Mobility Exchange lets students, researchers and faculty from a UKABCS partner university spend a defined period at another university in the UKABCS network to study, do research or train. It is an academic placement, not employment, migration or a scholarship that covers every cost.</p>
+    </div>
+    <div class="container grid-3x">
+      <div class="card-aceternity card"><h3>Who can take part</h3><p>Students, researchers and faculty members from universities that have signed a Mobility Agreement with UKABCS.</p></div>
+      <div class="card-aceternity card"><h3>What it includes</h3><p>Academic acceptance and accommodation at the host university, pocket money, support letters and access to UKABCS compute and research tools.</p></div>
+      <div class="card-aceternity card"><h3>Its limits</h3><p>Places, dates and host universities are set in each mobility grant call. Flights, visa and insurance are the participant’s own costs, and a visa is never guaranteed.</p></div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container narrow center">
+      <span class="badge-pill">Key terms</span>
+      <h2>Definitions</h2>
+    </div>
+    <dl class="container terms">
+      {terms.map(t => <div class="card-aceternity card"><dt>{t.term}</dt><dd>{t.text}</dd></div>)}
+    </dl>
+  </section>
 
   <section class="block">
     <div class="container narrow center">
@@ -111,4 +146,7 @@ const obligations = [
   .card li { margin-bottom: .3rem; }
   .num { display: inline-block; color: var(--color-primary); font-weight: 700; margin-bottom: .5rem; }
   .disclaimer { margin-top: 2rem; font-size: .92rem; }
+  .terms { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 0; }
+  .terms dt { font-weight: 700; margin-bottom: .35rem; }
+  .terms dd { margin: 0; color: var(--color-text-secondary); font-size: .92rem; line-height: 1.65; }
 </style>
