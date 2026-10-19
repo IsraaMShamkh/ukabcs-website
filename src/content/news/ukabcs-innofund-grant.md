@@ -5,7 +5,7 @@ category: "Grant Call"
 author: "UKABCS Grants Committee"
 featured: true
 image: "https://images.unsplash.com/photo-1507668077129-56e32842fceb?q=85&w=1200&auto=format&fit=crop"
-description: "A 3-year standing international programme offering flexible, barrier-free graduation project support (1 to 20 teams), tri-annual open calls, up to 5-year PI academic membership, and full APC waivers in IJBTCS."
+description: "A 3-year standing international programme offering flexible, barrier-free graduation project support (1 to 9 teams), tri-annual open calls, up to 5-year PI academic membership, and full APC waivers in IJBTCS."
 attachments:
   - title: "Official Application Form"
     format: "docx"
@@ -25,6 +25,13 @@ attachments:
     url: "https://files.cdn-files-a.com/uploads/11213251/normal_6a881c98520c6.docx"
 ---
 
+> **Which programme should I apply to?**
+> - **Fewer than 10 teams → [UKABCS INNOFUND Grant](/news/ukabcs-innofund-grant)** (1–9 teams, same benefits structure).
+> - **10 teams or more → [Graduation Project Capacity Building Grant](/news/ukabcs-graduation-project-grant-2026)** (10–19 teams without chemicals; 20–25 teams with £3,000 chemicals support per institution).
+>
+> Completed projects may contribute specialised tools to the UKABCS AI research platform through the [Tool Contribution Programme](/scientific-software#tool-contribution).
+
+
 In response to rapid advancements in global scientific research, Artificial Intelligence (AI), data analytics, and computational modeling have become indispensable tools for modern scientific discovery. Scientific research and innovation are no longer restricted to high-cost physical wet laboratories. Today, undergraduate researchers, academic supervisors, and universities require robust computational and bioinformatics skill sets to analyze complex biological datasets, design computational models, and produce high-impact, globally competitive research.
 
 Against this backdrop, the **UK Association for Biotechnology and Computational Science (UKABCS)** has established the **UKABCS INNOFUND GRANT — Graduation Project Grant**. This standing initiative provides universities, colleges, research institutes, and individual academic supervisors worldwide with a structured mechanism to empower undergraduate students in executing cutting-edge, computationally driven graduation projects.
@@ -37,7 +44,7 @@ The inception of this restructured INNOFUND Grant model stems directly from the 
 
 Dr. El-Hussein approached UKABCS with a compelling proposal aimed at securing high-level international grant support, advanced computational infrastructure, and industrial training exemptions specifically tailored for his undergraduate students embarking on their final-year graduation projects in molecular biotechnology. His forward-looking vision emphasized the necessity of a flexible, inclusive capacity-building framework that could adapt seamlessly to focused student cohorts (such as supporting 10–12 students across three specialized graduation projects) without being constrained by rigid, large-scale quota requirements.
 
-UKABCS extends its profound gratitude to Dr. Ahmed El-Hussein for his exemplary dedication to student empowerment. Under this expanded framework, the INNOFUND Grant accommodates the full spectrum of academic needs — ensuring that any dedicated Principal Investigator (PI) or supervisor can access international computational resources, institutional recognition, and peer-reviewed publication support, whether guiding a single graduation project team or an extensive departmental portfolio of up to 20 projects.
+UKABCS extends its profound gratitude to Dr. Ahmed El-Hussein for his exemplary dedication to student empowerment. Under this expanded framework, the INNOFUND Grant accommodates the full spectrum of academic needs — ensuring that any dedicated Principal Investigator (PI) or supervisor can access international computational resources, institutional recognition, and peer-reviewed publication support, whether guiding a single graduation project team or an extensive departmental portfolio of up to 9 projects. Institutions with 10 or more teams apply to the Graduation Project Capacity Building Grant.
 
 ---
 

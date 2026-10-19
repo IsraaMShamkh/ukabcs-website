@@ -6,6 +6,7 @@ import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
 import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
 import PromoCTASection from '../components/sections/PromoCTASection.astro';
+import HighlightSection from '../components/sections/HighlightSection.astro';
 import { siteConfig } from '../config/site';
 ---
 
@@ -33,13 +34,47 @@ import { siteConfig } from '../config/site';
   <TextContentSection
     tag="Institutional Grant Call"
     title="UKABCS Digital Campus Transformation Grant"
-    subtitle="£30,000 Institutional support per faculty."
-    content="A comprehensive £30,000 per faculty grant establishing a fully governed LMS digital-learning ecosystem, academic content production, automated assessments, and ClientFlow CRM integration."
+    subtitle="£45,000 per faculty: £27,000 UKABCS (60%) and £18,000 university (40%)."
+    content="A comprehensive £45,000 per faculty co-funded grant establishing a fully governed LMS digital-learning ecosystem, academic content production, automated assessments, and ClientFlow CRM integration."
     image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
     ctaText="Explore Call Dossier & Attachments →"
     ctaHref="/calls/digital-campus-transformation-grant"
     reversed={true}
   />
+
+  <!-- Compute Infrastructure -->
+  <section id="compute">
+    <HighlightSection
+      badge="Compute Infrastructure"
+      title="Subsidised GPU hours for researchers"
+      text="UKABCS provides GPU compute well below market price. Ebonex Technologies has donated £50,000 in GPU compute to UKABCS as an in-kind partnership contribution. Researchers can submit jobs to the server, run them and receive their results. Discounts depend on the university’s Compute & AI Access Agreement."
+      items={[
+        { title: 'Bronze tier', text: '50% discount on GPU hours and AI usage.' },
+        { title: 'Silver tier', text: '60% discount on GPU hours and AI usage.' },
+        { title: 'Gold tier', text: '70% discount on GPU hours and AI usage.' },
+        { title: 'Beyond the grant', text: 'Access continues after the grant period, subject to a declared administration fee.' },
+      ]}
+      ctaText="Partner for compute access"
+      ctaHref="/collaborate#agreements"
+    />
+  </section>
+
+  <!-- Specialised AI Research Tools -->
+  <section id="tool-contribution">
+    <HighlightSection
+      badge="AI Research Tools"
+      title="Specialised AI tools, built by scientists"
+      text="Instead of general-purpose assistants, UKABCS partners provide specialised agentic AI tools for research, from scientific writing and review to domain analysis. Tools are free for everyone; users pay only for the subsidised compute or AI usage their work consumes."
+      items={[
+        { title: 'Tool Contribution Programme', text: 'Researchers and graduation project teams build tools in their own specialism, such as AI, CAD or transcriptomics.' },
+        { title: 'Credit & IP', text: 'Each tool is credited to its authors under a Tool Contribution Agreement.' },
+        { title: 'Free access', text: 'Contributed tools are published for free use by the research community.' },
+      ]}
+      ctaText="Contribute a tool"
+      ctaHref={siteConfig.clientFlow.scientificSoftwareDevSupportForm}
+      alternate
+    />
+  </section>
 
   <!-- 4. Software Programmes & Grant Calls (SalesPromo) -->
   <SalesPromoSection

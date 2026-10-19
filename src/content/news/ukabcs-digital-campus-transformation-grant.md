@@ -5,7 +5,7 @@ category: "Grant Call"
 author: "UKABCS Grants Committee"
 featured: true
 image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=85&w=1200&auto=format&fit=crop"
-description: "A comprehensive £30,000 per faculty competitive grant (£18,000 UKABCS, £12,000 University) establishing a fully governed LMS digital-learning ecosystem, academic content production, and Ebonics AI integration."
+description: "A comprehensive £45,000 per faculty competitive grant (£27,000 UKABCS, £18,000 University) establishing a fully governed LMS digital-learning ecosystem, academic content production, and Ebonics AI integration."
 attachments:
   - title: "Digital Campus Transformation Overview"
     format: "pdf"
@@ -107,7 +107,7 @@ Lawful status and authority, relevant institutional or technology experience, an
 ---
 
 ### 10. Minimum University Requirements
-Senior sponsorship, an authorised project owner, one PI per faculty, academic and technical leadership, quality and data/legal contacts, a finance or procurement contact, approved academic content and rights, staff time, participation in filming and training, institutional co-funding of £12,000 per faculty, and a post-grant operating plan.
+Senior sponsorship, an authorised project owner, one PI per faculty, academic and technical leadership, quality and data/legal contacts, a finance or procurement contact, approved academic content and rights, staff time, participation in filming and training, institutional co-funding of £18,000 (40%) per faculty, and a post-grant operating plan.
 
 ---
 
@@ -151,17 +151,21 @@ Automation of assignment opening and closing, submission confirmation, reminders
 
 | Budget Line Item | Total Budget | UKABCS Share | University Share |
 | :--- | :--- | :--- | :--- |
-| **Coordination** | £2,000 | £2,000 | £0 |
-| **Readiness, governance and design** | £2,000 | £1,200 | £800 |
-| **LMS engineering and configuration** | £7,000 | £4,000 | £3,000 |
-| **Hosting, licences, security and backup** | £4,000 | £4,000 | £0 |
-| **Digital academic content production** | £6,000 | £2,500 | £3,500 |
-| **Filming, design and editing** | £3,000 | £1,000 | £2,000 |
-| **Ebonics and smart-reading integration** | £2,500 | £2,000 | £500 |
-| **Training, change and pilot** | £1,500 | £600 | £900 |
-| **Quality, accessibility and acceptance** | £1,000 | £400 | £600 |
-| **Launch, handover and limited support** | £1,000 | £300 | £700 |
-| **Total Grant Value Per Faculty** | **£30,000** | **£18,000** | **£12,000** |
+| **Coordination** | £2,500 | £2,500 | £0 |
+| **Readiness, governance and design** | £2,500 | £1,500 | £1,000 |
+| **LMS engineering and configuration** | £9,000 | £5,000 | £4,000 |
+| **Hosting, licences, security and backup** | £5,000 | £5,000 | £0 |
+| **Digital academic content production** | £8,500 | £3,500 | £5,000 |
+| **Filming, design and editing** | £4,500 | £1,500 | £3,000 |
+| **Ebonics and smart-reading integration** | £3,000 | £2,500 | £500 |
+| **GPU hours and AI compute** | £4,000 | £3,000 | £1,000 |
+| **Training, change and pilot** | £2,500 | £1,000 | £1,500 |
+| **Quality, accessibility and acceptance** | £1,500 | £700 | £800 |
+| **Launch, handover and limited support** | £2,000 | £800 | £1,200 |
+| **Total Grant Value Per Faculty** | **£45,000** | **£27,000 (60%)** | **£18,000 (40%)** |
+
+### 13.1 Administration Fees (Declared)
+Most services in this grant are donated in-kind by UKABCS partners. A fixed, declared administration fee is included within the budget lines above (coordination, hosting and launch support) and covers only essential operating costs that cannot be waived: hosting, the technical team assigned to the faculty, and ongoing support. Access to donated services remains available beyond the grant period. See the [Administration Fees Policy](/policies/administration-fees).
 
 ---
 
@@ -197,12 +201,12 @@ Applicants select the correct route (Industrial Company or Direct University), c
 2. Faculty/faculties and PI details.
 3. Need, baseline and current-systems description.
 4. Initial course/content and rights inventory.
-5. £12,000-per-faculty commitment and procurement plan.
+5. £18,000-per-faculty commitment and procurement plan.
 
 ---
 
 ### 19. Important Conditions & UKRI Disclaimer
-Application and eligibility do not guarantee an award. Each faculty is a separate £30,000 funding unit. One faculty is the minimum; three is a preference. Only executed award documents create final obligations.
+Application and eligibility do not guarantee an award. Each faculty is a separate £45,000 funding unit. One faculty is the minimum; three is a preference. Only executed award documents create final obligations.
 
 > **UKRI Disclaimer**: “This programme has been designed with reference to relevant UKRI principles and publicly available good-practice guidance. It is independently administered by UKABCS and is not funded, endorsed, accredited or administered by UKRI.”
 

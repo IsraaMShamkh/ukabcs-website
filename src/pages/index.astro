@@ -12,6 +12,7 @@ import DonationSection from '../components/sections/DonationSection.astro';
 import PartnerRibbonSection from '../components/sections/PartnerRibbonSection.astro';
 import FundedUniversitiesSection from '../components/sections/FundedUniversitiesSection.astro';
 import NewsletterSection from '../components/sections/NewsletterSection.astro';
+import HighlightSection from '../components/sections/HighlightSection.astro';
 import Modal from '../components/ui/Modal.astro';
 ---
 
@@ -36,6 +37,44 @@ import Modal from '../components/ui/Modal.astro';
   <TextContentSection {...homeContent.membership} ctaText="Explore membership" ctaHref="/memberships" reversed />
 
   <!-- 2. Official Corporate & Academic Partners Ribbon -->
+  <HighlightSection
+    badge="For Universities"
+    title="Partner with us as a university"
+    text="UKABCS is a co-funding partner. We cover part of the cost through donated, subsidised and cash support, and your institution or students cover only the essential part."
+    items={[
+      { title: 'Co-funded grants', text: 'Shared-cost programmes with published budgets, such as Digital Campus Transformation.' },
+      { title: 'Compute & AI', text: 'Subsidised GPU hours and specialised AI research tools for your researchers.' },
+      { title: 'Mobility exchange', text: 'Exchange placements across the UKABCS partner university network.' },
+      { title: 'Training', text: 'Capacity building for students and faculty in computational science.' },
+    ]}
+    ctaText="How to collaborate with us"
+    ctaHref="/collaborate"
+  />
+  <HighlightSection
+    badge="Mobility Exchange"
+    title="Study and research abroad"
+    text="Students and researchers from partner universities can join exchange placements. The student covers flights and visa, the host university provides accommodation, and UKABCS provides pocket money set by host country."
+    items={[
+      { title: 'Student', text: 'Flights, visa and insurance.' },
+      { title: 'Host university', text: 'Accommodation and acceptance.' },
+      { title: 'UKABCS', text: 'Pocket money, coordination and support letters.' },
+    ]}
+    ctaText="Explore Mobility Exchange"
+    ctaHref="/mobility-exchange"
+    alternate
+  />
+  <HighlightSection
+    badge="Compute & AI for Researchers"
+    title="Research compute at a fraction of market price"
+    text="Through our partnership with Ebonex Technologies, which has donated £50,000 in GPU compute, and with our other technology partners, researchers get subsidised GPU hours and specialised AI research tools."
+    items={[
+      { title: 'Subsidised GPU hours', text: 'Discounts of 50–70% by agreement tier.' },
+      { title: 'Specialised AI tools', text: 'Free tools built by researchers; pay only for compute used.' },
+      { title: 'Tool contribution', text: 'Graduation teams and scientists build tools in their specialism.' },
+    ]}
+    ctaText="Explore Software & Development"
+    ctaHref="/scientific-software#compute"
+  />
   <PartnerRibbonSection />
 
   <TextContentSection {...homeContent.mission} ctaText="About our work" ctaHref="/about-us" />

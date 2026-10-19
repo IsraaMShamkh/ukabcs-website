@@ -1,0 +1,114 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import { siteConfig } from '../config/site';
+
+const costs = [
+  { party: 'Student', role: 'Flights, visa application and fees, travel and health insurance.' },
+  { party: 'Host university', role: 'Accommodation (hosting) for the exchange period and the academic acceptance.' },
+  { party: 'UKABCS', role: 'Pocket money set by host country, coordination between universities, support and nomination letters, and access to UKABCS compute and research tools during the exchange.' },
+];
+
+const steps = [
+  { title: 'Your university signs with UKABCS', text: 'Each university signs a Mobility Agreement directly with UKABCS. There are no separate two-way or three-way contracts between universities.' },
+  { title: 'UKABCS coordinates the network', text: 'UKABCS liaises with the host universities in its partner network and agrees available places, dates and conditions.' },
+  { title: 'Calls and selection', text: 'Each mobility grant call names the host universities, countries and pocket money. Candidates apply and are selected competitively.' },
+  { title: 'Preparation', text: 'UKABCS issues support letters. The student applies for their own visa and books their own travel.' },
+  { title: 'Exchange and reporting', text: 'The student completes the placement under the host’s rules and submits the required reports.' },
+];
+
+const obligations = [
+  { title: 'Sending university', items: ['Follow the agreement’s rules and conditions', 'Nominate eligible candidates fairly', 'Appoint a mobility focal point', 'Recognise the exchange activity where applicable'] },
+  { title: 'Host university', items: ['Provide accommodation for the agreed period', 'Provide academic supervision and access to facilities', 'Confirm attendance and completion'] },
+  { title: 'Student', items: ['Cover flights, visa and insurance', 'Respect host institution rules and UKABCS policies', 'Complete the placement and submit reports', 'Inform UKABCS promptly of any change'] },
+];
+---
+<BaseLayout title={`Mobility Exchange | ${siteConfig.publicName}`} description="UKABCS Mobility Exchange: international exchange placements for students, researchers and faculty across the UKABCS partner university network.">
+  <PageHero eyebrow="Programmes & Grants" title="Mobility Exchange" description="International exchange placements for students, researchers and faculty across the UKABCS partner university network." image="/images/hero_hands_collaboration.jpg" ctaText="Apply now" ctaHref="#apply" />
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">Who pays what</span>
+      <h2>A shared-cost exchange</h2>
+      <p>Each party covers a clear part of the exchange, so the cost of going abroad is shared fairly.</p>
+    </div>
+    <div class="container table-wrap">
+      <table>
+        <thead><tr><th>Party</th><th>Covers</th></tr></thead>
+        <tbody>{costs.map(c => <tr><td><strong>{c.party}</strong></td><td>{c.role}</td></tr>)}</tbody>
+      </table>
+    </div>
+    <div class="container narrow">
+      <div class="card-aceternity card callout">
+        <h3>Pocket money</h3>
+        <p>Pocket money is set according to the host country. The amount is stated in the host university’s agreement with UKABCS and in each mobility grant call, and paid in pounds sterling (£).</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container narrow center">
+      <span class="badge-pill">How it works</span>
+      <h2>One agreement, one network</h2>
+    </div>
+    <ol class="container steps">
+      {steps.map((s, i) => <li class="card-aceternity card"><span class="num">{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+  </section>
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">Rights & obligations</span>
+      <h2>Everyone knows their part before signing</h2>
+    </div>
+    <div class="container grid-3x">
+      {obligations.map(o => <div class="card-aceternity card"><h3>{o.title}</h3><ul>{o.items.map(x => <li>{x}</li>)}</ul></div>)}
+    </div>
+    <div class="container narrow">
+      <p class="disclaimer"><strong>Visa disclaimer:</strong> Visa decisions are made solely by the relevant embassy or immigration authority. UKABCS provides support letters only and cannot guarantee a visa.</p>
+    </div>
+  </section>
+
+  <section class="block alt" id="apply">
+    <div class="container narrow center">
+      <span class="badge-pill">Apply</span>
+      <h2>Mobility application forms</h2>
+    </div>
+    <div class="container grid-2x">
+      <div class="card-aceternity card">
+        <h3>Outbound exchange</h3>
+        <p>For students and researchers from partner universities going to a host institution abroad.</p>
+        <a class="btn-fluent-primary" href={siteConfig.clientFlow.outboundMobilityCandidateForm} target="_blank" rel="noopener noreferrer">Outbound application <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="card-aceternity card">
+        <h3>Incoming exchange</h3>
+        <p>For international researchers and students joining UKABCS programmes and host placements.</p>
+        <a class="btn-fluent-secondary" href={siteConfig.clientFlow.incomingMobilityParticipantForm} target="_blank" rel="noopener noreferrer">Incoming application <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+    <div class="container narrow center"><p class="note">Is your university not yet a partner? <a href="/collaborate">Learn how to collaborate with us</a>.</p></div>
+  </section>
+</BaseLayout>
+<style>
+  .block { padding: clamp(4rem, 7vw, 6rem) 0; border-top: 1px solid var(--color-border); }
+  .alt { background: var(--color-surface); }
+  .narrow { max-width: 800px; }
+  .center { text-align: center; margin-bottom: 2.5rem; }
+  h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.16; letter-spacing: -.025em; font-weight: 700; margin: 1rem 0; }
+  .center p, .disclaimer { color: var(--color-text-secondary); line-height: 1.75; }
+  .table-wrap { max-width: 900px; overflow-x: auto; margin-bottom: 2rem; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: .9rem 1rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  td { color: var(--color-text-secondary); }
+  .grid-3x, .grid-2x, .steps { display: grid; gap: 1.25rem; }
+  .grid-3x { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .grid-2x { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .steps { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); list-style: none; padding-left: 0; }
+  .card { padding: 1.5rem; border-radius: var(--radius-lg, 16px); }
+  .card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 .5rem; }
+  .card p, .card li { color: var(--color-text-secondary); font-size: .92rem; line-height: 1.65; margin: 0 0 1rem; }
+  .card ul { padding-left: 1.1rem; margin: 0; }
+  .card li { margin-bottom: .3rem; }
+  .num { display: inline-block; color: var(--color-primary); font-weight: 700; margin-bottom: .5rem; }
+  .disclaimer { margin-top: 2rem; font-size: .92rem; }
+</style>

@@ -1,0 +1,147 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import { siteConfig } from '../config/site';
+
+const instruments = [
+  { title: 'In-kind', text: 'Services donated to UKABCS by partner companies, such as compute, research platforms, CRM licences and training, provided to your students and researchers at no charge.' },
+  { title: 'Subsidised', text: 'Services offered well below market price, such as GPU hours and AI usage, with discounts set by your agreement tier.' },
+  { title: 'Cash', text: 'Direct, milestone-based support where a programme provides it, such as mobility pocket money, PI allowances or startup marketing funds.' },
+];
+
+const areas = [
+  { title: 'Graduation Projects Support', text: 'Computational, technical and software support for senior undergraduate projects.', href: '/news/ukabcs-graduation-project-grant-2026' },
+  { title: 'Capacity Building & Professional Training', text: 'Courses and workshops in biotechnology, bioinformatics and computational science.', href: '/educational-support' },
+  { title: 'Research Support & Scientific Mentorship', text: 'Research supervision, mentorship and access to experts.', href: '/volunteer' },
+  { title: 'International Mobility & Exchange', text: 'Exchange placements for students, researchers and faculty across our partner network.', href: '/mobility-exchange' },
+  { title: 'Scientific Conference Support', text: 'Support for participation in local and international conferences.', href: '/publications' },
+  { title: 'Scientific Publication Support', text: 'Help with publication fees and available APC waivers.', href: '/publications' },
+  { title: 'Innovation, Entrepreneurship & Startups', text: 'Turning research ideas and graduation projects into startups.', href: '/news/ukabcs-graduation-project-startup-grant' },
+  { title: 'Academic Events & Scientific Activities', text: 'Organising and sponsoring workshops, seminars and conferences.', href: '/educational-support' },
+  { title: 'International Partnerships & MoUs', text: 'Cooperation agreements with universities, research institutes and industry.', href: '#agreements' },
+  { title: 'Faculty Development Programmes', text: 'Training faculty in modern research tools, AI and computational methods.', href: '/educational-support' },
+];
+
+const agreements = [
+  { title: 'Framework MoU', text: 'The starting agreement that opens all ten areas of cooperation and sets the general rights and obligations of both parties.' },
+  { title: 'Co-funded Grant Agreement', text: 'Sets each party’s share of a specific grant, for example the Digital Campus Transformation Grant (60% UKABCS, 40% university).' },
+  { title: 'Compute & AI Access Agreement', text: 'Gives your students and researchers subsidised GPU hours and AI research tools at a tiered discount: Bronze 50%, Silver 60% or Gold 70%.' },
+  { title: 'Mobility Agreement', text: 'Joins your university to the UKABCS exchange network. Each university signs with UKABCS directly; UKABCS coordinates placements with the other partner universities.' },
+  { title: 'Tool Contribution Agreement', text: 'Covers research tools built by your researchers or graduation teams for the UKABCS AI research platform: credit, intellectual property and free public access.' },
+  { title: 'Industry In-kind Donation Agreement', text: 'For companies donating services to UKABCS that are then provided to partner universities and researchers.' },
+  { title: 'Faculty Development Agreement', text: 'Structured training programmes for faculty members in research tools, AI and computational methods.' },
+];
+
+const rights = [
+  { party: 'University — receives', items: ['Access to the programmes named in its agreement', 'In-kind and subsidised services for its students and researchers', 'Priority in UKABCS grant calls', 'Coordination with UKABCS partner universities and companies', 'Clear, published budgets and administration fees'] },
+  { party: 'University — commits to', items: ['Its agreed co-funding share, paid directly to implementing companies under contract', 'Appointing a responsible PI or focal point', 'Following programme rules, timelines and reporting', 'Nominating eligible students fairly and transparently', 'Hosting incoming exchange participants where it joins the mobility network'] },
+  { party: 'Student — receives', items: ['The support package of the programme they are selected for', 'Access to donated tools, platforms and compute', 'Support letters and coordination where applicable', 'Certificates and recognition on completion'] },
+  { party: 'Student — commits to', items: ['Paying any costs the programme states are their own (for example flights, visa or a declared administration fee)', 'Completing the programme requirements and timelines', 'Following the host institution’s rules and UKABCS policies', 'Submitting the required reports and outputs'] },
+];
+
+const steps = [
+  { title: 'Apply', text: 'Submit a partnership request describing your institution and the areas you are interested in.' },
+  { title: 'Review', text: 'UKABCS reviews eligibility and proposes the agreements and tier that fit your needs.' },
+  { title: 'Sign', text: 'Your university signs directly with UKABCS. Rights and obligations are set out before any work starts.' },
+  { title: 'Implement', text: 'Programmes run with milestones, and payments are made against evidence.' },
+  { title: 'Report', text: 'Both parties report on outcomes, and results are published in line with our transparency policies.' },
+];
+---
+<BaseLayout title={`Collaborate With Us | ${siteConfig.publicName}`} description="How universities and research institutions can partner with UKABCS: co-funded programmes, compute access, mobility exchange and cooperation agreements.">
+  <PageHero eyebrow="For Universities" title="Partner with UKABCS as a University" description="UKABCS works with universities as a co-funding partner. We cover part of the cost, and your institution or students cover only the essential part." image="/images/hero_hands_collaboration.jpg" ctaText="Request a partnership" ctaHref="#request" />
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">How our support works</span>
+      <h2>A co-funded partnership, not only a grant</h2>
+      <p>Every UKABCS programme shares the cost. UKABCS supports part through donated, subsidised or cash support. The university or student pays only the essential costs, and every budget and fee is published.</p>
+    </div>
+    <div class="container grid-3x">
+      {instruments.map(i => <div class="card-aceternity card"><h3>{i.title}</h3><p>{i.text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container narrow center">
+      <span class="badge-pill">Areas of cooperation</span>
+      <h2>Ten ways to work together</h2>
+    </div>
+    <div class="container grid-areas">
+      {areas.map((a, i) => (
+        <a class="card-aceternity card area" href={a.href}>
+          <span class="num">{String(i + 1).padStart(2, '0')}</span>
+          <h3>{a.title}</h3>
+          <p>{a.text}</p>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="block" id="agreements">
+    <div class="container narrow center">
+      <span class="badge-pill">Agreements</span>
+      <h2>Types of cooperation agreement</h2>
+      <p>Most universities start with a Framework MoU and add specific agreements as they join programmes.</p>
+    </div>
+    <div class="container grid-3x">
+      {agreements.map(a => <div class="card-aceternity card"><h3>{a.title}</h3><p>{a.text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="block alt">
+    <div class="container narrow center">
+      <span class="badge-pill">Rights & obligations</span>
+      <h2>Know what you give and what you get</h2>
+      <p>Each agreement sets out, before signing, what the university and its students receive and what they commit to.</p>
+    </div>
+    <div class="container grid-2x">
+      {rights.map(r => (
+        <div class="card-aceternity card">
+          <h3>{r.party}</h3>
+          <ul>{r.items.map(x => <li>{x}</li>)}</ul>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">Process</span>
+      <h2>From request to results</h2>
+    </div>
+    <ol class="container steps">
+      {steps.map((s, i) => <li class="card-aceternity card"><span class="num">{i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+  </section>
+
+  <section class="block alt" id="request">
+    <div class="container narrow center">
+      <span class="badge-pill">Get started</span>
+      <h2>Request a partnership</h2>
+      <p>Tell us about your institution and the areas you would like to work on. Our team will reply with the agreements that fit your needs.</p>
+      <a class="btn-fluent-primary" href={siteConfig.clientFlow.partnershipContributionForm} target="_blank" rel="noopener noreferrer">Request a partnership <span aria-hidden="true">→</span></a>
+      <p class="note">Administration fees, where they apply, are declared in advance. See our <a href="/policies/administration-fees">Administration Fees Policy</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+<style>
+  .block { padding: clamp(4rem, 7vw, 6rem) 0; border-top: 1px solid var(--color-border); }
+  .alt { background: var(--color-surface); }
+  .narrow { max-width: 800px; }
+  .center { text-align: center; margin-bottom: 2.5rem; }
+  h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.16; letter-spacing: -.025em; font-weight: 700; margin: 1rem 0; }
+  .center p { color: var(--color-text-secondary); line-height: 1.75; }
+  .grid-3x, .grid-areas, .grid-2x, .steps { display: grid; gap: 1.25rem; }
+  .grid-3x { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .grid-areas { grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .grid-2x { grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); }
+  .steps { grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); list-style: none; padding-left: 0; }
+  .card { padding: 1.5rem; border-radius: var(--radius-lg, 16px); }
+  .card h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 .5rem; }
+  .card p, .card li { color: var(--color-text-secondary); font-size: .92rem; line-height: 1.65; margin: 0; }
+  .card ul { padding-left: 1.1rem; margin: 0; display: grid; gap: .4rem; }
+  .area { text-decoration: none; color: inherit; transition: transform .2s; }
+  .area:hover { transform: translateY(-3px); }
+  .num { display: inline-block; color: var(--color-primary); font-weight: 700; margin-bottom: .5rem; }
+  .note { font-size: .9rem; margin-top: 1.5rem; }
+</style>

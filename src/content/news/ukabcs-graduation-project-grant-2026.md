@@ -41,6 +41,12 @@ Against this backdrop, the **UK Association for Biotechnology and Computational 
 
 Institutions may apply with **10–25 graduation project teams**. Institutions with **10–19 teams** are eligible for the programme without chemicals support. Institutions with **20–25 teams** are eligible for **£3,000 in chemicals support per awarded institution**, not per team. Phase II project implementation, administration and hosting are provided at zero cost to students. Completed projects may apply separately for the competitive [UKABCS Graduation Project Startup Grant](/news/ukabcs-graduation-project-startup-grant).
 
+> **Which programme should I apply to?**
+> - **Fewer than 10 teams → [UKABCS INNOFUND Grant](/news/ukabcs-innofund-grant)** (1–9 teams, same benefits structure).
+> - **10 teams or more → [Graduation Project Capacity Building Grant](/news/ukabcs-graduation-project-grant-2026)** (10–19 teams without chemicals; 20–25 teams with £3,000 chemicals support per institution).
+>
+> Completed projects may contribute specialised tools to the UKABCS AI research platform through the [Tool Contribution Programme](/scientific-software#tool-contribution).
+
 **Application documents:** The downloadable documents below were prepared for the earlier call and may not reflect the Round 2 modifications. Please contact the grants team for current documents and confirmation of requirements before submitting.
 
 ---
