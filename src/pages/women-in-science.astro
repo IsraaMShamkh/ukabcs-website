@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalCallsSection from '../components/sections/PortalCallsSection.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
 import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
@@ -69,6 +70,8 @@ const womenInitiatives = [
     ctaHref={siteConfig.clientFlow.womenResearchersSupportForm}
     reversed={true}
   />
+
+  <PortalCallsSection programmes={['women']} />
 
   <section class="py-14 bg-slate-50 dark:bg-slate-900 border-y border-slate-200 dark:border-slate-800" id="kidcamp">
     <div class="container max-w-5xl mx-auto px-4">

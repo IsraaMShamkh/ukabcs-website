@@ -1,0 +1,77 @@
+---
+// Live grant calls from the UKABCS Portal (portal.ukabcs.co.uk/api/calls).
+// Calls are written once in the portal admin; they appear here automatically for the
+// programmes listed in `programmes`. The section stays hidden when there are no calls.
+interface Props {
+  programmes: string[];
+  title?: string;
+  subtitle?: string;
+}
+const {
+  programmes,
+  title = 'Calls on the UKABCS Portal',
+  subtitle = 'Read the full call, download the documents and apply online through the UKABCS Portal.',
+} = Astro.props;
+const api = 'https://portal.ukabcs.co.uk/api/calls';
+---
+
+<section class="py-16 pc-section" data-pc-programmes={programmes.join(',')} data-pc-api={api} hidden>
+  <div class="container">
+    <div class="text-center mb-10">
+      <span class="badge-pill">UKABCS Portal</span>
+      <h2 class="text-3xl font-bold mt-2">{title}</h2>
+      <p class="text-secondary mt-2">{subtitle}</p>
+    </div>
+    <div class="pc-grid"></div>
+    <p class="text-center mt-8"><a class="btn-fluent-primary" href="https://portal.ukabcs.co.uk/calls">See all calls on the Portal →</a></p>
+  </div>
+</section>
+
+<script>
+  type Call = { id: number; title: string; programme: string; programme_label: string; summary: string | null; deadline: string | null; open: boolean; url: string; image: string | null };
+  const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+  const fmt = (d: string | null) => (d ? new Date(d + 'T00:00:00').toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) : 'Open');
+
+  document.querySelectorAll<HTMLElement>('.pc-section').forEach(async (sec) => {
+    const wanted = (sec.dataset.pcProgrammes || '').split(',').filter(Boolean);
+    try {
+      const res = await fetch(sec.dataset.pcApi as string, { headers: { Accept: 'application/json' } });
+      if (!res.ok) return;
+      const calls = ((await res.json()) as Call[]).filter((c) => wanted.includes(c.programme)).sort((a, b) => Number(b.open) - Number(a.open));
+      if (!calls.length) return;
+      (sec.querySelector('.pc-grid') as HTMLElement).innerHTML = calls.map((c) => `
+        <article class="pc-card">
+          <a href="${esc(c.url)}" class="pc-img" aria-label="${esc(c.title)}">
+            ${c.image ? `<img src="${esc(c.image)}" alt="" loading="lazy">` : '<span class="pc-ph"></span>'}
+            <span class="pc-badge ${c.open ? 'pc-open' : 'pc-closed'}">${c.open ? 'Open call' : 'Closed'}</span>
+          </a>
+          <div class="pc-body">
+            <div class="pc-meta"><span>Deadline: ${esc(fmt(c.deadline))}</span><span>${esc(c.programme_label)}</span></div>
+            <h3><a href="${esc(c.url)}">${esc(c.title)}</a></h3>
+            ${c.summary ? `<p>${esc(c.summary)}</p>` : ''}
+            <a href="${esc(c.url)}" class="btn-fluent-primary pc-btn">${c.open ? 'Read the call and apply →' : 'Read the call →'}</a>
+          </div>
+        </article>`).join('');
+      sec.hidden = false;
+    } catch {
+      /* Portal unreachable: keep the section hidden. */
+    }
+  });
+</script>
+
+<style is:global>
+  .pc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.75rem; max-width: 72rem; margin: 0 auto; }
+  .pc-card { display: flex; flex-direction: column; border: 1px solid var(--color-border); border-radius: 1rem; overflow: hidden; background: var(--color-bg-primary, #fff); }
+  .pc-img { position: relative; display: block; aspect-ratio: 16 / 9; background: var(--color-bg-secondary); }
+  .pc-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .pc-ph { position: absolute; inset: 0; background: linear-gradient(135deg, #0b2545, #0f766e); }
+  .pc-badge { position: absolute; top: .75rem; left: .75rem; font-size: .75rem; font-weight: 700; padding: .25rem .65rem; border-radius: 999px; }
+  .pc-open { background: #e7f6ec; color: #146c2e; }
+  .pc-closed { background: #fdecec; color: #a12b2b; }
+  .pc-body { display: flex; flex-direction: column; flex: 1; padding: 1.25rem; }
+  .pc-meta { display: flex; justify-content: space-between; gap: .5rem; flex-wrap: wrap; font-size: .78rem; color: var(--color-text-secondary); margin-bottom: .5rem; }
+  .pc-body h3 { font-size: 1.15rem; font-weight: 700; margin: 0 0 .5rem; }
+  .pc-body h3 a:hover { color: var(--color-primary); }
+  .pc-body p { font-size: .9rem; color: var(--color-text-secondary); line-height: 1.6; margin: 0 0 1.25rem; flex: 1; }
+  .pc-btn { width: 100%; text-align: center; margin-top: auto; }
+</style>

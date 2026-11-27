@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalCallsSection from '../components/sections/PortalCallsSection.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import FaqAccordion from '../components/ui/FaqAccordion.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
@@ -92,6 +93,8 @@ const faqs = [
       </div>
     </div>
   </section>
+
+  <PortalCallsSection programmes={['building-capacity','graduation-project','graduation-startup','innofund']} />
 
   <!-- Open Calls Section -->
   <!-- Open Calls Section -->

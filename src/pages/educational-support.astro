@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalCallsSection from '../components/sections/PortalCallsSection.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
 import FeaturesBentoSection from '../components/sections/FeaturesBentoSection.astro';
@@ -91,6 +92,8 @@ const educationalServices = [
   </section>
 
   <!-- 5. Active Educational Open Calls (3 in a Row Grid from Section Pool) -->
+  <PortalCallsSection programmes={['events']} />
+
   <section class="py-20 section-articles" id="open-calls">
     <div class="container">
       <div class="insights-heading">

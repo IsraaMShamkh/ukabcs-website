@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalCallsSection from '../components/sections/PortalCallsSection.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
 import SalesPromoSection from '../components/sections/SalesPromoSection.astro';
@@ -43,6 +44,8 @@ import { siteConfig } from '../config/site';
   />
 
   <!-- Compute Infrastructure -->
+  <PortalCallsSection programmes={['software']} />
+
   <section id="compute">
     <HighlightSection
       badge="Compute Infrastructure"

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PortalCallsSection from '../components/sections/PortalCallsSection.astro';
 import PageHero from '../components/hero/PageHero.astro';
 import TextContentSection from '../components/sections/TextContentSection.astro';
 import PartnerRibbonSection from '../components/sections/PartnerRibbonSection.astro';
@@ -53,6 +54,8 @@ import { siteConfig } from '../config/site';
     ctaText="Read Partnership Details →"
     ctaHref="/partnerships/ijbtcs-220k"
   />
+
+  <PortalCallsSection programmes={['publications']} />
 
   <!-- 5. Active Publications & Conferences Open Calls (3-Column Grid from Section Pool) -->
   <section class="py-20 section-articles" id="conference-calls">
