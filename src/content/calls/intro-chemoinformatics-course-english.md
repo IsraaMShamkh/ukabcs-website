@@ -10,7 +10,7 @@ closesAt: "Continuous / Open Access"
 eligibility: "Open to students, researchers, and professionals globally. Instant self-paced enrollment."
 budget: "100% Free / In-Kind Contribution"
 detailSlug: "intro-chemoinformatics-course-english"
-applicationUrl: "https://courses.ebo-bio-solution.co.uk/courses/introduction-to-chemoinformatics-and-computational-drug-discovery/"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/intro-chemoinformatics-course-english"
 featuredImage: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Course Curriculum & Lecture Breakdown"

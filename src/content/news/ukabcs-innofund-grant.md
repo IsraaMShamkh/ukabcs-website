@@ -113,5 +113,5 @@ Under the INNOFUND framework, Principal Investigators receive high-level academi
 - **Team Formation & Registration**: 26 September – 05 October (10 Days)
 - **Official Inquiries**: `programmes-grants@ukabcs.co.uk`
 - **Submission Portals**:
-  - [INNOFUND Grant Application Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-innofund-grant/ukabcs-innofund-grant)
-  - [ClientFlow General Submission Form](https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant)
+  - [INNOFUND Grant Application Portal](https://portal.ukabcs.co.uk/apply/innofund-call-01-2026)
+  - [UKABCS Portal application](https://portal.ukabcs.co.uk/apply/innofund-call-01-2026)

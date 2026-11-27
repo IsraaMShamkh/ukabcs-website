@@ -10,7 +10,7 @@ closesAt: "15 Mar 2026"
 eligibility: "Faculty members, postgraduate researchers (MSc/PhD), and undergraduate research fellows."
 budget: "50% Fee Subsidy Grant"
 detailSlug: "conference-support-3rd-computational-science"
-applicationUrl: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/conference-support-3rd-computational-science"
 featuredImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Third International Conference Flyer & Agenda"
@@ -48,5 +48,5 @@ UKABCS is proud to announce co-sponsorship and financial subsidies for the upcom
 ## How to Apply
 
 Submit your application through the official UKABCS Grant Portal:
-* **Online Application:** [UKABCS General Support Form](https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form)
+* **Online Application:** [UKABCS General Support Form](https://portal.ukabcs.co.uk/apply/conference-support-3rd-computational-science)
 * **Secretariat Support:** `support@ukabcs.co.uk`

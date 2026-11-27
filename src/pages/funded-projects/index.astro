@@ -89,7 +89,7 @@ const totalGrants = allProjects.length;
           const year = project.data.year || project.data.awardYear || 2025;
           const cohort = project.data.cohort || String(year);
           return (
-            <div class="project-grid-item" data-cohort={cohort}>
+            <div class="project-grid-item" data-cohort={cohort} data-slug={project.slug}>
               <ProjectCard
                 title={project.data.title}
                 year={year}
@@ -110,6 +110,42 @@ const totalGrants = allProjects.length;
       </div>
     </div>
   </section>
+
+  <!-- Funded projects are managed on the UKABCS Portal: show the portal's list, keep these cards as the fallback. -->
+  <script>
+    const esc = (s: unknown) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string));
+    (async () => {
+      const grid = document.getElementById('projects-grid-container');
+      if (!grid) return;
+      try {
+        const res = await fetch('https://portal.ukabcs.co.uk/api/funded-projects', { headers: { Accept: 'application/json' } });
+        if (!res.ok) return;
+        const list = (await res.json()) as Array<{ slug: string; title: string; institution: string; country: string; grant_type: string; year: number; budget: string; summary: string; image: string | null; url: string }>;
+        if (!Array.isArray(list) || !list.length) return;
+        const live = new Set(list.map((p) => p.slug));
+        grid.querySelectorAll<HTMLElement>('.project-grid-item[data-slug]').forEach((el) => { if (!live.has(el.dataset.slug as string)) el.style.display = 'none'; });
+        const have = new Set([...grid.querySelectorAll<HTMLElement>('.project-grid-item[data-slug]')].map((el) => el.dataset.slug));
+        for (const p of list.filter((x) => !have.has(x.slug))) {
+          const div = document.createElement('div');
+          div.className = 'project-grid-item fp-portal';
+          div.dataset.cohort = String(p.year || '');
+          div.innerHTML = `<article class="fp-card"><a href="${esc(p.url)}" class="fp-media">${p.image ? `<img src="${esc(p.image)}" alt="" loading="lazy">` : ''}</a>
+            <div class="fp-body"><div class="fp-meta">${esc(p.year || '')} · ${esc(p.country || '')}</div><h3><a href="${esc(p.url)}">${esc(p.institution)}</a></h3>
+            <p>${esc(p.grant_type || '')}${p.budget ? ` — ${esc(p.budget)}` : ''}</p><a class="read-btn" href="${esc(p.url)}">Read more →</a></div></article>`;
+          grid.prepend(div);
+        }
+      } catch { /* portal unreachable: keep the static list */ }
+    })();
+  </script>
+  <style is:global>
+    .fp-card { border: 1px solid var(--color-border); border-radius: 1rem; overflow: hidden; background: var(--color-bg-primary, #fff); height: 100%; display: flex; flex-direction: column; }
+    .fp-media { display: block; aspect-ratio: 16 / 9; background: linear-gradient(135deg, #0b2545, #0f766e); }
+    .fp-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .fp-body { padding: 1.25rem; display: flex; flex-direction: column; flex: 1; }
+    .fp-meta { font-size: .8rem; color: var(--color-text-secondary); margin-bottom: .4rem; }
+    .fp-body h3 { font-size: 1.1rem; font-weight: 700; margin: 0 0 .5rem; }
+    .fp-body p { font-size: .9rem; color: var(--color-text-secondary); flex: 1; }
+  </style>
 
   <!-- 6. Promo CTA -->
   <PromoCTASection

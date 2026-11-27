@@ -10,7 +10,7 @@ closesAt: "20 Sep 2026"
 eligibility: "Researchers with accepted oral or poster abstracts in Biotechnology, Computational Biology, or Artificial Intelligence."
 budget: "Up to $2,000 USD Travel Stipend + Full Registration"
 detailSlug: "conference-participation-grant-cairo"
-applicationUrl: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/conference-registration-fee-funding-application"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/conference-participation-grant-cairo"
 featuredImage: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Conference Participation Grant Terms & Guidance"
@@ -51,4 +51,4 @@ The **UK Association for Biotechnology & Computational Science (UKABCS)** is ple
 2. Complete the online UKABCS Conference Registration Fee Funding Application.
 3. Upload your accepted abstract notification, CV, and institutional affiliation proof.
 
-* **Application Form:** [Apply for Conference Participation Grant](https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/conference-registration-fee-funding-application)
+* **Application Form:** [Apply for Conference Participation Grant](https://portal.ukabcs.co.uk/apply/conference-participation-grant-cairo)

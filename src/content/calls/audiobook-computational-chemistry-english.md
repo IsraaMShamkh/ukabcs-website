@@ -10,7 +10,7 @@ closesAt: "Continuous / Open Access"
 eligibility: "Academic researchers, postgraduate scholars, and undergraduate students worldwide"
 budget: "£30 Subsidized for UKABCS Members (Regular £60)"
 detailSlug: "audiobook-computational-chemistry-english"
-applicationUrl: "https://courses.ebo-bio-solution.co.uk/courses/essentials-of-computational-chemistry-theories-and-models-book-club/"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/audiobook-computational-chemistry-english"
 featuredImage: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Audiobook Syllabus & Chapter Index"

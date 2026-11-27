@@ -17,6 +17,8 @@ export const siteConfig = {
   contactEmail: "support@ukabcs.co.uk",
   
   // ClientFlow CRM endpoints and external form links (29 Official Forms)
+  // Applications start on the UKABCS Portal (Israa, 27 Nov 2026). ClientFlow keeps only contact, inquiry,
+  // subscription, membership, donation and volunteer forms.
   clientFlow: {
     // 1. General & Core Forms
     generalSupportForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
@@ -35,33 +37,33 @@ export const siteConfig = {
     impactFundDonationForm: "https://clientflow-crm.com/f/ukabcs/donations/ukabcs-global-scientific-impact-fund",
 
     // 4. Grants — InnoFund
-    innoFundGrantForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-innofund-grant/ukabcs-innofund-grant",
+    innoFundGrantForm: "https://portal.ukabcs.co.uk/apply/innofund-call-01-2026",
 
     // 5. Grants — Digital Campus Transformation
-    digitalCampusUniversityForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-digital-campus-university-transformation-grant-registration",
-    digitalCampusIndustrialForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-industrial-company-grant-application",
+    digitalCampusUniversityForm: "https://portal.ukabcs.co.uk/apply/digital-campus-transformation-grant",
+    digitalCampusIndustrialForm: "https://portal.ukabcs.co.uk/apply/digital-campus-transformation-grant",
 
     // 6. Grants — Graduation Projects
-    graduationProjectGrantForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant",
-    graduationProjectFacultyForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant-faculty-interest-form",
+    graduationProjectGrantForm: "https://portal.ukabcs.co.uk/apply/graduation-project-call-02-2026-27",
+    graduationProjectFacultyForm: "https://portal.ukabcs.co.uk/apply/graduation-project-call-02-2026-27",
 
     // 7. International Exchange & Mobility
-    outboundMobilityCandidateForm: "https://clientflow-crm.com/f/ukabcs/outbound-inbound-international-exchange-mobility/outbound-candidate-application-form",
-    incomingMobilityParticipantForm: "https://clientflow-crm.com/f/ukabcs/outbound-inbound-international-exchange-mobility/incoming-international-participant-form",
+    outboundMobilityCandidateForm: "https://portal.ukabcs.co.uk/apply/mobility-outbound-exchange",
+    incomingMobilityParticipantForm: "https://portal.ukabcs.co.uk/apply/mobility-incoming-exchange",
 
     // 8. Conferences & Publications Support
-    publicationsConferencesSupportForm: "https://clientflow-crm.com/f/ukabcs/publications-conferences-support/publications-conferences-support-form",
-    conferenceRegistrationFundingForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/conference-registration-fee-funding-application",
-    conferenceTravelAccommodationForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-2-travel-accommodation-support",
-    publicationFeeWaiverForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-3-publication-fee-waiver-december-2026",
+    publicationsConferencesSupportForm: "https://portal.ukabcs.co.uk/calls?programme=publications",
+    conferenceRegistrationFundingForm: "https://portal.ukabcs.co.uk/apply/conference-participation-grant-cairo",
+    conferenceTravelAccommodationForm: "https://portal.ukabcs.co.uk/apply/international-conference-travel-2026",
+    publicationFeeWaiverForm: "https://portal.ukabcs.co.uk/apply/open-access-publication-grant-ijbtcs",
 
     // 9. Women Researchers & KidCamp Support
-    womenResearchersSupportForm: "https://clientflow-crm.com/f/ukabcs/women-researchers-support/women-researchers-support-form",
-    kidCampRegistrationForm: "https://clientflow-crm.com/f/ukabcs/kidcamp-registration-supporting-researcher-mothers/kidcamp-registration",
+    womenResearchersSupportForm: "https://portal.ukabcs.co.uk/calls?programme=women",
+    kidCampRegistrationForm: "https://portal.ukabcs.co.uk/apply/kidcamp-researcher-mothers",
 
     // 10. Educational & Software Support
-    eventsEducationalSupportForm: "https://clientflow-crm.com/f/ukabcs/events-educational-support/events-educational-support-request-form",
-    scientificSoftwareDevSupportForm: "https://clientflow-crm.com/f/ukabcs/scientific-software-development-support/scientific-software-development-support-form",
+    eventsEducationalSupportForm: "https://portal.ukabcs.co.uk/calls?programme=events",
+    scientificSoftwareDevSupportForm: "https://portal.ukabcs.co.uk/calls?programme=software",
     volunteerSupervisorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-academic-supervisor-application",
     volunteerWorkshopForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-workshop-instructor-programme-application",
     volunteerMentorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-mentor-application-form",

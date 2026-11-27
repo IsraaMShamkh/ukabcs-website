@@ -10,7 +10,7 @@ closesAt: "20 Sep 2026 (Rolling Quarterly Reviews)"
 eligibility: "Active UKABCS members affiliated with recognized universities and research institutes."
 budget: "100% APC Waiver (£1,200 Equivalent per Article)"
 detailSlug: "open-access-publication-grant-ijbtcs"
-applicationUrl: "https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-3-publication-fee-waiver-december-2026"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/open-access-publication-grant-ijbtcs"
 featuredImage: "https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "APC Waiver Guidelines & Journal Author Instructions"
@@ -54,5 +54,5 @@ Waivers are available for manuscripts reporting original research, comprehensive
 2. Verified active UKABCS Membership ID.
 3. Brief institutional confirmation that no dedicated open-access funds are available from the authors' host department.
 
-* **Apply for Waiver:** [UKABCS Track 3 Publication Fee Waiver Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-conference-support-publication-fee-waiver-program/ukabcs-support-program-track-3-publication-fee-waiver-december-2026)
+* **Apply for Waiver:** [UKABCS Track 3 Publication Fee Waiver Portal](https://portal.ukabcs.co.uk/apply/open-access-publication-grant-ijbtcs)
 * **Journal Submissions:** `editor@ijbtcs.org`

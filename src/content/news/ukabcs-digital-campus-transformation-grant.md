@@ -213,5 +213,5 @@ Application and eligibility do not guarantee an award. Each faculty is a separat
 ---
 
 ### 20. Application Portals
-- 🏢 **Industrial Route**: [UKABCS Industrial Company Grant Application](https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-industrial-company-grant-application)
-- 🎓 **University Route**: [UKABCS Digital Campus University Transformation Grant Registration](https://clientflow-crm.com/f/ukabcs/ukabcs-digital-campus-transformation-grant/ukabcs-digital-campus-university-transformation-grant-registration)
+- 🏢 **Industrial Route**: [UKABCS Industrial Company Grant Application](https://portal.ukabcs.co.uk/apply/digital-campus-transformation-grant)
+- 🎓 **University Route**: [UKABCS Digital Campus University Transformation Grant Registration](https://portal.ukabcs.co.uk/apply/digital-campus-transformation-grant)

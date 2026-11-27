@@ -10,7 +10,7 @@ closesAt: "Continuous / Open Access"
 eligibility: "Open to all students, scholars, and researchers worldwide. Self-paced instant enrollment."
 budget: "100% Free / Fully Subsidized"
 detailSlug: "intro-chemoinformatics-course-arabic"
-applicationUrl: "https://bioinformatics-gate.com/courses/introduction-to-chemoinformatics-and-computational-drug-discovery/"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/intro-chemoinformatics-course-arabic"
 featuredImage: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Course Syllabus & Overview"

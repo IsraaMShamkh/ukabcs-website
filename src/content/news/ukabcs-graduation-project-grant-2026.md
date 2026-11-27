@@ -159,5 +159,5 @@ Graduation project teams that complete the programme may apply for the separate,
 - **Team Size**: 10 undergraduate students per graduation project team; 10–25 teams per faculty or applying institution.
 - **Official Inquiries**: `programmes-grants@ukabcs.co.uk`
 - **Submission Portals**:
-  - [ClientFlow Submission Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-graduation-project-grant/ukabcs-graduation-project-grant)
+  - [UKABCS Portal application](https://portal.ukabcs.co.uk/apply/graduation-project-call-02-2026-27)
   - [UKABCS Graduation Project Online Portal](https://app.site123.com/ukabcs-graduation-project-grant-online-portal-submission-form-1?w=11213251)

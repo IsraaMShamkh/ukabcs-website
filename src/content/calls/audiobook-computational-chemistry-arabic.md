@@ -10,7 +10,7 @@ closesAt: "Continuous / Open Access"
 eligibility: "Academic researchers, postgraduate scholars, and undergraduate students"
 budget: "Subsidized: £5 Members / £10 Non-Members (50% Off)"
 detailSlug: "audiobook-computational-chemistry-arabic"
-applicationUrl: "https://bioinformatics-gate.com/courses/essentials-of-computational-chemistry-theories-and-models-book-club/"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/audiobook-computational-chemistry-arabic"
 featuredImage: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Audiobook Syllabus & Chapter Index"

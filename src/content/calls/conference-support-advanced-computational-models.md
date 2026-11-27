@@ -10,7 +10,7 @@ closesAt: "10 Dec 2025"
 eligibility: "Open to both UKABCS Members and Non-Members with accepted abstracts or relevant research background."
 budget: "50% Registration Fee Reduction"
 detailSlug: "conference-support-advanced-computational-models"
-applicationUrl: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form"
+applicationUrl: "https://portal.ukabcs.co.uk/apply/conference-support-advanced-computational-models"
 featuredImage: "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1000&auto=format&fit=crop"
 attachments:
   - title: "Conference Call For Papers & Guidelines"
@@ -54,4 +54,4 @@ The **UK Association for Biotechnology & Computational Science (UKABCS)** is ple
 3. Attach your proof of submission/acceptance and current CV.
 4. Notifications of award are issued within 5 working days of application.
 
-* **Apply Online:** [UKABCS General Support Portal](https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form)
+* **Apply Online:** [UKABCS General Support Portal](https://portal.ukabcs.co.uk/apply/conference-support-advanced-computational-models)
