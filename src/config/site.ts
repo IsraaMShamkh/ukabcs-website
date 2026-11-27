@@ -66,12 +66,15 @@ export const siteConfig = {
     volunteerWorkshopForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-workshop-instructor-programme-application",
     volunteerMentorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-mentor-application-form",
 
-    // 11. Copyright Registration for Innovation (uses the general support form until a dedicated form exists)
-    ipInnovationRequestForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
+    // 11. Copyright Registration for Innovation: applications happen in the UKABCS Portal
+    ipInnovationRequestForm: "https://portal.ukabcs.co.uk/apply/copyright",
   },
 
   // Certificate lookups for /verify, served by the UKABCS Portal.
   certificateApi: "https://portal.ukabcs.co.uk/api/certificates",
+
+  // Copyright Registration applications; add ?service=<id> to preselect a service.
+  portalCopyrightApply: "https://portal.ukabcs.co.uk/apply/copyright",
 
   // Main Header Navigation (Ordered per Master Plan Section 3)
   nav: [

@@ -4,8 +4,9 @@ import PageHero from '../components/hero/PageHero.astro';
 import InnovationCertificate from '../components/certificate/InnovationCertificate.astro';
 import { siteConfig } from '../config/site';
 
-// Request form for every service. Replace with a dedicated ClientFlow form when it is ready.
+// Every application starts in the UKABCS Portal, with the service preselected.
 const requestForm = siteConfig.clientFlow.ipInnovationRequestForm;
+const apply = (id: string) => `${siteConfig.portalCopyrightApply}?service=${id}`;
 
 // Payment links (Wise). Leave a link empty until it exists: the button then opens the request form instead.
 const packages = [
@@ -102,10 +103,10 @@ const services = [
 ];
 
 const quoted = [
-  { name: 'Prototype Development', text: 'We turn your project into something people can use: research software, a web or mobile app, a data dashboard or a working prototype. Delivered with UKABCS technical partners.' },
-  { name: 'Startup & Spin-off Mentoring', text: 'For teams that want to build a company from their research: business model, market and customer analysis, pricing, a pitch deck and preparation to meet investors.' },
-  { name: 'Demo Day & Industry Showcase', text: 'A chance to present your innovation to companies, partners and investors at UKABCS events and in innovation sessions at UKABCS-supported conferences.' },
-  { name: 'IP Awareness Workshops', text: 'Training for universities and research teams on intellectual property: copyright, software rights, patents and how to share research safely.' },
+  { id: 'prototype', name: 'Prototype Development', text: 'We turn your project into something people can use: research software, a web or mobile app, a data dashboard or a working prototype. Delivered with UKABCS technical partners.' },
+  { id: 'startup', name: 'Startup & Spin-off Mentoring', text: 'For teams that want to build a company from their research: business model, market and customer analysis, pricing, a pitch deck and preparation to meet investors.' },
+  { id: 'demo-day', name: 'Demo Day & Industry Showcase', text: 'A chance to present your innovation to companies, partners and investors at UKABCS events and in innovation sessions at UKABCS-supported conferences.' },
+  { id: 'workshops', name: 'IP Awareness Workshops', text: 'Training for universities and research teams on intellectual property: copyright, software rights, patents and how to share research safely.' },
 ];
 
 // One price list: what you get, delivery time and fee.
@@ -122,9 +123,9 @@ const priceList = [
 
 const steps = [
   { title: 'Choose your package', text: 'Pick the copyright registration or the service you need. Not sure? Send a request and we will advise you.' },
-  { title: 'Fill in the request form', text: 'Give your name, institution and a short description of your work. You do not upload the work at this stage.' },
-  { title: 'Pay the fee', text: 'Pay with the button for your package, or with the payment link we send you by email.' },
-  { title: 'Send your work', text: 'Upload your work through the secure link we send you. For services, we book an online meeting with you.' },
+  { title: 'Apply in the UKABCS Portal', text: 'Press Apply on your package, sign in or create a free Researcher account, and complete the short application. Sign and upload the Registration Application & Declaration we send you.' },
+  { title: 'Pay the fee', text: 'Pay securely with the Pay button for your package. You can pay by bank transfer or from a Wise account.' },
+  { title: 'Send your work', text: 'Upload your work in your portal application. For services, we book an online meeting with you.' },
   { title: 'Receive your certificate', text: 'Your certificate, report, dossier or published feature is sent to you by email.' },
 ];
 
@@ -215,7 +216,7 @@ const half = Math.ceil(faqs.length / 2);
           <p class="pkg-price">{d.price}</p>
           <p>{d.text}</p>
           <ul>{d.includes.map(x => <li>{x}</li>)}</ul>
-          <a class="btn-fluent-primary" href={d.payHref || requestForm} target="_blank" rel="noopener noreferrer">{d.payHref ? 'Pay and register' : 'Request this package'} <span aria-hidden="true">→</span></a>
+          <div class="btns"><a class="btn-fluent-primary" href={apply(d.id)} target="_blank" rel="noopener noreferrer">Apply <span aria-hidden="true">→</span></a>{d.payHref && <a class="btn-fluent-secondary" href={d.payHref} target="_blank" rel="noopener noreferrer">Pay {d.price}</a>}</div>
         </div>
       ))}
     </div>
@@ -260,7 +261,7 @@ const half = Math.ceil(faqs.length / 2);
           <p><strong>Who it is for:</strong> {s.who}</p>
           <p><strong>What you receive:</strong></p>
           <ul>{s.receive.map(x => <li>{x}</li>)}</ul>
-          <a class="btn-fluent-primary" href={s.payHref || requestForm} target="_blank" rel="noopener noreferrer">{s.payHref ? 'Pay and start' : 'Request this service'} <span aria-hidden="true">→</span></a>
+          <div class="btns"><a class="btn-fluent-primary" href={apply(s.id)} target="_blank" rel="noopener noreferrer">Apply <span aria-hidden="true">→</span></a>{s.payHref && <a class="btn-fluent-secondary" href={s.payHref} target="_blank" rel="noopener noreferrer">Pay {s.price}</a>}</div>
         </div>
       ))}
     </div>
@@ -277,7 +278,7 @@ const half = Math.ceil(faqs.length / 2);
         <div class="card-aceternity card package">
           <h3>{q.name}</h3>
           <p>{q.text}</p>
-          <a class="btn-fluent-secondary" href={requestForm} target="_blank" rel="noopener noreferrer">Request a quotation <span aria-hidden="true">→</span></a>
+          <a class="btn-fluent-secondary" href={apply(q.id)} target="_blank" rel="noopener noreferrer">Request a quotation <span aria-hidden="true">→</span></a>
         </div>
       ))}
     </div>
@@ -339,7 +340,7 @@ const half = Math.ceil(faqs.length / 2);
       <div class="apply-text">
         <span class="badge-pill">Start now</span>
         <h2>Send your request</h2>
-        <p>Tell us about your work and the package or service you need. You do not need to send the work itself yet. Our team replies within <strong>2 working days</strong> with the next steps and the payment link.</p>
+        <p>Apply in the UKABCS Portal with the package or service you need. You do not need to send the work itself yet. Our team replies within <strong>2 working days</strong> with the next steps.</p>
         <ul class="ticks">
           <li>Open to researchers, students and universities in any country</li>
           <li>No membership needed</li>
@@ -348,8 +349,8 @@ const half = Math.ceil(faqs.length / 2);
       </div>
       <div class="card-aceternity card apply-card">
         <h3>Ready to register your work?</h3>
-        <p>Fill in the request form. It takes about 3 minutes.</p>
-        <a class="btn-fluent-primary" href={requestForm} target="_blank" rel="noopener noreferrer">Open the request form <span aria-hidden="true">→</span></a>
+        <p>Apply in the UKABCS Portal. It takes about 3 minutes.</p>
+        <a class="btn-fluent-primary" href={siteConfig.portalCopyrightApply} target="_blank" rel="noopener noreferrer">Apply in the portal <span aria-hidden="true">→</span></a>
         <p class="small">Questions first? Email <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
         <p class="small">University interested in a partnership? <a href="/collaborate">Collaborate with UKABCS</a></p>
       </div>
@@ -409,7 +410,10 @@ const half = Math.ceil(faqs.length / 2);
   .pillars .num { font-size: 1.4rem; }
 
   .package { display: flex; flex-direction: column; }
-  .package > a { margin-top: auto; align-self: stretch; justify-content: center; text-align: center; }
+  .package > a, .package > .btns { margin-top: auto; }
+  .package > a { align-self: stretch; justify-content: center; text-align: center; }
+  .btns { display: grid; gap: .5rem; }
+  .btns a { justify-content: center; text-align: center; }
   .pkg-type { font-weight: 700; font-size: .78rem !important; text-transform: uppercase; letter-spacing: .06em; color: var(--color-primary) !important; margin: 0 0 .25rem !important; min-height: 2.6em; }
   .pkg-term { font-size: 1.15rem !important; font-weight: 700; color: inherit !important; margin: 0 !important; }
   .pkg-price { font-size: 2.2rem !important; font-weight: 800; color: inherit !important; margin: .5rem 0 1rem !important; line-height: 1 !important; }
