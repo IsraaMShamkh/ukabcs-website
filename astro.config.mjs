@@ -7,6 +7,9 @@ export default defineConfig({
   site: 'https://www.ukabcs.co.uk',
   integrations: [sitemap(), react()],
   output: 'static',
+  redirects: {
+    '/ip-innovation': '/copyright-registration',
+  },
   vite: {
     plugins: [tailwindcss()],
     optimizeDeps: {

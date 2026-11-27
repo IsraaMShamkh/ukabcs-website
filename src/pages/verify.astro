@@ -7,7 +7,7 @@ import { siteConfig } from '../config/site';
 const api = import.meta.env.PUBLIC_CERT_API || siteConfig.certificateApi;
 ---
 <BaseLayout title={`Verify a Copyright Certificate | ${siteConfig.publicName}`} description="Verify a UKABCS Certificate of Copyright & Innovation Registration by entering its serial number.">
-  <PageHero eyebrow="IP & Innovation Programme" title="Verify a UKABCS Certificate" description="Enter the serial number printed on a UKABCS Certificate of Copyright & Innovation Registration to view the certificate and confirm that it is genuine." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" />
+  <PageHero eyebrow="Copyright Registration for Innovation" title="Verify a UKABCS Certificate" description="Enter the serial number printed on a UKABCS Certificate of Copyright & Innovation Registration to view the certificate and confirm that it is genuine." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" />
 
   <section class="block">
     <div class="container narrow center">
@@ -72,7 +72,7 @@ const api = import.meta.env.PUBLIC_CERT_API || siteConfig.certificateApi;
   form.addEventListener('submit', (e) => { e.preventDefault(); verify(input.value); });
   document.getElementById('try-specimen').addEventListener('click', () => { input.value = 'UKABCS-CR-2026-SAMP-LE01'; verify(input.value); });
 
-  // Links from the IP & Innovation page pass the serial after # so it is not sent to this site's server.
+  // Links from the Copyright Registration page pass the serial after # so it is not sent to this site's server.
   const fromHash = decodeURIComponent(location.hash.slice(1));
   if (fromHash) { input.value = fromHash; verify(fromHash); }
 </script>

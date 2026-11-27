@@ -14,7 +14,7 @@ const packages = [
     type: 'Confidential Copyright Registration',
     term: '5 years',
     price: '£250',
-    payHref: '',
+    payHref: 'https://wise.com/pay/r/LT8UKqkeodvDJoY',
     text: 'Your work is registered and held privately by UKABCS for 5 years. Nobody else can see it.',
     includes: ['Dated registration of your work', 'Certificate with a unique serial number', 'Online verification of the certificate', 'Private record for 5 years'],
   },
@@ -23,7 +23,7 @@ const packages = [
     type: 'Confidential Copyright Registration',
     term: '10 years',
     price: '£500',
-    payHref: '',
+    payHref: 'https://wise.com/pay/r/tmqKxaUFbXc0e5w',
     text: 'The same private registration, held on record for 10 years for long-term evidence.',
     includes: ['Dated registration of your work', 'Certificate with a unique serial number', 'Online verification of the certificate', 'Private record for 10 years'],
   },
@@ -32,7 +32,7 @@ const packages = [
     type: 'Copyright Registration + Public Register',
     term: '5 years',
     price: '£500',
-    payHref: '',
+    payHref: 'https://wise.com/pay/r/mdFfYK6jWRsz2vo',
     text: 'A private registration plus a public entry in the UKABCS Innovation Register for 5 years.',
     includes: ['Everything in the confidential registration', 'Public entry: name, institution, title, approved summary and date', 'A public page that others can find and cite', 'Listed for 5 years'],
   },
@@ -41,7 +41,7 @@ const packages = [
     type: 'Copyright Registration + Public Register',
     term: '10 years',
     price: '£750',
-    payHref: '',
+    payHref: 'https://wise.com/pay/r/Wl0gCwX3pdWpCpI',
     text: 'A private registration plus a public entry in the UKABCS Innovation Register for 10 years.',
     includes: ['Everything in the confidential registration', 'Public entry: name, institution, title, approved summary and date', 'A public page that others can find and cite', 'Listed for 10 years'],
   },
@@ -53,7 +53,7 @@ const services = [
     name: 'Innovator Profile & Feature Article',
     price: '£1,500',
     unit: 'per feature',
-    payHref: '',
+    payHref: 'https://wise.com/pay/r/3zLFnhH5xkEbUcQ',
     what: 'A professionally written feature article about you and your innovation, published on the UKABCS website and shared on UKABCS channels.',
     who: 'Researchers who want their work and expertise to be known by universities, industry, funders and the public.',
     receive: [
@@ -147,19 +147,19 @@ const faqs = [
   { q: 'Can I move from confidential to the public register later?', a: 'Yes. Contact us and we will upgrade your registration. You pay the difference between the two packages for the same term.' },
   { q: 'Can a team register one work?', a: 'Yes. One registration can name several authors from the same team, and all names appear on the certificate.' },
   { q: 'Is funding available?', a: 'Prototype development, startup mentoring and demo day support may be co-funded through UKABCS grant programmes, including InnoFund, Scientific Software Development and the Graduation Project Startup Grant, when a call is open.' },
-  { q: 'Can my university partner with UKABCS for this programme?', a: 'Yes. Partner universities sign a cooperation agreement with UKABCS that opens these services to their staff and students.' },
+  { q: 'Can my university partner with UKABCS on copyright registration?', a: 'Yes. Partner universities sign a cooperation agreement with UKABCS that opens copyright registration and these services to their staff and students.' },
 ];
 
 const schema = [
   {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    name: 'UKABCS IP & Innovation Programme — Copyright & Innovation Registration',
+    name: 'UKABCS Copyright Registration for Innovation',
     description: 'Dated copyright and innovation registration with a verifiable certificate, a public innovation register, preliminary novelty reports, technical dossiers for patent filing, innovator feature articles, and support to take research to market.',
     provider: { '@type': 'Organization', name: siteConfig.publicName, url: siteConfig.url },
     serviceType: 'Copyright registration and research commercialisation support',
     areaServed: 'Worldwide',
-    url: `${siteConfig.url}/ip-innovation`,
+    url: `${siteConfig.url}/copyright-registration`,
     offers: priceList.filter(p => p.fee.startsWith('£')).map(p => ({ '@type': 'Offer', name: `${p.service} (${p.term})`, price: p.fee.replace(/[£,]/g, ''), priceCurrency: 'GBP' })),
   },
   {
@@ -170,27 +170,27 @@ const schema = [
 ];
 const half = Math.ceil(faqs.length / 2);
 ---
-<BaseLayout title={`IP & Innovation Programme: Copyright Registration Certificates | ${siteConfig.publicName}`} description="Register your research, software or invention with UKABCS and receive a dated, verifiable Certificate of Copyright & Innovation Registration. Confidential registration from £250. Novelty reports, technical dossiers for patent filing and innovator features.">
+<BaseLayout title={`UKABCS Copyright Registration for Innovation: Verifiable Copyright Certificates | ${siteConfig.publicName}`} description="Register your research, software or invention with UKABCS and receive a dated, verifiable Certificate of Copyright & Innovation Registration. Confidential registration from £250. Novelty reports, technical dossiers for patent filing and innovator features.">
   <script type="application/ld+json" set:html={JSON.stringify(schema)} />
-  <PageHero eyebrow="Programmes & Grants" title="UKABCS IP & Innovation Programme" description="Register the copyright of your research, software or invention with UKABCS and receive a dated, verifiable certificate. Then get your work seen, check how new it is, prepare it for protection and take it to market." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" ctaText="See registration packages" ctaHref="#packages" />
+  <PageHero eyebrow="Programmes & Grants" title="UKABCS Copyright Registration for Innovation" description="Register the copyright of your research, software or invention with UKABCS and receive a dated, verifiable certificate. Then get your work seen, check how new it is, prepare it for protection and take it to market." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" ctaText="See registration packages" ctaHref="#packages" />
 
   <section class="block">
     <div class="container two-col">
       <div>
         <span class="badge-pill">About the programme</span>
-        <h2>What is the UKABCS IP & Innovation Programme?</h2>
+        <h2>What is UKABCS Copyright Registration for Innovation?</h2>
         <p>Researchers create valuable work every day: new methods, software, datasets, designs and inventions. In most countries this work is protected by copyright from the moment it is created. The difficulty comes later, when someone needs to prove <strong>what</strong> they created and <strong>when</strong>.</p>
-        <p>The UKABCS IP & Innovation Programme solves this. You register your work with UKABCS, an independent UK-registered academic organisation. We keep it on record with its date and issue a <strong>Certificate of Copyright &amp; Innovation Registration</strong> with a unique serial number that anyone you choose can verify online.</p>
-        <p>From there, the programme helps you go further: show your work publicly, find out how new it is, prepare it for patent filing, and turn it into a product or a startup.</p>
+        <p>UKABCS Copyright Registration for Innovation solves this. You register your work with UKABCS, an independent UK-registered academic organisation. We keep it on record with its date and issue a <strong>Certificate of Copyright &amp; Innovation Registration</strong> with a unique serial number that anyone you choose can verify online.</p>
+        <p>From there, UKABCS helps you go further: show your work publicly, find out how new it is, prepare it for patent filing, and turn it into a product or a startup.</p>
       </div>
       <aside class="card-aceternity card facts">
-        <h3>The programme at a glance</h3>
+        <h3>Copyright registration at a glance</h3>
         <dl>
           <div><dt>Who it is for</dt><dd>Researchers, faculty, students, research teams and universities worldwide</dd></div>
           <div><dt>What you can register</dt><dd>Ideas, methods, software, code, datasets, designs, protocols, theses and reports</dd></div>
           <div><dt>What you receive</dt><dd>A dated copyright certificate with a verifiable serial number</dd></div>
           <div><dt>Fees</dt><dd>From £250 for 5 years</dd></div>
-          <div><dt>Membership needed?</dt><dd>No, the programme is open to everyone</dd></div>
+          <div><dt>Membership needed?</dt><dd>No, registration is open to everyone</dd></div>
         </dl>
       </aside>
     </div>
