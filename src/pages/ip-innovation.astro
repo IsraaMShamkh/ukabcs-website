@@ -1,0 +1,461 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import InnovationCertificate from '../components/certificate/InnovationCertificate.astro';
+import { siteConfig } from '../config/site';
+
+// Request form for every service. Replace with a dedicated ClientFlow form when it is ready.
+const requestForm = siteConfig.clientFlow.ipInnovationRequestForm;
+
+// Payment links (Wise). Leave a link empty until it exists: the button then opens the request form instead.
+const packages = [
+  {
+    id: 'confidential-5',
+    type: 'Confidential Copyright Registration',
+    term: '5 years',
+    price: '£250',
+    payHref: '',
+    text: 'Your work is registered and held privately by UKABCS for 5 years. Nobody else can see it.',
+    includes: ['Dated registration of your work', 'Certificate with a unique serial number', 'Online verification of the certificate', 'Private record for 5 years'],
+  },
+  {
+    id: 'confidential-10',
+    type: 'Confidential Copyright Registration',
+    term: '10 years',
+    price: '£500',
+    payHref: '',
+    text: 'The same private registration, held on record for 10 years for long-term evidence.',
+    includes: ['Dated registration of your work', 'Certificate with a unique serial number', 'Online verification of the certificate', 'Private record for 10 years'],
+  },
+  {
+    id: 'public-5',
+    type: 'Copyright Registration + Public Register',
+    term: '5 years',
+    price: '£500',
+    payHref: '',
+    text: 'A private registration plus a public entry in the UKABCS Innovation Register for 5 years.',
+    includes: ['Everything in the confidential registration', 'Public entry: name, institution, title, approved summary and date', 'A public page that others can find and cite', 'Listed for 5 years'],
+  },
+  {
+    id: 'public-10',
+    type: 'Copyright Registration + Public Register',
+    term: '10 years',
+    price: '£750',
+    payHref: '',
+    text: 'A private registration plus a public entry in the UKABCS Innovation Register for 10 years.',
+    includes: ['Everything in the confidential registration', 'Public entry: name, institution, title, approved summary and date', 'A public page that others can find and cite', 'Listed for 10 years'],
+  },
+];
+
+const services = [
+  {
+    id: 'innovator-profile',
+    name: 'Innovator Profile & Feature Article',
+    price: '£1,500',
+    unit: 'per feature',
+    payHref: '',
+    what: 'A professionally written feature article about you and your innovation, published on the UKABCS website and shared on UKABCS channels.',
+    who: 'Researchers who want their work and expertise to be known by universities, industry, funders and the public.',
+    receive: [
+      'An online interview with the UKABCS editorial team',
+      'Your photo, biography, institution and research focus',
+      'The problem your work solves and how it works, in plain language',
+      'The potential impact of your work, with images, diagrams or a short video',
+      'Links to your publications, software and copyright certificate',
+      'Promotion on UKABCS channels; you approve the text before publishing',
+    ],
+  },
+  {
+    id: 'novelty-report',
+    name: 'Preliminary Novelty Report',
+    price: '£1,000',
+    unit: 'per idea',
+    payHref: '',
+    what: 'A written report that shows what already exists close to your idea, so you know how new it is before you invest more time or money.',
+    who: 'Researchers and students who are thinking of filing a patent, starting a company or publishing a new method.',
+    receive: [
+      'A search of patent databases (Espacenet, Google Patents, WIPO PATENTSCOPE)',
+      'A search of the scientific literature',
+      'The closest existing patents and publications, listed and explained',
+      'A side-by-side comparison of your idea with the closest results',
+      'The features of your idea that appear new',
+      'A recommended next step for your work',
+    ],
+  },
+  {
+    id: 'technical-dossier',
+    name: 'Technical Dossier Preparation',
+    price: '£3,000',
+    unit: 'per invention',
+    payHref: '',
+    what: 'A complete technical file describing your invention, ready to hand to a licensed patent attorney or to your university’s technology transfer office for formal filing.',
+    who: 'Inventors who have decided to protect their invention and want the technical work prepared properly and quickly.',
+    receive: [
+      'A full technical description of the invention',
+      'Figures, diagrams and workflow drawings',
+      'Background and a summary of existing work (prior art)',
+      'Examples and experimental or computational results',
+      'Organised supporting documents and an inventor declaration',
+      'A hand-over meeting with your attorney or technology transfer office',
+    ],
+  },
+];
+
+const quoted = [
+  { name: 'Prototype Development', text: 'We turn your project into something people can use: research software, a web or mobile app, a data dashboard or a working prototype. Delivered with UKABCS technical partners.' },
+  { name: 'Startup & Spin-off Mentoring', text: 'For teams that want to build a company from their research: business model, market and customer analysis, pricing, a pitch deck and preparation to meet investors.' },
+  { name: 'Demo Day & Industry Showcase', text: 'A chance to present your innovation to companies, partners and investors at UKABCS events and in innovation sessions at UKABCS-supported conferences.' },
+  { name: 'IP Awareness Workshops', text: 'Training for universities and research teams on intellectual property: copyright, software rights, patents and how to share research safely.' },
+];
+
+// One price list: what you get, delivery time and fee.
+const priceList = [
+  { service: 'Confidential Copyright Registration', get: 'Private dated registration + certificate', term: '5 years', time: '5 working days', fee: '£250' },
+  { service: 'Confidential Copyright Registration', get: 'Private dated registration + certificate', term: '10 years', time: '5 working days', fee: '£500' },
+  { service: 'Copyright Registration + Public Register', get: 'Registration + certificate + public register entry', term: '5 years', time: '5 working days', fee: '£500' },
+  { service: 'Copyright Registration + Public Register', get: 'Registration + certificate + public register entry', term: '10 years', time: '5 working days', fee: '£750' },
+  { service: 'Innovator Profile & Feature Article', get: 'Interview + written feature on the UKABCS website', term: 'Per feature', time: '15 working days after the interview', fee: '£1,500' },
+  { service: 'Preliminary Novelty Report', get: 'Patent and literature search with a written report', term: 'Per idea', time: '15 working days', fee: '£1,000' },
+  { service: 'Technical Dossier Preparation', get: 'Full technical file ready for patent filing', term: 'Per invention', time: '30 working days', fee: '£3,000' },
+  { service: 'Prototype, Startup Mentoring, Demo Day, Workshops', get: 'Building, planning and presenting your innovation', term: 'Per project', time: 'Agreed in the quotation', fee: 'By quotation' },
+];
+
+const steps = [
+  { title: 'Choose your package', text: 'Pick the copyright registration or the service you need. Not sure? Send a request and we will advise you.' },
+  { title: 'Fill in the request form', text: 'Give your name, institution and a short description of your work. You do not upload the work at this stage.' },
+  { title: 'Pay the fee', text: 'Pay with the button for your package, or with the payment link we send you by email.' },
+  { title: 'Send your work', text: 'Upload your work through the secure link we send you. For services, we book an online meeting with you.' },
+  { title: 'Receive your certificate', text: 'Your certificate, report, dossier or published feature is sent to you by email.' },
+];
+
+const notes = [
+  { title: 'What the certificate records', text: 'The certificate records that the named author registered the named work with UKABCS on the stated date. It is independent, dated evidence of the work, its authorship and its content.' },
+  { title: 'Patents and official registrations', text: 'A UKABCS copyright certificate is a private registration record. It is not a patent and not a government registration. Patents, trade marks and registered designs are granted only by national or regional intellectual property offices.' },
+  { title: 'If you plan to file a patent', text: 'Making an invention public before filing can affect whether it can be patented. Choose the confidential registration and file first. Nothing is published without your written approval.' },
+  { title: 'Work created at a university', text: 'Many universities have their own intellectual property policy. Please check it before registering work created at your institution, and add your institution’s approval where it applies.' },
+  { title: 'Our role', text: 'UKABCS provides registration, technical, documentation and research support. Formal patent filing and legal advice are provided by licensed patent attorneys or your institution’s technology transfer office.' },
+  { title: 'Confidentiality', text: 'Your work and everything you share with us is kept confidential and used only to deliver the service you asked for.' },
+];
+
+const faqs = [
+  { q: 'What is UKABCS copyright registration?', a: 'It is a dated record of your work held by an independent organisation. You send your work to UKABCS, we keep it on record with the date we received it, and you receive a Certificate of Copyright & Innovation Registration with a unique serial number. If anyone later questions who created the work or when, the registration is independent evidence.' },
+  { q: 'Why register my work if copyright already protects it?', a: 'In most countries copyright belongs to the author automatically. The difficulty is proving what you created and when. A dated registration with an independent body gives you that proof.' },
+  { q: 'Who can use these services?', a: 'Researchers, faculty members, postgraduate and undergraduate students, research teams and institutions in any country. You do not need to be a UKABCS member.' },
+  { q: 'What kinds of work can I register?', a: 'Research ideas and methods, software and source code, datasets, algorithms, designs, protocols, dashboards, manuscripts, theses and project reports.' },
+  { q: 'Confidential or public register: which should I choose?', a: 'Choose confidential if you may file a patent or want to keep the work private. Choose the public register if you want your work to be seen, credited and cited. In both, the full work stays confidential; the public register shows only the summary you approve.' },
+  { q: 'How does someone check that a certificate is genuine?', a: 'Every certificate has a serial number. Enter it on the UKABCS verification page (ukabcs.co.uk/verify) to see the certificate exactly as UKABCS issued it.' },
+  { q: 'Can I move from confidential to the public register later?', a: 'Yes. Contact us and we will upgrade your registration. You pay the difference between the two packages for the same term.' },
+  { q: 'Can a team register one work?', a: 'Yes. One registration can name several authors from the same team, and all names appear on the certificate.' },
+  { q: 'Is funding available?', a: 'Prototype development, startup mentoring and demo day support may be co-funded through UKABCS grant programmes, including InnoFund, Scientific Software Development and the Graduation Project Startup Grant, when a call is open.' },
+  { q: 'Can my university partner with UKABCS for this programme?', a: 'Yes. Partner universities sign a cooperation agreement with UKABCS that opens these services to their staff and students.' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    name: 'UKABCS IP & Innovation Programme — Copyright & Innovation Registration',
+    description: 'Dated copyright and innovation registration with a verifiable certificate, a public innovation register, preliminary novelty reports, technical dossiers for patent filing, innovator feature articles, and support to take research to market.',
+    provider: { '@type': 'Organization', name: siteConfig.publicName, url: siteConfig.url },
+    serviceType: 'Copyright registration and research commercialisation support',
+    areaServed: 'Worldwide',
+    url: `${siteConfig.url}/ip-innovation`,
+    offers: priceList.filter(p => p.fee.startsWith('£')).map(p => ({ '@type': 'Offer', name: `${p.service} (${p.term})`, price: p.fee.replace(/[£,]/g, ''), priceCurrency: 'GBP' })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+  },
+];
+const half = Math.ceil(faqs.length / 2);
+---
+<BaseLayout title={`IP & Innovation Programme: Copyright Registration Certificates | ${siteConfig.publicName}`} description="Register your research, software or invention with UKABCS and receive a dated, verifiable Certificate of Copyright & Innovation Registration. Confidential registration from £250. Novelty reports, technical dossiers for patent filing and innovator features.">
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+  <PageHero eyebrow="Programmes & Grants" title="UKABCS IP & Innovation Programme" description="Register the copyright of your research, software or invention with UKABCS and receive a dated, verifiable certificate. Then get your work seen, check how new it is, prepare it for protection and take it to market." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" ctaText="See registration packages" ctaHref="#packages" />
+
+  <section class="block">
+    <div class="container two-col">
+      <div>
+        <span class="badge-pill">About the programme</span>
+        <h2>What is the UKABCS IP & Innovation Programme?</h2>
+        <p>Researchers create valuable work every day: new methods, software, datasets, designs and inventions. In most countries this work is protected by copyright from the moment it is created. The difficulty comes later, when someone needs to prove <strong>what</strong> they created and <strong>when</strong>.</p>
+        <p>The UKABCS IP & Innovation Programme solves this. You register your work with UKABCS, an independent UK-registered academic organisation. We keep it on record with its date and issue a <strong>Certificate of Copyright &amp; Innovation Registration</strong> with a unique serial number that anyone you choose can verify online.</p>
+        <p>From there, the programme helps you go further: show your work publicly, find out how new it is, prepare it for patent filing, and turn it into a product or a startup.</p>
+      </div>
+      <aside class="card-aceternity card facts">
+        <h3>The programme at a glance</h3>
+        <dl>
+          <div><dt>Who it is for</dt><dd>Researchers, faculty, students, research teams and universities worldwide</dd></div>
+          <div><dt>What you can register</dt><dd>Ideas, methods, software, code, datasets, designs, protocols, theses and reports</dd></div>
+          <div><dt>What you receive</dt><dd>A dated copyright certificate with a verifiable serial number</dd></div>
+          <div><dt>Fees</dt><dd>From £250 for 5 years</dd></div>
+          <div><dt>Membership needed?</dt><dd>No, the programme is open to everyone</dd></div>
+        </dl>
+      </aside>
+    </div>
+    <div class="container grid-3 pillars">
+      <div class="card-aceternity card"><span class="num">01</span><h3>Register your work</h3><p>Register your work confidentially and receive a dated certificate as independent evidence of its content, authorship and date.</p></div>
+      <div class="card-aceternity card"><span class="num">02</span><h3>Get it seen</h3><p>Add your work to the public UKABCS Innovation Register and tell your story in a feature article on the UKABCS website.</p></div>
+      <div class="card-aceternity card"><span class="num">03</span><h3>Take it further</h3><p>Check novelty, prepare a technical dossier for patent filing, build a prototype and meet industry and investors.</p></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="packages">
+    <div class="container narrow center">
+      <span class="badge-pill">Copyright Registration</span>
+      <h2>Choose your copyright registration package</h2>
+      <p>There are two types of registration. <strong>Confidential Copyright Registration</strong> keeps your work private on record with UKABCS. <strong>Copyright Registration + Public Register</strong> also lists your name, institution, the title of your work and a short summary you approve in the public UKABCS Innovation Register. Both come with a certificate, and both are available for 5 or 10 years.</p>
+    </div>
+    <div class="container packages">
+      {packages.map(d => (
+        <div class="card-aceternity card package" id={d.id}>
+          <p class="pkg-type">{d.type}</p>
+          <p class="pkg-term">{d.term}</p>
+          <p class="pkg-price">{d.price}</p>
+          <p>{d.text}</p>
+          <ul>{d.includes.map(x => <li>{x}</li>)}</ul>
+          <a class="btn-fluent-primary" href={d.payHref || requestForm} target="_blank" rel="noopener noreferrer">{d.payHref ? 'Pay and register' : 'Request this package'} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+    <div class="container wide-note">
+      <h3>Which registration is right for me?</h3>
+      <p><strong>Choose Confidential</strong> if you might file a patent, if your work is unpublished, or if you simply want private proof of authorship. <strong>Choose Public Register</strong> if you want your work to be seen and credited, for example a software tool, a method or a finished project. In both cases the full work itself is never published.</p>
+    </div>
+  </section>
+
+  <section class="block" id="certificate">
+    <div class="container cert-wrap">
+      <div class="cert-text">
+        <span class="badge-pill">The certificate</span>
+        <h2>Your UKABCS Certificate of Copyright &amp; Innovation Registration</h2>
+        <p>Every registration receives an official UKABCS certificate, signed and stamped by the organisation. It states the author, the title of the work, the registration date and how long the work is held on record.</p>
+        <p>Each certificate has its own <strong>serial number</strong>. Enter it below to view the certificate and confirm that it is genuine. Share the serial number with a university, an employer, a journal or a partner so that they can check it themselves.</p>
+        <form class="verify-form" id="verify-form">
+          <label class="sr-only" for="serial">Certificate serial number</label>
+          <input id="serial" name="serial" type="text" autocomplete="off" spellcheck="false" placeholder="Serial number, e.g. UKABCS-CR-2026-…" required />
+          <button type="submit" class="btn-fluent-primary">Verify</button>
+        </form>
+        <p class="hint">Try the specimen serial: <code>UKABCS-CR-2026-SAMP-LE01</code></p>
+      </div>
+      <div class="cert-visual">
+        <InnovationCertificate specimen />
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="services">
+    <div class="container narrow center">
+      <span class="badge-pill">Innovation services</span>
+      <h2>Feature article, novelty report and technical dossier</h2>
+      <p>Once your work is registered, these services help you take the next step. A <strong>feature article</strong> makes you and your work known. A <strong>novelty report</strong> tells you how new your idea is. A <strong>technical dossier</strong> prepares your invention for formal patent filing.</p>
+    </div>
+    <div class="container grid-3">
+      {services.map(s => (
+        <div class="card-aceternity card package" id={s.id}>
+          <h3>{s.name}</h3>
+          <p class="pkg-price">{s.price} <span class="pkg-unit">{s.unit}</span></p>
+          <p><strong>What it is:</strong> {s.what}</p>
+          <p><strong>Who it is for:</strong> {s.who}</p>
+          <p><strong>What you receive:</strong></p>
+          <ul>{s.receive.map(x => <li>{x}</li>)}</ul>
+          <a class="btn-fluent-primary" href={s.payHref || requestForm} target="_blank" rel="noopener noreferrer">{s.payHref ? 'Pay and start' : 'Request this service'} <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">From research to market</span>
+      <h2>Prototype, startup support and industry showcase</h2>
+      <p>For work with real-world potential, UKABCS helps you build it, plan a company around it and present it to industry. Each project is different, so these services are priced by quotation. UKABCS may co-fund them through its grant programmes when a call is open.</p>
+    </div>
+    <div class="container grid-2">
+      {quoted.map(q => (
+        <div class="card-aceternity card package">
+          <h3>{q.name}</h3>
+          <p>{q.text}</p>
+          <a class="btn-fluent-secondary" href={requestForm} target="_blank" rel="noopener noreferrer">Request a quotation <span aria-hidden="true">→</span></a>
+        </div>
+      ))}
+    </div>
+    <div class="container narrow center"><p class="note">Related funding: <a href="/scientific-software">Scientific Software Development Support</a> · <a href="/news/ukabcs-innofund-grant">InnoFund Grant</a> · <a href="/news/ukabcs-graduation-project-startup-grant">Graduation Project Startup Grant</a></p></div>
+  </section>
+
+  <section class="block alt" id="prices">
+    <div class="container narrow center">
+      <span class="badge-pill">Fees and delivery</span>
+      <h2>Price list and delivery times</h2>
+      <p>Every service in one table: what you get, how long it takes and what it costs. All fees are in pounds sterling (GBP) and are paid once. Official fees charged by patent offices or attorneys are not included.</p>
+    </div>
+    <div class="container table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>What you get</th><th>Term</th><th>Delivery time</th><th>Fee</th></tr></thead>
+        <tbody>
+          {priceList.map(p => <tr><td><strong>{p.service}</strong></td><td>{p.get}</td><td>{p.term}</td><td>{p.time}</td><td class="fee">{p.fee}</td></tr>)}
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="block" id="how-to-apply">
+    <div class="container narrow center">
+      <span class="badge-pill">How to apply</span>
+      <h2>From your request to your certificate</h2>
+      <p>Applying takes a few minutes. Here is exactly what happens after you choose a package.</p>
+    </div>
+    <ol class="container steps">
+      {steps.map((s, i) => <li class="card-aceternity card"><span class="num">Step {i + 1}</span><h3>{s.title}</h3><p>{s.text}</p></li>)}
+    </ol>
+  </section>
+
+  <section class="block alt">
+    <div class="container narrow center">
+      <span class="badge-pill">Before you register</span>
+      <h2>Important information</h2>
+      <p>Please read these points so you know exactly what the certificate means and how to protect your work in the best way.</p>
+    </div>
+    <div class="container grid-3 info">
+      {notes.map(n => <div class="card-aceternity card"><h3>{n.title}</h3><p>{n.text}</p></div>)}
+    </div>
+  </section>
+
+  <section class="block">
+    <div class="container narrow center">
+      <span class="badge-pill">FAQ</span>
+      <h2>Questions about copyright registration</h2>
+    </div>
+    <div class="container faq">
+      {[faqs.slice(0, half), faqs.slice(half)].map(col => (
+        <div class="faq-col">{col.map(f => <details class="card-aceternity card"><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+      ))}
+    </div>
+  </section>
+
+  <section class="block alt" id="apply">
+    <div class="container apply">
+      <div class="apply-text">
+        <span class="badge-pill">Start now</span>
+        <h2>Send your request</h2>
+        <p>Tell us about your work and the package or service you need. You do not need to send the work itself yet. Our team replies within <strong>2 working days</strong> with the next steps and the payment link.</p>
+        <ul class="ticks">
+          <li>Open to researchers, students and universities in any country</li>
+          <li>No membership needed</li>
+          <li>Your work stays confidential</li>
+        </ul>
+      </div>
+      <div class="card-aceternity card apply-card">
+        <h3>Ready to register your work?</h3>
+        <p>Fill in the request form. It takes about 3 minutes.</p>
+        <a class="btn-fluent-primary" href={requestForm} target="_blank" rel="noopener noreferrer">Open the request form <span aria-hidden="true">→</span></a>
+        <p class="small">Questions first? Email <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a></p>
+        <p class="small">University interested in a partnership? <a href="/collaborate">Collaborate with UKABCS</a></p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Send the serial to /verify after # so it is not sent to this site's server.
+  const form = document.getElementById('verify-form') as HTMLFormElement | null;
+  form?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const v = (document.getElementById('serial') as HTMLInputElement).value.trim();
+    if (v) location.href = `/verify#${encodeURIComponent(v)}`;
+  });
+</script>
+
+<style>
+  /* Hero button: white on the dark hero so it stands out. */
+  :global(.page-hero__cta) { background: #ffffff !important; color: #0b1d3a !important; border-color: #ffffff !important; }
+  :global(.page-hero__cta:hover) { background: #e8eefb !important; }
+
+  .block { padding: clamp(4rem, 7vw, 6rem) 0; border-top: 1px solid var(--color-border); }
+  .alt { background: var(--color-surface); }
+  .narrow { max-width: 820px; }
+  .center { text-align: center; margin-bottom: 2.5rem; }
+  h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); line-height: 1.16; letter-spacing: -.025em; font-weight: 700; margin: 1rem 0; }
+  .center p, .note, .two-col p, .cert-text p, .apply-text p { color: var(--color-text-secondary); line-height: 1.75; }
+  .two-col p, .cert-text p, .apply-text p { margin: 0 0 1.1rem; }
+  .note { margin-top: 2rem; font-size: .92rem; }
+
+  .two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 3rem; align-items: start; margin-bottom: 3rem; }
+  .facts dl { margin: 0; display: grid; gap: 1rem; }
+  .facts dt { font-weight: 700; font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; color: var(--color-primary); }
+  .facts dd { margin: .2rem 0 0; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .table-wrap { overflow-x: auto; }
+  table { width: 100%; border-collapse: collapse; }
+  th, td { text-align: left; padding: .95rem 1rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  td { color: var(--color-text-secondary); }
+  td:first-child, td:nth-child(3), td:nth-child(4) { white-space: nowrap; }
+  @media (min-width: 1200px) { #prices td { white-space: nowrap; } }
+  .fee { font-weight: 700; color: inherit; white-space: nowrap; }
+
+  .grid-3, .grid-2, .steps, .packages { display: grid; gap: 1.25rem; }
+  .grid-3 { grid-template-columns: repeat(3, 1fr); }
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .packages { grid-template-columns: repeat(4, 1fr); margin-bottom: 2.5rem; }
+  .steps { grid-template-columns: repeat(5, 1fr); list-style: none; padding-left: 0; }
+
+  .card { padding: 1.5rem; border-radius: var(--radius-lg, 16px); }
+  .card h3 { font-size: 1.15rem; font-weight: 700; margin: 0 0 .6rem; }
+  .card p, .card li { color: var(--color-text-secondary); font-size: .93rem; line-height: 1.65; margin: 0 0 .9rem; }
+  .card ul { padding-left: 1.1rem; margin: 0 0 1.25rem; }
+  .card li { margin-bottom: .35rem; }
+  .num { display: inline-block; color: var(--color-primary); font-weight: 700; font-size: .85rem; margin-bottom: .5rem; }
+  .pillars .num { font-size: 1.4rem; }
+
+  .package { display: flex; flex-direction: column; }
+  .package > a { margin-top: auto; align-self: stretch; justify-content: center; text-align: center; }
+  .pkg-type { font-weight: 700; font-size: .78rem !important; text-transform: uppercase; letter-spacing: .06em; color: var(--color-primary) !important; margin: 0 0 .25rem !important; min-height: 2.6em; }
+  .pkg-term { font-size: 1.15rem !important; font-weight: 700; color: inherit !important; margin: 0 !important; }
+  .pkg-price { font-size: 2.2rem !important; font-weight: 800; color: inherit !important; margin: .5rem 0 1rem !important; line-height: 1 !important; }
+  .pkg-unit { font-size: .9rem; font-weight: 500; color: var(--color-text-secondary); }
+
+  .wide-note { text-align: center; max-width: 1100px; }
+  .wide-note h3 { font-size: 1.3rem; font-weight: 700; margin: 0 0 .6rem; }
+  .wide-note p { color: var(--color-text-secondary); line-height: 1.75; margin: 0; }
+
+  .cert-wrap { display: grid; grid-template-columns: 1.15fr .85fr; gap: 4rem; align-items: center; }
+  .cert-visual { perspective: 1200px; max-width: 560px; justify-self: end; width: 100%; }
+  .cert-visual :global(.cert) { transform: rotateY(-8deg); transition: transform .6s ease; }
+  .cert-visual:hover :global(.cert) { transform: rotateY(0deg); }
+  .verify-form { display: flex; gap: .5rem; max-width: 520px; margin: 1.75rem 0 .75rem; padding: .45rem; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-bg, #fff); box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+  .verify-form input { flex: 1; min-width: 0; border: 0; background: transparent; padding: .75rem 1.1rem; font-size: .95rem; color: inherit; outline: none; }
+  .verify-form button { border-radius: 999px; }
+  .hint { font-size: .88rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+  .faq { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; align-items: start; }
+  .faq-col { display: grid; gap: .9rem; }
+  .faq summary { font-weight: 700; cursor: pointer; }
+  .faq details p { margin: .75rem 0 0; }
+
+  .apply { display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
+  .ticks { list-style: none; padding: 0; margin: 0; display: grid; gap: .5rem; }
+  .ticks li { color: var(--color-text-secondary); padding-left: 1.6rem; position: relative; }
+  .ticks li::before { content: '✓'; position: absolute; left: 0; color: var(--color-primary); font-weight: 700; }
+  .apply-card { text-align: center; padding: 2.25rem; }
+  .apply-card h3 { font-size: 1.4rem; }
+  .apply-card a.btn-fluent-primary { margin: .5rem 0 1.25rem; }
+  .small { font-size: .88rem !important; margin: 0 0 .4rem !important; }
+
+  @media (max-width: 1100px) {
+    .packages { grid-template-columns: repeat(2, 1fr); }
+    .steps { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .two-col, .cert-wrap, .apply, .faq, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+    .cert-visual { justify-self: center; }
+    .cert-visual :global(.cert) { transform: none; }
+    .steps { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .packages, .steps { grid-template-columns: 1fr; }
+    .verify-form { flex-direction: column; border-radius: 20px; }
+    td:first-child, td:nth-child(3), td:nth-child(4) { white-space: normal; }
+  }
+</style>

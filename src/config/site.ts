@@ -65,7 +65,13 @@ export const siteConfig = {
     volunteerSupervisorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-academic-supervisor-application",
     volunteerWorkshopForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-workshop-instructor-programme-application",
     volunteerMentorForm: "https://clientflow-crm.com/f/ukabcs/global/ukabcs-volunteer-mentor-application-form",
+
+    // 11. IP & Innovation Programme (uses the general support form until a dedicated form exists)
+    ipInnovationRequestForm: "https://clientflow-crm.com/f/ukabcs/ukabcs-general-support/ukabcs-general-support-form",
   },
+
+  // Certificate lookups for /verify, served by the UKABCS Portal.
+  certificateApi: "https://portal.ukabcs.co.uk/api/certificates",
 
   // Main Header Navigation (Ordered per Master Plan Section 3)
   nav: [
@@ -78,6 +84,7 @@ export const siteConfig = {
         { label: "Funded Projects", href: "/funded-projects", description: "Universities and labs we have already supported" },
         { label: "Mobility Exchange", href: "/mobility-exchange", description: "International exchange for students, researchers and faculty" },
         { label: "Software Development Support", href: "/scientific-software", description: "Grants & cloud compute for computational tools" },
+        { label: "IP & Innovation Programme", href: "/ip-innovation", description: "Copyright registration certificates, novelty reports and commercialisation" },
         { label: "Events & Educational Support", href: "/educational-support", description: "Free courses, workshops, audiobooks, and mentorship" },
         { label: "Publications & Conferences", href: "/publications", description: "APC waivers and international conference travel support" },
         { label: "Women Researchers Support", href: "/women-in-science", description: "Targeted research funding and conference childcare assistance" },

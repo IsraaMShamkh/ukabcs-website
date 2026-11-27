@@ -1,0 +1,102 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/hero/PageHero.astro';
+import InnovationCertificate from '../components/certificate/InnovationCertificate.astro';
+import { siteConfig } from '../config/site';
+
+const api = import.meta.env.PUBLIC_CERT_API || siteConfig.certificateApi;
+---
+<BaseLayout title={`Verify a Copyright Certificate | ${siteConfig.publicName}`} description="Verify a UKABCS Certificate of Copyright & Innovation Registration by entering its serial number.">
+  <PageHero eyebrow="IP & Innovation Programme" title="Verify a UKABCS Certificate" description="Enter the serial number printed on a UKABCS Certificate of Copyright & Innovation Registration to view the certificate and confirm that it is genuine." image="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=85&w=2200&auto=format&fit=crop" />
+
+  <section class="block">
+    <div class="container narrow center">
+      <h2>Certificate verification</h2>
+      <p>Every certificate issued by UKABCS has a unique serial number, for example <code>UKABCS-CR-2026-XXXX-XXXX</code>. Enter it below to see the certificate exactly as UKABCS issued it.</p>
+      <form class="verify-form" id="verify-form">
+        <label class="sr-only" for="serial">Serial number</label>
+        <input id="serial" name="serial" type="text" autocomplete="off" spellcheck="false" placeholder="UKABCS-CR-2026-XXXX-XXXX" required />
+        <button type="submit" class="btn-fluent-primary">Verify</button>
+      </form>
+      <p class="hint">Want to see how it works? Try the specimen serial <button type="button" class="link" id="try-specimen">UKABCS-CR-2026-SAMP-LE01</button>.</p>
+      <div class="message" id="message" role="status" aria-live="polite" hidden></div>
+    </div>
+
+    <div class="container result" id="result" hidden>
+      <div class="badge" id="badge">Valid certificate</div>
+      <InnovationCertificate />
+      <p class="note">Issued by the UK Organisation for Biotechnology and Computational Science (UKABCS). Questions about a certificate: <a href={`mailto:${siteConfig.contactEmail}`}>{siteConfig.contactEmail}</a>.</p>
+    </div>
+  </section>
+</BaseLayout>
+
+<script define:vars={{ api }}>
+  const fmt = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+  const form = document.getElementById('verify-form');
+  const input = document.getElementById('serial');
+  const message = document.getElementById('message');
+  const result = document.getElementById('result');
+  const badge = document.getElementById('badge');
+
+  function show(text, kind) {
+    message.textContent = text;
+    message.className = `message ${kind}`;
+    message.hidden = false;
+  }
+
+  async function verify(raw) {
+    const serial = raw.trim().toUpperCase().replace(/\s+/g, '');
+    result.hidden = true;
+    if (!serial) return;
+    show('Checking the certificate…', 'info');
+    try {
+      const res = await fetch(`${api}/${encodeURIComponent(serial)}`, { cache: 'no-store' });
+      const rec = await res.json().catch(() => ({}));
+      if (res.status === 429) return show(rec.error || 'Too many lookups. Please wait a minute and try again.', 'bad');
+      if (!rec.found) return show(`No certificate was found with the serial number ${serial}. Please check the number and try again.`, 'bad');
+      const values = { ...rec, registrationDate: fmt(rec.registrationDate), validUntil: fmt(rec.validUntil) };
+      result.querySelectorAll('[data-f]').forEach((el) => { el.textContent = values[el.dataset.f] ?? ''; });
+      result.querySelector('[data-specimen]').hidden = !rec.specimen;
+      if (rec.specimen) { badge.textContent = 'Specimen certificate (example only)'; badge.className = 'badge warn'; }
+      else if (rec.status !== 'valid') { badge.textContent = 'This certificate has been withdrawn by UKABCS'; badge.className = 'badge bad'; }
+      else if (rec.expired) { badge.textContent = 'Genuine certificate — the registration term has ended'; badge.className = 'badge warn'; }
+      else { badge.textContent = '✓ Genuine certificate issued by UKABCS'; badge.className = 'badge'; }
+      message.hidden = true;
+      result.hidden = false;
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    } catch {
+      show('The certificate could not be checked right now. Please try again in a few minutes.', 'bad');
+    }
+  }
+
+  form.addEventListener('submit', (e) => { e.preventDefault(); verify(input.value); });
+  document.getElementById('try-specimen').addEventListener('click', () => { input.value = 'UKABCS-CR-2026-SAMP-LE01'; verify(input.value); });
+
+  // Links from the IP & Innovation page pass the serial after # so it is not sent to this site's server.
+  const fromHash = decodeURIComponent(location.hash.slice(1));
+  if (fromHash) { input.value = fromHash; verify(fromHash); }
+</script>
+
+<style>
+  .block { padding: clamp(4rem, 7vw, 6rem) 0; }
+  .narrow { max-width: 760px; }
+  .center { text-align: center; }
+  h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); font-weight: 700; margin: 0 0 1rem; }
+  .center p { color: var(--color-text-secondary); line-height: 1.75; }
+  code { font-size: .95em; }
+  .verify-form { display: flex; gap: .5rem; max-width: 560px; margin: 2rem auto 1rem; padding: .5rem; border: 1px solid var(--color-border); border-radius: 999px; background: var(--color-surface, #fff); box-shadow: 0 10px 30px rgba(0,0,0,.06); }
+  .verify-form input { flex: 1; min-width: 0; border: 0; background: transparent; padding: .8rem 1.2rem; font-size: 1rem; color: inherit; outline: none; letter-spacing: .04em; }
+  .verify-form button { border-radius: 999px; }
+  .hint { font-size: .9rem; }
+  .link { background: none; border: 0; padding: 0; color: var(--color-primary); font: inherit; text-decoration: underline; cursor: pointer; }
+  .message { max-width: 560px; margin: 1.25rem auto 0; padding: 1rem 1.25rem; border-radius: 14px; font-weight: 600; line-height: 1.6; }
+  .message.info { background: #e6f0fb; color: #0c447c; }
+  .message.bad { background: #fee2e2; color: #991b1b; }
+  .result { max-width: 900px; margin-top: 2.5rem; text-align: center; }
+  .badge { display: inline-block; margin-bottom: 1.25rem; padding: .5rem 1.1rem; border-radius: 999px; background: #dcfce7; color: #166534; font-weight: 700; font-size: .95rem; }
+  .badge.warn { background: #fef3c7; color: #92400e; }
+  .badge.bad { background: #fee2e2; color: #991b1b; }
+  .note { margin-top: 1.5rem; color: var(--color-text-secondary); font-size: .9rem; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  @media (max-width: 600px) { .verify-form { flex-direction: column; border-radius: 20px; } }
+</style>
