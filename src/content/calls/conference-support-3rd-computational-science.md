@@ -2,7 +2,7 @@
 title: "UKABCS Research Support for the Third International Conference on Computational Science and Biotechnology"
 programme: "Publications & Conferences"
 kind: "conference"
-status: "open"
+status: "closed"
 language: "en"
 summary: "50% registration fee support for the premier Global Computational Science & Biotechnology Symposium in London (Hybrid attendance)."
 opensAt: "2025-11-01"

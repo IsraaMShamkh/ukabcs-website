@@ -29,12 +29,12 @@ In light of the profound transformations currently shaping global academia and r
 
 Against this backdrop, the **UK Association for Biotechnology and Computational Science (UKABCS)** is proud to launch the next cycle of its **Graduation Project Capacity Building Grants**. This initiative enables universities and higher education institutions worldwide to support senior undergraduate students in executing high-impact, computationally driven graduation projects. It represents a strategic step toward empowering the next generation of researchers and cultivating an academic culture capable of competing on the global stage.
 
-**Round 2 — Applications Open** | Apply by **1 November 2026**. Applications are open for two weeks.
+**Round 2 — Closed.** Applications closed on **1 November 2026**. Round 3 dates will be announced on the UKABCS Portal.
 
 ## Application Rounds
 
 - **Round 1 — Closed:** 15 June–15 July, extended to 30 July.
-- **Round 2 — Open:** 18 October–1 November 2026 (two weeks).
+- **Round 2 — Closed:** 18 October–1 November 2026.
 - **Round 3 — Planned:** December 2026–January 2027. Exact dates will be announced.
 
 ### Round 2 — Call Modifications

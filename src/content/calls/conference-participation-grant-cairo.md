@@ -2,7 +2,7 @@
 title: "UKABCS Conference Participation Support Grant"
 programme: "Publications & Conferences"
 kind: "conference"
-status: "open"
+status: "closed"
 language: "en"
 summary: "Full registration coverage (Track A) and up to $2,000 USD travel & accommodation funding (Track B) at Cairo University Faculty of Science."
 opensAt: "2026-02-01"

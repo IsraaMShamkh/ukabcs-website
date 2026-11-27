@@ -2,7 +2,7 @@
 title: "UKABCS Support for the International Conference on Advanced Computational Models in Medicine and Biotechnology"
 programme: "Publications & Conferences"
 kind: "conference"
-status: "open"
+status: "closed"
 language: "en"
 summary: "50% reduction in official registration fees for accepted oral/poster presenters and delegates attending in London or virtually."
 opensAt: "2025-10-01"

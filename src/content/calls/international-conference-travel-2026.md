@@ -2,7 +2,7 @@
 title: "International Conference Travel & Presentation Grant 2026"
 programme: "Conferences & Symposia Support"
 kind: "conference"
-status: "open"
+status: "closed"
 language: "en"
 summary: "Travel grants and registration fee coverage for computational scientists presenting oral papers at international conferences in London and Europe."
 applicationUrl: "https://portal.ukabcs.co.uk/apply/international-conference-travel-2026"
